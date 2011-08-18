@@ -25,5 +25,5 @@ all: motor.exe
 clean:
 	rm motor.exe
 
-motor.exe: $(prefix)/stepper.cpp motor.cpp Makefile
+motor.exe: $(prefix)/stepper.cpp $(prefix)/stepper.h motor.cpp Makefile
 	g++ $(GCC_FLAGS) $(DEBUG_FLAGS) -I$(includeRTOS) -I$(includeGPIO) $(prefix)/stepper.cpp motor.cpp -o motor.exe
