@@ -13,14 +13,17 @@ includeGPIO = ../../../../DriverLib/src
 
 ifeq ($(myDebug), 1)
 GCC_FLAGS = -Wall
+DEBUG_FLAGS = -D CYGWIN -D DUMP=1
 else
 GCC_FLAGS =
+DEBUG_FLAGS = -D CYGWIN
 endif 
 
 
 all: motor.exe
 
 clean:
+	rm motor.exe
 
-motor.exe: $(prefix)/stepper.cpp motor.cpp
-	g++ $(GCC_FLAGS) -D CYGWIN -I$(includeRTOS) -I$(includeGPIO) $(prefix)/stepper.cpp motor.cpp -o motor.exe
+motor.exe: $(prefix)/stepper.cpp motor.cpp Makefile
+	g++ $(GCC_FLAGS) $(DEBUG_FLAGS) -I$(includeRTOS) -I$(includeGPIO) $(prefix)/stepper.cpp motor.cpp -o motor.exe
