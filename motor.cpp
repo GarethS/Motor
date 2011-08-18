@@ -14,6 +14,7 @@ using namespace std;
 
 int main(void) {
 	stepper s; 
+	s.dryRunAccel();
 	
 	cout << "done" << endl;
 	
