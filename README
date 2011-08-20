@@ -1,0 +1,45 @@
+
+Gareth Scott (c) 2011, garethjscott@gmail.com
+
+This project describes a stepper motor controller used by a typical embedded controller.
+It allows the motor to accelerate using an s-curve profile described by the equation: 1 / 1 + exp(-t)
+The code is written as a C++ class and tested with Cygwin and a Luminary Micro Cortex-M3 controller (LM3S3748).
+
+The architecture of this class adjusts a peripheral timer in the controller to match the acceleration curve.
+For speed, a lookup table is used since the timer calls an interrupt service routine and time is at a premium.
+
+There are 3 variables involved in acceleration: max-frequency or omega, time and steps.
+2 can be selected, setting the other one. This implementation requires the fmax be set
+with either time or steps.
+
+Typical usage shown below:
+
+-------------------------------------------------------------------------------	   
+
+	stepper s;
+	s.accelOmega(200, 1200);	// set min/max rotational speed (radians/s) at start and end of acceleration
+	s.accelTime(2000000);		// set time to perform acceleration
+	s.accelSharpness(8);		// typical smooth s-curve
+	s.moveAbsolute(2000);
+
+	s.velocity(200);			// set a continuous velocity
+	s.velocity(1200);			// increase velocity using last acceleration curve
+	
+	s.stop();					// stop by ramping down the acceleration curve
+
+-------------------------------------------------------------------------------	   
+	   
+Pending tasks (* = addressed this issue):
+1. Why does OPTIMIZE_CURVE_CALC produce slightly different results depending on whether it's on and off? Suspect round-off error.
+2. This class should do the following:
+   a. Move motor from one point to another.
+   b. Change velocity
+   c. Execute any changes using an acceleration curve
+
+Limitations
+
+Notes
+1. Under Cygwin, to redirect output to a file use: ./motor >motor.txt 2>motorErr.txt
+2. Note that ./parsetest is run from a cygwin command window. It needs access to c:\cygwin\bin\cygwin1.dll to run.
+    Install a minimal cygwin to get this. To run from a DOS command prompt, add cygwin to your path using the following:
+	"set Path=%Path%;c:\cygwin\bin" and then type "motor". It's really best just to install cygwin in the first place.
