@@ -24,6 +24,9 @@ int main(void) {
 	s.a._bisectTimeForStepCount(999);
 	s.a._bisectTimeForStepCount(10);
 	
+	s.a.frequency(200, 1200);
+	s.moveAbsolute(10000);
+	
 	cout << "done" << endl;
 	
 	return 0;
