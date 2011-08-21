@@ -9,8 +9,13 @@ The architecture of this class adjusts a peripheral timer in the controller to m
 For speed, a lookup table is used since the timer calls an interrupt service routine and time is at a premium.
 
 There are 3 variables involved in acceleration: max-frequency or omega, time and steps.
-2 can be selected, setting the other one. This implementation requires the fmax be set
-with either time or steps.
+The steps to move and frequency (min/max) can be set. The stepper class can tell you
+how long the move will take, but will not allow you to set the distance based on time.
+That is an easy function to turn on, but we didn't think it very useful.
+You can set the time that the acceleration will last but that can be overridden if the
+movement is not long enough to contain that acceleration distance.
+
+All times are in micro-seconds unless shown otherwise.
 
 Typical usage shown below:
 

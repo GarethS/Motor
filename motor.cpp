@@ -19,10 +19,10 @@ int main(void) {
 	stepper s; 
 	//s.dryRunAccel();
 	//cout << "acceleration steps= " << s._accelGetStepCount() << endl;
-	s.a._bisectTimeForStepCount(1000);
-	s.a._bisectTimeForStepCount(500);
-	s.a._bisectTimeForStepCount(999);
-	s.a._bisectTimeForStepCount(10);
+	s.a._stepsToTime(1000);
+	s.a._stepsToTime(500);
+	s.a._stepsToTime(999);
+	s.a._stepsToTime(10);
 	
 	s.a.frequency(200, 1200);
 	s.moveAbsolute(10000);
