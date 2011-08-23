@@ -17,6 +17,18 @@ movement is not long enough to contain that acceleration distance.
 
 All times are in micro-seconds unless shown otherwise.
 
+It's hard to draw an s-shaped velocity profile using only ascii-characters.
+
+velocity
+|
+|         ............... 
+|       .                .
+|     .                    .
+|     .                    .
+|   .                        .
+|..                            .....  
+__________________________________________time
+
 Typical usage shown below:
 
 -------------------------------------------------------------------------------	   
@@ -40,6 +52,12 @@ Pending tasks (* = addressed this issue):
    a. Move motor from one point to another.
    b. Change velocity
    c. Execute any changes using an acceleration curve
+3. Initialize timer code needs added to: stepper_init()
+4. Connect isr() up to stepper::isr()
+5. Commit to github. Need to consolidate files into one central location. Have FreeRTOS, Luminary and source files for stepper.
+6. Basic regression testing.
+7. Debugging output not dependent on #preprocessor macro.
+8. Add safeguard to never change motor speed by more than xx Hz.
 
 Limitations
 
