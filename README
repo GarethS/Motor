@@ -59,7 +59,9 @@ Pending tasks (* = addressed this issue):
 7. Debugging output not dependent on #preprocessor macro.
 8. Add safeguard to never change motor speed by more than xx Hz.
 9. Set position by radians as well as steps
-10. copy constructor and assignment for accel class.
+10. copy constructor and assignment for accel class
+11. Copy stepper and accel classes to motor directory and build them from there...
+11a. ...then submit to Github
 
 Limitations
 
