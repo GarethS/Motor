@@ -17,12 +17,15 @@ int main(void) {
 	//logc l("TESTa");
 	//l.dump("start motor");
 	stepper s; 
-	//s.dryRunAccel();
+	//s.a.dryRunAccel();
 	//cout << "acceleration steps= " << s._accelGetStepCount() << endl;
+#if REGRESS_1	
 	s.a.stepsToTime(1000);
 	s.a.stepsToTime(500);
 	s.a.stepsToTime(999);
 	s.a.stepsToTime(10);
+	s.a.test();
+#endif /* REGRESS_1 */
 	
 	//s.a.frequency(200, 1200);
 	s.moveAbsolute(10000);

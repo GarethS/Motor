@@ -58,6 +58,8 @@ Pending tasks (* = addressed this issue):
 6. Basic regression testing.
 7. Debugging output not dependent on #preprocessor macro.
 8. Add safeguard to never change motor speed by more than xx Hz.
+9. Set position by radians as well as steps
+10. copy constructor and assignment for accel class.
 
 Limitations
 

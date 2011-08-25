@@ -12,21 +12,22 @@
 #include "log.h"
 
 std::ofstream logc::_os("motorlog.txt", std::ios::app);	// Makes class look like a singleton by making this static
+std::ostringstream logc::_oss;
 
-void logc::dump(const std::string& s) {
-	std::string ts = _timeStampPrefix() + _myName + " " + s;
-	std::cout << ts.c_str() << std::endl;	// Output to screen
-	if (_os != NULL) {
-		_os << ts.c_str() << std::endl;	// Output to file if it exists
+void logc::dump(const std::string& s, const bool useTimeStamp /* = true */) {
+	if (useTimeStamp) {
+		std::string ts = _timeStampPrefix() + _myName + " " + s;
+		std::cout << ts.c_str() << std::endl;	// Output to screen
+		if (_os != NULL) {
+			_os << ts.c_str() << std::endl;	// Output to file if it exists
+		}
+	} else {
+		std::cout << s.c_str() << std::endl;	// Output to screen
+		if (_os != NULL) {
+			_os << s.c_str() << std::endl;	// Output to file if it exists
+		}
 	}
-}
-
-void logc::dumpNoTimeStamp(const std::string& s) {
-	//std::string ts = s;
-	std::cout << s.c_str() << std::endl;	// Output to screen
-	if (_os != NULL) {
-		_os << s.c_str() << std::endl;	// Output to file if it exists
-	}
+	ossClear();
 }
 
 // Typical output: '23/02/11 12:36:09'
