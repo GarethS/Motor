@@ -2,7 +2,7 @@
 Gareth Scott (c) 2011, garethjscott@gmail.com
 
 This project describes a stepper motor controller used by a typical embedded controller.
-It allows the motor to accelerate using an s-curve profile described by the equation: 1 / 1 + exp(-t)
+It allows the motor to accelerate using an s-curve profile described by the equation: 1 / (1 + exp(-t))
 The code is written as a C++ class and tested with Cygwin and a Luminary Micro Cortex-M3 controller (LM3S3748).
 
 The architecture of this class adjusts a peripheral timer in the controller to match the acceleration curve.
@@ -18,6 +18,7 @@ movement is not long enough to contain that acceleration distance.
 All times are in micro-seconds unless shown otherwise.
 
 It's hard to draw an s-shaped velocity profile using only ascii-characters.
+For a better graph see: http://en.wikipedia.org/wiki/Logistic_function
 
 velocity
 |
@@ -55,11 +56,11 @@ Pending tasks (* = addressed this issue):
 3. Initialize timer code needs added to: stepper_init()
 4. Connect isr() up to stepper::isr()
 5. Commit to github. Need to consolidate files into one central location. Have FreeRTOS, Luminary and source files for stepper.
-6. Basic regression testing.
+6.* Basic regression testing.
 7. Debugging output not dependent on #preprocessor macro.
 8. Add safeguard to never change motor speed by more than xx Hz.
 9. Set position by radians as well as steps
-10. copy constructor and assignment for accel class
+10.* copy constructor and assignment for accel class
 11.*Copy stepper and accel classes to motor directory and build them from there...
 11a.* ...then submit to Github
 
@@ -67,6 +68,7 @@ Limitations
 
 Notes
 1. Under Cygwin, to redirect output to a file use: ./motor >motor.txt 2>motorErr.txt
-2. Note that ./parsetest is run from a cygwin command window. It needs access to c:\cygwin\bin\cygwin1.dll to run.
+2. Note that ./motor is run from a cygwin command window. It needs access to c:\cygwin\bin\cygwin1.dll to run.
     Install a minimal cygwin to get this. To run from a DOS command prompt, add cygwin to your path using the following:
 	"set Path=%Path%;c:\cygwin\bin" and then type "motor". It's really best just to install cygwin in the first place.
+3. Regression test issue this from the command line: make test1	

@@ -7,7 +7,7 @@
 
 */
 
-#include "../../../../DriverLib/boards/ek-lm3s3748/motor/stepper.h"
+#include "stepper.h"
 //#include "log.h"
 
 #include <iostream>
@@ -25,10 +25,12 @@ int main(void) {
 	s.a.stepsToTime(999);
 	s.a.stepsToTime(10);
 	s.a.test();
+	
+	s.test();
 #endif /* REGRESS_1 */
 	
 	//s.a.frequency(200, 1200);
-	s.moveAbsolute(10000);
+	//s.moveAbsolute(10000);
 	
 	cout << "done" << endl;
 	

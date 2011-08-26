@@ -236,24 +236,24 @@ void accel::_scaleYAxisToClockTicks(void) {
 #else /* not OPTIMIZE_CURVE_CALC */
 
 // Convert frequency scaled curve to period in microsec (us).
-void accel::_initScaledPeriodMicroSecCurve(void) {
+void accel::_scaleYAxisToMicroSec(void) {
     for (int i = 0; i < _maxAccelEntries; ++i) {
         _curveInt[i] = _microSecPerSec / _curveFloat[i];
     }
-#if 0
-	cout << endl << "scaled period us curve" << endl;
+#if REGRESS_1
+	oss() << "_scaleYAxisToMicroSec" << endl;
 	_dumpCurveInt();
-#endif /* DUMP */
+#endif /* REGRESS_1 */
 }
 
-void accel::_initScaledPeriodClockTicksCurve(void) {
+void accel::_scaleYAxisToClockTicks(void) {
     for (int i = 0; i < _maxAccelEntries; ++i) {
         _curveInt[i] *= _clockMHz;
     }
-#if 0
-	cout << endl << "scaled period timer tick curve" << endl;
+#if REGRESS_1
+	oss() << "_scaleYAxisToClockTicks" << endl;
 	_dumpCurveInt();
-#endif /* DUMP */
+#endif /* REGRESS_1 */
 } 
 #endif /* OPTIMIZE_CURVE_CALC */
 
@@ -268,5 +268,10 @@ void accel::frequency(const unsigned int fmin /* = 200 */, const unsigned int fm
 	}
 	_initUnitCurve();
 	_scaleYAxisToFrequency();
+#if OPTIMIZE_CURVE_CALC	
 	_scaleYAxisToClockTicks();
+#else
+	_scaleYAxisToMicroSec();
+	_scaleYAxisToClockTicks();
+#endif /* OPTIMIZE_CURVE_CALC */	
 }

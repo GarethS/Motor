@@ -141,8 +141,8 @@ private:
 #if OPTIMIZE_CURVE_CALC	
 	void _scaleYAxisToClockTicks(void);
 #else /* not OPTIMIZE_CURVE_CALC */
-    void _initScaledPeriodMicroSecCurve(void);
-    void _initScaledPeriodClockTicksCurve(void);
+    void _scaleYAxisToMicroSec(void);
+    void _scaleYAxisToClockTicks(void);
 #endif /* OPTIMIZE_CURVE_CALC */	
     
 	// Given clock ticks, return equivalent microsec.

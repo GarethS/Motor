@@ -23,7 +23,7 @@ endif
 all: motor.exe
 
 clean:
-	rm motor.exe
+	rm motor.exe motor.exe.stackdump
 	
 test1:
 	rm motorlog.txt

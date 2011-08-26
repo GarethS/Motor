@@ -21,6 +21,19 @@ void stepper_init(void) {
     GPIOPadConfigSet(GPIO_PORTA_BASE, PIN_ALL, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD);
 }
 
+void stepper::test(void) {
+#if CYGWIN
+	oss() << "moveAbsolute START" << endl;
+	moveAbsolute(2000);
+	oss() << "_positionCurrent=" << _positionCurrent <<
+			" _positionConstantVelocityStart=" << _positionConstantVelocityStart <<
+			" _positionConstantVelocityEnd=" << _positionConstantVelocityEnd <<
+			" _positionTarget=" << _positionTarget << endl;
+	oss() << "moveAbsolute END" << endl;
+	dump();
+#endif /* CYGWIN */
+}
+
 // Set motor to run continuously at a given velocity. To stop, set velocity to 0.
 //  This function cannot be used until moveAbsolute() has completed.
 void stepper::velocity(const unsigned int f) {
@@ -79,6 +92,9 @@ void stepper::moveAbsolute(int positionNew) {
 	
 	// 1. Set acceleration time (e.g. 0.5s)
 	unsigned int accelStep = a.timeToSteps(a.time());
+#if REGRESS_1
+	oss() << "moveAbsolute() accelStep=" << accelStep << endl;
+#endif /* REGRESS_1 */
 	if (positionDelta > 2 * accelStep) {
 		// Enough room for full acceleration profile
 		if (_directionPositive) {

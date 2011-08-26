@@ -69,6 +69,8 @@ public:
     //int acceleration(void) {/* TODO */}
     //int velocity(void) {/* TODO */}
     //int position(void) {/* TODO */} // Need to return both degrees and scaled position.
+	
+	void test(void);
     
 private:
 	// _superState
