@@ -3,6 +3,8 @@
 
 	accel.h 
 
+	This class generates an acceleration curve at construction time given 3 variables: min frequency, max frequency and time.
+	
 */
 
 #ifndef _ACCEL_H_
@@ -41,6 +43,7 @@ public:
     ~accel() {}
       
 	accel(const accel& a);	// copy constructor
+	accel& operator=(const accel& a);
 	void assign(const accel& a);
 	  
     void primeTime(const unsigned int t = 2000000) {// Set the acceleration time
@@ -59,7 +62,6 @@ public:
 	
     //int acceleration(void) {/* TODO */}
     //int velocity(void) {/* TODO */}
-    //int position(void) {/* TODO */} // Need to return both degrees and scaled position.
 
 	unsigned int clockTicks(const unsigned int index) {return _curveInt[index];}
 	unsigned int timeToSteps(const unsigned int t);
@@ -113,22 +115,22 @@ public:
 
     // Given microsec, return acceleration curve index to get speed
 	unsigned int microSecToCurveIndex(const unsigned int us) {
-		if (us > _time) {
+		if (us > time()) {
 			return _maxAccelIndex;
 		}
 #if 0
-		unsigned int index = us * _maxAccelEntries / _time;
+		unsigned int index = us * _maxAccelEntries / time();
 		cout << "microSecToCurveIndex: index=" << index << endl;
 #endif /* DUMP */
-		return us * _maxAccelEntries / _time;
+		return us * _maxAccelEntries / time();
 	}
 	// Same as microSecToCurveIndex(), except returns curve index in reverse order. 
 	//  Used for deceleration.
 	unsigned int microSecToCurveIndexReverse(const unsigned int us) {
-		if (us > _time) {
+		if (us > time()) {
 			return 0;
 		}
-		return _maxAccelIndex - (us * _maxAccelEntries / _time);
+		return _maxAccelIndex - (us * _maxAccelEntries / time());
 	}
 
 	void test(void);
@@ -160,7 +162,7 @@ private:
     int _positionCurrent;  // in steps
     unsigned int _totalClockTicks; 
     unsigned int _currentClockTicks;
-    unsigned int _time;	// acceleration time
+    unsigned int _time;			// acceleration time
     int _acceleration;          // 0 when constant velocity
     int _velocity;              // step/s
 	unsigned int _fmin, _fmax;	// frequency min/max for acceleration

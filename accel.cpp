@@ -12,6 +12,7 @@ accel::accel() :
 #if CYGWIN 
 					logc(std::string("ACCEL")),
 #endif /* CYGWIN */					
+					_time(1000000),
 					_microSecPerSec(1000000), _maxDryRunCycles(10000), _clockMHz(8.0),
 					_minTime(1000), _maxTime(4000000) {
 	frequency();	// set initial min/max frequency (speed) curve
@@ -23,6 +24,13 @@ accel::accel(const accel& a) :
 #endif /* CYGWIN */
     _microSecPerSec(a._microSecPerSec), _maxDryRunCycles(a._maxDryRunCycles), _clockMHz(a._clockMHz), _minTime(a._minTime), _maxTime(a._maxTime) {
 	assign(a);
+}
+
+accel& accel::operator=(const accel& a) {
+	if (this != &a) {
+		assign(a);
+	}
+	return *this;
 }
 
 void accel::assign(const accel& a) {
@@ -64,6 +72,24 @@ void accel::test(void) {
 	}
 	oss() << "freqFromClockTicks END" << endl;
 	dump();
+	
+	oss() << "_time=" << time() << endl;
+	oss() << "clockTicksToCurveIndex START" << endl;
+	for (int ct = 0; ct < 8000000; ct += 0x8000) {
+		unsigned int ci = clockTicksToCurveIndex(ct);
+		oss() << "ct=" << ct << " curveIndex=" << ci << endl;
+	}
+	oss() << "clockTicksToCurveIndex END" << endl;
+	dump();
+	
+	oss() << "_time=" << time() << endl;
+	oss() << "clockTicksToCurveIndexReverse START" << endl;
+	for (int ct = 0; ct < 8000000; ct += 0x8000) {
+		unsigned int ci = clockTicksToCurveIndexReverse(ct);
+		oss() << "ct=" << ct << " curveIndex=" << ci << endl;
+	}
+	oss() << "clockTicksToCurveIndexReverse END" << endl;
+	dump();
 #endif /* CYGWIN */
 }
 
@@ -97,7 +123,6 @@ unsigned int accel::dryRunAccel(void) {
 }
 
 // Very similar to dryRunAccel() above but without debug output. Given an acceleration time, how many steps are taken.
-//  Assumes primeTime() has been called already.
 unsigned int accel::timeToSteps(const unsigned int t) {
     primeTime(t);
     unsigned int step = 0;
@@ -119,12 +144,12 @@ unsigned int accel::stepsToTime(const unsigned int steps) {
 	unsigned int minAccelTime = _minTime;
 	unsigned int currentAccelTime = (maxAccelTime + minAccelTime) / 2;
 	unsigned int actualSteps;
+	unsigned int originalTime = time();
 	
 #if REGRESS_1
 	oss() << "START" << endl;
 #endif /* REGRESS_1 */
 	for (int i = 0; i < _maxBisectionTrys; ++i) {
-		//primeTime(currentAccelTime);
 		actualSteps = timeToSteps(currentAccelTime);
 #if REGRESS_1
 		oss() << "currentAccelTime= " << currentAccelTime << " actualSteps= " << actualSteps << endl;
@@ -144,6 +169,7 @@ unsigned int accel::stepsToTime(const unsigned int steps) {
 	oss() << "END currentAccelTime= " << currentAccelTime << " actualSteps= " << actualSteps;
 	dump();
 #endif /* REGRESS_1 */
+	time(originalTime);
 	return currentAccelTime;
 }
 
