@@ -46,7 +46,7 @@ public:
 	accel& operator=(const accel& a);
 	void assign(const accel& a);
 	  
-    void primeTime(const unsigned int t = 2000000) {// Set the acceleration time
+    void primeTime(const unsigned int t) {
 	    _totalClockTicks = 0;
 		time(t);
 		_currentClockTicks = clockTicks(0);

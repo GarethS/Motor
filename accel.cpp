@@ -94,7 +94,7 @@ void accel::test(void) {
 }
 
 unsigned int accel::dryRunAccel(void) {
-    primeTime();
+    primeTime(time());
     unsigned int step = 0;
 #if DUMP
 	cout << "start: dryRunAccel" << endl;
