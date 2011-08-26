@@ -5,7 +5,7 @@
 # 1 = debug build, 0 = release
 myDebug := 1
 
-.PHONY: all clean
+.PHONY: all clean test1
 
 prefix = ../../../../DriverLib/boards/ek-lm3s3748/motor
 includeRTOS = ../../../../dev/docs/rtos/freertos/FreeRTOS/Demo/Common/drivers/LuminaryMicro/
@@ -24,6 +24,11 @@ all: motor.exe
 
 clean:
 	rm motor.exe
+	
+test1:
+	rm motorlog.txt
+	./motor
+	diff motorlog.txt motorlogTest1.txt
 
 # These files live in the IAR project directory to build the embedded executable.
 # Copy them here to build Cygwin executable and keep in sync with IAR build.
