@@ -138,43 +138,44 @@ void stepper::isr(void) {
 	step();
 	if (_superState == MOVE_FULL || _superState == MOVE_TRUNCATED) {
 		if (_directionPositive) {
-			if (_positionCurrent  < _positionConstantVelocityStart) {
-				// accelerating
-				_subState = MOVE_ACCELERATE;
-				_timer(a.updateClockPeriod());
-			} else if (_positionCurrent >= _positionTarget) {
-				//oss() << "_positionCurrent >= _positionTarget" << endl;
-				_timerStart(false);
-			} else if (_positionCurrent > _positionConstantVelocityEnd) {
-				// decelerating
-				_subState = MOVE_DECELERATE;
-				_timer(a.updateClockPeriodReverse());
-			} else if (_positionCurrent == _positionConstantVelocityEnd) {
-				// Start of deceleration.
-				_subState = MOVE_DECELERATE;
-				a.primeTime(a.time());
-			} else {
-				_subState = MOVE_CONSTANT_VELOCITY;
-				// constant velocity. Nothing to do.
-			}
-		} else {
-			if (_positionCurrent  > _positionConstantVelocityStart) {
+			if (_positionCurrent < _positionConstantVelocityStart) {
 				// accelerating
 				_subState = MOVE_ACCELERATE;
 				_timer(a.updateClockPeriod());
 			} else if (_positionCurrent < _positionConstantVelocityEnd) {
-				// decelerating
-				_subState = MOVE_DECELERATE;
-				_timer(a.updateClockPeriodReverse());
+				// constant velocity. Nothing to do.
+				_subState = MOVE_CONSTANT_VELOCITY;
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
 				a.primeTime(a.time());
-			} else if (_positionCurrent <= _positionTarget) {
+			} else if (_positionCurrent < _positionTarget) {
+				// decelerating
+				_subState = MOVE_DECELERATE;
+				_timer(a.updateClockPeriodReverse());
+			} else /* if (_positionCurrent >= _positionTarget) */ {
+				// end of movement
 				_timerStart(false);
-			} else {
-				_subState = MOVE_CONSTANT_VELOCITY;
+			}
+		} else {
+			if (_positionCurrent > _positionConstantVelocityStart) {
+				// accelerating
+				_subState = MOVE_ACCELERATE;
+				_timer(a.updateClockPeriod());
+			} else if (_positionCurrent > _positionConstantVelocityEnd) {
 				// constant velocity. Nothing to do.
+				_subState = MOVE_CONSTANT_VELOCITY;
+			} else if (_positionCurrent == _positionConstantVelocityEnd) {
+				// Start of deceleration.
+				_subState = MOVE_DECELERATE;
+				a.primeTime(a.time());
+			} else if (_positionCurrent > _positionTarget) {
+				// decelerating
+				_subState = MOVE_DECELERATE;
+				_timer(a.updateClockPeriodReverse());
+			} else /* if (_positionCurrent <= _positionTarget) */ {
+				// end of movement
+				_timerStart(false);
 			}
 		}
 	} else if (_superState == VELOCITY_MOVE) {
