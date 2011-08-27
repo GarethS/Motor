@@ -1158,3 +1158,8 @@ ct=7962624 curveIndex=0
 ct=7995392 curveIndex=0
 clockTicksToCurveIndexReverse END
 
+moveAbsolute START
+moveAbsolute() accelStep=687
+_positionCurrent=0 _positionConstantVelocityStart=687 _positionConstantVelocityEnd=1313 _positionTarget=2000
+moveAbsolute END
+

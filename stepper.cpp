@@ -136,13 +136,11 @@ void stepper::isr(void) {
 			if (_positionCurrent  < _positionConstantVelocityStart) {
 				// accelerating
 				_subState = MOVE_ACCELERATE;
-				unsigned int newClockPeriod = a.updateClockPeriod();
-				TimerLoadSet(TIMER0_BASE, TIMER_A, newClockPeriod);
+				_timer(a.updateClockPeriod());
 			} else if (_positionCurrent > _positionConstantVelocityEnd) {
 				// decelerating
 				_subState = MOVE_DECELERATE;
-				unsigned int newClockPeriod = a.updateClockPeriodReverse();
-				TimerLoadSet(TIMER0_BASE, TIMER_A, newClockPeriod);
+				_timer(a.updateClockPeriodReverse());
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
@@ -158,27 +156,73 @@ void stepper::isr(void) {
 			if (_positionCurrent  > _positionConstantVelocityStart) {
 				// accelerating
 				_subState = MOVE_ACCELERATE;
-				unsigned int newClockPeriod = a.updateClockPeriod();
-				TimerLoadSet(TIMER0_BASE, TIMER_A, newClockPeriod);
+				_timer(a.updateClockPeriod());
 			} else if (_positionCurrent < _positionConstantVelocityEnd) {
 				// decelerating
 				_subState = MOVE_DECELERATE;
-				unsigned int newClockPeriod = a.updateClockPeriodReverse();
-				TimerLoadSet(TIMER0_BASE, TIMER_A, newClockPeriod);
+				_timer(a.updateClockPeriodReverse());
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
 				a.primeTime(a.time());
 			} else if (_positionCurrent <= _positionTarget) {
+				_superState = IDLE;
 				_timerStart(false);
 			} else {
-				_superState = IDLE;
 				_subState = MOVE_CONSTANT_VELOCITY;
 				// constant velocity. Nothing to do.
 			}
 		}
 	} else if (_superState == VELOCITY_MOVE) {
 	}
+#if REGRESS_1
+	switch (_superState) {
+	case IDLE:
+		oss() << "IDLE ";
+		break;
+	case MOVE_FULL:
+		oss() << "MOVE_FULL ";
+		break;
+	case MOVE_TRUNCATED:
+		oss() << "MOVE_TRUNCATED ";
+		break;
+	case VELOCITY_MOVE:
+		oss() << "VELOCITY_MOVE ";
+		break;
+	default:
+		oss() << "UNKNOWN SUPERSTATE ";
+		break;
+	}
+
+	switch (_subState) {
+	case MOVE_START:
+		oss() << "MOVE_START ";
+		break;
+	case MOVE_ACCELERATE:
+		oss() << "MOVE_ACCELERATE ";
+		break;
+	case MOVE_CONSTANT_VELOCITY:
+		oss() << "MOVE_CONSTANT_VELOCITY ";
+		break;
+	case MOVE_DECELERATE:
+		oss() << "MOVE_DECELERATE ";
+		break;
+	case VELOCITY_MOVE_ACCELERATE:
+		oss() << "VELOCITY_MOVE_ACCELERATE ";
+		break;
+	case VELOCITY_MOVE_DECELERATE:
+		oss() << "VELOCITY_MOVE_DECELERATE ";
+		break;
+	case VELOCITY_MOVE_CONSTANT_VELOCITY:
+		oss() << "VELOCITY_MOVE_CONSTANT_VELOCITY ";
+		break;
+	default:
+		oss() << "UNKNOWN SUBSTATE ";
+		break;
+	}
+	oss() << " position=" << _positionCurrent << " timer=" << _timer();
+	dump();
+#endif /* REGRESS_1 */				
 }
 
 void stepper::_timerStart(bool start /* = true */) {

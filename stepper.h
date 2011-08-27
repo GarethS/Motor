@@ -84,10 +84,11 @@ private:
     
 private:
 	void _timerStart(bool start = true);
-	void _timerSet(unsigned long newClockPeriod) {
+	void _timer(unsigned long newClockPeriod) {
 		_timerPeriod = newClockPeriod;
-		TimerLoadSet(TIMER0_BASE, TIMER_A, newClockPeriod);
+		TimerLoadSet(TIMER0_BASE, TIMER_A, _timerPeriod);
 	}
+	unsigned long _timer(void) {return _timerPeriod;}
 	
 	// These 4 points represent a typical movement profile.
 	//  Acceleration is from _positionCurrent to _positionConstantVelocityStart
