@@ -31,6 +31,10 @@ void stepper::test(void) {
 			" _positionTarget=" << _positionTarget << endl;
 	oss() << "moveAbsolute END" << endl;
 	dump();
+	// Now let's run the isr.
+	for (int i = 0; i < 2010; ++i) {
+		isr();
+	}
 #endif /* CYGWIN */
 }
 
@@ -105,6 +109,7 @@ void stepper::moveAbsolute(int positionNew) {
 			_positionConstantVelocityEnd = _positionTarget + accelStep;
 		}
 		_superState = MOVE_FULL;
+		a.primeTime(1000000);
 	} else {
 		// Acceleration curve needs to be truncated. Not enough room to reach max speed.
 		unsigned int tNew = a.stepsToTime(positionDelta / 2);
@@ -137,6 +142,9 @@ void stepper::isr(void) {
 				// accelerating
 				_subState = MOVE_ACCELERATE;
 				_timer(a.updateClockPeriod());
+			} else if (_positionCurrent >= _positionTarget) {
+				//oss() << "_positionCurrent >= _positionTarget" << endl;
+				_timerStart(false);
 			} else if (_positionCurrent > _positionConstantVelocityEnd) {
 				// decelerating
 				_subState = MOVE_DECELERATE;
@@ -145,9 +153,6 @@ void stepper::isr(void) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
 				a.primeTime(a.time());
-			} else if (_positionCurrent >= _positionTarget) {
-				_superState = IDLE;
-				_timerStart(false);
 			} else {
 				_subState = MOVE_CONSTANT_VELOCITY;
 				// constant velocity. Nothing to do.
@@ -166,7 +171,6 @@ void stepper::isr(void) {
 				_subState = MOVE_DECELERATE;
 				a.primeTime(a.time());
 			} else if (_positionCurrent <= _positionTarget) {
-				_superState = IDLE;
 				_timerStart(false);
 			} else {
 				_subState = MOVE_CONSTANT_VELOCITY;
