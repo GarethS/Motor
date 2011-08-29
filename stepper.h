@@ -89,6 +89,7 @@ private:
 		TimerLoadSet(TIMER0_BASE, TIMER_A, _timerPeriod);
 	}
 	unsigned long _timer(void) {return _timerPeriod;}
+	void _updateConstantVelocityStart(void);
 	
 	// These 4 points represent a typical movement profile.
 	//  Acceleration is from _positionCurrent to _positionConstantVelocityStart

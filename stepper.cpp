@@ -8,6 +8,7 @@
 #include "stepper.h"
 #include "lmi_timer.h"
 #include <math.h>
+#include <assert.h>
 
 stepper::stepper() :
 #if CYGWIN 
@@ -43,16 +44,18 @@ void stepper::test(void) {
 void stepper::velocity(const unsigned int f) {
 	if (_superState == IDLE) {
 		// Starting from f = 0.
-		unsigned int accelStep = a.timeToSteps(a.time());
-		if (_directionPositive) {
-			_positionConstantVelocityStart = _positionCurrent + accelStep;;
-		} else {
-			_positionConstantVelocityStart = _positionCurrent - accelStep;;
+		if (f == 0) {
+			return;	// nothing to do
 		}
+		_updateConstantVelocityStart();
+		_subState = VELOCITY_MOVE_ACCELERATE;
+	} else if (_superState == VELOCITY_MOVE_ACCELERATE || _superState == VELOCITY_MOVE_DECELERATE) {
+		// Can't do it right now. Try again when we're done accelerating.
 	} else {
 		int fdiff = f - a.freqFromClockTicks(_timerPeriod);
 		if (fdiff == 0) {
 			// nothing to do
+			assert(_subState == VELOCITY_MOVE_CONSTANT_VELOCITY);
 			return;
 		} else if (fdiff > 0) {
 			_subState = VELOCITY_MOVE_ACCELERATE;
@@ -62,12 +65,17 @@ void stepper::velocity(const unsigned int f) {
 			_subState = VELOCITY_MOVE_DECELERATE;
 			a.frequency(f, a.freqFromClockTicks(_timerPeriod));
 		}
-		unsigned int accelStep = a.timeToSteps(a.time());
-		if (_directionPositive) {
-			_positionConstantVelocityStart = _positionCurrent + accelStep;;
-		} else {
-			_positionConstantVelocityStart = _positionCurrent - accelStep;;
-		}
+		_updateConstantVelocityStart();
+	}
+	_timerStart();
+}
+
+void stepper::_updateConstantVelocityStart(void) {
+	unsigned int accelStep = a.timeToSteps(a.time());
+	if (_directionPositive) {
+		_positionConstantVelocityStart = _positionCurrent + accelStep;;
+	} else {
+		_positionConstantVelocityStart = _positionCurrent - accelStep;;
 	}
 }
 
@@ -75,7 +83,7 @@ void stepper::velocity(const unsigned int f) {
 //  This function cannot be used until velocity() has brought motor to a halt.
 void stepper::moveAbsolute(int positionNew) {
 	if (_superState != IDLE) {
-		// Still running.
+		// Can't do it right now. Try again when we're done accelerating.
 		return;
 	}
 	unsigned int positionDelta;
@@ -179,6 +187,35 @@ void stepper::isr(void) {
 			}
 		}
 	} else if (_superState == VELOCITY_MOVE) {
+		if (_directionPositive) {
+			if (_positionCurrent < _positionConstantVelocityStart) {
+				// accelerating
+				_timer(a.updateClockPeriod());
+			} else if (_positionCurrent == _positionConstantVelocityStart) {
+				if (_timer() <= 40000) {
+					// end of movement
+					_timerStart(false);
+				} else {
+					_subState = VELOCITY_MOVE_CONSTANT_VELOCITY;
+				}
+			} else if (_positionCurrent >= _positionConstantVelocityStart) {
+				// constant velocity. Nothing to do.
+			}
+		} else {
+			if (_positionCurrent > _positionConstantVelocityStart) {
+				// accelerating
+				_timer(a.updateClockPeriod());
+			} else if (_positionCurrent == _positionConstantVelocityStart) {
+				if (_timer() <= 40000) {
+					// end of movement
+					_timerStart(false);
+				} else {
+					_subState = VELOCITY_MOVE_CONSTANT_VELOCITY;
+				}
+			} else if (_positionCurrent <= _positionConstantVelocityStart) {
+				// constant velocity. Nothing to do.
+			}
+		}
 	}
 #if REGRESS_1
 	switch (_superState) {
