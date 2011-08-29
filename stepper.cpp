@@ -192,7 +192,7 @@ void stepper::isr(void) {
 				// accelerating
 				_timer(a.updateClockPeriod());
 			} else if (_positionCurrent == _positionConstantVelocityStart) {
-				if (_timer() <= 40000) {
+				if (a.freqCloseToStop(a.freqFromClockTicks(_timer()))) {
 					// end of movement
 					_timerStart(false);
 				} else {
@@ -206,7 +206,7 @@ void stepper::isr(void) {
 				// accelerating
 				_timer(a.updateClockPeriod());
 			} else if (_positionCurrent == _positionConstantVelocityStart) {
-				if (_timer() <= 40000) {
+				if (a.freqCloseToStop(a.freqFromClockTicks(_timer()))) {
 					// end of movement
 					_timerStart(false);
 				} else {

@@ -14,7 +14,7 @@ accel::accel() :
 #endif /* CYGWIN */					
 					_time(1000000),
 					_microSecPerSec(1000000), _maxDryRunCycles(10000), _clockMHz(8.0),
-					_minTime(1000), _maxTime(4000000) {
+					_minTime(1000), _maxTime(4000000), _fStop(200) {
 	frequency();	// set initial min/max frequency (speed) curve
 }
 
@@ -22,7 +22,7 @@ accel::accel(const accel& a) :
 #if CYGWIN
     logc(a),
 #endif /* CYGWIN */
-    _microSecPerSec(a._microSecPerSec), _maxDryRunCycles(a._maxDryRunCycles), _clockMHz(a._clockMHz), _minTime(a._minTime), _maxTime(a._maxTime) {
+    _microSecPerSec(a._microSecPerSec), _maxDryRunCycles(a._maxDryRunCycles), _clockMHz(a._clockMHz), _minTime(a._minTime), _maxTime(a._maxTime), _fStop(a._fStop) {
 	assign(a);
 }
 

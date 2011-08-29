@@ -95,6 +95,13 @@ public:
 	    return microSecToCurveIndexReverse(_clockTicksToMicroSec(ct));
 	}
 
+	bool freqCloseToStop(unsigned int f) {
+		if (f <= _fStop) {
+			return true;
+		}
+		return false;
+	}
+	
 	// Given clock ticks, return frequency
 	unsigned int freqFromClockTicks(unsigned int ct) {
 		if (_clockTicksToMicroSec(ct) == 0) {
@@ -172,6 +179,7 @@ private:
     const float _clockMHz;
 	const unsigned int _minTime;
 	const unsigned int _maxTime;
+	const unsigned int _fStop;	// Frequency that we can assume the motor is as good as stopped
 };
 
 #endif /* _ACCEL_H_ */
