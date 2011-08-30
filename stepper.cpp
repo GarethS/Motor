@@ -30,7 +30,20 @@ void stepper::test(void) {
 			" _positionConstantVelocityStart=" << _positionConstantVelocityStart <<
 			" _positionConstantVelocityEnd=" << _positionConstantVelocityEnd <<
 			" _positionTarget=" << _positionTarget << endl;
-	oss() << "moveAbsolute END" << endl;
+	oss() << "moveAbsolute END";
+	dump();
+	// Now let's run the isr.
+	for (int i = 0; i < 2010; ++i) {
+		isr();
+	}
+	
+	oss() << endl << "moveAbsolute START" << endl;
+	moveAbsolute(0);
+	oss() << "_positionCurrent=" << _positionCurrent <<
+			" _positionConstantVelocityStart=" << _positionConstantVelocityStart <<
+			" _positionConstantVelocityEnd=" << _positionConstantVelocityEnd <<
+			" _positionTarget=" << _positionTarget << endl;
+	oss() << "moveAbsolute END";
 	dump();
 	// Now let's run the isr.
 	for (int i = 0; i < 2010; ++i) {
@@ -198,7 +211,7 @@ void stepper::isr(void) {
 				} else {
 					_subState = VELOCITY_MOVE_CONSTANT_VELOCITY;
 				}
-			} else if (_positionCurrent >= _positionConstantVelocityStart) {
+			// } else if (_positionCurrent >= _positionConstantVelocityStart) { // compiler could optimize this line out, but we'll do it just to be explicit
 				// constant velocity. Nothing to do.
 			}
 		} else {
@@ -212,7 +225,7 @@ void stepper::isr(void) {
 				} else {
 					_subState = VELOCITY_MOVE_CONSTANT_VELOCITY;
 				}
-			} else if (_positionCurrent <= _positionConstantVelocityStart) {
+			// } else if (_positionCurrent <= _positionConstantVelocityStart) {
 				// constant velocity. Nothing to do.
 			}
 		}
