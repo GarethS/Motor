@@ -33,7 +33,7 @@ void stepper::test(void) {
 	oss() << "moveAbsolute END";
 	dump();
 	// Now let's run the isr.
-	for (int i = 0; i < 2010; ++i) {
+	for (int i = 0; i < 2010 && _superState != IDLE; ++i) {
 		isr();
 	}
 	
@@ -45,8 +45,18 @@ void stepper::test(void) {
 			" _positionTarget=" << _positionTarget << endl;
 	oss() << "moveAbsolute END";
 	dump();
-	// Now let's run the isr.
-	for (int i = 0; i < 2010; ++i) {
+	for (int i = 0; i < 2010 && _superState != IDLE; ++i) {
+		isr();
+	}
+
+	// velocity move
+	oss() << endl << "velocity START" << endl;
+	velocity(800);
+	oss() << "_positionCurrent=" << _positionCurrent <<
+			" _positionConstantVelocityStart=" << _positionConstantVelocityStart << endl;
+	oss() << "velocity END";
+	dump();
+	for (int i = 0; i < 2000; ++i) {
 		isr();
 	}
 #endif /* CYGWIN */
@@ -54,22 +64,37 @@ void stepper::test(void) {
 
 // Set motor to run continuously at a given velocity. To stop, set velocity to 0.
 //  This function cannot be used until moveAbsolute() has completed.
-void stepper::velocity(const unsigned int f) {
+int stepper::velocity(const int f) {
 	if (_superState == IDLE) {
 		// Starting from f = 0.
 		if (f == 0) {
-			return;	// nothing to do
-		}
+			return SUCCESS;	// nothing to do
+        } else if (f > 0) {
+            directionPositive();
+            a.frequency(a.fmin(), f);
+        } else {
+            // f < 0
+            directionPositive(false);
+            a.frequency(a.fmin(), -f);
+        }
 		_updateConstantVelocityStart();
-		_subState = VELOCITY_MOVE_ACCELERATE;
+        _superState = VELOCITY_MOVE;
+		a.primeTime(1000000);
 	} else if (_superState == VELOCITY_MOVE_ACCELERATE || _superState == VELOCITY_MOVE_DECELERATE) {
 		// Can't do it right now. Try again when we're done accelerating.
 	} else {
+        // motor already running at a constant velocity
+        assert(_superState == VELOCITY_MOVE);
+        if ((f > 0 && !_directionPositive) || (f < 0 && _directionPositive)) {
+            // Trying to change direction. Can't do this. Instead, bring motor to a stop and then issue another velocity() command to
+            //  reverse direction.
+            return ILLEGAL_VELOCITY;
+        }
 		int fdiff = f - a.freqFromClockTicks(_timerPeriod);
 		if (fdiff == 0) {
 			// nothing to do
 			assert(_subState == VELOCITY_MOVE_CONSTANT_VELOCITY);
-			return;
+			return SUCCESS;
 		} else if (fdiff > 0) {
 			_subState = VELOCITY_MOVE_ACCELERATE;
 			a.frequency(a.freqFromClockTicks(_timerPeriod), f);
@@ -81,6 +106,7 @@ void stepper::velocity(const unsigned int f) {
 		_updateConstantVelocityStart();
 	}
 	_timerStart();
+    return SUCCESS;
 }
 
 void stepper::_updateConstantVelocityStart(void) {
@@ -90,6 +116,7 @@ void stepper::_updateConstantVelocityStart(void) {
 	} else {
 		_positionConstantVelocityStart = _positionCurrent - accelStep;;
 	}
+	_subState = VELOCITY_MOVE_ACCELERATE;
 }
 
 // Set motor to run continuously at a given velocity. To stop, set velocity to 0.
@@ -263,10 +290,10 @@ void stepper::isr(void) {
 		oss() << "MOVE_DECELERATE ";
 		break;
 	case VELOCITY_MOVE_ACCELERATE:
-		oss() << "VELOCITY_MOVE_ACCELERATE ";
+		oss() << "VELOCITY_MOVE_ACCEL ";
 		break;
 	case VELOCITY_MOVE_DECELERATE:
-		oss() << "VELOCITY_MOVE_DECELERATE ";
+		oss() << "VELOCITY_MOVE_DECEL ";
 		break;
 	case VELOCITY_MOVE_CONSTANT_VELOCITY:
 		oss() << "VELOCITY_MOVE_CONSTANT_VELOCITY ";

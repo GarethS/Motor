@@ -61,10 +61,11 @@ public:
             GPIOPinWrite(GPIO_PORTA_BASE, PIN_DIR, PIN_DIR);
         }
     }
+    //bool directionPositive(void) {return _directionPositive;}
       
 	// Only allow one of these, moveAbsolute() or velocity(), to be active at any one time.  
     void moveAbsolute(int positionNew);
-	void velocity(const unsigned int f);
+	int velocity(const int f);
     void isr(void);
     //int acceleration(void) {/* TODO */}
     //int velocity(void) {/* TODO */}
@@ -80,6 +81,9 @@ private:
 	enum {MOVE_START, MOVE_ACCELERATE, MOVE_CONSTANT_VELOCITY, MOVE_DECELERATE,
 			VELOCITY_MOVE_ACCELERATE, VELOCITY_MOVE_DECELERATE, VELOCITY_MOVE_CONSTANT_VELOCITY};
 
+    // return values
+    enum {SUCCESS, ILLEGAL_MOVE, ILLEGAL_VELOCITY};                            
+            
     void _init(void);
     
 private:
