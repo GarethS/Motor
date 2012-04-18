@@ -11,7 +11,7 @@
 
 #include "log.h"
 
-std::ofstream logc::_os("motorlog.txt", std::ios::app);	// Makes class look like a singleton by making this static
+std::ofstream logc::_os("log.txt", std::ios::app);	// Makes class look like a singleton by making this static
 std::ostringstream logc::_oss;
 
 void logc::dump(const std::string& s, const bool useTimeStamp /* = true */, const bool toScreen /* = true */) {

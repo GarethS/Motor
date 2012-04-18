@@ -209,9 +209,11 @@ void accel::_initUnitCurve(const int sharpness /* = 8 */) {
 //  b = 200
 //  End result is unit curve scaled only on y-axis where y represents frequency. 
 //  Frequency is steps (actually micro-steps) per sec.
+//  TODO: Actually, as sharpness decreases in _initUnitCurve(), the acceleration is not from 0-1, but inside that range.
+//   Need to find min/max values and adjust accoringly.
 void accel::_scaleYAxisToFrequency(void) {
-    float m = _fmax - _fmin;
-    float b = _fmin;
+    float m = (_fmax - _fmin) / (_curveFloat[_maxAccelIndex] - _curveFloat[0]); 
+    float b = _fmin - (m * _curveFloat[0]);
     for (int i = 0; i < _maxAccelEntries; ++i) {
         _curveFloat[i] = (_curveFloat[i] * m) + b;
     }
