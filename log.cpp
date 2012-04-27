@@ -18,17 +18,18 @@ void logc::dump(const std::string& s, const bool useTimeStamp /* = true */, cons
 	if (useTimeStamp) {
 		std::string ts = _timeStampPrefix() + _myName + " " + s;
 		if (toScreen) {
-			std::cout << ts.c_str() << std::endl;	// Output to screen
+			std::cout << ts << std::endl;	// Output to screen
 		}
 		if (_os != NULL) {
-			_os << ts.c_str() << std::endl;	// Output to file if it exists
+			_os << ts << std::endl;	// Output to file if it exists
 		}
 	} else {
+        std::string ts = _myName + " " + s;
 		if (toScreen) {
-			std::cout << s.c_str() << std::endl;	// Output to screen
+			std::cout << ts << std::endl;	// Output to screen
 		}
 		if (_os != NULL) {
-			_os << s.c_str() << std::endl;	// Output to file if it exists
+			_os << ts << std::endl;	// Output to file if it exists
 		}
 	}
 	ossClear();

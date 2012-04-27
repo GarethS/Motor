@@ -18,7 +18,7 @@ public:
 	~logc() {}
 
 	void dump(const std::string& s, const bool useTimeStamp = true, const bool toScreen = true);
-	void dump(void) {dump(oss().str(), true, true);}
+	void dump(void) {dump(oss().str(), false, false);}
 	std::ostringstream& oss(void) {return _oss;}
 	void ossClear(void) {_oss.str("");}
 
