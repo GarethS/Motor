@@ -65,8 +65,16 @@ public:
       
 	// Only allow one of these, moveAbsolute() or velocity(), to be active at any one time.  
     void moveAbsolute(int positionNew);
+    void moveRelative(int positionRelative);
+    // Used to modify moveAbsolute() that is currently running. Useful to extend or shorten
+    //  the move as long as it's still in the same direction and doesn't interfere with
+    //  a deceleration.
+    void moveAbsoluteModify(const int positionNew);
+    void moveRelativeModify(const int positionRelative);
+    void controlledStopNow(void);
 	int velocity(const int f);
     void isr(void);
+    void disable(void) {GPIOPinWrite(GPIO_PORTA_BASE, PIN_ENABLE, 0);}
     //int acceleration(void) {/* TODO */}
     //int velocity(void) {/* TODO */}
     //int position(void) {/* TODO */} // Need to return both degrees and scaled position.

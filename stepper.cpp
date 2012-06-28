@@ -79,7 +79,7 @@ int stepper::velocity(const int f) {
         }
 		_updateConstantVelocityStart();
         _superState = VELOCITY_MOVE;
-		a.primeTime(1000000);
+		a.initAccelTime(1000000);
 	} else if (_superState == VELOCITY_MOVE_ACCELERATE || _superState == VELOCITY_MOVE_DECELERATE) {
 		// Can't do it right now. Try again when we're done accelerating.
 	} else {
@@ -119,8 +119,6 @@ void stepper::_updateConstantVelocityStart(void) {
 	_subState = VELOCITY_MOVE_ACCELERATE;
 }
 
-// Set motor to run continuously at a given velocity. To stop, set velocity to 0.
-//  This function cannot be used until velocity() has brought motor to a halt.
 void stepper::moveAbsolute(int positionNew) {
 	if (_superState != IDLE) {
 		// Can't do it right now. Try again when we're done accelerating.
@@ -157,7 +155,7 @@ void stepper::moveAbsolute(int positionNew) {
 			_positionConstantVelocityEnd = _positionTarget + accelStep;
 		}
 		_superState = MOVE_FULL;
-		a.primeTime(1000000);
+		a.initAccelTime(1000000);
 	} else {
 		// Acceleration curve needs to be truncated. Not enough room to reach max speed.
 		unsigned int tNew = a.stepsToTime(positionDelta / 2);
@@ -168,7 +166,7 @@ void stepper::moveAbsolute(int positionNew) {
 		unsigned int fmax = a.freqFromTime(us);
 		a.frequency(_fminOld, fmax);	// Rebuilds acceleration tables. Put them back when this move is finished.
 		// Set truncated acceleration time.
-		a.primeTime(tNew);
+		a.initAccelTime(tNew);
 		// Remember to rebuild accel tables when move is over. Set trigger to do this in isr().
 		if (_directionPositive) {
 			_positionConstantVelocityStart = _positionConstantVelocityEnd = _positionCurrent + positionDelta / 2;
@@ -179,6 +177,53 @@ void stepper::moveAbsolute(int positionNew) {
 	}
 	_subState = MOVE_START;
 	_timerStart();
+}
+
+void stepper::moveRelative(const int positionRelative) {
+    moveAbsolute(_positionCurrent + positionRelative);
+}
+
+void stepper::moveRelativeModify(const int positionRelative) {
+    moveAbsoluteModify(_positionCurrent + positionRelative);
+}
+
+// Start decellerating now to bring motor to a controlled stop
+void stepper::controlledStopNow(void) {
+    if (_superState == MOVE_FULL) {
+        if (_subState == MOVE_CONSTANT_VELOCITY) {
+            // move _positionTarget closer to we're just ready to enter the deceleration phase
+            if (_directionPositive) {
+                moveAbsoluteModify(_positionConstantVelocityEnd - _positionCurrent);
+            } else {
+                // direction is negative
+                moveAbsoluteModify(_positionConstantVelocityEnd + _positionCurrent);
+            }
+        } else if (_subState == MOVE_ACCELERATE) {
+            // TODO
+        }
+    }
+}
+
+void stepper::moveAbsoluteModify(int positionNew) {
+    if (_superState == IDLE) {
+        moveAbsolute(positionNew);
+    } else if (_superState == MOVE_FULL && _subState != MOVE_DECELERATE) {
+        // Already running a moveAbsolute(), see if it can be adjusted
+        if (_directionPositive) {
+            if (positionNew > _positionCurrent) {
+                //int positionDelta = positionNew - _positionTarget;
+                _positionTarget = positionNew;
+                _positionConstantVelocityEnd += (positionNew - _positionTarget);
+            }
+        } else {
+            // direction is negative
+            if (positionNew < _positionCurrent) {
+                //int positionDelta = positionNew - _positionTarget;
+                _positionTarget = positionNew;
+                _positionConstantVelocityEnd -= (positionNew - _positionTarget);
+            }
+        }
+    }
 }
 
 // Called every time timer times out.
@@ -196,7 +241,7 @@ void stepper::isr(void) {
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
-				a.primeTime(a.time());
+				a.initAccelTime(a.time());
 			} else if (_positionCurrent < _positionTarget) {
 				// decelerating
 				_subState = MOVE_DECELERATE;
@@ -216,7 +261,7 @@ void stepper::isr(void) {
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
-				a.primeTime(a.time());
+				a.initAccelTime(a.time());
 			} else if (_positionCurrent > _positionTarget) {
 				// decelerating
 				_subState = MOVE_DECELERATE;
