@@ -5,9 +5,9 @@
 # 1 = debug build, 0 = release
 myDebug := 1
 
-.PHONY: all clean test1 test1Update
+.PHONY: all clean test1 test1Update test2
 
-prefix = ../../../../DriverLib/boards/ek-lm3s3748/motor
+#prefix = ../../../../DriverLib/boards/ek-lm3s3748/motor
 includeRTOS = ../../../../dev/docs/rtos/freertos/FreeRTOS/Demo/Common/drivers/LuminaryMicro/
 includeGPIO = ../../../../DriverLib/src
 
@@ -30,25 +30,13 @@ test1:
 	./motor
 	diff motorlog.txt motorlogTest1.txt
 	
+test2: motor.exe
+	rm log.txt
+	./motor
+	
 # Update regression test file to reflect new data	
 test1Update:
 	cp motorlog.txt motorlogTest1.txt
 
-# These files live in the IAR project directory to build the embedded executable.
-# Copy them here to build Cygwin executable and keep in sync with IAR build.
-# Main reason for doing this is to make a Github submission easier (i.e. not having
-#  source files distributed around the disk).	
-stepper.cpp: $(prefix)/stepper.cpp
-	cp $(prefix)/stepper.cpp .
-	
-stepper.h: $(prefix)/stepper.h
-	cp $(prefix)/stepper.h .
-	
-accel.cpp: $(prefix)/accel.cpp
-	cp $(prefix)/accel.cpp .
-	
-accel.h: $(prefix)/accel.h
-	cp $(prefix)/accel.h .
-	
 motor.exe: stepper.cpp stepper.h accel.cpp accel.h motor.cpp log.cpp log.h lmi.cpp Makefile
 	g++ $(GCC_FLAGS) $(DEBUG_FLAGS) -I. -I$(includeRTOS) -I$(includeGPIO) stepper.cpp accel.cpp motor.cpp log.cpp lmi.cpp -o motor.exe

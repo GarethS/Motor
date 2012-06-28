@@ -2,7 +2,7 @@
 Gareth Scott (c) 2011, garethjscott@gmail.com
 
 This project describes a stepper motor controller used by a typical embedded controller.
-It allows the motor to accelerate using an s-curve profile described by the equation: 1 / (1 + exp(-t))
+It allows the motor to accelerate using an S-curve profile described by the equation: 1 / (1 + exp(-t))
 The code is written as a C++ class and tested with Cygwin and a Luminary Micro Cortex-M3 controller (LM3S3748).
 
 The architecture of this class adjusts a peripheral timer in the controller to match the acceleration curve.
@@ -64,6 +64,31 @@ Pending tasks (* = addressed this issue):
 11.*Copy stepper and accel classes to motor directory and build them from there...
 11a.* ...then submit to Github
 
+12. Follow encoder feature
+13. IO port header
+14. Queue for motor commands that can't be executed immediately
+15. Add RPM setting. Include deg/step
+16. Make KiCad project location so new versions can share the same location.
+17.* Allow acceleration time to be set in steps rather than us. See: accel::stepsToTime()
+18.* Need to get frequency-at-each-step curve correct. Currently it's lopsided in graph. Why?!
+     Got it. See motor.ods "Cumulative time from Cygwin motor run" graph.
+19. Connect RealTerm
+20. Try serial bootloader
+21. Consolidate stepper.*, accel.* in one location. Add IAR project to scottdesign
+     to keep keep git history of files. Update Makefile since files don't need
+     copied any more.
+22. Executive commands:
+        moveAbsolute(int)     
+        position(); // Get current position. To do relative move: moveAbsolute(position() + relative)
+        velocity(int); // 
+        clearQueue();   //
+        disable();
+        enable();
+        getIO(int); // Read IO line
+        setIO(int, int);
+23. Change RPM to RPUS (rev-per-microsec). This avoids using floats and keeps the
+     timeframe in microsecs.
+        
 Limitations
 
 Notes

@@ -11,13 +11,37 @@
 //#include "log.h"
 
 #include <iostream>
+#if CYGWIN
 using namespace std;
+#endif /* CYGWIN */
 
+#if CYGWIN
 int main(void) {
+#else /* not CYGWIN */
+stepper* sp = NULL;
+
+extern "C" void stepperISR(void) {
+    if (sp != NULL) {
+        sp->isr();
+    }
+}
+
+extern "C" int mainA(void);    
+    
+int mainA(void) {    
+#endif /* CYGWIN */    
 	//logc l("TESTa");
 	//l.dump("start motor");
-	stepper s; 
-	//s.a.dryRunAccel();
+	stepper s;
+#if !CYGWIN
+    sp = &s;
+#endif /* not CYGWIN */    
+#if 0
+    // Turn on to get log of frequency vs cumulative time
+    s.a.time(2000000);
+	s.a.dryRunAccel();
+    s.a.time(1000000);  // Set back to default acceleration time
+#endif    
 	//cout << "acceleration steps= " << s._accelGetStepCount() << endl;
 #if REGRESS_1	
 	s.a.stepsToTime(1000);
