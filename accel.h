@@ -21,6 +21,12 @@ using namespace std;
 #include <limits.h>
 
 #define OPTIMIZE_CURVE_CALC 1
+#define SECONDS_PER_MINUTE      (60)
+#define DEGREES_PER_REV         (360)
+#define DEGREES_PER_STEP_X10000 (1125)  // See comment for _degPerStepX10000 below.
+#define ACCEL_SHARPNESS_MIN     (1)
+#define ACCEL_SHARPNESS_DEFAULT (8)
+#define ACCEL_SHARPNESS_MAX     (32)
 
 enum {_maxAccelIndex = 99, _maxAccelEntries, _maxBisectionTrys = 20};
 
@@ -46,7 +52,7 @@ public:
 	accel& operator=(const accel& a);
 	void assign(const accel& a);
 	  
-    void primeTime(const unsigned int t) {
+    void initAccelTime(const unsigned int t) {
 	    _totalClockTicks = 0;
 		time(t);
 		_currentClockTicks = clockTicks(0);
@@ -57,6 +63,7 @@ public:
 	
     unsigned int dryRunAccel(void);
 	void frequency(const unsigned int fmin = 200, const unsigned int fmax = 1200);
+    void RPM(const unsigned int RPMmin = 1, const unsigned int RPMmax = 1000);
     unsigned int fmin(void) {return _fmin;}
     unsigned int fmax(void) {return _fmax;}
 	
@@ -143,7 +150,7 @@ public:
 	void test(void);
     
 private:
-    void _initUnitCurve(const int sharpness = 8);
+    void _initUnitCurve(int sharpness = ACCEL_SHARPNESS_DEFAULT);
     void _scaleYAxisToFrequency(void);
 #if OPTIMIZE_CURVE_CALC	
 	void _scaleYAxisToClockTicks(void);
@@ -157,6 +164,10 @@ private:
 		return (unsigned int)((ct / _clockMHz));
 	}
 	
+    unsigned int _RPMtoFreq(unsigned int RPMx10000) {
+        return RPMx10000 / SECONDS_PER_MINUTE * DEGREES_PER_REV / _degPerStepX10000;
+    }
+    
 #if DUMP	
 	void _dumpCurveFloat(void);
 	void _dumpCurveInt(void);
@@ -168,8 +179,8 @@ private:
     
     int _positionCurrent;  // in steps
     unsigned int _totalClockTicks; 
-    unsigned int _currentClockTicks;
-    unsigned int _time;			// acceleration time
+    unsigned int _currentClockTicks;    // period of current timer interrupt
+    unsigned int _time;			// acceleration time in us
     int _acceleration;          // 0 when constant velocity
     int _velocity;              // step/s
 	unsigned int _fmin, _fmax;	// frequency min/max for acceleration
@@ -180,6 +191,10 @@ private:
 	const unsigned int _minTime;
 	const unsigned int _maxTime;
 	const unsigned int _fStop;	// Frequency that we can assume the motor is as good as stopped
+    // degrees per step x10000. Therefore, 1.8 x10000 = 18000 deg/step
+    // A lot of steppers ar 1.8 deg/step, however, with 16 microsteps per
+    //  full step this is 1.8 / 16 = 0.1125 deg/step x10000 = 1125.
+    unsigned int _degPerStepX10000;
 };
 
 #endif /* _ACCEL_H_ */

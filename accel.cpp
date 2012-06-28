@@ -14,7 +14,8 @@ accel::accel() :
 #endif /* CYGWIN */					
 					_time(1000000),
 					_microSecPerSec(1000000), _maxDryRunCycles(10000), _clockMHz(8.0),
-					_minTime(1000), _maxTime(4000000), _fStop(200) {
+					_minTime(1000), _maxTime(4000000), _fStop(200), _degPerStepX10000(DEGREES_PER_STEP_X10000) {
+	//_initUnitCurve();
 	frequency();	// set initial min/max frequency (speed) curve
 }
 
@@ -22,7 +23,7 @@ accel::accel(const accel& a) :
 #if CYGWIN
     logc(a),
 #endif /* CYGWIN */
-    _microSecPerSec(a._microSecPerSec), _maxDryRunCycles(a._maxDryRunCycles), _clockMHz(a._clockMHz), _minTime(a._minTime), _maxTime(a._maxTime), _fStop(a._fStop) {
+    _microSecPerSec(a._microSecPerSec), _maxDryRunCycles(a._maxDryRunCycles), _clockMHz(a._clockMHz), _minTime(a._minTime), _maxTime(a._maxTime), _fStop(a._fStop), _degPerStepX10000(DEGREES_PER_STEP_X10000) {
 	assign(a);
 }
 
@@ -94,21 +95,24 @@ void accel::test(void) {
 }
 
 unsigned int accel::dryRunAccel(void) {
-    primeTime(time());
+    initAccelTime(time());
     unsigned int step = 0;
 #if DUMP
-	cout << "start: dryRunAccel" << endl;
+	oss() << "start: dryRunAccel" << endl;
 #endif /* DUMP */	
     for (; step < _maxDryRunCycles; ++step) {
 		// Each step through is equivalent to an isr call from the timer.
         _totalClockTicks += _currentClockTicks;
         unsigned int index = clockTicksToCurveIndex(_totalClockTicks);
 #if DUMP
-		cout << "index=" << index << " step=" << step << " freqFromClockTicks=" << freqFromClockTicks(_currentClockTicks) << endl;
-		ostringstream oss;
-		oss << freqFromClockTicks(_currentClockTicks);
+		//cout << "index=" << index << " step=" << step << " freqFromClockTicks=" << freqFromClockTicks(_currentClockTicks) << "time(us)=" << _clockTicksToMicroSec(_totalClockTicks) << endl;
+		//oss() << "index=" << index << " step=" << step << " freqFromClockTicks=" << freqFromClockTicks(_currentClockTicks) << " cummulative time(us)=" << _clockTicksToMicroSec(_totalClockTicks);
+		oss() << freqFromClockTicks(_currentClockTicks) << " " << _clockTicksToMicroSec(_totalClockTicks);
+        dump();
+		//ostringstream oss;
+		//oss << freqFromClockTicks(_currentClockTicks);
 		//oss << " step= " << step << " freq= " << freqFromClockTicks(_currentClockTicks);
-		dump(oss.str(), false);
+		//dump(oss.str(), false);
 		//cout << "index=" << index << " step=" << step << " _totalClockTicks=" << _totalClockTicks << endl;
 #endif /* DUMP */		
         if (index >= _maxAccelIndex) {
@@ -117,14 +121,15 @@ unsigned int accel::dryRunAccel(void) {
         _currentClockTicks = clockTicks(index);
     }
 #if DUMP
-	cout << "stop: dryRunAccel" << endl;
+	oss() << "stop: dryRunAccel";
+    dump();
 #endif /* DUMP */	
     return step;
 }
 
 // Very similar to dryRunAccel() above but without debug output. Given an acceleration time, how many steps are taken.
 unsigned int accel::timeToSteps(const unsigned int t) {
-    primeTime(t);
+    initAccelTime(t);
     unsigned int step = 0;
     for (; step < _maxDryRunCycles; ++step) {
 		// Each step through is equivalent to an isr call from the timer.
@@ -191,7 +196,15 @@ void accel::_dumpCurveInt(void) {
 
 // Acceleration curve is plotted on x-axis between -sharp and sharp (e.g. -8 to 8)
 //  The s-curve is defined as: 1/(1 + e^-x)
-void accel::_initUnitCurve(const int sharpness /* = 8 */) {
+// Larger number moves closer to step function. 32 is a very sharp step.
+// Lower number is close to a linear ramp. 1 is very close to a 45 deg line.
+// A sharpness of 8 gives a nicely formed S-curve.
+void accel::_initUnitCurve(int sharpness /* = ACCEL_SHARPNESS_DEFAULT */) {
+    if (sharpness < ACCEL_SHARPNESS_MIN) {
+        sharpness = ACCEL_SHARPNESS_MIN;
+    } else if (sharpness > ACCEL_SHARPNESS_MAX) {
+        sharpness = ACCEL_SHARPNESS_MAX;
+    }
     float step = sharpness * 2.0 / _maxAccelIndex;
     float x = -sharpness;
     for (int i = 0; i < _maxAccelEntries; ++i, x += step) {
@@ -210,7 +223,7 @@ void accel::_initUnitCurve(const int sharpness /* = 8 */) {
 //  End result is unit curve scaled only on y-axis where y represents frequency. 
 //  Frequency is steps (actually micro-steps) per sec.
 //  TODO: Actually, as sharpness decreases in _initUnitCurve(), the acceleration is not from 0-1, but inside that range.
-//   Need to find min/max values and adjust accoringly.
+//   Need to find min/max values and adjust accordingly.
 void accel::_scaleYAxisToFrequency(void) {
     float m = (_fmax - _fmin) / (_curveFloat[_maxAccelIndex] - _curveFloat[0]); 
     float b = _fmin - (m * _curveFloat[0]);
@@ -259,6 +272,7 @@ void accel::_scaleYAxisToClockTicks(void) {
 } 
 #endif /* OPTIMIZE_CURVE_CALC */
 
+// Is frequency per second or per microsecond?
 void accel::frequency(const unsigned int fmin /* = 200 */, const unsigned int fmax /* = 1200 */) {
 	if (fmin > fmax) {
 		// fmax should always be higher than fmin
@@ -268,7 +282,7 @@ void accel::frequency(const unsigned int fmin /* = 200 */, const unsigned int fm
 		_fmin = fmin;
 		_fmax = fmax;
 	}
-	_initUnitCurve();
+    _initUnitCurve();
 	_scaleYAxisToFrequency();
 #if OPTIMIZE_CURVE_CALC	
 	_scaleYAxisToClockTicks();
@@ -276,4 +290,10 @@ void accel::frequency(const unsigned int fmin /* = 200 */, const unsigned int fm
 	_scaleYAxisToMicroSec();
 	_scaleYAxisToClockTicks();
 #endif /* OPTIMIZE_CURVE_CALC */	
+}
+
+void accel::RPM(const unsigned int RPMmin /* = 1 */, const unsigned int RPMmax /* = 1000 */) {
+    // Convert RPM to frequency assuming 1.8 deg/step
+    // e.g. 200 step/sec  *  1.8 deg/step  *  1 rev/360deg = 1 RPS
+    frequency(_RPMtoFreq(RPMmin), _RPMtoFreq(RPMmax));
 }
