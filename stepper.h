@@ -74,10 +74,12 @@ public:
     void controlledStopNow(void);
 	int velocity(const int f);
     void isr(void);
-    void disable(void) {GPIOPinWrite(GPIO_PORTA_BASE, PIN_ENABLE, 0);}
+    void disable(void) {GPIOPinWrite(GPIO_PORTA_BASE, PIN_ENABLE, PIN_ENABLE);}
+    void enable(void) {GPIOPinWrite(GPIO_PORTA_BASE, PIN_ENABLE | PIN_SLEEP, PIN_SLEEP);}
     //int acceleration(void) {/* TODO */}
     //int velocity(void) {/* TODO */}
-    //int position(void) {/* TODO */} // Need to return both degrees and scaled position.
+    int positionSteps(void) {return _positionCurrent;} // Need to return both degrees and scaled position.
+    unsigned int state(void) const {return _superState;} 
 	
 	void test(void);
     
@@ -123,7 +125,7 @@ private:
     //int _acceleration;          // 0 when constant velocity
     //bool _accelerating; 
     //int _velocity;              // step/s
-	unsigned int _fminOld, _fmaxOld;	// save frequency min/max for acceleration. Used when acceleration is trucated.
+	unsigned int _fminOld, _fmaxOld;	// save frequency min/max for acceleration. Used when acceleration is truncated.
 	unsigned int _superState;
 	unsigned int _subState;
 };

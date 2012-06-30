@@ -53,8 +53,17 @@ int mainA(void) {
 	s.test();
 #endif /* REGRESS_1 */
 	
-	//s.a.frequency(200, 1200);
-	//s.moveAbsolute(10000);
+	s.a.frequency(200, 1600);
+    //s.a.time(500000);
+	s.moveAbsolute(10000);
+
+#if !CYGWIN
+    for (;;) {
+        if (s.state() == 0 /*IDLE*/) {
+            //s.moveAbsolute(10000);
+        }
+    }
+#endif /* CYGWIN */
 	
 	cout << "done" << endl;
 	

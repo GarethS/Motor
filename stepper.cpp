@@ -10,6 +10,13 @@
 #include <math.h>
 #include <assert.h>
 
+#if !CYGWIN
+#include <stdio.h>
+#include <string.h>
+
+extern "C" void UARTSend(const unsigned char *pucBuffer, unsigned long ulCount);
+#endif /* not CYGWIN */
+
 stepper::stepper() :
 #if CYGWIN 
 					logc(std::string("STEPPER")),
@@ -302,7 +309,9 @@ void stepper::isr(void) {
 			}
 		}
 	}
-#if REGRESS_1
+
+#if 1 //REGRESS_1
+#if CYGWIN
 	switch (_superState) {
 	case IDLE:
 		oss() << "IDLE ";
@@ -349,11 +358,62 @@ void stepper::isr(void) {
 	}
 	oss() << " position=" << _positionCurrent << " timer=" << _timer();
 	dump();
+#else /* not CYGWIN */
+    char isrBuf[16];
+	switch (_superState) {
+	case IDLE:
+		sprintf(isrBuf, "<I>");
+		break;
+	case MOVE_FULL:
+		sprintf(isrBuf, "<MF>");
+		break;
+	case MOVE_TRUNCATED:
+		sprintf(isrBuf, "<MT>");
+		break;
+	case VELOCITY_MOVE:
+		sprintf(isrBuf, "<VM>");
+		break;
+	default:
+		sprintf(isrBuf, "<UNK%d>", _superState);
+		break;
+	}
+    UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
+    
+	switch (_subState) {
+	case MOVE_START:
+		sprintf(isrBuf, "<ms>");
+		break;
+	case MOVE_ACCELERATE:
+		sprintf(isrBuf, "<ma>");
+		break;
+	case MOVE_CONSTANT_VELOCITY:
+		sprintf(isrBuf, "<mcv>");
+		break;
+	case MOVE_DECELERATE:
+		sprintf(isrBuf, "<md>");
+		break;
+	case VELOCITY_MOVE_ACCELERATE:
+		sprintf(isrBuf, "<vma>");
+		break;
+	case VELOCITY_MOVE_DECELERATE:
+		sprintf(isrBuf, "<mvd>");
+		break;
+	case VELOCITY_MOVE_CONSTANT_VELOCITY:
+		sprintf(isrBuf, "<vmcv>");
+		break;
+	default:
+		sprintf(isrBuf, "<?%d>", _subState);
+		break;
+	}    
+    UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
+#endif /* CYGWIN */    
+    
 #endif /* REGRESS_1 */				
 }
 
 void stepper::_timerStart(bool start /* = true */) {
 	if (start) {
+        enable();
 		_timerRunning = true;
 		TimerEnable(TIMER0_BASE, TIMER_A);
 	} else {

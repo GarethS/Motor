@@ -14,7 +14,7 @@ accel::accel() :
 #endif /* CYGWIN */					
 					_time(1000000),
 					_microSecPerSec(1000000), _maxDryRunCycles(10000), _clockMHz(8.0),
-					_minTime(1000), _maxTime(4000000), _fStop(200), _degPerStepX10000(DEGREES_PER_STEP_X10000) {
+					_minTime(1000), _maxTime(4000000), _fStop(200), _stepPerDegree(STEP_PER_DEGREE)/*_degPerStepX10000(DEGREES_PER_STEP_X10000)*/ {
 	//_initUnitCurve();
 	frequency();	// set initial min/max frequency (speed) curve
 }
@@ -23,7 +23,8 @@ accel::accel(const accel& a) :
 #if CYGWIN
     logc(a),
 #endif /* CYGWIN */
-    _microSecPerSec(a._microSecPerSec), _maxDryRunCycles(a._maxDryRunCycles), _clockMHz(a._clockMHz), _minTime(a._minTime), _maxTime(a._maxTime), _fStop(a._fStop), _degPerStepX10000(DEGREES_PER_STEP_X10000) {
+    _microSecPerSec(a._microSecPerSec), _maxDryRunCycles(a._maxDryRunCycles), _clockMHz(a._clockMHz), _minTime(a._minTime), _maxTime(a._maxTime), _fStop(a._fStop),
+    _stepPerDegree(STEP_PER_DEGREE) /*_degPerStepX10000(DEGREES_PER_STEP_X10000)*/ {
 	assign(a);
 }
 
@@ -37,12 +38,12 @@ accel& accel::operator=(const accel& a) {
 void accel::assign(const accel& a) {
 	*(struct passFloatArray*)_curveFloat = *(struct passFloatArray*)a._curveFloat;	// Beats copying each individual element
 	*(struct passIntArray*)_curveInt = *(struct passIntArray*)a._curveInt;
-	_positionCurrent = a._positionCurrent;
+	//_positionCurrent = a._positionCurrent;
 	_totalClockTicks = a._totalClockTicks;
 	_currentClockTicks = a._currentClockTicks;
 	_time = a._time;
-	_acceleration = a._acceleration;
-	_velocity = a._velocity;
+	//_acceleration = a._acceleration;
+	//_velocity = a._velocity;
 	_fmin = a._fmin;
 	_fmax = a._fmax;
 	
@@ -272,7 +273,8 @@ void accel::_scaleYAxisToClockTicks(void) {
 } 
 #endif /* OPTIMIZE_CURVE_CALC */
 
-// Is frequency per second or per microsecond?
+// Frequency is step per second but may want to increase this to step/sec * 100000 to get
+//  low RPM
 void accel::frequency(const unsigned int fmin /* = 200 */, const unsigned int fmax /* = 1200 */) {
 	if (fmin > fmax) {
 		// fmax should always be higher than fmin
@@ -292,8 +294,8 @@ void accel::frequency(const unsigned int fmin /* = 200 */, const unsigned int fm
 #endif /* OPTIMIZE_CURVE_CALC */	
 }
 
-void accel::RPM(const unsigned int RPMmin /* = 1 */, const unsigned int RPMmax /* = 1000 */) {
+void accel::RPMx10k(const unsigned int RPMx10kmin /* = 1 */, const unsigned int RPMx10kmax /* = 1000 */) {
     // Convert RPM to frequency assuming 1.8 deg/step
     // e.g. 200 step/sec  *  1.8 deg/step  *  1 rev/360deg = 1 RPS
-    frequency(_RPMtoFreq(RPMmin), _RPMtoFreq(RPMmax));
+    frequency(_RPMx10ktoFreq(RPMx10kmin), _RPMx10ktoFreq(RPMx10kmax));
 }

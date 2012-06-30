@@ -88,6 +88,11 @@ Pending tasks (* = addressed this issue):
         setIO(int, int);
 23. Change RPM to RPUS (rev-per-microsec). This avoids using floats and keeps the
      timeframe in microsecs.
+24. Add asymetrical accelerations, ie. different times to accelerate and decelerate.
+    Also may want velocity to change between acceleration and deceleration
+25. Add scaling factor from steps to inch, mm.
+26. Implement PID controller in user defined code.
+    
         
 Limitations
 

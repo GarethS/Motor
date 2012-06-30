@@ -54,8 +54,8 @@ void vSetupHighFrequencyTimer( void );
 int mainA(void);
 
 /* The task that is created three times. */
-#define ledSTACK_SIZE		(configMINIMAL_STACK_SIZE)
-//#define ledSTACK_SIZE		(400)
+//#define ledSTACK_SIZE		(configMINIMAL_STACK_SIZE)
+#define ledSTACK_SIZE		(400)
 #define mainLED_TASK_PRIORITY           ( tskIDLE_PRIORITY + 1 )
 
 void vStartLEDOnTasks( unsigned portBASE_TYPE uxPriority );
@@ -326,8 +326,8 @@ main(void)
     /* Configure the high frequency interrupt used to measure the interrupt jitter time. */
     vSetupHighFrequencyTimer();
     vTaskStartScheduler();
+    // Normally will never reach here.
     
-    mainA();
     // Loop forever echoing data through the UART.
     while(1)
     {
@@ -355,18 +355,27 @@ void vStartLEDOnTasks( unsigned portBASE_TYPE uxPriority )
     //signed portBASE_TYPE xLEDTask;
 
     /* Spawn the task. */
-    xTaskCreate( vLEDOnTask, ( signed char * ) "LEDx", ledSTACK_SIZE, NULL, uxPriority, ( xTaskHandle * ) NULL );
+    xTaskCreate( vLEDOnTask, ( signed char * ) "LEDx", 4000 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
 }
 
 static portTASK_FUNCTION( vLEDOnTask, pvParameters )
 {
 //portTickType xFlashRate, xLastFlashTime;
 //unsigned portBASE_TYPE uxLED;
-    enable();
+    //enable(); // Turn this on for the plain stepper demo
+    mainA();
     for (;;) {
        	//portENTER_CRITICAL();
+#if 1
+        //vTaskDelay(1 / portTICK_RATE_MS);
+        //UARTSend((unsigned char *)"<L>", 3);
+        LEDOn();
+        //vTaskDelay(1 / portTICK_RATE_MS);
+        LEDOff();
+#else        
         vTaskDelay(100);
         flashLED();
+#endif        
         //motorStep();
         //LEDOn();
        	//portEXIT_CRITICAL();
@@ -386,7 +395,7 @@ static portTASK_FUNCTION( vUARTTask, pvParameters )
 //portTickType xFlashRate, xLastFlashTime;
 //unsigned portBASE_TYPE uxLED;
     for (;;) {
-       	portENTER_CRITICAL();
+       	//portENTER_CRITICAL();
 #if 0
         vTaskDelay( 300 );
 #else
@@ -395,8 +404,8 @@ static portTASK_FUNCTION( vUARTTask, pvParameters )
         }
 #endif
         //UARTSend((unsigned char *)"Enter text: ", 12);
-        UARTSend((unsigned char *)"<I>", 3);
-       	portEXIT_CRITICAL();
+        //UARTSend((unsigned char *)"<B>", 3);
+       	//portEXIT_CRITICAL();
     }
 }
 
