@@ -13,7 +13,7 @@ includeGPIO = ../../../../DriverLib/src
 
 ifeq ($(myDebug), 1)
 GCC_FLAGS = -Wall
-DEBUG_FLAGS = -D CYGWIN=1 -D DUMP=1 -D REGRESS_1=1
+DEBUG_FLAGS = -D CYGWIN=1 -D DUMP=1 -D REGRESS_1=1 -D REGRESS_2=1
 else
 GCC_FLAGS =
 DEBUG_FLAGS = -D CYGWIN=1

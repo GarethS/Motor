@@ -86,7 +86,7 @@ Pending tasks (* = addressed this issue):
         enable();
         getIO(int); // Read IO line
         setIO(int, int);
-23. Change RPM to RPUS (rev-per-microsec). This avoids using floats and keeps the
+23. Change RPM to RPMx10k (rev-per-minute x 10000). This avoids using floats and keeps the
      timeframe in microsecs.
 24. Add asymetrical accelerations, ie. different times to accelerate and decelerate.
     Also may want velocity to change between acceleration and deceleration

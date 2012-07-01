@@ -136,10 +136,14 @@ void stepper::moveAbsolute(int positionNew) {
 	if (_positionTarget > _positionCurrent) {
 		directionPositive();
 		positionDelta = _positionTarget - _positionCurrent;
-	} else {
+	} else if (_positionTarget < _positionCurrent) {
 		directionPositive(false);
 		positionDelta = _positionCurrent - _positionTarget;
-	}
+	} else {
+        // _positionTarget == _positionCurrent
+        // Nothing to do.
+        return;
+    }
 	// 0. Initialize timer
 	// 1. Start timer
 	// 2. Ramp up through acceleration curve
@@ -183,6 +187,10 @@ void stepper::moveAbsolute(int positionNew) {
 		_superState = MOVE_TRUNCATED;
 	}
 	_subState = MOVE_START;
+#if !CYGWIN    
+    _subStateLast = SUB_STATE_UNKNOWN;
+    _superStateLast = SUPER_STATE_UNKNOWN;
+#endif /* not CYGWIN */    
 	_timerStart();
 }
 
@@ -310,105 +318,113 @@ void stepper::isr(void) {
 		}
 	}
 
-#if 1 //REGRESS_1
+#if REGRESS_2
 #if CYGWIN
-	switch (_superState) {
-	case IDLE:
-		oss() << "IDLE ";
-		break;
-	case MOVE_FULL:
-		oss() << "MOVE_FULL ";
-		break;
-	case MOVE_TRUNCATED:
-		oss() << "MOVE_TRUNCATED ";
-		break;
-	case VELOCITY_MOVE:
-		oss() << "VELOCITY_MOVE ";
-		break;
-	default:
-		oss() << "UNKNOWN SUPERSTATE ";
-		break;
-	}
-
-	switch (_subState) {
-	case MOVE_START:
-		oss() << "MOVE_START ";
-		break;
-	case MOVE_ACCELERATE:
-		oss() << "MOVE_ACCELERATE ";
-		break;
-	case MOVE_CONSTANT_VELOCITY:
-		oss() << "MOVE_CONSTANT_VELOCITY ";
-		break;
-	case MOVE_DECELERATE:
-		oss() << "MOVE_DECELERATE ";
-		break;
-	case VELOCITY_MOVE_ACCELERATE:
-		oss() << "VELOCITY_MOVE_ACCEL ";
-		break;
-	case VELOCITY_MOVE_DECELERATE:
-		oss() << "VELOCITY_MOVE_DECEL ";
-		break;
-	case VELOCITY_MOVE_CONSTANT_VELOCITY:
-		oss() << "VELOCITY_MOVE_CONSTANT_VELOCITY ";
-		break;
-	default:
-		oss() << "UNKNOWN SUBSTATE ";
-		break;
-	}
-	oss() << " position=" << _positionCurrent << " timer=" << _timer();
-	dump();
+    switch (_superState) {
+    case IDLE:
+        oss() << "IDLE ";
+        break;
+    case MOVE_FULL:
+        oss() << "MOVE_FULL ";
+        break;
+    case MOVE_TRUNCATED:
+        oss() << "MOVE_TRUNCATED ";
+        break;
+    case VELOCITY_MOVE:
+        oss() << "VELOCITY_MOVE ";
+        break;
+    default:
+        oss() << "UNKNOWN SUPERSTATE ";
+        break;
+    }
 #else /* not CYGWIN */
     char isrBuf[16];
-	switch (_superState) {
-	case IDLE:
-		sprintf(isrBuf, "<I>");
-		break;
-	case MOVE_FULL:
-		sprintf(isrBuf, "<MF>");
-		break;
-	case MOVE_TRUNCATED:
-		sprintf(isrBuf, "<MT>");
-		break;
-	case VELOCITY_MOVE:
-		sprintf(isrBuf, "<VM>");
-		break;
-	default:
-		sprintf(isrBuf, "<UNK%d>", _superState);
-		break;
-	}
-    UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
+    if (_superState != _superStateLast) {
+        switch (_superState) {
+        case IDLE:
+            sprintf(isrBuf, "<I>");
+            break;
+        case MOVE_FULL:
+            sprintf(isrBuf, "<MF>");
+            break;
+        case MOVE_TRUNCATED:
+            sprintf(isrBuf, "<MT>");
+            break;
+        case VELOCITY_MOVE:
+            sprintf(isrBuf, "<VM>");
+            break;
+        default:
+            sprintf(isrBuf, "<UNK%d>", _superState);
+            break;
+        }
+        UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
+        _superStateLast = _superState;
+    }
+#endif /* CYGWIN */
+
+#if CYGWIN    
+    switch (_subState) {
+    case MOVE_START:
+        oss() << "MOVE_START ";
+        break;
+    case MOVE_ACCELERATE:
+        oss() << "MOVE_ACCELERATE ";
+        break;
+    case MOVE_CONSTANT_VELOCITY:
+        oss() << "MOVE_CONSTANT_VELOCITY ";
+        break;
+    case MOVE_DECELERATE:
+        oss() << "MOVE_DECELERATE ";
+        break;
+    case VELOCITY_MOVE_ACCELERATE:
+        oss() << "VELOCITY_MOVE_ACCEL ";
+        break;
+    case VELOCITY_MOVE_DECELERATE:
+        oss() << "VELOCITY_MOVE_DECEL ";
+        break;
+    case VELOCITY_MOVE_CONSTANT_VELOCITY:
+        oss() << "VELOCITY_MOVE_CONSTANT_VELOCITY ";
+        break;
+    default:
+        oss() << "UNKNOWN SUBSTATE ";
+        break;
+    }
+    oss() << " position=" << _positionCurrent << " timer=" << _timer();
+    dump();
+#else /* not CYGWIN */
+    if (_subState != _subStateLast) {
+        switch (_subState) {
+        case MOVE_START:
+            sprintf(isrBuf, "<ms>");
+            break;
+        case MOVE_ACCELERATE:
+            sprintf(isrBuf, "<ma>");
+            break;
+        case MOVE_CONSTANT_VELOCITY:
+            sprintf(isrBuf, "<mcv>");
+            break;
+        case MOVE_DECELERATE:
+            sprintf(isrBuf, "<md>");
+            break;
+        case VELOCITY_MOVE_ACCELERATE:
+            sprintf(isrBuf, "<vma>");
+            break;
+        case VELOCITY_MOVE_DECELERATE:
+            sprintf(isrBuf, "<vmd>");
+            break;
+        case VELOCITY_MOVE_CONSTANT_VELOCITY:
+            sprintf(isrBuf, "<vmcv>");
+            break;
+        default:
+            sprintf(isrBuf, "<?%d>", _subState);
+            break;
+        }    
+        UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
+        _subStateLast = _subState;
+    }
+#endif /* CYGWIN */
     
-	switch (_subState) {
-	case MOVE_START:
-		sprintf(isrBuf, "<ms>");
-		break;
-	case MOVE_ACCELERATE:
-		sprintf(isrBuf, "<ma>");
-		break;
-	case MOVE_CONSTANT_VELOCITY:
-		sprintf(isrBuf, "<mcv>");
-		break;
-	case MOVE_DECELERATE:
-		sprintf(isrBuf, "<md>");
-		break;
-	case VELOCITY_MOVE_ACCELERATE:
-		sprintf(isrBuf, "<vma>");
-		break;
-	case VELOCITY_MOVE_DECELERATE:
-		sprintf(isrBuf, "<mvd>");
-		break;
-	case VELOCITY_MOVE_CONSTANT_VELOCITY:
-		sprintf(isrBuf, "<vmcv>");
-		break;
-	default:
-		sprintf(isrBuf, "<?%d>", _subState);
-		break;
-	}    
-    UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
-#endif /* CYGWIN */    
-    
-#endif /* REGRESS_1 */				
+#endif /* REGRESS_2 */				
 }
 
 void stepper::_timerStart(bool start /* = true */) {

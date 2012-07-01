@@ -85,11 +85,13 @@ public:
     
 private:
 	// _superState
-    enum {IDLE, MOVE_FULL, MOVE_TRUNCATED, VELOCITY_MOVE};
+    enum {IDLE, MOVE_FULL, MOVE_TRUNCATED, VELOCITY_MOVE,
+            SUPER_STATE_UNKNOWN};
 	
 	// _subState
 	enum {MOVE_START, MOVE_ACCELERATE, MOVE_CONSTANT_VELOCITY, MOVE_DECELERATE,
-			VELOCITY_MOVE_ACCELERATE, VELOCITY_MOVE_DECELERATE, VELOCITY_MOVE_CONSTANT_VELOCITY};
+			VELOCITY_MOVE_ACCELERATE, VELOCITY_MOVE_DECELERATE, VELOCITY_MOVE_CONSTANT_VELOCITY,
+            SUB_STATE_UNKNOWN};
 
     // return values
     enum {SUCCESS, ILLEGAL_MOVE, ILLEGAL_VELOCITY};                            
@@ -128,6 +130,10 @@ private:
 	unsigned int _fminOld, _fmaxOld;	// save frequency min/max for acceleration. Used when acceleration is truncated.
 	unsigned int _superState;
 	unsigned int _subState;
+#if REGRESS_2 && !CYGWIN
+	unsigned int _superStateLast;
+	unsigned int _subStateLast;
+#endif /* REGRESS_2 */    
 };
 
 #endif /* _STEPPER_H_ */
