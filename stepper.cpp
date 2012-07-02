@@ -29,9 +29,10 @@ void stepper_init(void) {
     GPIOPadConfigSet(GPIO_PORTA_BASE, PIN_ALL, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD);
 }
 
-void stepper::test(void) {
 #if CYGWIN
+void stepper::test(void) {
 	oss() << "moveAbsolute START" << endl;
+    //a.time(500000);
 	moveAbsolute(2000);
 	oss() << "_positionCurrent=" << _positionCurrent <<
 			" _positionConstantVelocityStart=" << _positionConstantVelocityStart <<
@@ -66,8 +67,15 @@ void stepper::test(void) {
 	for (int i = 0; i < 2000; ++i) {
 		isr();
 	}
-#endif /* CYGWIN */
 }
+
+// Used to run a virtual motor and get the velocity profile to plot in a spreadsheet.
+void stepper::runVirtualMotor(void) {
+	for (int i = 0; i < MAX_VIRTUAL_MOTOR_STEPS && _superState != IDLE; ++i) {
+		isr();
+	}
+}
+#endif /* CYGWIN */
 
 // Set motor to run continuously at a given velocity. To stop, set velocity to 0.
 //  This function cannot be used until moveAbsolute() has completed.
@@ -166,7 +174,7 @@ void stepper::moveAbsolute(int positionNew) {
 			_positionConstantVelocityEnd = _positionTarget + accelStep;
 		}
 		_superState = MOVE_FULL;
-		a.initAccelTime(1000000);
+		a.initAccelTime(a.time());
 	} else {
 		// Acceleration curve needs to be truncated. Not enough room to reach max speed.
 		unsigned int tNew = a.stepsToTime(positionDelta / 2);
@@ -253,10 +261,14 @@ void stepper::isr(void) {
 			} else if (_positionCurrent < _positionConstantVelocityEnd) {
 				// constant velocity. Nothing to do.
 				_subState = MOVE_CONSTANT_VELOCITY;
+#if CYGWIN
+                a.updateCumulativeTimeWithClockPeriod();
+#endif /* CYGWIN */                
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
 				a.initAccelTime(a.time());
+				_timer(a.updateClockPeriodReverse());
 			} else if (_positionCurrent < _positionTarget) {
 				// decelerating
 				_subState = MOVE_DECELERATE;
@@ -273,10 +285,14 @@ void stepper::isr(void) {
 			} else if (_positionCurrent > _positionConstantVelocityEnd) {
 				// constant velocity. Nothing to do.
 				_subState = MOVE_CONSTANT_VELOCITY;
+#if CYGWIN
+                a.updateCumulativeTimeWithClockPeriod();
+#endif /* CYGWIN */                
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
 				a.initAccelTime(a.time());
+				_timer(a.updateClockPeriodReverse());
 			} else if (_positionCurrent > _positionTarget) {
 				// decelerating
 				_subState = MOVE_DECELERATE;
@@ -338,7 +354,7 @@ void stepper::isr(void) {
         break;
     }
 #else /* not CYGWIN */
-    char isrBuf[16];
+    char isrBuf[32];
     if (_superState != _superStateLast) {
         switch (_superState) {
         case IDLE:
@@ -390,6 +406,8 @@ void stepper::isr(void) {
         break;
     }
     oss() << " position=" << _positionCurrent << " timer=" << _timer();
+    // This line prints total elapsed time vs frequency (speed)
+    oss() << "  us vs. frequency: " << a.clockTicksToMicroSec(a.cumulativeClockTicks()) << " " << a.freqFromClockTicks(a.currentClockTicks());
     dump();
 #else /* not CYGWIN */
     if (_subState != _subStateLast) {
@@ -401,7 +419,7 @@ void stepper::isr(void) {
             sprintf(isrBuf, "<ma>");
             break;
         case MOVE_CONSTANT_VELOCITY:
-            sprintf(isrBuf, "<mcv>");
+            sprintf(isrBuf, "<mcv%d>", _timer());
             break;
         case MOVE_DECELERATE:
             sprintf(isrBuf, "<md>");
@@ -429,6 +447,9 @@ void stepper::isr(void) {
 
 void stepper::_timerStart(bool start /* = true */) {
 	if (start) {
+#if CYGWIN    
+        a.initCumulativeTime();
+#endif /* CYGWIN */        
         enable();
 		_timerRunning = true;
 		TimerEnable(TIMER0_BASE, TIMER_A);

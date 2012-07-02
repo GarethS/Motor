@@ -25,6 +25,7 @@ using namespace std;
 #endif /* CYGWIN */
 
 #define OPTIMIZE_CURVE_CALC 1
+#define MAX_VIRTUAL_MOTOR_STEPS (10000)
 
 #define PIN_ENABLE  (GPIO_PIN_4)
 #define PIN_SLEEP   (GPIO_PIN_5)
@@ -79,9 +80,12 @@ public:
     //int acceleration(void) {/* TODO */}
     //int velocity(void) {/* TODO */}
     int positionSteps(void) {return _positionCurrent;} // Need to return both degrees and scaled position.
-    unsigned int state(void) const {return _superState;} 
+    unsigned int state(void) const {return _superState;}
 	
+#if CYGWIN    
 	void test(void);
+    void runVirtualMotor(void);
+#endif /* CYGWIN */    
     
 private:
 	// _superState

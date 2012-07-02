@@ -55,12 +55,14 @@ int mainA(void) {
 	
 	//s.a.frequency(200, 1600);
     //s.a.time(500000);
-	s.moveAbsolute(6000);
+	s.moveAbsolute(16000);
 
 #if !CYGWIN
+    int direction = -1;
     for (;;) {
         if (s.state() == 0 /*IDLE*/) {
-            s.moveRelative(-6000);
+            s.moveRelative(16000 * direction);
+            direction *= -1;
         }
     }
 #endif /* CYGWIN */

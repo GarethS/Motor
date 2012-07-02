@@ -22,6 +22,7 @@ using namespace std;
 
 #define OPTIMIZE_CURVE_CALC 1
 #define SECONDS_PER_MINUTE      (60)
+#define MICROSEC_PER_SEC        (1000000)
 #define DEGREES_PER_REV         (360)
 #define DEGREES_PER_REV_TIMES_MINUTE_PER_SEC    (6) // 360 * 0.01666 = 6
 #define DEGREES_PER_STEP_X10000 (1125)  // See comment for _degPerStepX10000 below.
@@ -56,9 +57,17 @@ public:
 	  
     void initAccelTime(const unsigned int t) {
 	    _totalClockTicks = 0;
+#if CYGWIN
+        //_cumulativeClockTicks = 0;
+#endif /* CYGWIN */        
 		time(t);
 		_currentClockTicks = clockTicks(0);
 	}
+    
+#if CYGWIN    
+    void initCumulativeTime(void) {_cumulativeClockTicks = 0;}
+#endif /* CYGWIN */
+    
 	// set/get acceleration time
     void time(const unsigned int us) {_time = us;}
     unsigned int time(void) {return _time;}
@@ -78,6 +87,10 @@ public:
 	
 	unsigned int updateClockPeriod(void) {
 		_totalClockTicks += _currentClockTicks;
+#if CYGWIN
+        // Used for debugging to get a profile of time vs frequency (speed)
+        _cumulativeClockTicks += _currentClockTicks;
+#endif /* CYGWIN */        
 		unsigned int index = clockTicksToCurveIndex(_totalClockTicks);
 		/* 
 		if (index >= _maxAccelEntries - 1) {
@@ -88,20 +101,30 @@ public:
 		_currentClockTicks = clockTicks(index);
 		return _currentClockTicks;
 	}
-	
+
+#if CYGWIN	
+    unsigned int updateCumulativeTimeWithClockPeriod(void) {
+        _cumulativeClockTicks += _currentClockTicks;
+        return _cumulativeClockTicks;
+    }
+#endif /* CYGWIN */    
+    
 	// Used for deceleration where the curve is traversed backwards (i.e. right to left)
 	unsigned int updateClockPeriodReverse(void) {
 		_totalClockTicks += _currentClockTicks;
+#if CYGWIN
+        _cumulativeClockTicks += _currentClockTicks;
+#endif /* CYGWIN */        
 		unsigned int index = clockTicksToCurveIndexReverse(_totalClockTicks);
 		_currentClockTicks = clockTicks(index);
 		return _currentClockTicks;
 	}
 	
 	unsigned int clockTicksToCurveIndex(unsigned int ct) {
-	    return microSecToCurveIndex(_clockTicksToMicroSec(ct));
+	    return microSecToCurveIndex(clockTicksToMicroSec(ct));
 	}
 	unsigned int clockTicksToCurveIndexReverse(unsigned int ct) {
-	    return microSecToCurveIndexReverse(_clockTicksToMicroSec(ct));
+	    return microSecToCurveIndexReverse(clockTicksToMicroSec(ct));
 	}
 
 	bool freqCloseToStop(unsigned int f) {
@@ -113,11 +136,11 @@ public:
 	
 	// Given clock ticks, return frequency
 	unsigned int freqFromClockTicks(unsigned int ct) {
-		if (_clockTicksToMicroSec(ct) == 0) {
+		if (clockTicksToMicroSec(ct) == 0) {
 			// Avoid divide-by-zero
 			return INT_MAX;
 		}
-		return _microSecPerSec / _clockTicksToMicroSec(ct);
+		return _microSecPerSec / clockTicksToMicroSec(ct);
 	}
 
 	// Given time, return frequency
@@ -149,6 +172,16 @@ public:
 		return _maxAccelIndex - (us * _maxAccelEntries / time());
 	}
 
+	// Given clock ticks, return equivalent microsec.
+    unsigned int clockTicksToMicroSec(const unsigned int ct) {
+		return (unsigned int)((ct / _clockMHz));
+	}
+	
+#if CYGWIN    
+    unsigned int currentClockTicks(void) const {return _currentClockTicks;}
+    unsigned int cumulativeClockTicks(void) const {return _cumulativeClockTicks;}
+#endif /* CYGWIN */    
+    
 	void test(void);
     
 private:
@@ -161,11 +194,6 @@ private:
     void _scaleYAxisToClockTicks(void);
 #endif /* OPTIMIZE_CURVE_CALC */	
     
-	// Given clock ticks, return equivalent microsec.
-    unsigned int _clockTicksToMicroSec(const unsigned int ct) {
-		return (unsigned int)((ct / _clockMHz));
-	}
-	
     unsigned int _RPMx10ktoFreq(unsigned int RPMx10k) {
         return RPMx10k / SECONDS_PER_MINUTE * DEGREES_PER_REV * _stepPerDegree;
     }
@@ -179,9 +207,11 @@ private:
     float _curveFloat[_maxAccelEntries];
     unsigned int _curveInt[_maxAccelEntries];
     
-    //int _positionCurrent;  // in steps
-    unsigned int _totalClockTicks; 
-    unsigned int _currentClockTicks;    // period of current timer interrupt
+    unsigned int _totalClockTicks;      // accumulated time in the acceleration profile
+#if CYGWIN    
+    unsigned int _cumulativeClockTicks; // accumulated time in the entire velocity profile
+#endif /* CYGWIN */    
+    unsigned int _currentClockTicks;    // period of current timer interrupt. Inversely proportional to motor speed.
     unsigned int _time;			// acceleration time in us
     //int _acceleration;          // 0 when constant velocity
     //int _velocity;              // step/s

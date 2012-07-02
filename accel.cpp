@@ -13,10 +13,10 @@ accel::accel() :
 					logc(std::string("ACCEL")),
 #endif /* CYGWIN */					
 					_time(1000000),
-					_microSecPerSec(1000000), _maxDryRunCycles(10000), _clockMHz(8.0),
+					_microSecPerSec(MICROSEC_PER_SEC), _maxDryRunCycles(10000), _clockMHz(8.0),
 					_minTime(1000), _maxTime(4000000), _fStop(200), _stepPerDegree(STEP_PER_DEGREE)/*_degPerStepX10000(DEGREES_PER_STEP_X10000)*/ {
 	//_initUnitCurve();
-	frequency();	// set initial min/max frequency (speed) curve
+	frequency();	// set default min/max frequency (speed) curve
 }
 
 accel::accel(const accel& a) :
@@ -53,7 +53,7 @@ void accel::test(void) {
 #if CYGWIN
 	oss() << "_clockTicksToMicroSec START" << endl;
 	for (int ct = 0; ct < 100; ++ct) {
-		unsigned int microsec = _clockTicksToMicroSec(ct);
+		unsigned int microsec = clockTicksToMicroSec(ct);
 		oss() << "ct=" << ct << " microsec=" << microsec << endl;
 	}
 	oss() << "_clockTicksToMicroSec END" << endl;
@@ -108,7 +108,8 @@ unsigned int accel::dryRunAccel(void) {
 #if DUMP
 		//cout << "index=" << index << " step=" << step << " freqFromClockTicks=" << freqFromClockTicks(_currentClockTicks) << "time(us)=" << _clockTicksToMicroSec(_totalClockTicks) << endl;
 		//oss() << "index=" << index << " step=" << step << " freqFromClockTicks=" << freqFromClockTicks(_currentClockTicks) << " cummulative time(us)=" << _clockTicksToMicroSec(_totalClockTicks);
-		oss() << freqFromClockTicks(_currentClockTicks) << " " << _clockTicksToMicroSec(_totalClockTicks);
+        // This next line prints out 2 columns that can be plotted in a spreadsheet showing total time vs frequency
+		oss() << freqFromClockTicks(_currentClockTicks) << " " << clockTicksToMicroSec(_totalClockTicks);
         dump();
 		//ostringstream oss;
 		//oss << freqFromClockTicks(_currentClockTicks);
@@ -144,7 +145,7 @@ unsigned int accel::timeToSteps(const unsigned int t) {
     return step;
 }
 
-// Returns acceleration time given steps required. Uses a bisection algorithm to home in on the solution.
+// Returns acceleration time given steps required. Uses a bisection algorithm to home in on solution.
 unsigned int accel::stepsToTime(const unsigned int steps) {
 	unsigned int maxAccelTime = _maxTime;
 	unsigned int minAccelTime = _minTime;

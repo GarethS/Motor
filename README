@@ -89,9 +89,16 @@ Pending tasks (* = addressed this issue):
 23. Change RPM to RPMx10k (rev-per-minute x 10000). This avoids using floats and keeps the
      timeframe in microsecs.
 24. Add asymetrical accelerations, ie. different times to accelerate and decelerate.
-    Also may want velocity to change between acceleration and deceleration
+    Also may want velocity to change between acceleration and deceleration.
+    Along same lines, allow discontinuities in acceleration to get past resonant
+    frequencies.
 25. Add scaling factor from steps to inch, mm.
 26. Implement PID controller in user defined code.
+27.* Output cumulative time vs frequency in Cygwin log file in order to plot velocity
+     profile in spreadsheet.
+28. Test constant velocity.
+29. Hardware motor is currently set to 2usteps rather than 8 due to bad solder joint.
+    Test max speed at both settings. Update schematic to run MS1, MS2 lines to gpio.     
     
         
 Limitations
