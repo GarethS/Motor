@@ -973,6 +973,8 @@
           <state>PART_LM3S3748</state>
           <state>TARGET_IS_DUSTDEVIL_RA0</state>
           <state>IAR_ARMCM3_LM</state>
+          <state>CYGWIN=0</state>
+          <state>REGRESS_2=1</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
