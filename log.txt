@@ -1159,7 +1159,7 @@ ct=7995392 curveIndex=0
 clockTicksToCurveIndexReverse END
 
 STEPPER moveAbsolute START
-moveAbsolute() accelStep=687
+moveAbsolute() accelStep=687 positionDelta=2000
 _positionCurrent=0 _positionConstantVelocityStart=687 _positionConstantVelocityEnd=1313 _positionTarget=2000
 moveAbsolute END
 STEPPER MOVE_FULL MOVE_ACCELERATE  position=1 timer=40000  us vs. frequency: 5000 200
@@ -3162,9 +3162,8 @@ STEPPER MOVE_FULL MOVE_DECELERATE  position=1997 timer=39916  us vs. frequency: 
 STEPPER MOVE_FULL MOVE_DECELERATE  position=1998 timer=39939  us vs. frequency: 2461259 200
 STEPPER MOVE_FULL MOVE_DECELERATE  position=1999 timer=39939  us vs. frequency: 2466251 200
 STEPPER IDLE MOVE_DECELERATE  position=2000 timer=39939  us vs. frequency: 2466251 200
-STEPPER 
-moveAbsolute START
-moveAbsolute() accelStep=687
+STEPPER moveAbsolute START
+moveAbsolute() accelStep=687 positionDelta=2000
 _positionCurrent=2000 _positionConstantVelocityStart=1313 _positionConstantVelocityEnd=687 _positionTarget=0
 moveAbsolute END
 STEPPER MOVE_FULL MOVE_ACCELERATE  position=1999 timer=40000  us vs. frequency: 5000 200
@@ -7478,3 +7477,2242 @@ STEPPER VELOCITY_MOVE VELOCITY_MOVE_CONSTANT_VELOCITY  position=1997 timer=10000
 STEPPER VELOCITY_MOVE VELOCITY_MOVE_CONSTANT_VELOCITY  position=1998 timer=10000  us vs. frequency: 988472 800
 STEPPER VELOCITY_MOVE VELOCITY_MOVE_CONSTANT_VELOCITY  position=1999 timer=10000  us vs. frequency: 988472 800
 STEPPER VELOCITY_MOVE VELOCITY_MOVE_CONSTANT_VELOCITY  position=2000 timer=10000  us vs. frequency: 988472 800
+STEPPER 
+testMoveAbsoluteDegree START
+moveAbsolute START
+moveAbsolute() accelStep=491 positionDelta=1600
+_positionCurrent=0 _positionConstantVelocityStart=491 _positionConstantVelocityEnd=1109 _positionTarget=1600
+moveAbsolute END
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=1 timer=40000  us vs. frequency: 5000 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=2 timer=39992  us vs. frequency: 10000 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=3 timer=39992  us vs. frequency: 14999 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=4 timer=39992  us vs. frequency: 19998 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=5 timer=39984  us vs. frequency: 24997 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=6 timer=39984  us vs. frequency: 29995 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=7 timer=39974  us vs. frequency: 34993 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=8 timer=39974  us vs. frequency: 39989 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=9 timer=39963  us vs. frequency: 44986 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=10 timer=39963  us vs. frequency: 49981 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=11 timer=39950  us vs. frequency: 54977 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=12 timer=39950  us vs. frequency: 59971 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=13 timer=39934  us vs. frequency: 64964 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=14 timer=39934  us vs. frequency: 69956 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=15 timer=39915  us vs. frequency: 74948 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=16 timer=39915  us vs. frequency: 79937 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=17 timer=39893  us vs. frequency: 84927 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=18 timer=39893  us vs. frequency: 89913 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=19 timer=39868  us vs. frequency: 94900 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=20 timer=39868  us vs. frequency: 99883 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=21 timer=39838  us vs. frequency: 104867 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=22 timer=39838  us vs. frequency: 109847 200
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=23 timer=39803  us vs. frequency: 114826 201
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=24 timer=39803  us vs. frequency: 119802 201
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=25 timer=39762  us vs. frequency: 124777 201
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=26 timer=39762  us vs. frequency: 129747 201
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=27 timer=39713  us vs. frequency: 134718 201
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=28 timer=39713  us vs. frequency: 139682 201
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=29 timer=39657  us vs. frequency: 144646 201
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=30 timer=39657  us vs. frequency: 149603 201
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=31 timer=39591  us vs. frequency: 154560 202
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=32 timer=39591  us vs. frequency: 159509 202
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=33 timer=39513  us vs. frequency: 164458 202
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=34 timer=39513  us vs. frequency: 169397 202
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=35 timer=39423  us vs. frequency: 174336 202
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=36 timer=39423  us vs. frequency: 179264 202
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=37 timer=39317  us vs. frequency: 184192 203
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=38 timer=39317  us vs. frequency: 189106 203
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=39 timer=39194  us vs. frequency: 194021 204
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=40 timer=39194  us vs. frequency: 198920 204
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=41 timer=39051  us vs. frequency: 203820 204
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=42 timer=39051  us vs. frequency: 208701 204
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=43 timer=38884  us vs. frequency: 213582 205
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=44 timer=38884  us vs. frequency: 218443 205
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=45 timer=38690  us vs. frequency: 223303 206
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=46 timer=38690  us vs. frequency: 228140 206
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=47 timer=38466  us vs. frequency: 232976 207
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=48 timer=38466  us vs. frequency: 237784 207
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=49 timer=38207  us vs. frequency: 242592 209
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=50 timer=38207  us vs. frequency: 247368 209
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=51 timer=37908  us vs. frequency: 252144 211
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=52 timer=37908  us vs. frequency: 256883 211
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=53 timer=37565  us vs. frequency: 261621 212
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=54 timer=37565  us vs. frequency: 266317 212
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=55 timer=37172  us vs. frequency: 271012 215
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=56 timer=37172  us vs. frequency: 275659 215
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=57 timer=36725  us vs. frequency: 280305 217
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=58 timer=36725  us vs. frequency: 284896 217
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=59 timer=36725  us vs. frequency: 289487 217
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=60 timer=36217  us vs. frequency: 294077 220
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=61 timer=36217  us vs. frequency: 298604 220
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=62 timer=35645  us vs. frequency: 303131 224
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=63 timer=35645  us vs. frequency: 307587 224
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=64 timer=35003  us vs. frequency: 312043 228
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=65 timer=35003  us vs. frequency: 316418 228
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=66 timer=34289  us vs. frequency: 320793 233
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=67 timer=34289  us vs. frequency: 325080 233
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=68 timer=34289  us vs. frequency: 329366 233
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=69 timer=33499  us vs. frequency: 333652 238
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=70 timer=33499  us vs. frequency: 337839 238
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=71 timer=32635  us vs. frequency: 342027 245
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=72 timer=32635  us vs. frequency: 346106 245
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=73 timer=31697  us vs. frequency: 350185 252
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=74 timer=31697  us vs. frequency: 354147 252
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=75 timer=31697  us vs. frequency: 358110 252
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=76 timer=30689  us vs. frequency: 362072 260
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=77 timer=30689  us vs. frequency: 365908 260
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=78 timer=30689  us vs. frequency: 369744 260
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=79 timer=29618  us vs. frequency: 373580 270
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=80 timer=29618  us vs. frequency: 377282 270
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=81 timer=28492  us vs. frequency: 380985 280
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=82 timer=28492  us vs. frequency: 384546 280
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=83 timer=28492  us vs. frequency: 388108 280
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=84 timer=27324  us vs. frequency: 391669 292
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=85 timer=27324  us vs. frequency: 395085 292
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=86 timer=27324  us vs. frequency: 398500 292
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=87 timer=26126  us vs. frequency: 401916 306
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=88 timer=26126  us vs. frequency: 405181 306
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=89 timer=26126  us vs. frequency: 408447 306
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=90 timer=24915  us vs. frequency: 411713 321
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=91 timer=24915  us vs. frequency: 414827 321
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=92 timer=24915  us vs. frequency: 417942 321
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=93 timer=23704  us vs. frequency: 421056 337
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=94 timer=23704  us vs. frequency: 424019 337
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=95 timer=23704  us vs. frequency: 426982 337
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=96 timer=23704  us vs. frequency: 429945 337
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=97 timer=22511  us vs. frequency: 432908 355
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=98 timer=22511  us vs. frequency: 435722 355
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=99 timer=22511  us vs. frequency: 438536 355
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=100 timer=21349  us vs. frequency: 441350 374
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=101 timer=21349  us vs. frequency: 444018 374
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=102 timer=21349  us vs. frequency: 446687 374
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=103 timer=21349  us vs. frequency: 449355 374
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=104 timer=20232  us vs. frequency: 452024 395
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=105 timer=20232  us vs. frequency: 454553 395
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=106 timer=20232  us vs. frequency: 457082 395
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=107 timer=20232  us vs. frequency: 459611 395
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=108 timer=19171  us vs. frequency: 462140 417
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=109 timer=19171  us vs. frequency: 464536 417
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=110 timer=19171  us vs. frequency: 466933 417
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=111 timer=19171  us vs. frequency: 469329 417
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=112 timer=18174  us vs. frequency: 471726 440
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=113 timer=18174  us vs. frequency: 473997 440
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=114 timer=18174  us vs. frequency: 476269 440
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=115 timer=18174  us vs. frequency: 478541 440
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=116 timer=17249  us vs. frequency: 480813 463
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=117 timer=17249  us vs. frequency: 482969 463
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=118 timer=17249  us vs. frequency: 485125 463
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=119 timer=17249  us vs. frequency: 487281 463
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=120 timer=17249  us vs. frequency: 489437 463
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=121 timer=16397  us vs. frequency: 491593 488
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=122 timer=16397  us vs. frequency: 493643 488
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=123 timer=16397  us vs. frequency: 495692 488
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=124 timer=16397  us vs. frequency: 497742 488
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=125 timer=16397  us vs. frequency: 499792 488
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=126 timer=15621  us vs. frequency: 501841 512
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=127 timer=15621  us vs. frequency: 503794 512
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=128 timer=15621  us vs. frequency: 505747 512
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=129 timer=15621  us vs. frequency: 507699 512
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=130 timer=15621  us vs. frequency: 509652 512
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=131 timer=14919  us vs. frequency: 511604 536
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=132 timer=14919  us vs. frequency: 513469 536
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=133 timer=14919  us vs. frequency: 515334 536
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=134 timer=14919  us vs. frequency: 517199 536
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=135 timer=14919  us vs. frequency: 519064 536
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=136 timer=14289  us vs. frequency: 520929 559
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=137 timer=14289  us vs. frequency: 522715 559
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=138 timer=14289  us vs. frequency: 524501 559
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=139 timer=14289  us vs. frequency: 526287 559
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=140 timer=14289  us vs. frequency: 528073 559
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=141 timer=14289  us vs. frequency: 529859 559
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=142 timer=13728  us vs. frequency: 531646 582
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=143 timer=13728  us vs. frequency: 533362 582
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=144 timer=13728  us vs. frequency: 535078 582
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=145 timer=13728  us vs. frequency: 536794 582
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=146 timer=13728  us vs. frequency: 538510 582
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=147 timer=13232  us vs. frequency: 540226 604
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=148 timer=13232  us vs. frequency: 541880 604
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=149 timer=13232  us vs. frequency: 543534 604
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=150 timer=13232  us vs. frequency: 545188 604
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=151 timer=13232  us vs. frequency: 546842 604
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=152 timer=13232  us vs. frequency: 548496 604
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=153 timer=12794  us vs. frequency: 550150 625
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=154 timer=12794  us vs. frequency: 551749 625
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=155 timer=12794  us vs. frequency: 553348 625
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=156 timer=12794  us vs. frequency: 554947 625
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=157 timer=12794  us vs. frequency: 556547 625
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=158 timer=12794  us vs. frequency: 558146 625
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=159 timer=12794  us vs. frequency: 559745 625
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=160 timer=12410  us vs. frequency: 561344 644
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=161 timer=12410  us vs. frequency: 562896 644
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=162 timer=12410  us vs. frequency: 564447 644
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=163 timer=12410  us vs. frequency: 565998 644
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=164 timer=12410  us vs. frequency: 567549 644
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=165 timer=12410  us vs. frequency: 569101 644
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=166 timer=12075  us vs. frequency: 570652 662
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=167 timer=12075  us vs. frequency: 572161 662
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=168 timer=12075  us vs. frequency: 573671 662
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=169 timer=12075  us vs. frequency: 575180 662
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=170 timer=12075  us vs. frequency: 576689 662
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=171 timer=12075  us vs. frequency: 578199 662
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=172 timer=12075  us vs. frequency: 579708 662
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=173 timer=11783  us vs. frequency: 581217 679
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=174 timer=11783  us vs. frequency: 582690 679
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=175 timer=11783  us vs. frequency: 584163 679
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=176 timer=11783  us vs. frequency: 585636 679
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=177 timer=11783  us vs. frequency: 587109 679
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=178 timer=11783  us vs. frequency: 588582 679
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=179 timer=11530  us vs. frequency: 590055 693
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=180 timer=11530  us vs. frequency: 591496 693
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=181 timer=11530  us vs. frequency: 592937 693
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=182 timer=11530  us vs. frequency: 594378 693
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=183 timer=11530  us vs. frequency: 595820 693
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=184 timer=11530  us vs. frequency: 597261 693
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=185 timer=11530  us vs. frequency: 598702 693
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=186 timer=11311  us vs. frequency: 600143 707
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=187 timer=11311  us vs. frequency: 601557 707
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=188 timer=11311  us vs. frequency: 602971 707
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=189 timer=11311  us vs. frequency: 604385 707
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=190 timer=11311  us vs. frequency: 605799 707
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=191 timer=11311  us vs. frequency: 607213 707
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=192 timer=11311  us vs. frequency: 608627 707
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=193 timer=11123  us vs. frequency: 610041 719
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=194 timer=11123  us vs. frequency: 611431 719
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=195 timer=11123  us vs. frequency: 612821 719
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=196 timer=11123  us vs. frequency: 614212 719
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=197 timer=11123  us vs. frequency: 615602 719
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=198 timer=11123  us vs. frequency: 616992 719
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=199 timer=11123  us vs. frequency: 618383 719
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=200 timer=11123  us vs. frequency: 619773 719
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=201 timer=10960  us vs. frequency: 621164 729
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=202 timer=10960  us vs. frequency: 622534 729
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=203 timer=10960  us vs. frequency: 623904 729
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=204 timer=10960  us vs. frequency: 625274 729
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=205 timer=10960  us vs. frequency: 626644 729
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=206 timer=10960  us vs. frequency: 628014 729
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=207 timer=10960  us vs. frequency: 629384 729
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=208 timer=10820  us vs. frequency: 630754 739
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=209 timer=10820  us vs. frequency: 632106 739
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=210 timer=10820  us vs. frequency: 633459 739
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=211 timer=10820  us vs. frequency: 634811 739
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=212 timer=10820  us vs. frequency: 636164 739
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=213 timer=10820  us vs. frequency: 637516 739
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=214 timer=10820  us vs. frequency: 638869 739
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=215 timer=10700  us vs. frequency: 640221 747
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=216 timer=10700  us vs. frequency: 641559 747
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=217 timer=10700  us vs. frequency: 642896 747
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=218 timer=10700  us vs. frequency: 644234 747
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=219 timer=10700  us vs. frequency: 645571 747
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=220 timer=10700  us vs. frequency: 646909 747
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=221 timer=10700  us vs. frequency: 648246 747
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=222 timer=10700  us vs. frequency: 649584 747
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=223 timer=10597  us vs. frequency: 650921 755
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=224 timer=10597  us vs. frequency: 652246 755
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=225 timer=10597  us vs. frequency: 653570 755
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=226 timer=10597  us vs. frequency: 654895 755
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=227 timer=10597  us vs. frequency: 656220 755
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=228 timer=10597  us vs. frequency: 657544 755
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=229 timer=10597  us vs. frequency: 658869 755
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=230 timer=10509  us vs. frequency: 660193 761
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=231 timer=10509  us vs. frequency: 661507 761
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=232 timer=10509  us vs. frequency: 662821 761
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=233 timer=10509  us vs. frequency: 664134 761
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=234 timer=10509  us vs. frequency: 665448 761
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=235 timer=10509  us vs. frequency: 666762 761
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=236 timer=10509  us vs. frequency: 668075 761
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=237 timer=10509  us vs. frequency: 669389 761
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=238 timer=10434  us vs. frequency: 670702 766
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=239 timer=10434  us vs. frequency: 672007 766
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=240 timer=10434  us vs. frequency: 673311 766
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=241 timer=10434  us vs. frequency: 674615 766
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=242 timer=10434  us vs. frequency: 675919 766
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=243 timer=10434  us vs. frequency: 677224 766
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=244 timer=10434  us vs. frequency: 678528 766
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=245 timer=10434  us vs. frequency: 679832 766
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=246 timer=10370  us vs. frequency: 681136 771
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=247 timer=10370  us vs. frequency: 682433 771
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=248 timer=10370  us vs. frequency: 683729 771
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=249 timer=10370  us vs. frequency: 685025 771
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=250 timer=10370  us vs. frequency: 686321 771
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=251 timer=10370  us vs. frequency: 687618 771
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=252 timer=10370  us vs. frequency: 688914 771
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=253 timer=10315  us vs. frequency: 690210 775
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=254 timer=10315  us vs. frequency: 691500 775
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=255 timer=10315  us vs. frequency: 692789 775
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=256 timer=10315  us vs. frequency: 694078 775
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=257 timer=10315  us vs. frequency: 695368 775
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=258 timer=10315  us vs. frequency: 696657 775
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=259 timer=10315  us vs. frequency: 697946 775
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=260 timer=10315  us vs. frequency: 699236 775
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=261 timer=10268  us vs. frequency: 700525 779
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=262 timer=10268  us vs. frequency: 701809 779
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=263 timer=10268  us vs. frequency: 703092 779
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=264 timer=10268  us vs. frequency: 704376 779
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=265 timer=10268  us vs. frequency: 705659 779
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=266 timer=10268  us vs. frequency: 706943 779
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=267 timer=10268  us vs. frequency: 708226 779
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=268 timer=10268  us vs. frequency: 709510 779
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=269 timer=10228  us vs. frequency: 710793 782
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=270 timer=10228  us vs. frequency: 712072 782
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=271 timer=10228  us vs. frequency: 713350 782
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=272 timer=10228  us vs. frequency: 714629 782
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=273 timer=10228  us vs. frequency: 715907 782
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=274 timer=10228  us vs. frequency: 717186 782
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=275 timer=10228  us vs. frequency: 718464 782
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=276 timer=10228  us vs. frequency: 719743 782
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=277 timer=10193  us vs. frequency: 721021 784
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=278 timer=10193  us vs. frequency: 722295 784
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=279 timer=10193  us vs. frequency: 723569 784
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=280 timer=10193  us vs. frequency: 724844 784
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=281 timer=10193  us vs. frequency: 726118 784
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=282 timer=10193  us vs. frequency: 727392 784
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=283 timer=10193  us vs. frequency: 728666 784
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=284 timer=10193  us vs. frequency: 729940 784
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=285 timer=10164  us vs. frequency: 731214 787
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=286 timer=10164  us vs. frequency: 732485 787
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=287 timer=10164  us vs. frequency: 733755 787
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=288 timer=10164  us vs. frequency: 735026 787
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=289 timer=10164  us vs. frequency: 736296 787
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=290 timer=10164  us vs. frequency: 737567 787
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=291 timer=10164  us vs. frequency: 738837 787
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=292 timer=10139  us vs. frequency: 740108 789
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=293 timer=10139  us vs. frequency: 741375 789
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=294 timer=10139  us vs. frequency: 742642 789
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=295 timer=10139  us vs. frequency: 743910 789
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=296 timer=10139  us vs. frequency: 745177 789
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=297 timer=10139  us vs. frequency: 746445 789
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=298 timer=10139  us vs. frequency: 747712 789
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=299 timer=10139  us vs. frequency: 748979 789
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=300 timer=10118  us vs. frequency: 750247 791
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=301 timer=10118  us vs. frequency: 751511 791
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=302 timer=10118  us vs. frequency: 752776 791
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=303 timer=10118  us vs. frequency: 754041 791
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=304 timer=10118  us vs. frequency: 755306 791
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=305 timer=10118  us vs. frequency: 756570 791
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=306 timer=10118  us vs. frequency: 757835 791
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=307 timer=10118  us vs. frequency: 759100 791
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=308 timer=10100  us vs. frequency: 760365 792
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=309 timer=10100  us vs. frequency: 761627 792
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=310 timer=10100  us vs. frequency: 762890 792
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=311 timer=10100  us vs. frequency: 764152 792
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=312 timer=10100  us vs. frequency: 765415 792
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=313 timer=10100  us vs. frequency: 766677 792
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=314 timer=10100  us vs. frequency: 767940 792
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=315 timer=10100  us vs. frequency: 769202 792
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=316 timer=10085  us vs. frequency: 770465 793
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=317 timer=10085  us vs. frequency: 771725 793
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=318 timer=10085  us vs. frequency: 772986 793
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=319 timer=10085  us vs. frequency: 774247 793
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=320 timer=10085  us vs. frequency: 775507 793
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=321 timer=10085  us vs. frequency: 776768 793
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=322 timer=10085  us vs. frequency: 778028 793
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=323 timer=10085  us vs. frequency: 779289 793
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=324 timer=10072  us vs. frequency: 780550 794
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=325 timer=10072  us vs. frequency: 781809 794
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=326 timer=10072  us vs. frequency: 783068 794
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=327 timer=10072  us vs. frequency: 784327 794
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=328 timer=10072  us vs. frequency: 785586 794
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=329 timer=10072  us vs. frequency: 786845 794
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=330 timer=10072  us vs. frequency: 788104 794
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=331 timer=10072  us vs. frequency: 789363 794
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=332 timer=10061  us vs. frequency: 790622 795
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=333 timer=10061  us vs. frequency: 791879 795
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=334 timer=10061  us vs. frequency: 793137 795
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=335 timer=10061  us vs. frequency: 794395 795
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=336 timer=10061  us vs. frequency: 795652 795
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=337 timer=10061  us vs. frequency: 796910 795
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=338 timer=10061  us vs. frequency: 798167 795
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=339 timer=10061  us vs. frequency: 799425 795
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=340 timer=10051  us vs. frequency: 800683 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=341 timer=10051  us vs. frequency: 801939 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=342 timer=10051  us vs. frequency: 803195 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=343 timer=10051  us vs. frequency: 804452 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=344 timer=10051  us vs. frequency: 805708 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=345 timer=10051  us vs. frequency: 806965 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=346 timer=10051  us vs. frequency: 808221 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=347 timer=10051  us vs. frequency: 809477 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=348 timer=10043  us vs. frequency: 810734 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=349 timer=10043  us vs. frequency: 811989 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=350 timer=10043  us vs. frequency: 813244 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=351 timer=10043  us vs. frequency: 814500 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=352 timer=10043  us vs. frequency: 815755 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=353 timer=10043  us vs. frequency: 817011 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=354 timer=10043  us vs. frequency: 818266 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=355 timer=10043  us vs. frequency: 819521 796
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=356 timer=10036  us vs. frequency: 820777 797
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=357 timer=10036  us vs. frequency: 822031 797
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=358 timer=10036  us vs. frequency: 823286 797
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=359 timer=10036  us vs. frequency: 824540 797
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=360 timer=10036  us vs. frequency: 825795 797
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=361 timer=10036  us vs. frequency: 827049 797
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=362 timer=10036  us vs. frequency: 828304 797
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=363 timer=10036  us vs. frequency: 829558 797
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=364 timer=10030  us vs. frequency: 830813 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=365 timer=10030  us vs. frequency: 832066 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=366 timer=10030  us vs. frequency: 833320 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=367 timer=10030  us vs. frequency: 834574 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=368 timer=10030  us vs. frequency: 835828 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=369 timer=10030  us vs. frequency: 837081 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=370 timer=10030  us vs. frequency: 838335 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=371 timer=10030  us vs. frequency: 839589 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=372 timer=10025  us vs. frequency: 840843 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=373 timer=10025  us vs. frequency: 842096 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=374 timer=10025  us vs. frequency: 843349 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=375 timer=10025  us vs. frequency: 844602 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=376 timer=10025  us vs. frequency: 845855 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=377 timer=10025  us vs. frequency: 847108 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=378 timer=10025  us vs. frequency: 848361 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=379 timer=10025  us vs. frequency: 849615 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=380 timer=10021  us vs. frequency: 850868 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=381 timer=10021  us vs. frequency: 852120 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=382 timer=10021  us vs. frequency: 853373 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=383 timer=10021  us vs. frequency: 854626 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=384 timer=10021  us vs. frequency: 855878 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=385 timer=10021  us vs. frequency: 857131 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=386 timer=10021  us vs. frequency: 858383 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=387 timer=10021  us vs. frequency: 859636 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=388 timer=10018  us vs. frequency: 860889 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=389 timer=10018  us vs. frequency: 862141 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=390 timer=10018  us vs. frequency: 863393 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=391 timer=10018  us vs. frequency: 864645 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=392 timer=10018  us vs. frequency: 865898 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=393 timer=10018  us vs. frequency: 867150 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=394 timer=10018  us vs. frequency: 868402 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=395 timer=10018  us vs. frequency: 869654 798
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=396 timer=10014  us vs. frequency: 870907 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=397 timer=10014  us vs. frequency: 872158 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=398 timer=10014  us vs. frequency: 873410 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=399 timer=10014  us vs. frequency: 874662 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=400 timer=10014  us vs. frequency: 875914 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=401 timer=10014  us vs. frequency: 877165 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=402 timer=10014  us vs. frequency: 878417 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=403 timer=10014  us vs. frequency: 879669 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=404 timer=10012  us vs. frequency: 880921 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=405 timer=10012  us vs. frequency: 882172 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=406 timer=10012  us vs. frequency: 883424 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=407 timer=10012  us vs. frequency: 884675 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=408 timer=10012  us vs. frequency: 885927 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=409 timer=10012  us vs. frequency: 887178 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=410 timer=10012  us vs. frequency: 888430 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=411 timer=10012  us vs. frequency: 889681 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=412 timer=10010  us vs. frequency: 890933 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=413 timer=10010  us vs. frequency: 892184 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=414 timer=10010  us vs. frequency: 893435 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=415 timer=10010  us vs. frequency: 894686 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=416 timer=10010  us vs. frequency: 895938 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=417 timer=10010  us vs. frequency: 897189 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=418 timer=10010  us vs. frequency: 898440 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=419 timer=10010  us vs. frequency: 899691 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=420 timer=10008  us vs. frequency: 900943 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=421 timer=10008  us vs. frequency: 902194 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=422 timer=10008  us vs. frequency: 903445 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=423 timer=10008  us vs. frequency: 904696 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=424 timer=10008  us vs. frequency: 905947 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=425 timer=10008  us vs. frequency: 907198 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=426 timer=10008  us vs. frequency: 908449 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=427 timer=10008  us vs. frequency: 909700 799
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=428 timer=10006  us vs. frequency: 910951 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=429 timer=10006  us vs. frequency: 912201 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=430 timer=10006  us vs. frequency: 913452 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=431 timer=10006  us vs. frequency: 914703 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=432 timer=10006  us vs. frequency: 915954 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=433 timer=10006  us vs. frequency: 917204 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=434 timer=10006  us vs. frequency: 918455 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=435 timer=10006  us vs. frequency: 919706 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=436 timer=10005  us vs. frequency: 920957 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=437 timer=10005  us vs. frequency: 922207 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=438 timer=10005  us vs. frequency: 923458 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=439 timer=10005  us vs. frequency: 924709 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=440 timer=10005  us vs. frequency: 925959 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=441 timer=10005  us vs. frequency: 927210 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=442 timer=10005  us vs. frequency: 928460 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=443 timer=10005  us vs. frequency: 929711 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=444 timer=10004  us vs. frequency: 930962 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=445 timer=10004  us vs. frequency: 932212 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=446 timer=10004  us vs. frequency: 933463 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=447 timer=10004  us vs. frequency: 934713 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=448 timer=10004  us vs. frequency: 935964 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=449 timer=10004  us vs. frequency: 937214 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=450 timer=10004  us vs. frequency: 938465 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=451 timer=10004  us vs. frequency: 939715 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=452 timer=10003  us vs. frequency: 940966 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=453 timer=10003  us vs. frequency: 942216 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=454 timer=10003  us vs. frequency: 943466 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=455 timer=10003  us vs. frequency: 944717 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=456 timer=10003  us vs. frequency: 945967 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=457 timer=10003  us vs. frequency: 947218 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=458 timer=10003  us vs. frequency: 948468 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=459 timer=10003  us vs. frequency: 949718 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=460 timer=10002  us vs. frequency: 950969 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=461 timer=10002  us vs. frequency: 952219 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=462 timer=10002  us vs. frequency: 953469 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=463 timer=10002  us vs. frequency: 954719 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=464 timer=10002  us vs. frequency: 955970 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=465 timer=10002  us vs. frequency: 957220 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=466 timer=10002  us vs. frequency: 958470 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=467 timer=10002  us vs. frequency: 959720 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=468 timer=10001  us vs. frequency: 960971 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=469 timer=10001  us vs. frequency: 962221 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=470 timer=10001  us vs. frequency: 963471 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=471 timer=10001  us vs. frequency: 964721 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=472 timer=10001  us vs. frequency: 965971 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=473 timer=10001  us vs. frequency: 967221 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=474 timer=10001  us vs. frequency: 968471 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=475 timer=10001  us vs. frequency: 969722 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=476 timer=10000  us vs. frequency: 970972 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=477 timer=10000  us vs. frequency: 972222 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=478 timer=10000  us vs. frequency: 973472 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=479 timer=10000  us vs. frequency: 974722 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=480 timer=10000  us vs. frequency: 975972 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=481 timer=10000  us vs. frequency: 977222 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=482 timer=10000  us vs. frequency: 978472 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=483 timer=10000  us vs. frequency: 979722 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=484 timer=10000  us vs. frequency: 980972 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=485 timer=10000  us vs. frequency: 982222 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=486 timer=10000  us vs. frequency: 983472 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=487 timer=10000  us vs. frequency: 984722 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=488 timer=10000  us vs. frequency: 985972 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=489 timer=10000  us vs. frequency: 987222 800
+STEPPER MOVE_FULL MOVE_ACCELERATE  position=490 timer=10000  us vs. frequency: 988472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=491 timer=10000  us vs. frequency: 989722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=492 timer=10000  us vs. frequency: 990972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=493 timer=10000  us vs. frequency: 992222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=494 timer=10000  us vs. frequency: 993472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=495 timer=10000  us vs. frequency: 994722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=496 timer=10000  us vs. frequency: 995972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=497 timer=10000  us vs. frequency: 997222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=498 timer=10000  us vs. frequency: 998472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=499 timer=10000  us vs. frequency: 999722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=500 timer=10000  us vs. frequency: 1000972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=501 timer=10000  us vs. frequency: 1002222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=502 timer=10000  us vs. frequency: 1003472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=503 timer=10000  us vs. frequency: 1004722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=504 timer=10000  us vs. frequency: 1005972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=505 timer=10000  us vs. frequency: 1007222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=506 timer=10000  us vs. frequency: 1008472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=507 timer=10000  us vs. frequency: 1009722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=508 timer=10000  us vs. frequency: 1010972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=509 timer=10000  us vs. frequency: 1012222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=510 timer=10000  us vs. frequency: 1013472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=511 timer=10000  us vs. frequency: 1014722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=512 timer=10000  us vs. frequency: 1015972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=513 timer=10000  us vs. frequency: 1017222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=514 timer=10000  us vs. frequency: 1018472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=515 timer=10000  us vs. frequency: 1019722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=516 timer=10000  us vs. frequency: 1020972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=517 timer=10000  us vs. frequency: 1022222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=518 timer=10000  us vs. frequency: 1023472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=519 timer=10000  us vs. frequency: 1024722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=520 timer=10000  us vs. frequency: 1025972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=521 timer=10000  us vs. frequency: 1027222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=522 timer=10000  us vs. frequency: 1028472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=523 timer=10000  us vs. frequency: 1029722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=524 timer=10000  us vs. frequency: 1030972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=525 timer=10000  us vs. frequency: 1032222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=526 timer=10000  us vs. frequency: 1033472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=527 timer=10000  us vs. frequency: 1034722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=528 timer=10000  us vs. frequency: 1035972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=529 timer=10000  us vs. frequency: 1037222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=530 timer=10000  us vs. frequency: 1038472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=531 timer=10000  us vs. frequency: 1039722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=532 timer=10000  us vs. frequency: 1040972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=533 timer=10000  us vs. frequency: 1042222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=534 timer=10000  us vs. frequency: 1043472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=535 timer=10000  us vs. frequency: 1044722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=536 timer=10000  us vs. frequency: 1045972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=537 timer=10000  us vs. frequency: 1047222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=538 timer=10000  us vs. frequency: 1048472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=539 timer=10000  us vs. frequency: 1049722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=540 timer=10000  us vs. frequency: 1050972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=541 timer=10000  us vs. frequency: 1052222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=542 timer=10000  us vs. frequency: 1053472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=543 timer=10000  us vs. frequency: 1054722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=544 timer=10000  us vs. frequency: 1055972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=545 timer=10000  us vs. frequency: 1057222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=546 timer=10000  us vs. frequency: 1058472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=547 timer=10000  us vs. frequency: 1059722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=548 timer=10000  us vs. frequency: 1060972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=549 timer=10000  us vs. frequency: 1062222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=550 timer=10000  us vs. frequency: 1063472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=551 timer=10000  us vs. frequency: 1064722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=552 timer=10000  us vs. frequency: 1065972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=553 timer=10000  us vs. frequency: 1067222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=554 timer=10000  us vs. frequency: 1068472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=555 timer=10000  us vs. frequency: 1069722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=556 timer=10000  us vs. frequency: 1070972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=557 timer=10000  us vs. frequency: 1072222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=558 timer=10000  us vs. frequency: 1073472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=559 timer=10000  us vs. frequency: 1074722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=560 timer=10000  us vs. frequency: 1075972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=561 timer=10000  us vs. frequency: 1077222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=562 timer=10000  us vs. frequency: 1078472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=563 timer=10000  us vs. frequency: 1079722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=564 timer=10000  us vs. frequency: 1080972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=565 timer=10000  us vs. frequency: 1082222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=566 timer=10000  us vs. frequency: 1083472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=567 timer=10000  us vs. frequency: 1084722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=568 timer=10000  us vs. frequency: 1085972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=569 timer=10000  us vs. frequency: 1087222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=570 timer=10000  us vs. frequency: 1088472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=571 timer=10000  us vs. frequency: 1089722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=572 timer=10000  us vs. frequency: 1090972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=573 timer=10000  us vs. frequency: 1092222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=574 timer=10000  us vs. frequency: 1093472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=575 timer=10000  us vs. frequency: 1094722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=576 timer=10000  us vs. frequency: 1095972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=577 timer=10000  us vs. frequency: 1097222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=578 timer=10000  us vs. frequency: 1098472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=579 timer=10000  us vs. frequency: 1099722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=580 timer=10000  us vs. frequency: 1100972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=581 timer=10000  us vs. frequency: 1102222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=582 timer=10000  us vs. frequency: 1103472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=583 timer=10000  us vs. frequency: 1104722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=584 timer=10000  us vs. frequency: 1105972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=585 timer=10000  us vs. frequency: 1107222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=586 timer=10000  us vs. frequency: 1108472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=587 timer=10000  us vs. frequency: 1109722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=588 timer=10000  us vs. frequency: 1110972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=589 timer=10000  us vs. frequency: 1112222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=590 timer=10000  us vs. frequency: 1113472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=591 timer=10000  us vs. frequency: 1114722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=592 timer=10000  us vs. frequency: 1115972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=593 timer=10000  us vs. frequency: 1117222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=594 timer=10000  us vs. frequency: 1118472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=595 timer=10000  us vs. frequency: 1119722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=596 timer=10000  us vs. frequency: 1120972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=597 timer=10000  us vs. frequency: 1122222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=598 timer=10000  us vs. frequency: 1123472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=599 timer=10000  us vs. frequency: 1124722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=600 timer=10000  us vs. frequency: 1125972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=601 timer=10000  us vs. frequency: 1127222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=602 timer=10000  us vs. frequency: 1128472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=603 timer=10000  us vs. frequency: 1129722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=604 timer=10000  us vs. frequency: 1130972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=605 timer=10000  us vs. frequency: 1132222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=606 timer=10000  us vs. frequency: 1133472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=607 timer=10000  us vs. frequency: 1134722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=608 timer=10000  us vs. frequency: 1135972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=609 timer=10000  us vs. frequency: 1137222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=610 timer=10000  us vs. frequency: 1138472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=611 timer=10000  us vs. frequency: 1139722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=612 timer=10000  us vs. frequency: 1140972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=613 timer=10000  us vs. frequency: 1142222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=614 timer=10000  us vs. frequency: 1143472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=615 timer=10000  us vs. frequency: 1144722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=616 timer=10000  us vs. frequency: 1145972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=617 timer=10000  us vs. frequency: 1147222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=618 timer=10000  us vs. frequency: 1148472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=619 timer=10000  us vs. frequency: 1149722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=620 timer=10000  us vs. frequency: 1150972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=621 timer=10000  us vs. frequency: 1152222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=622 timer=10000  us vs. frequency: 1153472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=623 timer=10000  us vs. frequency: 1154722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=624 timer=10000  us vs. frequency: 1155972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=625 timer=10000  us vs. frequency: 1157222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=626 timer=10000  us vs. frequency: 1158472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=627 timer=10000  us vs. frequency: 1159722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=628 timer=10000  us vs. frequency: 1160972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=629 timer=10000  us vs. frequency: 1162222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=630 timer=10000  us vs. frequency: 1163472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=631 timer=10000  us vs. frequency: 1164722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=632 timer=10000  us vs. frequency: 1165972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=633 timer=10000  us vs. frequency: 1167222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=634 timer=10000  us vs. frequency: 1168472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=635 timer=10000  us vs. frequency: 1169722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=636 timer=10000  us vs. frequency: 1170972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=637 timer=10000  us vs. frequency: 1172222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=638 timer=10000  us vs. frequency: 1173472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=639 timer=10000  us vs. frequency: 1174722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=640 timer=10000  us vs. frequency: 1175972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=641 timer=10000  us vs. frequency: 1177222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=642 timer=10000  us vs. frequency: 1178472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=643 timer=10000  us vs. frequency: 1179722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=644 timer=10000  us vs. frequency: 1180972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=645 timer=10000  us vs. frequency: 1182222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=646 timer=10000  us vs. frequency: 1183472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=647 timer=10000  us vs. frequency: 1184722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=648 timer=10000  us vs. frequency: 1185972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=649 timer=10000  us vs. frequency: 1187222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=650 timer=10000  us vs. frequency: 1188472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=651 timer=10000  us vs. frequency: 1189722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=652 timer=10000  us vs. frequency: 1190972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=653 timer=10000  us vs. frequency: 1192222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=654 timer=10000  us vs. frequency: 1193472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=655 timer=10000  us vs. frequency: 1194722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=656 timer=10000  us vs. frequency: 1195972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=657 timer=10000  us vs. frequency: 1197222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=658 timer=10000  us vs. frequency: 1198472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=659 timer=10000  us vs. frequency: 1199722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=660 timer=10000  us vs. frequency: 1200972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=661 timer=10000  us vs. frequency: 1202222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=662 timer=10000  us vs. frequency: 1203472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=663 timer=10000  us vs. frequency: 1204722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=664 timer=10000  us vs. frequency: 1205972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=665 timer=10000  us vs. frequency: 1207222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=666 timer=10000  us vs. frequency: 1208472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=667 timer=10000  us vs. frequency: 1209722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=668 timer=10000  us vs. frequency: 1210972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=669 timer=10000  us vs. frequency: 1212222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=670 timer=10000  us vs. frequency: 1213472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=671 timer=10000  us vs. frequency: 1214722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=672 timer=10000  us vs. frequency: 1215972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=673 timer=10000  us vs. frequency: 1217222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=674 timer=10000  us vs. frequency: 1218472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=675 timer=10000  us vs. frequency: 1219722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=676 timer=10000  us vs. frequency: 1220972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=677 timer=10000  us vs. frequency: 1222222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=678 timer=10000  us vs. frequency: 1223472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=679 timer=10000  us vs. frequency: 1224722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=680 timer=10000  us vs. frequency: 1225972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=681 timer=10000  us vs. frequency: 1227222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=682 timer=10000  us vs. frequency: 1228472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=683 timer=10000  us vs. frequency: 1229722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=684 timer=10000  us vs. frequency: 1230972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=685 timer=10000  us vs. frequency: 1232222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=686 timer=10000  us vs. frequency: 1233472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=687 timer=10000  us vs. frequency: 1234722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=688 timer=10000  us vs. frequency: 1235972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=689 timer=10000  us vs. frequency: 1237222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=690 timer=10000  us vs. frequency: 1238472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=691 timer=10000  us vs. frequency: 1239722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=692 timer=10000  us vs. frequency: 1240972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=693 timer=10000  us vs. frequency: 1242222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=694 timer=10000  us vs. frequency: 1243472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=695 timer=10000  us vs. frequency: 1244722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=696 timer=10000  us vs. frequency: 1245972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=697 timer=10000  us vs. frequency: 1247222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=698 timer=10000  us vs. frequency: 1248472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=699 timer=10000  us vs. frequency: 1249722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=700 timer=10000  us vs. frequency: 1250972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=701 timer=10000  us vs. frequency: 1252222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=702 timer=10000  us vs. frequency: 1253472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=703 timer=10000  us vs. frequency: 1254722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=704 timer=10000  us vs. frequency: 1255972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=705 timer=10000  us vs. frequency: 1257222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=706 timer=10000  us vs. frequency: 1258472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=707 timer=10000  us vs. frequency: 1259722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=708 timer=10000  us vs. frequency: 1260972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=709 timer=10000  us vs. frequency: 1262222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=710 timer=10000  us vs. frequency: 1263472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=711 timer=10000  us vs. frequency: 1264722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=712 timer=10000  us vs. frequency: 1265972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=713 timer=10000  us vs. frequency: 1267222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=714 timer=10000  us vs. frequency: 1268472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=715 timer=10000  us vs. frequency: 1269722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=716 timer=10000  us vs. frequency: 1270972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=717 timer=10000  us vs. frequency: 1272222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=718 timer=10000  us vs. frequency: 1273472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=719 timer=10000  us vs. frequency: 1274722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=720 timer=10000  us vs. frequency: 1275972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=721 timer=10000  us vs. frequency: 1277222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=722 timer=10000  us vs. frequency: 1278472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=723 timer=10000  us vs. frequency: 1279722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=724 timer=10000  us vs. frequency: 1280972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=725 timer=10000  us vs. frequency: 1282222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=726 timer=10000  us vs. frequency: 1283472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=727 timer=10000  us vs. frequency: 1284722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=728 timer=10000  us vs. frequency: 1285972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=729 timer=10000  us vs. frequency: 1287222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=730 timer=10000  us vs. frequency: 1288472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=731 timer=10000  us vs. frequency: 1289722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=732 timer=10000  us vs. frequency: 1290972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=733 timer=10000  us vs. frequency: 1292222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=734 timer=10000  us vs. frequency: 1293472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=735 timer=10000  us vs. frequency: 1294722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=736 timer=10000  us vs. frequency: 1295972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=737 timer=10000  us vs. frequency: 1297222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=738 timer=10000  us vs. frequency: 1298472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=739 timer=10000  us vs. frequency: 1299722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=740 timer=10000  us vs. frequency: 1300972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=741 timer=10000  us vs. frequency: 1302222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=742 timer=10000  us vs. frequency: 1303472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=743 timer=10000  us vs. frequency: 1304722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=744 timer=10000  us vs. frequency: 1305972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=745 timer=10000  us vs. frequency: 1307222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=746 timer=10000  us vs. frequency: 1308472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=747 timer=10000  us vs. frequency: 1309722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=748 timer=10000  us vs. frequency: 1310972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=749 timer=10000  us vs. frequency: 1312222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=750 timer=10000  us vs. frequency: 1313472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=751 timer=10000  us vs. frequency: 1314722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=752 timer=10000  us vs. frequency: 1315972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=753 timer=10000  us vs. frequency: 1317222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=754 timer=10000  us vs. frequency: 1318472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=755 timer=10000  us vs. frequency: 1319722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=756 timer=10000  us vs. frequency: 1320972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=757 timer=10000  us vs. frequency: 1322222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=758 timer=10000  us vs. frequency: 1323472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=759 timer=10000  us vs. frequency: 1324722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=760 timer=10000  us vs. frequency: 1325972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=761 timer=10000  us vs. frequency: 1327222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=762 timer=10000  us vs. frequency: 1328472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=763 timer=10000  us vs. frequency: 1329722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=764 timer=10000  us vs. frequency: 1330972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=765 timer=10000  us vs. frequency: 1332222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=766 timer=10000  us vs. frequency: 1333472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=767 timer=10000  us vs. frequency: 1334722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=768 timer=10000  us vs. frequency: 1335972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=769 timer=10000  us vs. frequency: 1337222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=770 timer=10000  us vs. frequency: 1338472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=771 timer=10000  us vs. frequency: 1339722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=772 timer=10000  us vs. frequency: 1340972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=773 timer=10000  us vs. frequency: 1342222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=774 timer=10000  us vs. frequency: 1343472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=775 timer=10000  us vs. frequency: 1344722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=776 timer=10000  us vs. frequency: 1345972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=777 timer=10000  us vs. frequency: 1347222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=778 timer=10000  us vs. frequency: 1348472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=779 timer=10000  us vs. frequency: 1349722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=780 timer=10000  us vs. frequency: 1350972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=781 timer=10000  us vs. frequency: 1352222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=782 timer=10000  us vs. frequency: 1353472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=783 timer=10000  us vs. frequency: 1354722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=784 timer=10000  us vs. frequency: 1355972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=785 timer=10000  us vs. frequency: 1357222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=786 timer=10000  us vs. frequency: 1358472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=787 timer=10000  us vs. frequency: 1359722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=788 timer=10000  us vs. frequency: 1360972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=789 timer=10000  us vs. frequency: 1362222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=790 timer=10000  us vs. frequency: 1363472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=791 timer=10000  us vs. frequency: 1364722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=792 timer=10000  us vs. frequency: 1365972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=793 timer=10000  us vs. frequency: 1367222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=794 timer=10000  us vs. frequency: 1368472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=795 timer=10000  us vs. frequency: 1369722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=796 timer=10000  us vs. frequency: 1370972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=797 timer=10000  us vs. frequency: 1372222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=798 timer=10000  us vs. frequency: 1373472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=799 timer=10000  us vs. frequency: 1374722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=800 timer=10000  us vs. frequency: 1375972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=801 timer=10000  us vs. frequency: 1377222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=802 timer=10000  us vs. frequency: 1378472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=803 timer=10000  us vs. frequency: 1379722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=804 timer=10000  us vs. frequency: 1380972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=805 timer=10000  us vs. frequency: 1382222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=806 timer=10000  us vs. frequency: 1383472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=807 timer=10000  us vs. frequency: 1384722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=808 timer=10000  us vs. frequency: 1385972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=809 timer=10000  us vs. frequency: 1387222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=810 timer=10000  us vs. frequency: 1388472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=811 timer=10000  us vs. frequency: 1389722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=812 timer=10000  us vs. frequency: 1390972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=813 timer=10000  us vs. frequency: 1392222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=814 timer=10000  us vs. frequency: 1393472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=815 timer=10000  us vs. frequency: 1394722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=816 timer=10000  us vs. frequency: 1395972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=817 timer=10000  us vs. frequency: 1397222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=818 timer=10000  us vs. frequency: 1398472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=819 timer=10000  us vs. frequency: 1399722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=820 timer=10000  us vs. frequency: 1400972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=821 timer=10000  us vs. frequency: 1402222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=822 timer=10000  us vs. frequency: 1403472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=823 timer=10000  us vs. frequency: 1404722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=824 timer=10000  us vs. frequency: 1405972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=825 timer=10000  us vs. frequency: 1407222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=826 timer=10000  us vs. frequency: 1408472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=827 timer=10000  us vs. frequency: 1409722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=828 timer=10000  us vs. frequency: 1410972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=829 timer=10000  us vs. frequency: 1412222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=830 timer=10000  us vs. frequency: 1413472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=831 timer=10000  us vs. frequency: 1414722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=832 timer=10000  us vs. frequency: 1415972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=833 timer=10000  us vs. frequency: 1417222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=834 timer=10000  us vs. frequency: 1418472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=835 timer=10000  us vs. frequency: 1419722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=836 timer=10000  us vs. frequency: 1420972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=837 timer=10000  us vs. frequency: 1422222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=838 timer=10000  us vs. frequency: 1423472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=839 timer=10000  us vs. frequency: 1424722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=840 timer=10000  us vs. frequency: 1425972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=841 timer=10000  us vs. frequency: 1427222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=842 timer=10000  us vs. frequency: 1428472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=843 timer=10000  us vs. frequency: 1429722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=844 timer=10000  us vs. frequency: 1430972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=845 timer=10000  us vs. frequency: 1432222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=846 timer=10000  us vs. frequency: 1433472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=847 timer=10000  us vs. frequency: 1434722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=848 timer=10000  us vs. frequency: 1435972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=849 timer=10000  us vs. frequency: 1437222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=850 timer=10000  us vs. frequency: 1438472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=851 timer=10000  us vs. frequency: 1439722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=852 timer=10000  us vs. frequency: 1440972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=853 timer=10000  us vs. frequency: 1442222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=854 timer=10000  us vs. frequency: 1443472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=855 timer=10000  us vs. frequency: 1444722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=856 timer=10000  us vs. frequency: 1445972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=857 timer=10000  us vs. frequency: 1447222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=858 timer=10000  us vs. frequency: 1448472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=859 timer=10000  us vs. frequency: 1449722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=860 timer=10000  us vs. frequency: 1450972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=861 timer=10000  us vs. frequency: 1452222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=862 timer=10000  us vs. frequency: 1453472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=863 timer=10000  us vs. frequency: 1454722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=864 timer=10000  us vs. frequency: 1455972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=865 timer=10000  us vs. frequency: 1457222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=866 timer=10000  us vs. frequency: 1458472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=867 timer=10000  us vs. frequency: 1459722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=868 timer=10000  us vs. frequency: 1460972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=869 timer=10000  us vs. frequency: 1462222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=870 timer=10000  us vs. frequency: 1463472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=871 timer=10000  us vs. frequency: 1464722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=872 timer=10000  us vs. frequency: 1465972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=873 timer=10000  us vs. frequency: 1467222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=874 timer=10000  us vs. frequency: 1468472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=875 timer=10000  us vs. frequency: 1469722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=876 timer=10000  us vs. frequency: 1470972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=877 timer=10000  us vs. frequency: 1472222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=878 timer=10000  us vs. frequency: 1473472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=879 timer=10000  us vs. frequency: 1474722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=880 timer=10000  us vs. frequency: 1475972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=881 timer=10000  us vs. frequency: 1477222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=882 timer=10000  us vs. frequency: 1478472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=883 timer=10000  us vs. frequency: 1479722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=884 timer=10000  us vs. frequency: 1480972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=885 timer=10000  us vs. frequency: 1482222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=886 timer=10000  us vs. frequency: 1483472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=887 timer=10000  us vs. frequency: 1484722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=888 timer=10000  us vs. frequency: 1485972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=889 timer=10000  us vs. frequency: 1487222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=890 timer=10000  us vs. frequency: 1488472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=891 timer=10000  us vs. frequency: 1489722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=892 timer=10000  us vs. frequency: 1490972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=893 timer=10000  us vs. frequency: 1492222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=894 timer=10000  us vs. frequency: 1493472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=895 timer=10000  us vs. frequency: 1494722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=896 timer=10000  us vs. frequency: 1495972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=897 timer=10000  us vs. frequency: 1497222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=898 timer=10000  us vs. frequency: 1498472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=899 timer=10000  us vs. frequency: 1499722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=900 timer=10000  us vs. frequency: 1500972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=901 timer=10000  us vs. frequency: 1502222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=902 timer=10000  us vs. frequency: 1503472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=903 timer=10000  us vs. frequency: 1504722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=904 timer=10000  us vs. frequency: 1505972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=905 timer=10000  us vs. frequency: 1507222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=906 timer=10000  us vs. frequency: 1508472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=907 timer=10000  us vs. frequency: 1509722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=908 timer=10000  us vs. frequency: 1510972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=909 timer=10000  us vs. frequency: 1512222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=910 timer=10000  us vs. frequency: 1513472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=911 timer=10000  us vs. frequency: 1514722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=912 timer=10000  us vs. frequency: 1515972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=913 timer=10000  us vs. frequency: 1517222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=914 timer=10000  us vs. frequency: 1518472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=915 timer=10000  us vs. frequency: 1519722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=916 timer=10000  us vs. frequency: 1520972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=917 timer=10000  us vs. frequency: 1522222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=918 timer=10000  us vs. frequency: 1523472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=919 timer=10000  us vs. frequency: 1524722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=920 timer=10000  us vs. frequency: 1525972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=921 timer=10000  us vs. frequency: 1527222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=922 timer=10000  us vs. frequency: 1528472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=923 timer=10000  us vs. frequency: 1529722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=924 timer=10000  us vs. frequency: 1530972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=925 timer=10000  us vs. frequency: 1532222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=926 timer=10000  us vs. frequency: 1533472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=927 timer=10000  us vs. frequency: 1534722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=928 timer=10000  us vs. frequency: 1535972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=929 timer=10000  us vs. frequency: 1537222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=930 timer=10000  us vs. frequency: 1538472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=931 timer=10000  us vs. frequency: 1539722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=932 timer=10000  us vs. frequency: 1540972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=933 timer=10000  us vs. frequency: 1542222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=934 timer=10000  us vs. frequency: 1543472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=935 timer=10000  us vs. frequency: 1544722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=936 timer=10000  us vs. frequency: 1545972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=937 timer=10000  us vs. frequency: 1547222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=938 timer=10000  us vs. frequency: 1548472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=939 timer=10000  us vs. frequency: 1549722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=940 timer=10000  us vs. frequency: 1550972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=941 timer=10000  us vs. frequency: 1552222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=942 timer=10000  us vs. frequency: 1553472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=943 timer=10000  us vs. frequency: 1554722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=944 timer=10000  us vs. frequency: 1555972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=945 timer=10000  us vs. frequency: 1557222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=946 timer=10000  us vs. frequency: 1558472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=947 timer=10000  us vs. frequency: 1559722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=948 timer=10000  us vs. frequency: 1560972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=949 timer=10000  us vs. frequency: 1562222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=950 timer=10000  us vs. frequency: 1563472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=951 timer=10000  us vs. frequency: 1564722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=952 timer=10000  us vs. frequency: 1565972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=953 timer=10000  us vs. frequency: 1567222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=954 timer=10000  us vs. frequency: 1568472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=955 timer=10000  us vs. frequency: 1569722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=956 timer=10000  us vs. frequency: 1570972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=957 timer=10000  us vs. frequency: 1572222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=958 timer=10000  us vs. frequency: 1573472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=959 timer=10000  us vs. frequency: 1574722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=960 timer=10000  us vs. frequency: 1575972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=961 timer=10000  us vs. frequency: 1577222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=962 timer=10000  us vs. frequency: 1578472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=963 timer=10000  us vs. frequency: 1579722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=964 timer=10000  us vs. frequency: 1580972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=965 timer=10000  us vs. frequency: 1582222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=966 timer=10000  us vs. frequency: 1583472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=967 timer=10000  us vs. frequency: 1584722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=968 timer=10000  us vs. frequency: 1585972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=969 timer=10000  us vs. frequency: 1587222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=970 timer=10000  us vs. frequency: 1588472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=971 timer=10000  us vs. frequency: 1589722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=972 timer=10000  us vs. frequency: 1590972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=973 timer=10000  us vs. frequency: 1592222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=974 timer=10000  us vs. frequency: 1593472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=975 timer=10000  us vs. frequency: 1594722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=976 timer=10000  us vs. frequency: 1595972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=977 timer=10000  us vs. frequency: 1597222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=978 timer=10000  us vs. frequency: 1598472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=979 timer=10000  us vs. frequency: 1599722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=980 timer=10000  us vs. frequency: 1600972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=981 timer=10000  us vs. frequency: 1602222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=982 timer=10000  us vs. frequency: 1603472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=983 timer=10000  us vs. frequency: 1604722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=984 timer=10000  us vs. frequency: 1605972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=985 timer=10000  us vs. frequency: 1607222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=986 timer=10000  us vs. frequency: 1608472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=987 timer=10000  us vs. frequency: 1609722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=988 timer=10000  us vs. frequency: 1610972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=989 timer=10000  us vs. frequency: 1612222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=990 timer=10000  us vs. frequency: 1613472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=991 timer=10000  us vs. frequency: 1614722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=992 timer=10000  us vs. frequency: 1615972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=993 timer=10000  us vs. frequency: 1617222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=994 timer=10000  us vs. frequency: 1618472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=995 timer=10000  us vs. frequency: 1619722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=996 timer=10000  us vs. frequency: 1620972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=997 timer=10000  us vs. frequency: 1622222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=998 timer=10000  us vs. frequency: 1623472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=999 timer=10000  us vs. frequency: 1624722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1000 timer=10000  us vs. frequency: 1625972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1001 timer=10000  us vs. frequency: 1627222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1002 timer=10000  us vs. frequency: 1628472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1003 timer=10000  us vs. frequency: 1629722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1004 timer=10000  us vs. frequency: 1630972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1005 timer=10000  us vs. frequency: 1632222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1006 timer=10000  us vs. frequency: 1633472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1007 timer=10000  us vs. frequency: 1634722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1008 timer=10000  us vs. frequency: 1635972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1009 timer=10000  us vs. frequency: 1637222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1010 timer=10000  us vs. frequency: 1638472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1011 timer=10000  us vs. frequency: 1639722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1012 timer=10000  us vs. frequency: 1640972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1013 timer=10000  us vs. frequency: 1642222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1014 timer=10000  us vs. frequency: 1643472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1015 timer=10000  us vs. frequency: 1644722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1016 timer=10000  us vs. frequency: 1645972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1017 timer=10000  us vs. frequency: 1647222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1018 timer=10000  us vs. frequency: 1648472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1019 timer=10000  us vs. frequency: 1649722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1020 timer=10000  us vs. frequency: 1650972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1021 timer=10000  us vs. frequency: 1652222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1022 timer=10000  us vs. frequency: 1653472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1023 timer=10000  us vs. frequency: 1654722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1024 timer=10000  us vs. frequency: 1655972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1025 timer=10000  us vs. frequency: 1657222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1026 timer=10000  us vs. frequency: 1658472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1027 timer=10000  us vs. frequency: 1659722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1028 timer=10000  us vs. frequency: 1660972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1029 timer=10000  us vs. frequency: 1662222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1030 timer=10000  us vs. frequency: 1663472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1031 timer=10000  us vs. frequency: 1664722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1032 timer=10000  us vs. frequency: 1665972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1033 timer=10000  us vs. frequency: 1667222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1034 timer=10000  us vs. frequency: 1668472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1035 timer=10000  us vs. frequency: 1669722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1036 timer=10000  us vs. frequency: 1670972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1037 timer=10000  us vs. frequency: 1672222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1038 timer=10000  us vs. frequency: 1673472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1039 timer=10000  us vs. frequency: 1674722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1040 timer=10000  us vs. frequency: 1675972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1041 timer=10000  us vs. frequency: 1677222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1042 timer=10000  us vs. frequency: 1678472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1043 timer=10000  us vs. frequency: 1679722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1044 timer=10000  us vs. frequency: 1680972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1045 timer=10000  us vs. frequency: 1682222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1046 timer=10000  us vs. frequency: 1683472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1047 timer=10000  us vs. frequency: 1684722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1048 timer=10000  us vs. frequency: 1685972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1049 timer=10000  us vs. frequency: 1687222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1050 timer=10000  us vs. frequency: 1688472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1051 timer=10000  us vs. frequency: 1689722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1052 timer=10000  us vs. frequency: 1690972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1053 timer=10000  us vs. frequency: 1692222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1054 timer=10000  us vs. frequency: 1693472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1055 timer=10000  us vs. frequency: 1694722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1056 timer=10000  us vs. frequency: 1695972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1057 timer=10000  us vs. frequency: 1697222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1058 timer=10000  us vs. frequency: 1698472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1059 timer=10000  us vs. frequency: 1699722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1060 timer=10000  us vs. frequency: 1700972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1061 timer=10000  us vs. frequency: 1702222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1062 timer=10000  us vs. frequency: 1703472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1063 timer=10000  us vs. frequency: 1704722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1064 timer=10000  us vs. frequency: 1705972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1065 timer=10000  us vs. frequency: 1707222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1066 timer=10000  us vs. frequency: 1708472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1067 timer=10000  us vs. frequency: 1709722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1068 timer=10000  us vs. frequency: 1710972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1069 timer=10000  us vs. frequency: 1712222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1070 timer=10000  us vs. frequency: 1713472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1071 timer=10000  us vs. frequency: 1714722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1072 timer=10000  us vs. frequency: 1715972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1073 timer=10000  us vs. frequency: 1717222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1074 timer=10000  us vs. frequency: 1718472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1075 timer=10000  us vs. frequency: 1719722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1076 timer=10000  us vs. frequency: 1720972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1077 timer=10000  us vs. frequency: 1722222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1078 timer=10000  us vs. frequency: 1723472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1079 timer=10000  us vs. frequency: 1724722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1080 timer=10000  us vs. frequency: 1725972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1081 timer=10000  us vs. frequency: 1727222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1082 timer=10000  us vs. frequency: 1728472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1083 timer=10000  us vs. frequency: 1729722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1084 timer=10000  us vs. frequency: 1730972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1085 timer=10000  us vs. frequency: 1732222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1086 timer=10000  us vs. frequency: 1733472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1087 timer=10000  us vs. frequency: 1734722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1088 timer=10000  us vs. frequency: 1735972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1089 timer=10000  us vs. frequency: 1737222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1090 timer=10000  us vs. frequency: 1738472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1091 timer=10000  us vs. frequency: 1739722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1092 timer=10000  us vs. frequency: 1740972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1093 timer=10000  us vs. frequency: 1742222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1094 timer=10000  us vs. frequency: 1743472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1095 timer=10000  us vs. frequency: 1744722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1096 timer=10000  us vs. frequency: 1745972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1097 timer=10000  us vs. frequency: 1747222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1098 timer=10000  us vs. frequency: 1748472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1099 timer=10000  us vs. frequency: 1749722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1100 timer=10000  us vs. frequency: 1750972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1101 timer=10000  us vs. frequency: 1752222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1102 timer=10000  us vs. frequency: 1753472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1103 timer=10000  us vs. frequency: 1754722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1104 timer=10000  us vs. frequency: 1755972 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1105 timer=10000  us vs. frequency: 1757222 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1106 timer=10000  us vs. frequency: 1758472 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1107 timer=10000  us vs. frequency: 1759722 800
+STEPPER MOVE_FULL MOVE_CONSTANT_VELOCITY  position=1108 timer=10000  us vs. frequency: 1760972 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1109 timer=9999  us vs. frequency: 1765972 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1110 timer=9999  us vs. frequency: 1767222 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1111 timer=9999  us vs. frequency: 1768471 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1112 timer=9999  us vs. frequency: 1769721 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1113 timer=9999  us vs. frequency: 1770971 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1114 timer=10000  us vs. frequency: 1772221 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1115 timer=10000  us vs. frequency: 1773471 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1116 timer=10000  us vs. frequency: 1774721 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1117 timer=10000  us vs. frequency: 1775971 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1118 timer=10000  us vs. frequency: 1777221 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1119 timer=10000  us vs. frequency: 1778471 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1120 timer=10000  us vs. frequency: 1779721 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1121 timer=10000  us vs. frequency: 1780971 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1122 timer=10000  us vs. frequency: 1782221 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1123 timer=10000  us vs. frequency: 1783471 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1124 timer=10000  us vs. frequency: 1784721 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1125 timer=10000  us vs. frequency: 1785971 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1126 timer=10000  us vs. frequency: 1787221 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1127 timer=10000  us vs. frequency: 1788471 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1128 timer=10000  us vs. frequency: 1789721 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1129 timer=10000  us vs. frequency: 1790971 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1130 timer=10001  us vs. frequency: 1792221 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1131 timer=10001  us vs. frequency: 1793471 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1132 timer=10001  us vs. frequency: 1794721 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1133 timer=10001  us vs. frequency: 1795971 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1134 timer=10001  us vs. frequency: 1797222 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1135 timer=10001  us vs. frequency: 1798472 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1136 timer=10001  us vs. frequency: 1799722 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1137 timer=10002  us vs. frequency: 1800972 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1138 timer=10002  us vs. frequency: 1802222 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1139 timer=10002  us vs. frequency: 1803472 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1140 timer=10002  us vs. frequency: 1804723 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1141 timer=10002  us vs. frequency: 1805973 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1142 timer=10002  us vs. frequency: 1807223 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1143 timer=10002  us vs. frequency: 1808473 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1144 timer=10002  us vs. frequency: 1809724 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1145 timer=10003  us vs. frequency: 1810974 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1146 timer=10003  us vs. frequency: 1812224 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1147 timer=10003  us vs. frequency: 1813475 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1148 timer=10003  us vs. frequency: 1814725 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1149 timer=10003  us vs. frequency: 1815975 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1150 timer=10003  us vs. frequency: 1817226 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1151 timer=10003  us vs. frequency: 1818476 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1152 timer=10003  us vs. frequency: 1819727 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1153 timer=10004  us vs. frequency: 1820977 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1154 timer=10004  us vs. frequency: 1822227 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1155 timer=10004  us vs. frequency: 1823478 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1156 timer=10004  us vs. frequency: 1824728 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1157 timer=10004  us vs. frequency: 1825979 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1158 timer=10004  us vs. frequency: 1827229 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1159 timer=10004  us vs. frequency: 1828480 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1160 timer=10004  us vs. frequency: 1829730 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1161 timer=10005  us vs. frequency: 1830981 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1162 timer=10005  us vs. frequency: 1832232 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1163 timer=10005  us vs. frequency: 1833482 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1164 timer=10005  us vs. frequency: 1834733 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1165 timer=10005  us vs. frequency: 1835983 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1166 timer=10005  us vs. frequency: 1837234 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1167 timer=10005  us vs. frequency: 1838485 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1168 timer=10005  us vs. frequency: 1839735 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1169 timer=10006  us vs. frequency: 1840986 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1170 timer=10006  us vs. frequency: 1842237 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1171 timer=10006  us vs. frequency: 1843487 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1172 timer=10006  us vs. frequency: 1844738 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1173 timer=10006  us vs. frequency: 1845989 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1174 timer=10006  us vs. frequency: 1847240 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1175 timer=10006  us vs. frequency: 1848490 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1176 timer=10006  us vs. frequency: 1849741 800
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1177 timer=10008  us vs. frequency: 1850992 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1178 timer=10008  us vs. frequency: 1852243 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1179 timer=10008  us vs. frequency: 1853494 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1180 timer=10008  us vs. frequency: 1854745 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1181 timer=10008  us vs. frequency: 1855996 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1182 timer=10008  us vs. frequency: 1857247 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1183 timer=10008  us vs. frequency: 1858498 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1184 timer=10008  us vs. frequency: 1859749 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1185 timer=10010  us vs. frequency: 1861000 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1186 timer=10010  us vs. frequency: 1862251 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1187 timer=10010  us vs. frequency: 1863502 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1188 timer=10010  us vs. frequency: 1864754 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1189 timer=10010  us vs. frequency: 1866005 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1190 timer=10010  us vs. frequency: 1867256 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1191 timer=10010  us vs. frequency: 1868507 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1192 timer=10010  us vs. frequency: 1869759 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1193 timer=10012  us vs. frequency: 1871010 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1194 timer=10012  us vs. frequency: 1872261 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1195 timer=10012  us vs. frequency: 1873513 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1196 timer=10012  us vs. frequency: 1874764 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1197 timer=10012  us vs. frequency: 1876016 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1198 timer=10012  us vs. frequency: 1877267 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1199 timer=10012  us vs. frequency: 1878519 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1200 timer=10012  us vs. frequency: 1879770 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1201 timer=10014  us vs. frequency: 1881022 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1202 timer=10014  us vs. frequency: 1882274 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1203 timer=10014  us vs. frequency: 1883525 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1204 timer=10014  us vs. frequency: 1884777 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1205 timer=10014  us vs. frequency: 1886029 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1206 timer=10014  us vs. frequency: 1887281 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1207 timer=10014  us vs. frequency: 1888532 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1208 timer=10014  us vs. frequency: 1889784 799
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1209 timer=10018  us vs. frequency: 1891036 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1210 timer=10018  us vs. frequency: 1892288 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1211 timer=10018  us vs. frequency: 1893540 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1212 timer=10018  us vs. frequency: 1894793 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1213 timer=10018  us vs. frequency: 1896045 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1214 timer=10018  us vs. frequency: 1897297 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1215 timer=10018  us vs. frequency: 1898549 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1216 timer=10018  us vs. frequency: 1899802 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1217 timer=10021  us vs. frequency: 1901054 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1218 timer=10021  us vs. frequency: 1902307 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1219 timer=10021  us vs. frequency: 1903559 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1220 timer=10021  us vs. frequency: 1904812 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1221 timer=10021  us vs. frequency: 1906064 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1222 timer=10021  us vs. frequency: 1907317 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1223 timer=10021  us vs. frequency: 1908570 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1224 timer=10021  us vs. frequency: 1909822 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1225 timer=10025  us vs. frequency: 1911075 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1226 timer=10025  us vs. frequency: 1912328 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1227 timer=10025  us vs. frequency: 1913581 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1228 timer=10025  us vs. frequency: 1914834 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1229 timer=10025  us vs. frequency: 1916087 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1230 timer=10025  us vs. frequency: 1917341 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1231 timer=10025  us vs. frequency: 1918594 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1232 timer=10025  us vs. frequency: 1919847 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1233 timer=10030  us vs. frequency: 1921100 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1234 timer=10030  us vs. frequency: 1922354 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1235 timer=10030  us vs. frequency: 1923607 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1236 timer=10030  us vs. frequency: 1924861 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1237 timer=10030  us vs. frequency: 1926115 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1238 timer=10030  us vs. frequency: 1927369 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1239 timer=10030  us vs. frequency: 1928622 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1240 timer=10030  us vs. frequency: 1929876 798
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1241 timer=10036  us vs. frequency: 1931130 797
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1242 timer=10036  us vs. frequency: 1932384 797
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1243 timer=10036  us vs. frequency: 1933639 797
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1244 timer=10036  us vs. frequency: 1934893 797
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1245 timer=10036  us vs. frequency: 1936148 797
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1246 timer=10036  us vs. frequency: 1937402 797
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1247 timer=10036  us vs. frequency: 1938657 797
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1248 timer=10036  us vs. frequency: 1939911 797
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1249 timer=10043  us vs. frequency: 1941166 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1250 timer=10043  us vs. frequency: 1942421 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1251 timer=10043  us vs. frequency: 1943677 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1252 timer=10043  us vs. frequency: 1944932 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1253 timer=10043  us vs. frequency: 1946187 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1254 timer=10043  us vs. frequency: 1947443 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1255 timer=10043  us vs. frequency: 1948698 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1256 timer=10043  us vs. frequency: 1949954 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1257 timer=10051  us vs. frequency: 1951209 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1258 timer=10051  us vs. frequency: 1952465 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1259 timer=10051  us vs. frequency: 1953722 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1260 timer=10051  us vs. frequency: 1954978 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1261 timer=10051  us vs. frequency: 1956234 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1262 timer=10051  us vs. frequency: 1957491 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1263 timer=10051  us vs. frequency: 1958747 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1264 timer=10051  us vs. frequency: 1960004 796
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1265 timer=10061  us vs. frequency: 1961260 795
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1266 timer=10061  us vs. frequency: 1962518 795
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1267 timer=10061  us vs. frequency: 1963775 795
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1268 timer=10061  us vs. frequency: 1965033 795
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1269 timer=10061  us vs. frequency: 1966290 795
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1270 timer=10061  us vs. frequency: 1967548 795
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1271 timer=10061  us vs. frequency: 1968806 795
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1272 timer=10061  us vs. frequency: 1970063 795
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1273 timer=10072  us vs. frequency: 1971321 794
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1274 timer=10072  us vs. frequency: 1972580 794
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1275 timer=10072  us vs. frequency: 1973839 794
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1276 timer=10072  us vs. frequency: 1975098 794
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1277 timer=10072  us vs. frequency: 1976357 794
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1278 timer=10072  us vs. frequency: 1977616 794
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1279 timer=10072  us vs. frequency: 1978875 794
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1280 timer=10072  us vs. frequency: 1980134 794
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1281 timer=10085  us vs. frequency: 1981393 793
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1282 timer=10085  us vs. frequency: 1982654 793
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1283 timer=10085  us vs. frequency: 1983914 793
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1284 timer=10085  us vs. frequency: 1985175 793
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1285 timer=10085  us vs. frequency: 1986435 793
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1286 timer=10085  us vs. frequency: 1987696 793
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1287 timer=10085  us vs. frequency: 1988957 793
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1288 timer=10085  us vs. frequency: 1990217 793
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1289 timer=10100  us vs. frequency: 1991478 792
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1290 timer=10100  us vs. frequency: 1992740 792
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1291 timer=10100  us vs. frequency: 1994003 792
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1292 timer=10100  us vs. frequency: 1995265 792
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1293 timer=10100  us vs. frequency: 1996528 792
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1294 timer=10100  us vs. frequency: 1997790 792
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1295 timer=10100  us vs. frequency: 1999053 792
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1296 timer=10100  us vs. frequency: 2000315 792
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1297 timer=10118  us vs. frequency: 2001578 791
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1298 timer=10118  us vs. frequency: 2002843 791
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1299 timer=10118  us vs. frequency: 2004107 791
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1300 timer=10118  us vs. frequency: 2005372 791
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1301 timer=10118  us vs. frequency: 2006637 791
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1302 timer=10118  us vs. frequency: 2007902 791
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1303 timer=10118  us vs. frequency: 2009166 791
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1304 timer=10118  us vs. frequency: 2010431 791
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1305 timer=10139  us vs. frequency: 2011696 789
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1306 timer=10139  us vs. frequency: 2012963 789
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1307 timer=10139  us vs. frequency: 2014231 789
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1308 timer=10139  us vs. frequency: 2015498 789
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1309 timer=10139  us vs. frequency: 2016765 789
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1310 timer=10139  us vs. frequency: 2018033 789
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1311 timer=10139  us vs. frequency: 2019300 789
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1312 timer=10139  us vs. frequency: 2020568 789
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1313 timer=10164  us vs. frequency: 2021835 787
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1314 timer=10164  us vs. frequency: 2023105 787
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1315 timer=10164  us vs. frequency: 2024376 787
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1316 timer=10164  us vs. frequency: 2025646 787
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1317 timer=10164  us vs. frequency: 2026917 787
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1318 timer=10164  us vs. frequency: 2028187 787
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1319 timer=10164  us vs. frequency: 2029458 787
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1320 timer=10164  us vs. frequency: 2030728 787
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1321 timer=10193  us vs. frequency: 2031999 784
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1322 timer=10193  us vs. frequency: 2033273 784
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1323 timer=10193  us vs. frequency: 2034547 784
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1324 timer=10193  us vs. frequency: 2035821 784
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1325 timer=10193  us vs. frequency: 2037095 784
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1326 timer=10193  us vs. frequency: 2038370 784
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1327 timer=10193  us vs. frequency: 2039644 784
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1328 timer=10193  us vs. frequency: 2040918 784
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1329 timer=10228  us vs. frequency: 2042192 782
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1330 timer=10228  us vs. frequency: 2043470 782
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1331 timer=10228  us vs. frequency: 2044749 782
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1332 timer=10228  us vs. frequency: 2046027 782
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1333 timer=10228  us vs. frequency: 2047306 782
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1334 timer=10228  us vs. frequency: 2048584 782
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1335 timer=10228  us vs. frequency: 2049863 782
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1336 timer=10268  us vs. frequency: 2051141 779
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1337 timer=10268  us vs. frequency: 2052425 779
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1338 timer=10268  us vs. frequency: 2053708 779
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1339 timer=10268  us vs. frequency: 2054992 779
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1340 timer=10268  us vs. frequency: 2056275 779
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1341 timer=10268  us vs. frequency: 2057559 779
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1342 timer=10268  us vs. frequency: 2058842 779
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1343 timer=10268  us vs. frequency: 2060126 779
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1344 timer=10315  us vs. frequency: 2061409 775
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1345 timer=10315  us vs. frequency: 2062699 775
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1346 timer=10315  us vs. frequency: 2063988 775
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1347 timer=10315  us vs. frequency: 2065278 775
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1348 timer=10315  us vs. frequency: 2066567 775
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1349 timer=10315  us vs. frequency: 2067856 775
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1350 timer=10315  us vs. frequency: 2069146 775
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1351 timer=10315  us vs. frequency: 2070435 775
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1352 timer=10370  us vs. frequency: 2071724 771
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1353 timer=10370  us vs. frequency: 2073021 771
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1354 timer=10370  us vs. frequency: 2074317 771
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1355 timer=10370  us vs. frequency: 2075613 771
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1356 timer=10370  us vs. frequency: 2076909 771
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1357 timer=10370  us vs. frequency: 2078206 771
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1358 timer=10370  us vs. frequency: 2079502 771
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1359 timer=10370  us vs. frequency: 2080798 771
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1360 timer=10434  us vs. frequency: 2082094 766
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1361 timer=10434  us vs. frequency: 2083399 766
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1362 timer=10434  us vs. frequency: 2084703 766
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1363 timer=10434  us vs. frequency: 2086007 766
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1364 timer=10434  us vs. frequency: 2087311 766
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1365 timer=10434  us vs. frequency: 2088616 766
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1366 timer=10434  us vs. frequency: 2089920 766
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1367 timer=10509  us vs. frequency: 2091224 761
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1368 timer=10509  us vs. frequency: 2092538 761
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1369 timer=10509  us vs. frequency: 2093851 761
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1370 timer=10509  us vs. frequency: 2095165 761
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1371 timer=10509  us vs. frequency: 2096479 761
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1372 timer=10509  us vs. frequency: 2097792 761
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1373 timer=10509  us vs. frequency: 2099106 761
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1374 timer=10509  us vs. frequency: 2100420 761
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1375 timer=10597  us vs. frequency: 2101733 755
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1376 timer=10597  us vs. frequency: 2103058 755
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1377 timer=10597  us vs. frequency: 2104382 755
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1378 timer=10597  us vs. frequency: 2105707 755
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1379 timer=10597  us vs. frequency: 2107032 755
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1380 timer=10597  us vs. frequency: 2108356 755
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1381 timer=10597  us vs. frequency: 2109681 755
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1382 timer=10700  us vs. frequency: 2111006 747
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1383 timer=10700  us vs. frequency: 2112343 747
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1384 timer=10700  us vs. frequency: 2113681 747
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1385 timer=10700  us vs. frequency: 2115018 747
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1386 timer=10700  us vs. frequency: 2116356 747
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1387 timer=10700  us vs. frequency: 2117693 747
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1388 timer=10700  us vs. frequency: 2119031 747
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1389 timer=10700  us vs. frequency: 2120368 747
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1390 timer=10820  us vs. frequency: 2121706 739
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1391 timer=10820  us vs. frequency: 2123058 739
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1392 timer=10820  us vs. frequency: 2124411 739
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1393 timer=10820  us vs. frequency: 2125763 739
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1394 timer=10820  us vs. frequency: 2127116 739
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1395 timer=10820  us vs. frequency: 2128468 739
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1396 timer=10820  us vs. frequency: 2129821 739
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1397 timer=10960  us vs. frequency: 2131173 729
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1398 timer=10960  us vs. frequency: 2132543 729
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1399 timer=10960  us vs. frequency: 2133913 729
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1400 timer=10960  us vs. frequency: 2135283 729
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1401 timer=10960  us vs. frequency: 2136653 729
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1402 timer=10960  us vs. frequency: 2138023 729
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1403 timer=10960  us vs. frequency: 2139393 729
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1404 timer=10960  us vs. frequency: 2140763 729
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1405 timer=11123  us vs. frequency: 2142133 719
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1406 timer=11123  us vs. frequency: 2143523 719
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1407 timer=11123  us vs. frequency: 2144914 719
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1408 timer=11123  us vs. frequency: 2146304 719
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1409 timer=11123  us vs. frequency: 2147695 719
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1410 timer=11123  us vs. frequency: 2149085 719
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1411 timer=11123  us vs. frequency: 2150475 719
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1412 timer=11311  us vs. frequency: 2151866 707
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1413 timer=11311  us vs. frequency: 2153280 707
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1414 timer=11311  us vs. frequency: 2154693 707
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1415 timer=11311  us vs. frequency: 2156107 707
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1416 timer=11311  us vs. frequency: 2157521 707
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1417 timer=11311  us vs. frequency: 2158935 707
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1418 timer=11311  us vs. frequency: 2160349 707
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1419 timer=11530  us vs. frequency: 2161763 693
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1420 timer=11530  us vs. frequency: 2163204 693
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1421 timer=11530  us vs. frequency: 2164645 693
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1422 timer=11530  us vs. frequency: 2166087 693
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1423 timer=11530  us vs. frequency: 2167528 693
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1424 timer=11530  us vs. frequency: 2168969 693
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1425 timer=11530  us vs. frequency: 2170410 693
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1426 timer=11783  us vs. frequency: 2171852 679
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1427 timer=11783  us vs. frequency: 2173324 679
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1428 timer=11783  us vs. frequency: 2174797 679
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1429 timer=11783  us vs. frequency: 2176270 679
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1430 timer=11783  us vs. frequency: 2177743 679
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1431 timer=11783  us vs. frequency: 2179216 679
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1432 timer=11783  us vs. frequency: 2180689 679
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1433 timer=12075  us vs. frequency: 2182162 662
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1434 timer=12075  us vs. frequency: 2183671 662
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1435 timer=12075  us vs. frequency: 2185180 662
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1436 timer=12075  us vs. frequency: 2186690 662
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1437 timer=12075  us vs. frequency: 2188199 662
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1438 timer=12075  us vs. frequency: 2189709 662
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1439 timer=12410  us vs. frequency: 2191218 644
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1440 timer=12410  us vs. frequency: 2192769 644
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1441 timer=12410  us vs. frequency: 2194320 644
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1442 timer=12410  us vs. frequency: 2195872 644
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1443 timer=12410  us vs. frequency: 2197423 644
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1444 timer=12410  us vs. frequency: 2198974 644
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1445 timer=12410  us vs. frequency: 2200525 644
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1446 timer=12794  us vs. frequency: 2202077 625
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1447 timer=12794  us vs. frequency: 2203676 625
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1448 timer=12794  us vs. frequency: 2205275 625
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1449 timer=12794  us vs. frequency: 2206874 625
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1450 timer=12794  us vs. frequency: 2208474 625
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1451 timer=12794  us vs. frequency: 2210073 625
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1452 timer=13232  us vs. frequency: 2211672 604
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1453 timer=13232  us vs. frequency: 2213326 604
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1454 timer=13232  us vs. frequency: 2214980 604
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1455 timer=13232  us vs. frequency: 2216634 604
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1456 timer=13232  us vs. frequency: 2218288 604
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1457 timer=13232  us vs. frequency: 2219942 604
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1458 timer=13728  us vs. frequency: 2221596 582
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1459 timer=13728  us vs. frequency: 2223312 582
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1460 timer=13728  us vs. frequency: 2225028 582
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1461 timer=13728  us vs. frequency: 2226744 582
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1462 timer=13728  us vs. frequency: 2228460 582
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1463 timer=13728  us vs. frequency: 2230176 582
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1464 timer=14289  us vs. frequency: 2231892 559
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1465 timer=14289  us vs. frequency: 2233678 559
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1466 timer=14289  us vs. frequency: 2235464 559
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1467 timer=14289  us vs. frequency: 2237251 559
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1468 timer=14289  us vs. frequency: 2239037 559
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1469 timer=14289  us vs. frequency: 2240823 559
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1470 timer=14919  us vs. frequency: 2242609 536
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1471 timer=14919  us vs. frequency: 2244474 536
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1472 timer=14919  us vs. frequency: 2246339 536
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1473 timer=14919  us vs. frequency: 2248204 536
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1474 timer=14919  us vs. frequency: 2250068 536
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1475 timer=15621  us vs. frequency: 2251933 512
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1476 timer=15621  us vs. frequency: 2253886 512
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1477 timer=15621  us vs. frequency: 2255839 512
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1478 timer=15621  us vs. frequency: 2257791 512
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1479 timer=15621  us vs. frequency: 2259744 512
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1480 timer=16397  us vs. frequency: 2261696 488
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1481 timer=16397  us vs. frequency: 2263746 488
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1482 timer=16397  us vs. frequency: 2265796 488
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1483 timer=16397  us vs. frequency: 2267845 488
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1484 timer=16397  us vs. frequency: 2269895 488
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1485 timer=17249  us vs. frequency: 2271945 463
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1486 timer=17249  us vs. frequency: 2274101 463
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1487 timer=17249  us vs. frequency: 2276257 463
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1488 timer=17249  us vs. frequency: 2278413 463
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1489 timer=17249  us vs. frequency: 2280569 463
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1490 timer=18174  us vs. frequency: 2282725 440
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1491 timer=18174  us vs. frequency: 2284997 440
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1492 timer=18174  us vs. frequency: 2287269 440
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1493 timer=18174  us vs. frequency: 2289540 440
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1494 timer=19171  us vs. frequency: 2291812 417
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1495 timer=19171  us vs. frequency: 2294209 417
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1496 timer=19171  us vs. frequency: 2296605 417
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1497 timer=19171  us vs. frequency: 2299001 417
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1498 timer=20232  us vs. frequency: 2301398 395
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1499 timer=20232  us vs. frequency: 2303927 395
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1500 timer=20232  us vs. frequency: 2306456 395
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1501 timer=20232  us vs. frequency: 2308985 395
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1502 timer=21349  us vs. frequency: 2311514 374
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1503 timer=21349  us vs. frequency: 2314182 374
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1504 timer=21349  us vs. frequency: 2316851 374
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1505 timer=21349  us vs. frequency: 2319520 374
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1506 timer=22511  us vs. frequency: 2322188 355
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1507 timer=22511  us vs. frequency: 2325002 355
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1508 timer=22511  us vs. frequency: 2327816 355
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1509 timer=22511  us vs. frequency: 2330630 355
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1510 timer=23704  us vs. frequency: 2333444 337
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1511 timer=23704  us vs. frequency: 2336407 337
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1512 timer=23704  us vs. frequency: 2339370 337
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1513 timer=24915  us vs. frequency: 2342333 321
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1514 timer=24915  us vs. frequency: 2345447 321
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1515 timer=24915  us vs. frequency: 2348561 321
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1516 timer=26126  us vs. frequency: 2351676 306
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1517 timer=26126  us vs. frequency: 2354942 306
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1518 timer=26126  us vs. frequency: 2358207 306
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1519 timer=27324  us vs. frequency: 2361473 292
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1520 timer=27324  us vs. frequency: 2364889 292
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1521 timer=27324  us vs. frequency: 2368304 292
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1522 timer=28492  us vs. frequency: 2371720 280
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1523 timer=28492  us vs. frequency: 2375281 280
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1524 timer=28492  us vs. frequency: 2378843 280
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1525 timer=29618  us vs. frequency: 2382404 270
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1526 timer=29618  us vs. frequency: 2386106 270
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1527 timer=29618  us vs. frequency: 2389809 270
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1528 timer=30689  us vs. frequency: 2393511 260
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1529 timer=30689  us vs. frequency: 2397347 260
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1530 timer=31697  us vs. frequency: 2401183 252
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1531 timer=31697  us vs. frequency: 2405145 252
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1532 timer=31697  us vs. frequency: 2409107 252
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1533 timer=32635  us vs. frequency: 2413069 245
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1534 timer=32635  us vs. frequency: 2417149 245
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1535 timer=33499  us vs. frequency: 2421228 238
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1536 timer=33499  us vs. frequency: 2425416 238
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1537 timer=33499  us vs. frequency: 2429603 238
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1538 timer=34289  us vs. frequency: 2433790 233
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1539 timer=34289  us vs. frequency: 2438076 233
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1540 timer=35003  us vs. frequency: 2442363 228
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1541 timer=35003  us vs. frequency: 2446738 228
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1542 timer=35645  us vs. frequency: 2451113 224
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1543 timer=35645  us vs. frequency: 2455569 224
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1544 timer=35645  us vs. frequency: 2460025 224
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1545 timer=36217  us vs. frequency: 2464480 220
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1546 timer=36217  us vs. frequency: 2469007 220
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1547 timer=36725  us vs. frequency: 2473534 217
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1548 timer=36725  us vs. frequency: 2478125 217
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1549 timer=37172  us vs. frequency: 2482716 215
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1550 timer=37172  us vs. frequency: 2487362 215
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1551 timer=37565  us vs. frequency: 2492009 212
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1552 timer=37565  us vs. frequency: 2496704 212
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1553 timer=37908  us vs. frequency: 2501400 211
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1554 timer=37908  us vs. frequency: 2506138 211
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1555 timer=37908  us vs. frequency: 2510877 211
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1556 timer=38207  us vs. frequency: 2515615 209
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1557 timer=38207  us vs. frequency: 2520391 209
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1558 timer=38466  us vs. frequency: 2525167 207
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1559 timer=38466  us vs. frequency: 2529975 207
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1560 timer=38690  us vs. frequency: 2534784 206
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1561 timer=38690  us vs. frequency: 2539620 206
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1562 timer=38884  us vs. frequency: 2544456 205
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1563 timer=38884  us vs. frequency: 2549317 205
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1564 timer=39051  us vs. frequency: 2554177 204
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1565 timer=39051  us vs. frequency: 2559059 204
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1566 timer=39194  us vs. frequency: 2563940 204
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1567 timer=39194  us vs. frequency: 2568839 204
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1568 timer=39317  us vs. frequency: 2573738 203
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1569 timer=39317  us vs. frequency: 2578653 203
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1570 timer=39423  us vs. frequency: 2583568 202
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1571 timer=39423  us vs. frequency: 2588496 202
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1572 timer=39513  us vs. frequency: 2593423 202
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1573 timer=39513  us vs. frequency: 2598363 202
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1574 timer=39591  us vs. frequency: 2603302 202
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1575 timer=39591  us vs. frequency: 2608251 202
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1576 timer=39657  us vs. frequency: 2613199 201
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1577 timer=39657  us vs. frequency: 2618157 201
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1578 timer=39713  us vs. frequency: 2623114 201
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1579 timer=39713  us vs. frequency: 2628078 201
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1580 timer=39762  us vs. frequency: 2633042 201
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1581 timer=39762  us vs. frequency: 2638012 201
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1582 timer=39803  us vs. frequency: 2642982 201
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1583 timer=39803  us vs. frequency: 2647958 201
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1584 timer=39838  us vs. frequency: 2652933 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1585 timer=39838  us vs. frequency: 2657913 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1586 timer=39868  us vs. frequency: 2662893 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1587 timer=39868  us vs. frequency: 2667876 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1588 timer=39893  us vs. frequency: 2672860 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1589 timer=39893  us vs. frequency: 2677846 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1590 timer=39915  us vs. frequency: 2682833 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1591 timer=39915  us vs. frequency: 2687822 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1592 timer=39934  us vs. frequency: 2692812 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1593 timer=39934  us vs. frequency: 2697803 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1594 timer=39950  us vs. frequency: 2702795 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1595 timer=39950  us vs. frequency: 2707789 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1596 timer=39963  us vs. frequency: 2712783 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1597 timer=39963  us vs. frequency: 2717778 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1598 timer=39974  us vs. frequency: 2722773 200
+STEPPER MOVE_FULL MOVE_DECELERATE  position=1599 timer=39974  us vs. frequency: 2727770 200
+STEPPER IDLE MOVE_DECELERATE  position=1600 timer=39974  us vs. frequency: 2727770 200
+ACCEL _RPMtoFreq rpm:120 frequency:3200
+ACCEL _RPMtoFreq rpm:8 frequency:213
+ACCEL sharpness=8.16162 step=0.161616
+unit curve
+0 0.00033535
+1 0.00039415
+2 0.000463256
+3 0.000544471
+4 0.000639915
+5 0.000752078
+6 0.000883883
+7 0.00103876
+8 0.00122075
+9 0.00143457
+10 0.00168579
+11 0.0019809
+12 0.00232756
+13 0.00273472
+14 0.00321287
+15 0.00377431
+16 0.00443343
+17 0.00520704
+18 0.00611482
+19 0.00717972
+20 0.00842849
+21 0.0098923
+22 0.0116074
+23 0.0136157
+24 0.0159659
+25 0.018714
+26 0.0219246
+27 0.0256717
+28 0.0300395
+29 0.0351236
+30 0.0410318
+31 0.0478844
+32 0.055815
+33 0.0649694
+34 0.0755051
+35 0.0875893
+36 0.101395
+37 0.117098
+38 0.134868
+39 0.154862
+40 0.177212
+41 0.202017
+42 0.229327
+43 0.259129
+44 0.29134
+45 0.325794
+46 0.36224
+47 0.400343
+48 0.43969
+49 0.47981
+50 0.520192
+51 0.560312
+52 0.599659
+53 0.637761
+54 0.674207
+55 0.708661
+56 0.740872
+57 0.770675
+58 0.797984
+59 0.822789
+60 0.845139
+61 0.865132
+62 0.882902
+63 0.898605
+64 0.912411
+65 0.924495
+66 0.935031
+67 0.944185
+68 0.952116
+69 0.958968
+70 0.964877
+71 0.969961
+72 0.974328
+73 0.978076
+74 0.981286
+75 0.984034
+76 0.986384
+77 0.988393
+78 0.990108
+79 0.991572
+80 0.99282
+81 0.993885
+82 0.994793
+83 0.995567
+84 0.996226
+85 0.996787
+86 0.997265
+87 0.997672
+88 0.998019
+89 0.998314
+90 0.998565
+91 0.998779
+92 0.998961
+93 0.999116
+94 0.999248
+95 0.99936
+96 0.999456
+97 0.999537
+98 0.999606
+99 0.999665
+
+ACCEL _scaleYAxisToFrequency
+0 213
+1 213.176
+2 213.382
+3 213.625
+4 213.91
+5 214.246
+6 214.64
+7 215.103
+8 215.646
+9 216.286
+10 217.036
+11 217.919
+12 218.955
+13 220.172
+14 221.601
+15 223.279
+16 225.249
+17 227.562
+18 230.275
+19 233.458
+20 237.19
+21 241.566
+22 246.692
+23 252.695
+24 259.72
+25 267.934
+26 277.53
+27 288.73
+28 301.786
+29 316.982
+30 334.642
+31 355.124
+32 378.829
+33 406.191
+34 437.683
+35 473.802
+36 515.069
+37 562.005
+38 615.12
+39 674.88
+40 741.686
+41 815.828
+42 897.456
+43 986.535
+44 1082.81
+45 1185.8
+46 1294.74
+47 1408.62
+48 1526.23
+49 1646.15
+50 1766.85
+51 1886.77
+52 2004.38
+53 2118.27
+54 2227.21
+55 2330.19
+56 2426.47
+57 2515.55
+58 2597.18
+59 2671.32
+60 2738.12
+61 2797.88
+62 2851
+63 2897.93
+64 2939.2
+65 2975.32
+66 3006.81
+67 3034.17
+68 3057.88
+69 3078.36
+70 3096.02
+71 3111.21
+72 3124.27
+73 3135.47
+74 3145.07
+75 3153.28
+76 3160.31
+77 3166.31
+78 3171.43
+79 3175.81
+80 3179.54
+81 3182.73
+82 3185.44
+83 3187.75
+84 3189.72
+85 3191.4
+86 3192.83
+87 3194.05
+88 3195.08
+89 3195.96
+90 3196.71
+91 3197.35
+92 3197.9
+93 3198.36
+94 3198.75
+95 3199.09
+96 3199.37
+97 3199.62
+98 3199.82
+99 3200
+
+ACCEL _scaleYAxisToClockTicks
+0 37558
+1 37527
+2 37491
+3 37448
+4 37398
+5 37340
+6 37271
+7 37191
+8 37097
+9 36988
+10 36860
+11 36710
+12 36537
+13 36335
+14 36100
+15 35829
+16 35516
+17 35155
+18 34741
+19 34267
+20 33728
+21 33117
+22 32429
+23 31658
+24 30802
+25 29858
+26 28825
+27 27707
+28 26508
+29 25238
+30 23906
+31 22527
+32 21117
+33 19695
+34 18278
+35 16884
+36 15531
+37 14234
+38 13005
+39 11853
+40 10786
+41 9805
+42 8914
+43 8109
+44 7388
+45 6746
+46 6178
+47 5679
+48 5241
+49 4859
+50 4527
+51 4240
+52 3991
+53 3776
+54 3591
+55 3433
+56 3296
+57 3180
+58 3080
+59 2994
+60 2921
+61 2859
+62 2806
+63 2760
+64 2721
+65 2688
+66 2660
+67 2636
+68 2616
+69 2598
+70 2583
+71 2571
+72 2560
+73 2551
+74 2543
+75 2537
+76 2531
+77 2526
+78 2522
+79 2519
+80 2516
+81 2513
+82 2511
+83 2509
+84 2508
+85 2506
+86 2505
+87 2504
+88 2503
+89 2503
+90 2502
+91 2502
+92 2501
+93 2501
+94 2500
+95 2500
+96 2500
+97 2500
+98 2500
+99 2500
+
+ACCEL moveAbsolute() accelStep=835 positionDelta=1600
+moveAbsolute() MOVE_TRUNCATED steps=835 positionDelta=1600
+START
+currentAccelTime= 2000500 actualSteps= 3349
+currentAccelTime= 1000750 actualSteps= 1674
+currentAccelTime= 500875 actualSteps= 837
+currentAccelTime= 250937 actualSteps= 418
+currentAccelTime= 375906 actualSteps= 628
+currentAccelTime= 438390 actualSteps= 732
+currentAccelTime= 469632 actualSteps= 785
+currentAccelTime= 485253 actualSteps= 811
+currentAccelTime= 477442 actualSteps= 798
+currentAccelTime= 481347 actualSteps= 804
+currentAccelTime= 479394 actualSteps= 801
+currentAccelTime= 478418 actualSteps= 799
+currentAccelTime= 478906 actualSteps= 800
+END currentAccelTime= 478906 actualSteps= 800
+ACCEL sharpness=8.16162 step=0.161616
+unit curve
+0 0.00033535
+1 0.00039415
+2 0.000463256
+3 0.000544471
+4 0.000639915
+5 0.000752078
+6 0.000883883
+7 0.00103876
+8 0.00122075
+9 0.00143457
+10 0.00168579
+11 0.0019809
+12 0.00232756
+13 0.00273472
+14 0.00321287
+15 0.00377431
+16 0.00443343
+17 0.00520704
+18 0.00611482
+19 0.00717972
+20 0.00842849
+21 0.0098923
+22 0.0116074
+23 0.0136157
+24 0.0159659
+25 0.018714
+26 0.0219246
+27 0.0256717
+28 0.0300395
+29 0.0351236
+30 0.0410318
+31 0.0478844
+32 0.055815
+33 0.0649694
+34 0.0755051
+35 0.0875893
+36 0.101395
+37 0.117098
+38 0.134868
+39 0.154862
+40 0.177212
+41 0.202017
+42 0.229327
+43 0.259129
+44 0.29134
+45 0.325794
+46 0.36224
+47 0.400343
+48 0.43969
+49 0.47981
+50 0.520192
+51 0.560312
+52 0.599659
+53 0.637761
+54 0.674207
+55 0.708661
+56 0.740872
+57 0.770675
+58 0.797984
+59 0.822789
+60 0.845139
+61 0.865132
+62 0.882902
+63 0.898605
+64 0.912411
+65 0.924495
+66 0.935031
+67 0.944185
+68 0.952116
+69 0.958968
+70 0.964877
+71 0.969961
+72 0.974328
+73 0.978076
+74 0.981286
+75 0.984034
+76 0.986384
+77 0.988393
+78 0.990108
+79 0.991572
+80 0.99282
+81 0.993885
+82 0.994793
+83 0.995567
+84 0.996226
+85 0.996787
+86 0.997265
+87 0.997672
+88 0.998019
+89 0.998314
+90 0.998565
+91 0.998779
+92 0.998961
+93 0.999116
+94 0.999248
+95 0.99936
+96 0.999456
+97 0.999537
+98 0.999606
+99 0.999665
+
+ACCEL _scaleYAxisToFrequency
+0 213
+1 213.176
+2 213.383
+3 213.626
+4 213.912
+5 214.248
+6 214.642
+7 215.106
+8 215.651
+9 216.291
+10 217.043
+11 217.927
+12 218.965
+13 220.184
+14 221.615
+15 223.296
+16 225.27
+17 227.586
+18 230.304
+19 233.492
+20 237.231
+21 241.614
+22 246.748
+23 252.761
+24 259.798
+25 268.026
+26 277.638
+27 288.857
+28 301.934
+29 317.156
+30 334.845
+31 355.362
+32 379.107
+33 406.515
+34 438.059
+35 474.239
+36 515.575
+37 562.59
+38 615.793
+39 675.654
+40 742.571
+41 816.837
+42 898.601
+43 987.83
+44 1084.27
+45 1187.43
+46 1296.55
+47 1410.63
+48 1528.43
+49 1648.55
+50 1769.45
+51 1889.57
+52 2007.38
+53 2121.46
+54 2230.58
+55 2333.73
+56 2430.17
+57 2519.4
+58 2601.17
+59 2675.43
+60 2742.35
+61 2802.21
+62 2855.41
+63 2902.43
+64 2943.76
+65 2979.94
+66 3011.49
+67 3038.89
+68 3062.64
+69 3083.16
+70 3100.84
+71 3116.07
+72 3129.14
+73 3140.36
+74 3149.97
+75 3158.2
+76 3165.24
+77 3171.25
+78 3176.39
+79 3180.77
+80 3184.51
+81 3187.7
+82 3190.41
+83 3192.73
+84 3194.7
+85 3196.38
+86 3197.82
+87 3199.04
+88 3200.07
+89 3200.96
+90 3201.71
+91 3202.35
+92 3202.89
+93 3203.36
+94 3203.75
+95 3204.09
+96 3204.37
+97 3204.62
+98 3204.82
+99 3205
+
+ACCEL _scaleYAxisToClockTicks
+0 37558
+1 37527
+2 37491
+3 37448
+4 37398
+5 37339
+6 37271
+7 37190
+8 37096
+9 36987
+10 36859
+11 36709
+12 36535
+13 36333
+14 36098
+15 35826
+16 35512
+17 35151
+18 34736
+19 34262
+20 33722
+21 33110
+22 32421
+23 31650
+24 30793
+25 29847
+26 28814
+27 27695
+28 26495
+29 25224
+30 23891
+31 22512
+32 21102
+33 19679
+34 18262
+35 16869
+36 15516
+37 14219
+38 12991
+39 11840
+40 10773
+41 9793
+42 8902
+43 8098
+44 7378
+45 6737
+46 6170
+47 5671
+48 5234
+49 4852
+50 4521
+51 4233
+52 3985
+53 3770
+54 3586
+55 3427
+56 3291
+57 3175
+58 3075
+59 2990
+60 2917
+61 2854
+62 2801
+63 2756
+64 2717
+65 2684
+66 2656
+67 2632
+68 2612
+69 2594
+70 2579
+71 2567
+72 2556
+73 2547
+74 2539
+75 2533
+76 2527
+77 2522
+78 2518
+79 2515
+80 2512
+81 2509
+82 2507
+83 2505
+84 2504
+85 2502
+86 2501
+87 2500
+88 2499
+89 2499
+90 2498
+91 2498
+92 2497
+93 2497
+94 2497
+95 2496
+96 2496
+97 2496
+98 2496
+99 2496
+

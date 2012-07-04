@@ -53,15 +53,33 @@ int mainA(void) {
 	s.test();
 #endif /* REGRESS_1 */
 	
-	//s.a.frequency(200, 1600);
-    //s.a.time(500000);
-	s.moveAbsolute(16000);
+	//s.a.frequency(200, 1650); // Fastest for x2 usteps
+	//s.a.frequency(200, 406);    // 1 rev/sec for x2 usteps
+	//s.a.frequency(200, 1624);   // 1 rev/sec for x8 usteps
+    
+    s.degreesPerMicrostep(MICROSTEPS_8_STD);
+    //s.RPMx10k(8 * 10000, 120 * 10000);  // 8 rpm start and 120 rpm top speed
+    s.RPM(8.0, 120.0);
+	//s.frequency(200, 6600);   // Fastest for x8 usteps
+    s.accelerationTimeMicrosecs(500000);
+    s.positionSteps(0);
+	s.moveAbsoluteDegree(360);
+	//s.moveAbsolute(16000);
+    //s.runVirtualMotor();
 
 #if !CYGWIN
     int direction = -1;
     for (;;) {
         if (s.state() == 0 /*IDLE*/) {
-            s.moveRelative(16000 * direction);
+#if 0            
+            s.moveRelative(1600 * direction);
+#else       
+            if (direction == -1) {
+      	        s.moveAbsoluteDegree(0);
+            } else {
+      	        s.moveAbsoluteDegree(360);
+            }
+#endif            
             direction *= -1;
         }
     }

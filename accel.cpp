@@ -14,7 +14,7 @@ accel::accel() :
 #endif /* CYGWIN */					
 					_time(1000000),
 					_microSecPerSec(MICROSEC_PER_SEC), _maxDryRunCycles(10000), _clockMHz(8.0),
-					_minTime(1000), _maxTime(4000000), _fStop(200), _stepPerDegree(STEP_PER_DEGREE)/*_degPerStepX10000(DEGREES_PER_STEP_X10000)*/ {
+					_minTime(1000), _maxTime(4000000), _fStop(200), _degreesPerMicrostep(DEGREES_PER_MICROSTEP_NOMINAL) {
 	//_initUnitCurve();
 	frequency();	// set default min/max frequency (speed) curve
 }
@@ -24,7 +24,7 @@ accel::accel(const accel& a) :
     logc(a),
 #endif /* CYGWIN */
     _microSecPerSec(a._microSecPerSec), _maxDryRunCycles(a._maxDryRunCycles), _clockMHz(a._clockMHz), _minTime(a._minTime), _maxTime(a._maxTime), _fStop(a._fStop),
-    _stepPerDegree(STEP_PER_DEGREE) /*_degPerStepX10000(DEGREES_PER_STEP_X10000)*/ {
+    _degreesPerMicrostep(DEGREES_PER_MICROSTEP_NOMINAL) {
 	assign(a);
 }
 
@@ -46,7 +46,7 @@ void accel::assign(const accel& a) {
 	//_velocity = a._velocity;
 	_fmin = a._fmin;
 	_fmax = a._fmax;
-	
+	_degreesPerMicrostep = a._degreesPerMicrostep;
 }
 
 void accel::test(void) {
@@ -120,7 +120,7 @@ unsigned int accel::dryRunAccel(void) {
         if (index >= _maxAccelIndex) {
             break;
         }
-        _currentClockTicks = clockTicks(index);
+        _currentClockTicks = curveIndexToclockTicks(index);
     }
 #if DUMP
 	oss() << "stop: dryRunAccel";
@@ -140,7 +140,7 @@ unsigned int accel::timeToSteps(const unsigned int t) {
         if (index >= _maxAccelIndex) {
             break;
         }
-        _currentClockTicks = clockTicks(index);
+        _currentClockTicks = curveIndexToclockTicks(index);
     }
     return step;
 }
@@ -293,10 +293,4 @@ void accel::frequency(const unsigned int fmin /* = 200 */, const unsigned int fm
 	_scaleYAxisToMicroSec();
 	_scaleYAxisToClockTicks();
 #endif /* OPTIMIZE_CURVE_CALC */	
-}
-
-void accel::RPMx10k(const unsigned int RPMx10kmin /* = 1 */, const unsigned int RPMx10kmax /* = 1000 */) {
-    // Convert RPM to frequency assuming 1.8 deg/step
-    // e.g. 200 step/sec  *  1.8 deg/step  *  1 rev/360deg = 1 RPS
-    frequency(_RPMx10ktoFreq(RPMx10kmin), _RPMx10ktoFreq(RPMx10kmax));
 }

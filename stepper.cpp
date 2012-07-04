@@ -30,33 +30,30 @@ void stepper_init(void) {
 }
 
 #if CYGWIN
-void stepper::test(void) {
+void stepper::testMoveAbsolute(int positionNew) {
 	oss() << "moveAbsolute START" << endl;
     //a.time(500000);
-	moveAbsolute(2000);
+	moveAbsolute(positionNew);
 	oss() << "_positionCurrent=" << _positionCurrent <<
 			" _positionConstantVelocityStart=" << _positionConstantVelocityStart <<
 			" _positionConstantVelocityEnd=" << _positionConstantVelocityEnd <<
 			" _positionTarget=" << _positionTarget << endl;
 	oss() << "moveAbsolute END";
 	dump();
-	// Now let's run the isr.
-	for (int i = 0; i < 2010 && _superState != IDLE; ++i) {
-		isr();
-	}
-	
-	oss() << endl << "moveAbsolute START" << endl;
-	moveAbsolute(0);
-	oss() << "_positionCurrent=" << _positionCurrent <<
-			" _positionConstantVelocityStart=" << _positionConstantVelocityStart <<
-			" _positionConstantVelocityEnd=" << _positionConstantVelocityEnd <<
-			" _positionTarget=" << _positionTarget << endl;
-	oss() << "moveAbsolute END";
-	dump();
-	for (int i = 0; i < 2010 && _superState != IDLE; ++i) {
-		isr();
-	}
+    runVirtualMotor();
+}
 
+void stepper::testMoveAbsoluteDegree(int positionNewDegree) {
+    oss() << endl << "testMoveAbsoluteDegree START" << endl;
+    testMoveAbsolute((int)(positionNewDegree / degreesPerMicrostep()));
+}
+
+void stepper::test(void) {
+    testMoveAbsolute(2000);
+    testMoveAbsolute(0);
+
+    //testMoveAbsoluteDegree(360);
+    
 	// velocity move
 	oss() << endl << "velocity START" << endl;
 	velocity(800);
@@ -64,16 +61,12 @@ void stepper::test(void) {
 			" _positionConstantVelocityStart=" << _positionConstantVelocityStart << endl;
 	oss() << "velocity END";
 	dump();
-	for (int i = 0; i < 2000; ++i) {
-		isr();
-	}
-}
+    runVirtualMotor(2000);
+    _superState = IDLE; // So next test can run without thinking it's still in VELOCITY_MOVE
 
-// Used to run a virtual motor and get the velocity profile to plot in a spreadsheet.
-void stepper::runVirtualMotor(void) {
-	for (int i = 0; i < MAX_VIRTUAL_MOTOR_STEPS && _superState != IDLE; ++i) {
-		isr();
-	}
+    positionSteps(0);
+    degreesPerMicrostep(MICROSTEPS_8_STD);
+    testMoveAbsoluteDegree(360);
 }
 #endif /* CYGWIN */
 
@@ -162,7 +155,7 @@ void stepper::moveAbsolute(int positionNew) {
 	// 1. Set acceleration time (e.g. 0.5s)
 	unsigned int accelStep = a.timeToSteps(a.time());
 #if REGRESS_1
-	oss() << "moveAbsolute() accelStep=" << accelStep << endl;
+	oss() << "moveAbsolute() accelStep=" << accelStep << " positionDelta=" << positionDelta << endl;
 #endif /* REGRESS_1 */
 	if (positionDelta > 2 * accelStep) {
 		// Enough room for full acceleration profile
@@ -177,21 +170,48 @@ void stepper::moveAbsolute(int positionNew) {
 		a.initAccelTime(a.time());
 	} else {
 		// Acceleration curve needs to be truncated. Not enough room to reach max speed.
-		unsigned int tNew = a.stepsToTime(positionDelta / 2);
+#if REGRESS_1
+        oss() << "moveAbsolute() MOVE_TRUNCATED steps=" << accelStep << " positionDelta=" << positionDelta << endl;
+#endif /* REGRESS_1 */
+#if REGRESS_2 && !CYGWIN
+        char isrBuf[32];
+        //sprintf(isrBuf, "tNewAccel=%d", tNewAccel);
+        sprintf(isrBuf, " pt=%d", _positionTarget);
+        //sprintf(isrBuf, "fo=%d max=%d", _fmaxOld, fmax);
+        UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
+#endif /* REGRESS_2 and not CYGWIN */        
+		unsigned int tNewAccel = a.stepsToTime(positionDelta / 2);
 		// Set fMAX and then calculate time required for acceleration.
-		unsigned int us = a.microSecToCurveIndex(tNew);
+#if 0        
+		unsigned int us = a.microSecToCurveIndex(tNewAccel);
+#else
+		unsigned int curveIndex = a.microSecToCurveIndex(tNewAccel);
+        unsigned int ct = a.curveIndexToclockTicks(curveIndex);
+        unsigned int us = a.clockTicksToMicroSec(ct);
+#endif        
 		_fminOld = a.fmin();
 		_fmaxOld = a.fmax();
 		unsigned int fmax = a.freqFromTime(us);
+#if REGRESS_2 && !CYGWIN
+        //char isrBuf[32];
+        //sprintf(isrBuf, "tNewAccel=%d", tNewAccel);
+        //sprintf(isrBuf, "us=%d", us);
+        sprintf(isrBuf, "ci=%d ct=%d", curveIndex, ct);
+        //sprintf(isrBuf, "fo=%d fm=%d", _fmaxOld, fmax);
+        UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
+#endif /* REGRESS_2 and not CYGWIN */        
 		a.frequency(_fminOld, fmax);	// Rebuilds acceleration tables. Put them back when this move is finished.
 		// Set truncated acceleration time.
-		a.initAccelTime(tNew);
+		a.initAccelTime(tNewAccel);
 		// Remember to rebuild accel tables when move is over. Set trigger to do this in isr().
 		if (_directionPositive) {
 			_positionConstantVelocityStart = _positionConstantVelocityEnd = _positionCurrent + positionDelta / 2;
 		} else {
 			_positionConstantVelocityStart = _positionConstantVelocityEnd = _positionCurrent - positionDelta / 2;
 		}
+#if REGRESS_1
+        oss() << "moveAbsolute() MOVE_TRUNCATED _positionConstantVelocityStart=" << _positionConstantVelocityStart << " positionDelta=" << positionDelta << endl;
+#endif /* REGRESS_1 */
 		_superState = MOVE_TRUNCATED;
 	}
 	_subState = MOVE_START;

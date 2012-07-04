@@ -72,9 +72,10 @@ Pending tasks (* = addressed this issue):
 17.* Allow acceleration time to be set in steps rather than us. See: accel::stepsToTime()
 18.* Need to get frequency-at-each-step curve correct. Currently it's lopsided in graph. Why?!
      Got it. See motor.ods "Cumulative time from Cygwin motor run" graph.
-19. Connect RealTerm
+19.* Connect RealTerm. Bad physical connection on DB9 connector. Needs cleaning.
+     Turned out to be bad solder connection. Stress had lifted the pad off the board.
 20. Try serial bootloader
-21. Consolidate stepper.*, accel.* in one location. Add IAR project to scottdesign
+21.* Consolidate stepper.*, accel.* in one location. Add IAR project to scottdesign
      to keep keep git history of files. Update Makefile since files don't need
      copied any more.
 22. Executive commands:
@@ -86,7 +87,7 @@ Pending tasks (* = addressed this issue):
         enable();
         getIO(int); // Read IO line
         setIO(int, int);
-23. Change RPM to RPMx10k (rev-per-minute x 10000). This avoids using floats and keeps the
+23.* Change RPM to RPMx10k (rev-per-minute x 10000). This avoids using floats and keeps the
      timeframe in microsecs.
 24. Add asymetrical accelerations, ie. different times to accelerate and decelerate.
     Also may want velocity to change between acceleration and deceleration.
@@ -97,9 +98,14 @@ Pending tasks (* = addressed this issue):
 27.* Output cumulative time vs frequency in Cygwin log file in order to plot velocity
      profile in spreadsheet.
 28. Test constant velocity.
-29. Hardware motor is currently set to 2usteps rather than 8 due to bad solder joint.
-    Test max speed at both settings. Update schematic to run MS1, MS2 lines to gpio.     
-    
+29.* Hardware motor is currently set to 2usteps rather than 8 due to bad solder joint.
+    Test max speed at both settings. Update schematic to run MS1, MS2 lines to gpio.
+    a. 2usteps: 1650 ustep/sec * 1.8deg/set * 1step/2ustep = 1485 deg/sec = 4 rev/sec
+                That's about the fastest smooth top speed.
+    b. 8usteps: Basically about the same high end speed at 6600 steps/sec                
+30. Add release build to IAR
+31. Investigate adding more points to acceleration lookup table.
+32. Add asserts. See curveIndexToclockTicks() as prime candidate.    
         
 Limitations
 

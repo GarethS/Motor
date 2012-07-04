@@ -26,6 +26,12 @@ using namespace std;
 
 #define OPTIMIZE_CURVE_CALC 1
 #define MAX_VIRTUAL_MOTOR_STEPS (10000)
+#define MICROSTEPS_1_STD        (1.8)       // degrees per step for 1 microsteps, ie no microstepping
+#define MICROSTEPS_2_STD        (0.9)       // degrees per step for 2 microsteps
+#define MICROSTEPS_4_STD        (0.45)      // degrees per step for 4 microsteps
+#define MICROSTEPS_8_STD        (0.225)     // degrees per step for 8 microsteps
+#define MICROSTEPS_16_STD       (0.1125)    // degrees per step for 16 microsteps
+#define MICROSTEPS_32_STD       (0.05625)   // degrees per step for 32 microsteps
 
 #define PIN_ENABLE  (GPIO_PIN_4)
 #define PIN_SLEEP   (GPIO_PIN_5)
@@ -42,7 +48,7 @@ public:
     stepper();
     ~stepper() {}
 
-	accel a;
+	accel a;    // Handle math in acceleration class
 	
     void step(void) {
         GPIOPinWrite(GPIO_PORTA_BASE, PIN_STEP, PIN_STEP);
@@ -67,6 +73,9 @@ public:
 	// Only allow one of these, moveAbsolute() or velocity(), to be active at any one time.  
     void moveAbsolute(int positionNew);
     void moveRelative(int positionRelative);
+    
+    void moveAbsoluteDegree(float positionNewDegree) {moveAbsolute((int)(positionNewDegree / degreesPerMicrostep()));}
+    void moveRelativeDegree(float positionRelativeDegree) {moveRelative((int)(positionRelativeDegree / degreesPerMicrostep()));}
     // Used to modify moveAbsolute() that is currently running. Useful to extend or shorten
     //  the move as long as it's still in the same direction and doesn't interfere with
     //  a deceleration.
@@ -80,11 +89,27 @@ public:
     //int acceleration(void) {/* TODO */}
     //int velocity(void) {/* TODO */}
     int positionSteps(void) {return _positionCurrent;} // Need to return both degrees and scaled position.
+    void positionSteps(int p) {_positionCurrent = p;}   // set
+    float positionDegrees(void) {return positionSteps() * degreesPerMicrostep();} // get
+    void positionDegrees(float d) {_positionCurrent = (int)(d / degreesPerMicrostep());} // set
     unsigned int state(void) const {return _superState;}
+    void accelerationTimeMicrosecs(unsigned int us) {a.time(us);}   // Set acceleration time
+    void frequency(unsigned int flow, unsigned int fhi) {a.frequency(flow, fhi);}  // Set high/low step frequency
+    void RPMx10k(const unsigned int RPMx10kmin = 1, const unsigned int RPMx10kmax = 1000000) {a.RPMx10k(RPMx10kmin, RPMx10kmax);}
+    void RPM(const float RPMmin = 1.0, const float RPMmax = 100.0) {a.RPM(RPMmin, RPMmax);}
+    void degreesPerMicrostep(float dpus) {a.degreesPerMicrostep(dpus);}
+    float degreesPerMicrostep(void) const  {return a.degreesPerMicrostep();}
 	
 #if CYGWIN    
 	void test(void);
-    void runVirtualMotor(void);
+    void testMoveAbsolute(int positionNew);
+    void testMoveAbsoluteDegree(int positionNewDegree);
+    // Used to run a virtual motor and get the velocity profile to plot in a spreadsheet.
+    void runVirtualMotor(unsigned int maxSteps = MAX_VIRTUAL_MOTOR_STEPS) {
+        for (unsigned int i = 0; i < maxSteps && _superState != IDLE; ++i) {
+            isr();
+        }
+    }
 #endif /* CYGWIN */    
     
 private:
@@ -120,7 +145,7 @@ private:
 	//  Decreasing velocity is from _positionConstantVelocityEnd to _positionTarget
 	// To change direction, 2 velocity, or moveAbsolute, commands should be used. One to bring
 	//  the motor to 0 velocity and the next to move in the opposite direction.
-    int _positionCurrent;  // in steps
+    int _positionCurrent;  // in microsteps
 	int _positionConstantVelocityStart;
 	int _positionConstantVelocityEnd;
 	int _positionTarget;

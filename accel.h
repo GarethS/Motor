@@ -26,7 +26,8 @@ using namespace std;
 #define DEGREES_PER_REV         (360)
 #define DEGREES_PER_REV_TIMES_MINUTE_PER_SEC    (6) // 360 * 0.01666 = 6
 #define DEGREES_PER_STEP_X10000 (1125)  // See comment for _degPerStepX10000 below.
-#define STEP_PER_DEGREE         (16.0 / 1.8)    // Assuming 16-microsteps, 8.889 
+#define DEGREES_PER_MICROSTEP_NOMINAL   (1.8)   // A lot of stepper motors are 1.8 degrees per full-step
+//#define STEP_PER_DEGREE         (16.0 / 1.8)    // Assuming 16-microsteps, 8.889 
 #define ACCEL_SHARPNESS_MIN     (1)
 #define ACCEL_SHARPNESS_DEFAULT (8)
 #define ACCEL_SHARPNESS_MAX     (32)
@@ -61,7 +62,7 @@ public:
         //_cumulativeClockTicks = 0;
 #endif /* CYGWIN */        
 		time(t);
-		_currentClockTicks = clockTicks(0);
+		_currentClockTicks = curveIndexToclockTicks(0);
 	}
     
 #if CYGWIN    
@@ -74,14 +75,16 @@ public:
 	
     unsigned int dryRunAccel(void);
 	void frequency(const unsigned int fmin = 200, const unsigned int fmax = 1200);
-    void RPMx10k(const unsigned int RPMx10kmin = 1, const unsigned int RPMx10kmax = 1000);
+    // Convert RPM to frequency
+    void RPMx10k(const unsigned int RPMx10kmin, const unsigned int RPMx10kmax) {frequency(_RPMx10ktoFreq(RPMx10kmin), _RPMx10ktoFreq(RPMx10kmax));}
+    void RPM(const float RPMmin, const float RPMmax) {frequency(_RPMtoFreq(RPMmin), _RPMtoFreq(RPMmax));}
     unsigned int fmin(void) {return _fmin;}
     unsigned int fmax(void) {return _fmax;}
 	
     //int acceleration(void) {/* TODO */}
     //int velocity(void) {/* TODO */}
 
-	unsigned int clockTicks(const unsigned int index) {return _curveInt[index];}
+	unsigned int curveIndexToclockTicks(const unsigned int index) {return _curveInt[index];}
 	unsigned int timeToSteps(const unsigned int t);
 	unsigned int stepsToTime(const unsigned int steps);
 	
@@ -98,7 +101,7 @@ public:
 			return 0xffffffff;
 		}
 		*/
-		_currentClockTicks = clockTicks(index);
+		_currentClockTicks = curveIndexToclockTicks(index);
 		return _currentClockTicks;
 	}
 
@@ -116,7 +119,7 @@ public:
         _cumulativeClockTicks += _currentClockTicks;
 #endif /* CYGWIN */        
 		unsigned int index = clockTicksToCurveIndexReverse(_totalClockTicks);
-		_currentClockTicks = clockTicks(index);
+		_currentClockTicks = curveIndexToclockTicks(index);
 		return _currentClockTicks;
 	}
 	
@@ -161,7 +164,7 @@ public:
 		unsigned int index = us * _maxAccelEntries / time();
 		cout << "microSecToCurveIndex: index=" << index << endl;
 #endif /* DUMP */
-		return us * _maxAccelEntries / time();
+		return us * _maxAccelIndex / time();
 	}
 	// Same as microSecToCurveIndex(), except returns curve index in reverse order. 
 	//  Used for deceleration.
@@ -177,6 +180,9 @@ public:
 		return (unsigned int)((ct / _clockMHz));
 	}
 	
+    void degreesPerMicrostep(float dpus) {_degreesPerMicrostep = dpus;}
+    float degreesPerMicrostep(void) const  {return _degreesPerMicrostep;}
+    
 #if CYGWIN    
     unsigned int currentClockTicks(void) const {return _currentClockTicks;}
     unsigned int cumulativeClockTicks(void) const {return _cumulativeClockTicks;}
@@ -195,7 +201,19 @@ private:
 #endif /* OPTIMIZE_CURVE_CALC */	
     
     unsigned int _RPMx10ktoFreq(unsigned int RPMx10k) {
-        return RPMx10k / SECONDS_PER_MINUTE * DEGREES_PER_REV * _stepPerDegree;
+#if REGRESS_1
+        oss() << "_RPMx10ktoFreq rpmx10k:" << RPMx10k << " frequency:" << (unsigned int)(RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC / _degreesPerMicrostep / 10000.0);
+        dump();
+#endif /* REGRESS_1 */    
+        return (unsigned int)(RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC / _degreesPerMicrostep / 10000.0);
+    }
+    
+    unsigned int _RPMtoFreq(float rpm) {
+#if REGRESS_1
+        oss() << "_RPMtoFreq rpm:" << rpm << " frequency:" << (unsigned int)(rpm * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC / _degreesPerMicrostep);
+        dump();
+#endif /* REGRESS_1 */    
+        return (unsigned int)(rpm * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC / _degreesPerMicrostep);
     }
     
 #if DUMP	
@@ -223,11 +241,13 @@ private:
 	const unsigned int _minTime;
 	const unsigned int _maxTime;
 	const unsigned int _fStop;	// Frequency that we can assume the motor is as good as stopped
-    // degrees per step x10000. Therefore, 1.8 x10000 = 18000 deg/step
-    // A lot of steppers are 1.8 deg/step, however, with 16 microsteps per
-    //  full step this is 1.8 / 16 = 0.1125 deg/step x10000 = 1125.
-    //unsigned int _degPerStepX10000;
-    float _stepPerDegree;
+    // 0 microsteps = 1.8 deg/microstep -> 0.556 ustep/deg
+    // 2 microsteps = 1.8/2 = 0.9       -> 1.111 ustep/deg
+    // 4 microsteps = .45               -> 2.222 ustep/deg
+    // 8 microsteps = .225              -> 4.444 ustep/deg
+    // 16 microsteps = .1125
+    // 32 microsteps = .05625
+    float _degreesPerMicrostep;
 };
 
 #endif /* _ACCEL_H_ */
