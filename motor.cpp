@@ -69,11 +69,16 @@ int mainA(void) {
 
 #if !CYGWIN
     int direction = -1;
+    int counter = 0;
     for (;;) {
         if (s.state() == 0 /*IDLE*/) {
-#if 0            
-            s.moveRelative(1600 * direction);
+#if 1         
+            s.velocity(2800);
+            //s.moveRelative(1600 * direction);
 #else       
+            if (counter++ > 10) {
+                //break;
+            }
             if (direction == -1) {
       	        s.moveAbsoluteDegree(0);
             } else {

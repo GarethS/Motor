@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2011
+	Copyright (c) Gareth Scott 2011, 2012
 
 	stepper.h 
 
@@ -93,7 +93,7 @@ public:
     float positionDegrees(void) {return positionSteps() * degreesPerMicrostep();} // get
     void positionDegrees(float d) {_positionCurrent = (int)(d / degreesPerMicrostep());} // set
     unsigned int state(void) const {return _superState;}
-    void accelerationTimeMicrosecs(unsigned int us) {a.time(us);}   // Set acceleration time
+    void accelerationTimeMicrosecs(unsigned int us) {a.accelTime(us);}   // Set acceleration time
     void frequency(unsigned int flow, unsigned int fhi) {a.frequency(flow, fhi);}  // Set high/low step frequency
     void RPMx10k(const unsigned int RPMx10kmin = 1, const unsigned int RPMx10kmax = 1000000) {a.RPMx10k(RPMx10kmin, RPMx10kmax);}
     void RPM(const float RPMmin = 1.0, const float RPMmax = 100.0) {a.RPM(RPMmin, RPMmax);}
@@ -104,6 +104,7 @@ public:
 	void test(void);
     void testMoveAbsolute(int positionNew);
     void testMoveAbsoluteDegree(int positionNewDegree);
+    void testVelocityMove(int v);
     // Used to run a virtual motor and get the velocity profile to plot in a spreadsheet.
     void runVirtualMotor(unsigned int maxSteps = MAX_VIRTUAL_MOTOR_STEPS) {
         for (unsigned int i = 0; i < maxSteps && _superState != IDLE; ++i) {

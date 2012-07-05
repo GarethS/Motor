@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2011
+	Copyright (c) Gareth Scott 2011, 2012
 
 	accle.cpp 
 
@@ -12,7 +12,7 @@ accel::accel() :
 #if CYGWIN 
 					logc(std::string("ACCEL")),
 #endif /* CYGWIN */					
-					_time(1000000),
+					_accelTime(1000000),
 					_microSecPerSec(MICROSEC_PER_SEC), _maxDryRunCycles(10000), _clockMHz(8.0),
 					_minTime(1000), _maxTime(4000000), _fStop(200), _degreesPerMicrostep(DEGREES_PER_MICROSTEP_NOMINAL) {
 	//_initUnitCurve();
@@ -41,7 +41,7 @@ void accel::assign(const accel& a) {
 	//_positionCurrent = a._positionCurrent;
 	_totalClockTicks = a._totalClockTicks;
 	_currentClockTicks = a._currentClockTicks;
-	_time = a._time;
+	_accelTime = a._accelTime;
 	//_acceleration = a._acceleration;
 	//_velocity = a._velocity;
 	_fmin = a._fmin;
@@ -75,7 +75,7 @@ void accel::test(void) {
 	oss() << "freqFromClockTicks END" << endl;
 	dump();
 	
-	oss() << "_time=" << time() << endl;
+	oss() << "_accelTime=" << accelTime() << endl;
 	oss() << "clockTicksToCurveIndex START" << endl;
 	for (int ct = 0; ct < 8000000; ct += 0x8000) {
 		unsigned int ci = clockTicksToCurveIndex(ct);
@@ -84,7 +84,7 @@ void accel::test(void) {
 	oss() << "clockTicksToCurveIndex END" << endl;
 	dump();
 	
-	oss() << "_time=" << time() << endl;
+	oss() << "_accelTime=" << accelTime() << endl;
 	oss() << "clockTicksToCurveIndexReverse START" << endl;
 	for (int ct = 0; ct < 8000000; ct += 0x8000) {
 		unsigned int ci = clockTicksToCurveIndexReverse(ct);
@@ -96,7 +96,7 @@ void accel::test(void) {
 }
 
 unsigned int accel::dryRunAccel(void) {
-    initAccelTime(time());
+    initAccelTime(accelTime());
     unsigned int step = 0;
 #if DUMP
 	oss() << "start: dryRunAccel" << endl;
@@ -151,7 +151,7 @@ unsigned int accel::stepsToTime(const unsigned int steps) {
 	unsigned int minAccelTime = _minTime;
 	unsigned int currentAccelTime = (maxAccelTime + minAccelTime) / 2;
 	unsigned int actualSteps;
-	unsigned int originalTime = time();
+	unsigned int originalTime = accelTime();
 	
 #if REGRESS_1
 	oss() << "START" << endl;
@@ -176,7 +176,7 @@ unsigned int accel::stepsToTime(const unsigned int steps) {
 	oss() << "END currentAccelTime= " << currentAccelTime << " actualSteps= " << actualSteps;
 	dump();
 #endif /* REGRESS_1 */
-	time(originalTime);
+	accelTime(originalTime);
 	return currentAccelTime;
 }
 

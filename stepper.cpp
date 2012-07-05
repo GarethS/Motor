@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2011
+	Copyright (c) Gareth Scott 2011, 2012
 
 	stepper.cpp 
 
@@ -32,7 +32,7 @@ void stepper_init(void) {
 #if CYGWIN
 void stepper::testMoveAbsolute(int positionNew) {
 	oss() << "moveAbsolute START" << endl;
-    //a.time(500000);
+    //a.accelTime(500000);
 	moveAbsolute(positionNew);
 	oss() << "_positionCurrent=" << _positionCurrent <<
 			" _positionConstantVelocityStart=" << _positionConstantVelocityStart <<
@@ -48,21 +48,22 @@ void stepper::testMoveAbsoluteDegree(int positionNewDegree) {
     testMoveAbsolute((int)(positionNewDegree / degreesPerMicrostep()));
 }
 
-void stepper::test(void) {
-    testMoveAbsolute(2000);
-    testMoveAbsolute(0);
-
-    //testMoveAbsoluteDegree(360);
-    
-	// velocity move
+void stepper::testVelocityMove(int v) {
 	oss() << endl << "velocity START" << endl;
-	velocity(800);
+	velocity(v);
 	oss() << "_positionCurrent=" << _positionCurrent <<
 			" _positionConstantVelocityStart=" << _positionConstantVelocityStart << endl;
 	oss() << "velocity END";
 	dump();
     runVirtualMotor(2000);
     _superState = IDLE; // So next test can run without thinking it's still in VELOCITY_MOVE
+}
+
+void stepper::test(void) {
+    testMoveAbsolute(2000);
+    testMoveAbsolute(0);
+
+    testVelocityMove(800);
 
     positionSteps(0);
     degreesPerMicrostep(MICROSTEPS_8_STD);
@@ -87,7 +88,7 @@ int stepper::velocity(const int f) {
         }
 		_updateConstantVelocityStart();
         _superState = VELOCITY_MOVE;
-		a.initAccelTime(1000000);
+		a.initAccelTime(a.accelTime());
 	} else if (_superState == VELOCITY_MOVE_ACCELERATE || _superState == VELOCITY_MOVE_DECELERATE) {
 		// Can't do it right now. Try again when we're done accelerating.
 	} else {
@@ -118,7 +119,7 @@ int stepper::velocity(const int f) {
 }
 
 void stepper::_updateConstantVelocityStart(void) {
-	unsigned int accelStep = a.timeToSteps(a.time());
+	unsigned int accelStep = a.timeToSteps(a.accelTime());
 	if (_directionPositive) {
 		_positionConstantVelocityStart = _positionCurrent + accelStep;;
 	} else {
@@ -153,7 +154,7 @@ void stepper::moveAbsolute(int positionNew) {
 	// 5. Stop timer.
 	
 	// 1. Set acceleration time (e.g. 0.5s)
-	unsigned int accelStep = a.timeToSteps(a.time());
+	unsigned int accelStep = a.timeToSteps(a.accelTime());
 #if REGRESS_1
 	oss() << "moveAbsolute() accelStep=" << accelStep << " positionDelta=" << positionDelta << endl;
 #endif /* REGRESS_1 */
@@ -167,9 +168,9 @@ void stepper::moveAbsolute(int positionNew) {
 			_positionConstantVelocityEnd = _positionTarget + accelStep;
 		}
 		_superState = MOVE_FULL;
-		a.initAccelTime(a.time());
+		a.initAccelTime(a.accelTime());
 	} else {
-		// Acceleration curve needs to be truncated. Not enough room to reach max speed.
+		// Acceleration curve needs to be truncated. Not enough steps to reach max speed.
 #if REGRESS_1
         oss() << "moveAbsolute() MOVE_TRUNCATED steps=" << accelStep << " positionDelta=" << positionDelta << endl;
 #endif /* REGRESS_1 */
@@ -182,13 +183,9 @@ void stepper::moveAbsolute(int positionNew) {
 #endif /* REGRESS_2 and not CYGWIN */        
 		unsigned int tNewAccel = a.stepsToTime(positionDelta / 2);
 		// Set fMAX and then calculate time required for acceleration.
-#if 0        
-		unsigned int us = a.microSecToCurveIndex(tNewAccel);
-#else
 		unsigned int curveIndex = a.microSecToCurveIndex(tNewAccel);
         unsigned int ct = a.curveIndexToClockTicks(curveIndex);
         unsigned int us = a.clockTicksToMicroSec(ct);
-#endif        
 		_fminOld = a.fmin();
 		_fmaxOld = a.fmax();
 		unsigned int fmax = a.freqFromTime(us);
@@ -287,7 +284,7 @@ void stepper::isr(void) {
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
-				a.initAccelTime(a.time());
+				a.initAccelTime(a.accelTime());
 				_timer(a.updateClockPeriodReverse());
 			} else if (_positionCurrent < _positionTarget) {
 				// decelerating
@@ -311,7 +308,7 @@ void stepper::isr(void) {
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
-				a.initAccelTime(a.time());
+				a.initAccelTime(a.accelTime());
 				_timer(a.updateClockPeriodReverse());
 			} else if (_positionCurrent > _positionTarget) {
 				// decelerating

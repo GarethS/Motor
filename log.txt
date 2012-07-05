@@ -664,7 +664,7 @@ ct=98 freq=83333
 ct=99 freq=83333
 freqFromClockTicks END
 
-ACCEL _time=1000000
+ACCEL _accelTime=1000000
 clockTicksToCurveIndex START
 ct=0 curveIndex=0
 ct=32768 curveIndex=0
@@ -913,7 +913,7 @@ ct=7962624 curveIndex=98
 ct=7995392 curveIndex=98
 clockTicksToCurveIndex END
 
-ACCEL _time=1000000
+ACCEL _accelTime=1000000
 clockTicksToCurveIndexReverse START
 ct=0 curveIndex=99
 ct=32768 curveIndex=99

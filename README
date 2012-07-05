@@ -67,7 +67,7 @@ Pending tasks (* = addressed this issue):
 12. Follow encoder feature
 13. IO port header
 14. Queue for motor commands that can't be executed immediately
-15. Add RPM setting. Include deg/step
+15.* Add RPM setting. Include deg/step
 16. Make KiCad project location so new versions can share the same location.
 17.* Allow acceleration time to be set in steps rather than us. See: accel::stepsToTime()
 18.* Need to get frequency-at-each-step curve correct. Currently it's lopsided in graph. Why?!

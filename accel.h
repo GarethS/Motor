@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2011
+	Copyright (c) Gareth Scott 2011, 2012
 
 	accel.h 
 
@@ -21,17 +21,17 @@ using namespace std;
 #include <limits.h>
 
 #define OPTIMIZE_CURVE_CALC 1
+
 #define SECONDS_PER_MINUTE      (60)
 #define MICROSEC_PER_SEC        (1000000)
 #define DEGREES_PER_REV         (360)
 #define DEGREES_PER_REV_TIMES_MINUTE_PER_SEC    (6) // 360 * 0.01666 = 6
-#define DEGREES_PER_STEP_X10000 (1125)  // See comment for _degPerStepX10000 below.
 #define DEGREES_PER_MICROSTEP_NOMINAL   (1.8)   // A lot of stepper motors are 1.8 degrees per full-step
-//#define STEP_PER_DEGREE         (16.0 / 1.8)    // Assuming 16-microsteps, 8.889 
 #define ACCEL_SHARPNESS_MIN     (1)
 #define ACCEL_SHARPNESS_DEFAULT (8)
 #define ACCEL_SHARPNESS_MAX     (32)
 
+// _maxAccelIndex = 199 gives very smooth acceleration
 enum {_maxAccelIndex = 99, _maxAccelEntries, _maxBisectionTrys = 20};
 
 struct passFloatArray {
@@ -61,7 +61,7 @@ public:
 #if CYGWIN
         //_cumulativeClockTicks = 0;
 #endif /* CYGWIN */        
-		time(t);
+		accelTime(t);
 		_currentClockTicks = curveIndexToClockTicks(0);
 	}
     
@@ -70,8 +70,8 @@ public:
 #endif /* CYGWIN */
     
 	// set/get acceleration time
-    void time(const unsigned int us) {_time = us;}
-    unsigned int time(void) {return _time;}
+    void accelTime(const unsigned int us) {_accelTime = us;}
+    unsigned int accelTime(void) {return _accelTime;}
 	
     unsigned int dryRunAccel(void);
 	void frequency(const unsigned int fmin = 200, const unsigned int fmax = 1200);
@@ -157,22 +157,22 @@ public:
 
     // Given microsec, return acceleration curve index to get speed
 	unsigned int microSecToCurveIndex(const unsigned int us) {
-		if (us > time()) {
+		if (us > accelTime()) {
 			return _maxAccelIndex;
 		}
 #if 0
-		unsigned int index = us * _maxAccelEntries / time();
+		unsigned int index = us * _maxAccelEntries / accelTime();
 		cout << "microSecToCurveIndex: index=" << index << endl;
 #endif /* DUMP */
-		return us * _maxAccelIndex / time();
+		return us * _maxAccelIndex / accelTime();
 	}
 	// Same as microSecToCurveIndex(), except returns curve index in reverse order. 
 	//  Used for deceleration.
 	unsigned int microSecToCurveIndexReverse(const unsigned int us) {
-		if (us > time()) {
+		if (us > accelTime()) {
 			return 0;
 		}
-		return _maxAccelIndex - (us * _maxAccelEntries / time());
+		return _maxAccelIndex - (us * _maxAccelEntries / accelTime());
 	}
 
 	// Given clock ticks, return equivalent microsec.
@@ -221,7 +221,6 @@ private:
 	void _dumpCurveInt(void);
 #endif /* DUMP */
 	
-    //enum {_maxAccelIndex = 99, _maxAccelEntries, _maxBisectionTrys = 20};
     float _curveFloat[_maxAccelEntries];
     unsigned int _curveInt[_maxAccelEntries];
     
@@ -230,10 +229,11 @@ private:
     unsigned int _cumulativeClockTicks; // accumulated time in the entire velocity profile
 #endif /* CYGWIN */    
     unsigned int _currentClockTicks;    // period of current timer interrupt. Inversely proportional to motor speed.
-    unsigned int _time;			// acceleration time in us
+    unsigned int _accelTime;            // acceleration time in us
+    //unsigned int _decelTime;            // used when acceleration and deceleration times are different
     //int _acceleration;          // 0 when constant velocity
     //int _velocity;              // step/s
-	unsigned int _fmin, _fmax;	// frequency min/max for acceleration
+	unsigned int _fmin, _fmax;	        // frequency min/max for acceleration
 
     const unsigned int _microSecPerSec;
     const unsigned int _maxDryRunCycles;
