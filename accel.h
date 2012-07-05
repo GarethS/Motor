@@ -62,7 +62,7 @@ public:
         //_cumulativeClockTicks = 0;
 #endif /* CYGWIN */        
 		time(t);
-		_currentClockTicks = curveIndexToclockTicks(0);
+		_currentClockTicks = curveIndexToClockTicks(0);
 	}
     
 #if CYGWIN    
@@ -84,7 +84,7 @@ public:
     //int acceleration(void) {/* TODO */}
     //int velocity(void) {/* TODO */}
 
-	unsigned int curveIndexToclockTicks(const unsigned int index) {return _curveInt[index];}
+	unsigned int curveIndexToClockTicks(const unsigned int index) {return _curveInt[index];}
 	unsigned int timeToSteps(const unsigned int t);
 	unsigned int stepsToTime(const unsigned int steps);
 	
@@ -101,7 +101,7 @@ public:
 			return 0xffffffff;
 		}
 		*/
-		_currentClockTicks = curveIndexToclockTicks(index);
+		_currentClockTicks = curveIndexToClockTicks(index);
 		return _currentClockTicks;
 	}
 
@@ -119,7 +119,7 @@ public:
         _cumulativeClockTicks += _currentClockTicks;
 #endif /* CYGWIN */        
 		unsigned int index = clockTicksToCurveIndexReverse(_totalClockTicks);
-		_currentClockTicks = curveIndexToclockTicks(index);
+		_currentClockTicks = curveIndexToClockTicks(index);
 		return _currentClockTicks;
 	}
 	

@@ -120,7 +120,7 @@ unsigned int accel::dryRunAccel(void) {
         if (index >= _maxAccelIndex) {
             break;
         }
-        _currentClockTicks = curveIndexToclockTicks(index);
+        _currentClockTicks = curveIndexToClockTicks(index);
     }
 #if DUMP
 	oss() << "stop: dryRunAccel";
@@ -140,7 +140,7 @@ unsigned int accel::timeToSteps(const unsigned int t) {
         if (index >= _maxAccelIndex) {
             break;
         }
-        _currentClockTicks = curveIndexToclockTicks(index);
+        _currentClockTicks = curveIndexToClockTicks(index);
     }
     return step;
 }

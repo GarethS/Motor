@@ -186,7 +186,7 @@ void stepper::moveAbsolute(int positionNew) {
 		unsigned int us = a.microSecToCurveIndex(tNewAccel);
 #else
 		unsigned int curveIndex = a.microSecToCurveIndex(tNewAccel);
-        unsigned int ct = a.curveIndexToclockTicks(curveIndex);
+        unsigned int ct = a.curveIndexToClockTicks(curveIndex);
         unsigned int us = a.clockTicksToMicroSec(ct);
 #endif        
 		_fminOld = a.fmin();
