@@ -290,6 +290,8 @@
           <state>c:\dev\docs\rtos\freertos\FreeRTOS\Demo\Common\drivers\LuminaryMicro</state>
           <state>c:\dev\docs\rtos\freertos\FreeRTOS\Demo\Common\include</state>
           <state>c:\DriverLib</state>
+          <state>c:\dev\docs\scottdesign\parser</state>
+          <state>c:\dev\docs\scottdesign\motor</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1113,6 +1115,8 @@
           <state>c:\dev\docs\rtos\freertos\FreeRTOS\Demo\Common\drivers\LuminaryMicro</state>
           <state>c:\dev\docs\rtos\freertos\FreeRTOS\Demo\Common\include</state>
           <state>c:\DriverLib</state>
+          <state>c:\dev\docs\scottdesign\parser</state>
+          <state>c:\dev\docs\scottdesign\motor</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1686,6 +1690,9 @@
       <name>$PROJ_DIR$\..\..\..\..\DriverLib\boards\ek-lm3s3748\formike128x128x16.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\parser\interpret.cpp</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\rtos\freertos\FreeRTOS\Demo\Common\Minimal\IntQueue.c</name>
     </file>
     <file>
@@ -1698,10 +1705,16 @@
       <name>$PROJ_DIR$\motor.cpp</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\parser\parseTreeEntry.cpp</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\..\..\DriverLib\boards\ek-lm3s3748\motor\startup_ewarm.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\stepper.cpp</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\parser\symbolTableEntry.cpp</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\rtos\freertos\FreeRTOS\Demo\CORTEX_LM3Sxxxx_IAR_Keil\timertest.c</name>
