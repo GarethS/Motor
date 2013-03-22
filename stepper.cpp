@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2011, 2012
+	Copyright (c) Gareth Scott 2011, 2012, 2013
 
 	stepper.cpp 
 
@@ -129,6 +129,10 @@ void stepper::_updateConstantVelocityStart(void) {
 }
 
 void stepper::moveAbsolute(int positionNew) {
+#if CYGWIN
+    oss() << "moveAbsolute:" << positionNew << endl;
+    dump();
+#endif // CYGWIN
 	if (_superState != IDLE) {
 		// Can't do it right now. Try again when we're done accelerating.
 		return;

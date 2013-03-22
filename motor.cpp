@@ -11,6 +11,7 @@
 //#include "log.h"
 
 #include <iostream>
+#include <vector>
 #if CYGWIN
 using namespace std;
 #endif /* CYGWIN */
@@ -32,6 +33,16 @@ int mainA(void) {
 #endif /* CYGWIN */    
 	//logc l("TESTa");
 	//l.dump("start motor");
+#if 0 
+    // Possibly used for a test. Not sure.
+    std::vector<int> abc;
+    abc.push_back(1); // [0]
+    abc.push_back(21); // [1]
+    
+    cout << abc[0] << " " << abc[1] << endl;
+    return 1;
+#endif    
+    
 	stepper s;
 #if !CYGWIN
     sp = &s;
@@ -72,7 +83,7 @@ int mainA(void) {
     int counter = 0;
     for (;;) {
         if (s.state() == 0 /*IDLE*/) {
-#if 1         
+#if 0         
             s.velocity(2800);
             //s.moveRelative(1600 * direction);
 #else       
@@ -82,7 +93,7 @@ int mainA(void) {
             if (direction == -1) {
       	        s.moveAbsoluteDegree(0);
             } else {
-      	        s.moveAbsoluteDegree(360);
+      	        s.moveAbsoluteDegree(720);
             }
 #endif            
             direction *= -1;
