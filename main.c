@@ -50,6 +50,7 @@
 void vApplicationStackOverflowHook( xTaskHandle *pxTask, signed portCHAR *pcTaskName );
 void vApplicationTickHook( void );
 void vSetupHighFrequencyTimer( void );
+extern void bufferInput(unsigned char c);
 
 int mainA(void);
 
@@ -136,8 +137,8 @@ UARTIntHandler(void)
         //
         // Read the next character from the UART and write it back to the UART.
         //
-        ROM_UARTCharPutNonBlocking(UART0_BASE,
-                                   ROM_UARTCharGetNonBlocking(UART0_BASE));
+        //ROM_UARTCharPutNonBlocking(UART0_BASE, ROM_UARTCharGetNonBlocking(UART0_BASE));
+        bufferInput(ROM_UARTCharGetNonBlocking(UART0_BASE));
     }
 }
 

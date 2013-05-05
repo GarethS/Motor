@@ -894,20 +894,20 @@
         <option>
           <name>GRuntimeLibSelect</name>
           <version>0</version>
-          <state>1</state>
+          <state>2</state>
         </option>
         <option>
           <name>GRuntimeLibSelectSlave</name>
           <version>0</version>
-          <state>1</state>
+          <state>2</state>
         </option>
         <option>
           <name>RTDescription</name>
-          <state>Use the normal configuration of the C/C++ runtime library. No locale interface, C locale, no file descriptor support, no multibytes in printf and scanf, and no hex floats in strtod.</state>
+          <state>Use the full configuration of the C/C++ runtime library. Full locale interface, C locale, file descriptor support, multibytes in printf and scanf, and hex floats in strtod.</state>
         </option>
         <option>
           <name>RTConfigPath</name>
-          <state>$TOOLKIT_DIR$\INC\DLib_Config_Normal.h</state>
+          <state>$TOOLKIT_DIR$\INC\DLib_Config_Full.h</state>
         </option>
         <option>
           <name>OGProductVersion</name>
@@ -977,6 +977,7 @@
           <state>IAR_ARMCM3_LM</state>
           <state>CYGWIN=0</state>
           <state>REGRESS_2=1</state>
+          <state>BISON_IAR=1</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -1016,7 +1017,7 @@
         </option>
         <option>
           <name>CCDiagSuppress</name>
-          <state></state>
+          <state>Pa050, Pe111</state>
         </option>
         <option>
           <name>CCDiagRemark</name>
@@ -1037,7 +1038,7 @@
         <option>
           <name>CCAllowList</name>
           <version>1</version>
-          <state>1111111</state>
+          <state>1011111</state>
         </option>
         <option>
           <name>CCDebugInfo</name>
@@ -1145,7 +1146,7 @@
         <option>
           <name>CCOptStrategy</name>
           <version>0</version>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCOptLevelSlave</name>
@@ -1351,7 +1352,7 @@
         <option>
           <name>OOCOutputFormat</name>
           <version>2</version>
-          <state>0</state>
+          <state>2</state>
         </option>
         <option>
           <name>OCOutputOverride</name>
@@ -1359,7 +1360,7 @@
         </option>
         <option>
           <name>OOCOutputFile</name>
-          <state></state>
+          <state>motor.bin</state>
         </option>
         <option>
           <name>OOCCommandLineProducer</name>
@@ -1367,7 +1368,7 @@
         </option>
         <option>
           <name>OOCObjCopyEnable</name>
-          <state>0</state>
+          <state>1</state>
         </option>
       </data>
     </settings>
@@ -1703,6 +1704,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\motor.cpp</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\parser\motor.tab.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\parser\parseTreeEntry.cpp</name>
