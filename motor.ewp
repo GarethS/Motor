@@ -1368,7 +1368,7 @@
         </option>
         <option>
           <name>OOCObjCopyEnable</name>
-          <state>1</state>
+          <state>0</state>
         </option>
       </data>
     </settings>
@@ -1418,7 +1418,7 @@
         </option>
         <option>
           <name>IlinkDebugInfoEnable</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>IlinkKeepSymbols</name>
