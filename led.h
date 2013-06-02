@@ -32,7 +32,7 @@ public:
 #if CYGWIN 
         : logc(std::string("LED"))
 #endif /* CYGWIN */					
-    {if (onAtConstruction) {On();} else {Off();}}
+    {/*if (onAtConstruction) {On();} else {Off();}*/}
     ~led() {Off();} // Off when destroyed
 
     void set(const unsigned int onOrOff) {if (onOrOff) {On();} else {Off();}}

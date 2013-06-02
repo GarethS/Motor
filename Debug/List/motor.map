@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR ELF Linker V5.50.0.51878/W32 for ARM              21/Mar/2013  22:07:37 #
+# IAR ELF Linker V5.50.0.51878/W32 for ARM              01/Jun/2013  21:53:41 #
 # Copyright (C) 2007-2010 IAR Systems AB.                                     #
 #                                                                             #
 #    Output file  =  C:\dev\docs\scottdesign\motor\Debug\Exe\motor.out        #
@@ -16,6 +16,7 @@
 #                    C:\dev\docs\scottdesign\motor\Debug\Obj\list.o           #
 #                    C:\dev\docs\scottdesign\motor\Debug\Obj\main.o           #
 #                    C:\dev\docs\scottdesign\motor\Debug\Obj\motor.o          #
+#                    C:\dev\docs\scottdesign\motor\Debug\Obj\motor.tab.o      #
 #                    C:\dev\docs\scottdesign\motor\Debug\Obj\parseTreeEntry.o #
 #                     C:\dev\docs\scottdesign\motor\Debug\Obj\port.o          #
 #                    C:\dev\docs\scottdesign\motor\Debug\Obj\portasm.o        #
@@ -44,190 +45,397 @@
 "P2":  place in [from 0x20000000 to 0x2000ffff] {
           rw, block CSTACK, block HEAP };
 
-  Section            Kind        Address    Size  Object
-  -------            ----        -------    ----  ------
-"A1":                                      0x100
-  .intvec            const    0x00000000   0x100  startup_ewarm.o [1]
-                            - 0x00000100   0x100
+  Section             Kind        Address    Size  Object
+  -------             ----        -------    ----  ------
+"A1":                                       0x100
+  .intvec             const    0x00000000   0x100  startup_ewarm.o [1]
+                             - 0x00000100   0x100
 
-"P1":                                     0x33dc
-  .text              ro code  0x00000100   0x748  tasks.o [1]
-  .text              ro code  0x00000848   0x564  stepper.o [1]
-  .text              ro code  0x00000dac   0x314  IntQueue.o [1]
-  .text              ro code  0x000010c0   0x278  accel.o [1]
-  .text              ro code  0x00001338   0x246  DblDiv.o [5]
-  .text              ro code  0x00001580   0x244  main.o [1]
-  .text              ro code  0x000017c4   0x1a2  DblMul.o [5]
-  .text              ro code  0x00001968   0x17e  DblSub.o [5]
-  .text              ro code  0x00001ae8   0x172  queue.o [1]
-  .text              ro code  0x00001c5c   0x160  xfexp.o [3]
-  .text              ro code  0x00001dbc   0x144  heap_2.o [1]
-  .text              ro code  0x00001f00   0x126  xprintftiny.o [3]
-  .text              ro code  0x00002028    0xfc  FltDiv.o [5]
-  .text              ro code  0x00002124    0xe6  DblAdd.o [5]
-  .text              ro code  0x0000220c    0xe4  FltSub.o [5]
-  .text              ro code  0x000022f0    0xda  gpio.o [4]
-  .text              ro code  0x000023cc    0xd8  FltMul.o [5]
-  .text              ro code  0x000024a4    0xc0  port.o [1]
-  .text              ro code  0x00002564    0xc0  xfdscale.o [3]
-  .text              ro code  0x00002624    0xa0  motor.o [1]
-  .text              ro code  0x000026c4    0x9c  interrupt.o [4]
-  .text              ro code  0x00002760    0x90  timertest.o [1]
-  .text              ro code  0x000027f0    0x90  DblToFlt.o [5]
-  .text              ro code  0x00002880    0x8c  FltAdd.o [5]
-  CODE               ro code  0x0000290c    0x8c  portasm.o [1]
-  .text              ro code  0x00002998    0x82  xfdnorm.o [3]
-  .text              ro code  0x00002a1c    0x70  ABImemcpy.o [5]
-  .text              ro code  0x00002a8c    0x6c  strncpy.o [5]
-  .text              ro code  0x00002af8    0x68  list.o [1]
-  .text              ro code  0x00002b60    0x68  expf.o [3]
-  .text              ro code  0x00002bc8    0x66  timer.o [4]
-  .text              ro code  0x00002c30    0x66  ABImemset.o [5]
-  .text              ro code  0x00002c98    0x62  memcmp.o [5]
-  .text              ro code  0x00002cfc    0x4e  FltToDbl.o [5]
-  .text              ro code  0x00002d4c    0x44  FltToS32.o [5]
-  .rodata            const    0x00002d90    0x40  interrupt.o [4]
-  .text              ro code  0x00002dd0    0x3c  stepper.o [1]
-  .text              ro code  0x00002e0c    0x38  IntQueueTimer.o [1]
-  .text              ro code  0x00002e44    0x36  strlen.o [5]
-  .text              ro code  0x00002e7c    0x30  I32ToFlt.o [5]
-  .text              ro code  0x00002eac    0x30  sprintf.o [3]
-  .text              ro code  0x00002edc    0x30  stepper.o [1]
-  .text              ro code  0x00002f0c    0x30  stepper.o [1]
-  .text              ro code  0x00002f3c    0x30  copy_init3.o [5]
-  .text              ro code  0x00002f6c    0x2e  I32ToDbl.o [5]
-  .text              ro code  0x00002f9a    0x2e  stepper.o [1]
-  .text              ro code  0x00002fc8    0x2c  data_init3.o [5]
-  .text              ro code  0x00002ff4    0x2a  stepper.o [1]
-  .text              ro code  0x0000301e    0x2a  stepper.o [1]
-  .text              ro code  0x00003048    0x28  iarttio.o [6]
-  .text              ro code  0x00003070    0x26  sysctl.o [4]
-  .text              ro code  0x00003096    0x26  accel.o [1]
-  .text              ro code  0x000030bc    0x26  motor.o [1]
-  .text              ro code  0x000030e4    0x24  FltToU32.o [5]
-  .text              ro code  0x00003108    0x24  FltCmpLe.o [5]
-  .text              ro code  0x0000312c    0x24  FltCmpGe.o [5]
-  .text              ro code  0x00003150    0x24  zero_init3.o [5]
-  .text              ro code  0x00003174    0x22  accel.o [1]
-  .text              ro code  0x00003196    0x22  motor.o [1]
-  .iar.init_table    const    0x000031b8    0x24  - Linker created -
-  .text              ro code  0x000031dc    0x1c  motor.o [1]
-  .text              ro code  0x000031f8    0x1c  stepper.o [1]
-  .text              ro code  0x00003214    0x1c  FltCmpEq.o [5]
-  .text              ro code  0x00003230    0x18  accel.o [1]
-  .text              ro code  0x00003248    0x18  accel.o [1]
-  .text              ro code  0x00003260    0x18  stepper.o [1]
-  .text              ro code  0x00003278    0x16  cmain.o [5]
-  .text              ro code  0x0000328e    0x16  IntQueue.o [1]
-  .text              ro code  0x000032a4    0x16  queue.o [1]
-  .text              ro code  0x000032ba    0x16  stepper.o [1]
-  .rodata            const    0x000032d0    0x14  tasks.o [1]
-  .text              ro code  0x000032e4    0x14  errno.o [3]
-  .text              ro code  0x000032f8    0x14  exit.o [6]
-  CODE               ro code  0x0000330c    0x14  cpu.o [4]
-  .text              ro code  0x00003320    0x14  motor.o [1]
-  .text              ro code  0x00003334    0x12  uart.o [4]
-  .text              ro code  0x00003346    0x12  stepper.o [1]
-  .text              ro code  0x00003358    0x12  stepper.o [1]
-  .text              ro code  0x0000336a    0x10  motor.o [1]
-  .text              ro code  0x0000337a    0x10  motor.o [1]
-  .rodata            const    0x0000338c     0xc  stepper.o [1]
-  .rodata            const    0x00003398     0xc  sysctl.o [4]
-  .text              ro code  0x000033a4     0xc  accel.o [1]
-  .text              ro code  0x000033b0     0xc  motor.o [1]
-  .text              ro code  0x000033bc     0xc  cstartup_M.o [5]
-  .text              ro code  0x000033c8     0xa  cexit.o [5]
-  .text              ro code  0x000033d2     0xa  accel.o [1]
-  .text              ro code  0x000033dc     0xa  xsprout.o [3]
-  .rodata            const    0x000033e8     0x8  main.o [1]
-  .rodata            const    0x000033f0     0x8  main.o [1]
-  .rodata            const    0x000033f8     0x8  main.o [1]
-  .rodata            const    0x00003400     0x8  stepper.o [1]
-  .rodata            const    0x00003408     0x8  stepper.o [1]
-  .rodata            const    0x00003410     0x8  stepper.o [1]
-  .rodata            const    0x00003418     0x8  stepper.o [1]
-  .rodata            const    0x00003420     0x8  stepper.o [1]
-  .rodata            const    0x00003428     0x8  stepper.o [1]
-  .rodata            const    0x00003430     0x8  stepper.o [1]
-  .rodata            const    0x00003438     0x8  stepper.o [1]
-  .rodata            const    0x00003440     0x8  stepper.o [1]
-  .rodata            const    0x00003448     0x8  stepper.o [1]
-  .rodata            const    0x00003450     0x8  stepper.o [1]
-  .rodata            const    0x00003458     0x8  stepper.o [1]
-  .rodata            const    0x00003460     0x8  stepper.o [1]
-  .rodata            const    0x00003468     0x8  tasks.o [1]
-  .text              ro code  0x00003470     0x8  XShttio.o [3]
-  .text              ro code  0x00003478     0x6  accel.o [1]
-  .text              ro code  0x0000347e     0x6  accel.o [1]
-  .text              ro code  0x00003484     0x6  motor.o [1]
-  .text              ro code  0x0000348a     0x6  motor.o [1]
-  .text              ro code  0x00003490     0x6  motor.o [1]
-  .text              ro code  0x00003496     0x6  motor.o [1]
-  .text              ro code  0x0000349c     0x6  startup_ewarm.o [1]
-  .text              ro code  0x000034a2     0x6  stepper.o [1]
-  .text              ro code  0x000034a8     0x6  stepper.o [1]
-  .text              ro code  0x000034ae     0x6  stepper.o [1]
-  .text              ro code  0x000034b4     0x6  exit.o [3]
-  .text              ro code  0x000034ba     0x4  low_level_init.o [3]
-  .rodata            const    0x000034be     0x2  heap_2.o [1]
-  Initializer bytes  ro data  0x000034c0    0x1c  <for P2 s0>
-                            - 0x000034dc  0x33dc
+"P1":                                      0x7671
+  .text               ro code  0x00000100  0x11c6  motor.tab.o [1]
+  .text               ro code  0x000012c8   0xca4  interpret.o [1]
+  .text               ro code  0x00001f6c   0x850  tasks.o [1]
+  .text               ro code  0x000027bc   0x578  stepper.o [1]
+  .rodata             const    0x00002d34   0x400  motor.tab.o [1]
+  .text               ro code  0x00003134   0x314  IntQueue.o [1]
+  .text               ro code  0x00003448   0x278  accel.o [1]
+  .text               ro code  0x000036c0   0x246  DblDiv.o [5]
+  .text               ro code  0x00003908   0x23c  main.o [1]
+  .rodata             const    0x00003b44   0x1bc  motor.tab.o [1]
+  .rodata             const    0x00003d00   0x1bc  motor.tab.o [1]
+  .text               ro code  0x00003ebc   0x1a2  DblMul.o [5]
+  .text               ro code  0x00004060   0x186  realloc.o [3]
+  .text               ro code  0x000041e8   0x17e  DblSub.o [5]
+  .text               ro code  0x00004368   0x172  queue.o [1]
+  .text               ro code  0x000044dc   0x160  xfexp.o [3]
+  .text               ro code  0x0000463c   0x144  heap_2.o [1]
+  .rodata             const    0x00004780   0x130  motor.tab.o [1]
+  .rodata             const    0x000048b0   0x130  motor.tab.o [1]
+  .rodata             const    0x000049e0   0x128  motor.tab.o [1]
+  .text               ro code  0x00004b08   0x126  xprintftiny.o [3]
+  .rodata             const    0x00004c30   0x11c  motor.tab.o [1]
+  .text               ro code  0x00004d4c   0x114  xstoul.o [3]
+  .text               ro code  0x00004e60    0xfc  FltDiv.o [5]
+  .text               ro code  0x00004f5c    0xe6  DblAdd.o [5]
+  .text               ro code  0x00005044    0xe4  FltSub.o [5]
+  .text               ro code  0x00005128    0xda  gpio.o [4]
+  .text               ro code  0x00005204    0xd8  FltMul.o [5]
+  .rodata             const    0x000052dc    0xc4  motor.tab.o [1]
+  .text               ro code  0x000053a0    0xc0  port.o [1]
+  .text               ro code  0x00005460    0xc0  xfdscale.o [3]
+  .text               ro code  0x00005520    0xbc  xxmemxmalloc.o [3]
+  .text               ro code  0x000055dc    0xac  fflush.o [3]
+  .text               ro code  0x00005688    0xa8  fclose.o [3]
+  .text               ro code  0x00005730    0xa8  packbits_init3.o [5]
+  .text               ro code  0x000057d8    0xa4  list.o [1]
+  .text               ro code  0x0000587c    0xa2  xfwprep.o [3]
+  .text               ro code  0x00005920    0xa0  motor.o [1]
+  .text               ro code  0x000059c0    0x9c  interrupt.o [4]
+  .text               ro code  0x00005a5c    0x90  timertest.o [1]
+  .text               ro code  0x00005aec    0x90  DblToFlt.o [5]
+  .text               ro code  0x00005b7c    0x8c  FltAdd.o [5]
+  CODE                ro code  0x00005c08    0x8c  portasm.o [1]
+  .text               ro code  0x00005c94    0x88  cppinit.o [3]
+  .text               ro code  0x00005d1c    0x88  xxmemxfree.o [3]
+  .text               ro code  0x00005da4    0x88  xsyslock.o [3]
+  .rodata             const    0x00005e2c    0x84  motor.tab.o [1]
+  .text               ro code  0x00005eb0    0x84  xreportassert.o [3]
+  .text               ro code  0x00005f34    0x82  xfdnorm.o [3]
+  .text               ro code  0x00005fb8    0x78  ABImemmove.o [5]
+  .text               ro code  0x00006030    0x72  parseTreeEntry.o [1]
+  .text               ro code  0x000060a4    0x70  ABImemcpy.o [5]
+  .text               ro code  0x00006114    0x6e  symbolTableEntry.o [1]
+  .text               ro code  0x00006184    0x6c  strncpy.o [5]
+  .text               ro code  0x000061f0    0x68  iarttio.o [6]
+  .text               ro code  0x00006258    0x68  expf.o [3]
+  .text               ro code  0x000062c0    0x66  timer.o [4]
+  .text               ro code  0x00006328    0x66  ABImemset.o [5]
+  .text               ro code  0x00006390    0x62  memcmp.o [5]
+  .text               ro code  0x000063f4    0x58  memchr.o [5]
+  .rodata             const    0x0000644c    0x50  xstoul.o [3]
+  .text               ro code  0x0000649c    0x50  fputc.o [3]
+  .text               ro code  0x000064ec    0x4e  FltToDbl.o [5]
+  .text               ro code  0x0000653c    0x48  interpret.o [1]
+  .text               ro code  0x00006584    0x48  MtxWrapper.o [3]
+  .text               ro code  0x000065cc    0x48  xassert.o [3]
+  .text               ro code  0x00006614    0x44  FltToS32.o [5]
+  .rodata             const    0x00006658    0x40  interrupt.o [4]
+  .text               ro code  0x00006698    0x3c  interpret.o [1]
+  .text               ro code  0x000066d4    0x3c  stepper.o [1]
+  .rodata             const    0x00006710    0x38  motor.tab.o [1]
+  .text               ro code  0x00006748    0x38  IntQueueTimer.o [1]
+  .text               ro code  0x00006780    0x36  strlen.o [5]
+  .rodata             const    0x000067b8    0x34  motor.tab.o [1]
+  .rodata             const    0x000067ec    0x34  motor.tab.o [1]
+  .text               ro code  0x00006820    0x34  interpret.o [1]
+  .rodata             const    0x00006854    0x30  interpret.o [1]
+  .rodata             const    0x00006884    0x30  motor.tab.o [1]
+  .rodata             const    0x000068b4    0x30  xreportassert.o [3]
+  .text               ro code  0x000068e4    0x30  I32ToFlt.o [5]
+  .text               ro code  0x00006914    0x30  sprintf.o [3]
+  .text               ro code  0x00006944    0x30  interpret.o [1]
+  .text               ro code  0x00006974    0x30  stepper.o [1]
+  .text               ro code  0x000069a4    0x30  stepper.o [1]
+  .text               ro code  0x000069d4    0x2e  I32ToDbl.o [5]
+  .text               ro code  0x00006a02    0x2e  stepper.o [1]
+  .rodata             const    0x00006a30    0x2c  interpret.o [1]
+  .rodata             const    0x00006a5c    0x2c  interpret.o [1]
+  .rodata             const    0x00006a88    0x2c  motor.tab.o [1]
+  .rodata             const    0x00006ab4    0x2c  motor.tab.o [1]
+  .rodata             const    0x00006ae0    0x2c  motor.tab.o [1]
+  .rodata             const    0x00006b0c    0x2c  motor.tab.o [1]
+  .text               ro code  0x00006b38    0x2c  data_init3.o [5]
+  .text               ro code  0x00006b64    0x2a  interpret.o [1]
+  .text               ro code  0x00006b8e    0x2a  interpret.o [1]
+  .text               ro code  0x00006bb8    0x2a  stepper.o [1]
+  .text               ro code  0x00006be2    0x2a  stepper.o [1]
+  .rodata             const    0x00006c0c    0x28  motor.tab.o [1]
+  .rodata             const    0x00006c34    0x28  motor.tab.o [1]
+  .rodata             const    0x00006c5c    0x28  motor.tab.o [1]
+  .rodata             const    0x00006c84    0x28  motor.tab.o [1]
+  .rodata             const    0x00006cac    0x28  motor.tab.o [1]
+  .text               ro code  0x00006cd4    0x28  xgetmemchunk.o [3]
+  .text               ro code  0x00006cfc    0x28  xcloseall.o [3]
+  .text               ro code  0x00006d24    0x28  interpret.o [1]
+  .text               ro code  0x00006d4c    0x26  sysctl.o [4]
+  .text               ro code  0x00006d72    0x26  accel.o [1]
+  .text               ro code  0x00006d98    0x26  motor.o [1]
+  .text               ro code  0x00006dc0    0x24  FltToU32.o [5]
+  .text               ro code  0x00006de4    0x24  FltCmpLe.o [5]
+  .text               ro code  0x00006e08    0x24  FltCmpGe.o [5]
+  .text               ro code  0x00006e2c    0x24  targetabi.o [3]
+  .text               ro code  0x00006e50    0x24  zero_init3.o [5]
+  .text               ro code  0x00006e74    0x22  accel.o [1]
+  .text               ro code  0x00006e96    0x22  motor.o [1]
+  .text               ro code  0x00006eb8    0x22  iarwrite.o [6]
+  .iar.init_table     const    0x00006edc    0x30  - Linker created -
+  .rodata             const    0x00006f0c    0x20  interpret.o [1]
+  .rodata             const    0x00006f2c    0x20  interpret.o [1]
+  .rodata             const    0x00006f4c    0x20  motor.tab.o [1]
+  .rodata             const    0x00006f6c    0x20  motor.tab.o [1]
+  .text               ro code  0x00006f8c    0x20  cmain_call_ctors.o [5]
+  .text               ro code  0x00006fac    0x20  targetabi.o [3]
+  .text               ro code  0x00006fcc    0x20  iarwstd.o [6]
+  .text               ro code  0x00006fec    0x1e  dwrite.o [6]
+  .rodata             const    0x0000700c    0x1c  interpret.o [1]
+  .rodata             const    0x00007028    0x1c  motor.tab.o [1]
+  .rodata             const    0x00007044    0x1c  motor.tab.o [1]
+  .text               ro code  0x00007060    0x1c  motor.o [1]
+  .text               ro code  0x0000707c    0x1c  stepper.o [1]
+  .text               ro code  0x00007098    0x1c  FltCmpEq.o [5]
+  .text               ro code  0x000070b4    0x1c  interpret.o [1]
+  .text               ro code  0x000070d0    0x1a  interpret.o [1]
+  .text               ro code  0x000070ea    0x1a  close.o [6]
+  .text               ro code  0x00007104    0x18  setlocale.o [3]
+  .text               ro code  0x0000711c    0x18  accel.o [1]
+  .text               ro code  0x00007134    0x18  accel.o [1]
+  .text               ro code  0x0000714c    0x18  stepper.o [1]
+  .text               ro code  0x00007164    0x16  cmain.o [5]
+  .text               ro code  0x0000717a    0x16  IntQueue.o [1]
+  .text               ro code  0x00007190    0x16  interpret.o [1]
+  .text               ro code  0x000071a6    0x16  interpret.o [1]
+  .text               ro code  0x000071bc    0x16  stepper.o [1]
+  .text               ro code  0x000071d2    0x16  remove.o [6]
+  .rodata             const    0x000071e8    0x14  motor.tab.o [1]
+  .rodata             const    0x000071fc    0x14  motor.tab.o [1]
+  .rodata             const    0x00007210    0x14  motor.tab.o [1]
+  .rodata             const    0x00007224    0x14  tasks.o [1]
+  .text               ro code  0x00007238    0x14  interpret.o [1]
+  .text               ro code  0x0000724c    0x14  interpret.o [1]
+  .text               ro code  0x00007260    0x14  errno.o [3]
+  .text               ro code  0x00007274    0x14  exit.o [6]
+  CODE                ro code  0x00007288    0x14  cpu.o [4]
+  .text               ro code  0x0000729c    0x14  interpret.o [1]
+  .text               ro code  0x000072b0    0x14  interpret.o [1]
+  .text               ro code  0x000072c4    0x14  interpret.o [1]
+  .text               ro code  0x000072d8    0x14  motor.o [1]
+  .text               ro code  0x000072ec    0x14  isxxx.o [3]
+  .text               ro code  0x00007300    0x14  tolower.o [3]
+  .text               ro code  0x00007314    0x14  xlocale_c.o [3]
+  .text               ro code  0x00007328    0x12  uart.o [4]
+  .text               ro code  0x0000733c    0x12  cexit.o [5]
+  .text               ro code  0x0000734e    0x12  interpret.o [1]
+  .text               ro code  0x00007360    0x12  stepper.o [1]
+  .text               ro code  0x00007372    0x12  stepper.o [1]
+  .rodata             const    0x00007384    0x10  motor.tab.o [1]
+  .rodata             const    0x00007394    0x10  motor.tab.o [1]
+  .text               ro code  0x000073a4    0x10  interpret.o [1]
+  .text               ro code  0x000073b4    0x10  interpret.o [1]
+  .text               ro code  0x000073c4    0x10  interpret.o [1]
+  .text               ro code  0x000073d4    0x10  motor.o [1]
+  .text               ro code  0x000073e4    0x10  motor.o [1]
+  .text               ro code  0x000073f4    0x10  motor.tab.o [1]
+  .text               ro code  0x00007404    0x10  write.o [6]
+  .text               ro code  0x00007414     0xe  interpret.o [1]
+  .text               ro code  0x00007422     0xe  interpret.o [1]
+  .text               ro code  0x00007430     0xe  interpret.o [1]
+  .text               ro code  0x0000743e     0xe  interpret.o [1]
+  .text               ro code  0x0000744c     0xe  interpret.o [1]
+  .text               ro code  0x0000745a     0xe  interpret.o [1]
+  .text               ro code  0x00007468     0xe  interpret.o [1]
+  .text               ro code  0x00007476     0xe  interpret.o [1]
+  .text               ro code  0x00007484     0xe  interpret.o [1]
+  .text               ro code  0x00007492     0xe  interpret.o [1]
+  .rodata             const    0x000074a0     0xc  interpret.o [1]
+  .rodata             const    0x000074ac     0xc  motor.tab.o [1]
+  .rodata             const    0x000074b8     0xc  stepper.o [1]
+  .rodata             const    0x000074c4     0xc  sysctl.o [4]
+  .text               ro code  0x000074d0     0xc  accel.o [1]
+  .text               ro code  0x000074dc     0xc  interpret.o [1]
+  .text               ro code  0x000074e8     0xc  interpret.o [1]
+  .text               ro code  0x000074f4     0xc  interpret.o [1]
+  .text               ro code  0x00007500     0xc  motor.o [1]
+  .text               ro code  0x0000750c     0xc  cstartup_M.o [5]
+  .text               ro code  0x00007518     0xc  xlocale_c.o [3]
+  .text               ro code  0x00007524     0xa  accel.o [1]
+  .text               ro code  0x0000752e     0xa  interpret.o [1]
+  .text               ro code  0x00007538     0xa  interpret.o [1]
+  .text               ro code  0x00007542     0xa  interpret.o [1]
+  .text               ro code  0x0000754c     0xa  targetabi.o [3]
+  .text               ro code  0x00007556     0xa  xsprout.o [3]
+  .rodata             const    0x00007560     0x8  interpret.o [1]
+  .rodata             const    0x00007568     0x8  interpret.o [1]
+  .rodata             const    0x00007570     0x8  interpret.o [1]
+  .rodata             const    0x00007578     0x8  main.o [1]
+  .rodata             const    0x00007580     0x8  main.o [1]
+  .rodata             const    0x00007588     0x8  main.o [1]
+  .rodata             const    0x00007590     0x8  motor.tab.o [1]
+  .rodata             const    0x00007598     0x8  motor.tab.o [1]
+  .rodata             const    0x000075a0     0x8  stepper.o [1]
+  .rodata             const    0x000075a8     0x8  stepper.o [1]
+  .rodata             const    0x000075b0     0x8  stepper.o [1]
+  .rodata             const    0x000075b8     0x8  stepper.o [1]
+  .rodata             const    0x000075c0     0x8  stepper.o [1]
+  .rodata             const    0x000075c8     0x8  stepper.o [1]
+  .rodata             const    0x000075d0     0x8  stepper.o [1]
+  .rodata             const    0x000075d8     0x8  stepper.o [1]
+  .rodata             const    0x000075e0     0x8  stepper.o [1]
+  .rodata             const    0x000075e8     0x8  stepper.o [1]
+  .rodata             const    0x000075f0     0x8  stepper.o [1]
+  .rodata             const    0x000075f8     0x8  stepper.o [1]
+  .rodata             const    0x00007600     0x8  stepper.o [1]
+  .rodata             const    0x00007608     0x8  tasks.o [1]
+  .text               ro code  0x00007610     0x8  XShttio.o [3]
+  .text               ro code  0x00007618     0x8  abort.o [3]
+  .text               ro code  0x00007620     0x6  accel.o [1]
+  .text               ro code  0x00007626     0x6  accel.o [1]
+  .text               ro code  0x0000762c     0x6  interpret.o [1]
+  .text               ro code  0x00007632     0x6  interpret.o [1]
+  .text               ro code  0x00007638     0x6  interpret.o [1]
+  .text               ro code  0x0000763e     0x6  motor.o [1]
+  .text               ro code  0x00007644     0x6  motor.o [1]
+  .text               ro code  0x0000764a     0x6  motor.o [1]
+  .text               ro code  0x00007650     0x6  motor.o [1]
+  .text               ro code  0x00007656     0x6  startup_ewarm.o [1]
+  .text               ro code  0x0000765c     0x6  stepper.o [1]
+  .text               ro code  0x00007662     0x6  stepper.o [1]
+  .text               ro code  0x00007668     0x6  stepper.o [1]
+  .text               ro code  0x0000766e     0x6  fileno.o [3]
+  .text               ro code  0x00007674     0x6  exit.o [3]
+  .rodata             const    0x0000767c     0x4  iarttio.o [6]
+  SHT$$PREINIT_ARRAY           0x00007680     0x0  <Block>
+  SHT$$INIT_ARRAY              0x00007680     0x4  <Block>
+    .difunct          const    0x00007680     0x4  interpret.o [1]
+  .text               ro code  0x00007684     0x4  interpret.o [1]
+  .text               ro code  0x00007688     0x4  interpret.o [1]
+  .text               ro code  0x0000768c     0x4  interpret.o [1]
+  .text               ro code  0x00007690     0x4  interpret.o [1]
+  .text               ro code  0x00007694     0x4  interpret.o [1]
+  .text               ro code  0x00007698     0x4  interpret.o [1]
+  .text               ro code  0x0000769c     0x4  interpret.o [1]
+  .text               ro code  0x000076a0     0x4  interpret.o [1]
+  .text               ro code  0x000076a4     0x4  interpret.o [1]
+  .text               ro code  0x000076a8     0x4  interpret.o [1]
+  .text               ro code  0x000076ac     0x4  interpret.o [1]
+  .text               ro code  0x000076b0     0x4  interpret.o [1]
+  .text               ro code  0x000076b4     0x4  interpret.o [1]
+  .text               ro code  0x000076b8     0x4  parseTreeEntry.o [1]
+  .text               ro code  0x000076bc     0x4  low_level_init.o [3]
+  .rodata             const    0x000076c0     0x2  heap_2.o [1]
+  .text               ro code  0x000076c2     0x2  interpret.o [1]
+  .text               ro code  0x000076c4     0x2  interpret.o [1]
+  .text               ro code  0x000076c6     0x2  interpret.o [1]
+  .text               ro code  0x000076c8     0x2  interpret.o [1]
+  .text               ro code  0x000076ca     0x2  interpret.o [1]
+  .text               ro code  0x000076cc     0x2  interpret.o [1]
+  .text               ro code  0x000076ce     0x2  interpret.o [1]
+  .rodata             const    0x000076d0     0x1  setlocale.o [3]
+  Initializer bytes   ro data  0x000076d1    0xa0  <for P2 s0>
+                             - 0x00007771  0x7671
 
-"P2", part 1 of 3:                        0x4000
-  .noinit            uninit   0x20000000  0x4000  startup_ewarm.o [1]
-                            - 0x20004000  0x4000
+"P2", part 1 of 3:                         0x49a4
+  .noinit             uninit   0x20000000  0x4000  startup_ewarm.o [1]
+  HEAP                         0x20004000   0x800  <Block>
+    HEAP              uninit   0x20004000   0x800  <Block tail>
+  .iar.dynexit                 0x20004800   0x1a4  <Block>
+    .iar.dynexit      uninit   0x20004800     0xc  cppinit.o [3]
+    .iar.dynexit      uninit   0x2000480c   0x198  <Block tail>
+                             - 0x200049a4  0x49a4
 
-"P2", part 2 of 3:                          0x1c
-  P2 s0                       0x20004000    0x1c  <Init block>
-    .data            inited   0x20004000     0x8  XShttio.o [3]
-    .data            inited   0x20004008     0x4  IntQueue.o [1]
-    .data            inited   0x2000400c     0x4  heap_2.o [1]
-    .data            inited   0x20004010     0x4  port.o [1]
-    .data            inited   0x20004014     0x4  tasks.o [1]
-    .data            inited   0x20004018     0x4  tasks.o [1]
-                            - 0x2000401c    0x1c
+"P2", part 2 of 3:                          0x188
+  P2 s0                        0x200049a4   0x188  <Init block>
+    .data             inited   0x200049a4    0x80  setlocale.o [3]
+    .data             inited   0x20004a24    0x40  xfiles.o [3]
+    .data             inited   0x20004a64    0x40  xfiles.o [3]
+    .data             inited   0x20004aa4    0x40  xfiles.o [3]
+    .data             inited   0x20004ae4    0x20  xfiles.o [3]
+    .data             inited   0x20004b04     0x8  XShttio.o [3]
+    .data             inited   0x20004b0c     0x4  IntQueue.o [1]
+    .data             inited   0x20004b10     0x4  heap_2.o [1]
+    .data             inited   0x20004b14     0x4  interpret.o [1]
+    .data             inited   0x20004b18     0x4  interpret.o [1]
+    .data             inited   0x20004b1c     0x4  motor.tab.o [1]
+    .data             inited   0x20004b20     0x4  port.o [1]
+    .data             inited   0x20004b24     0x4  tasks.o [1]
+    .data             inited   0x20004b28     0x4  tasks.o [1]
+                             - 0x20004b2c   0x188
 
-"P2", part 3 of 3:                        0x609c
-  .bss               zero     0x20004020  0x5dc0  heap_2.o [1]
-  .bss               zero     0x20009de0    0xc8  IntQueue.o [1]
-  .bss               zero     0x20009ea8    0xc8  IntQueue.o [1]
-  .bss               zero     0x20009f70    0x64  tasks.o [1]
-  .bss               zero     0x20009fd4    0x14  tasks.o [1]
-  .bss               zero     0x20009fe8    0x14  tasks.o [1]
-  .bss               zero     0x20009ffc    0x14  tasks.o [1]
-  .bss               zero     0x2000a010    0x14  tasks.o [1]
-  .bss               zero     0x2000a024    0x14  tasks.o [1]
-  .bss               zero     0x2000a038     0x8  heap_2.o [1]
-  .bss               zero     0x2000a040     0x8  heap_2.o [1]
-  .bss               zero     0x2000a048     0x8  errno.o [3]
-  .bss               zero     0x2000a050     0x4  IntQueue.o [1]
-  .bss               zero     0x2000a054     0x4  IntQueue.o [1]
-  .bss               zero     0x2000a058     0x4  IntQueue.o [1]
-  .bss               zero     0x2000a05c     0x4  IntQueue.o [1]
-  .bss               zero     0x2000a060     0x4  IntQueue.o [1]
-  .bss               zero     0x2000a064     0x4  IntQueue.o [1]
-  .bss               zero     0x2000a068     0x4  IntQueue.o [1]
-  .bss               zero     0x2000a06c     0x4  heap_2.o [1]
-  .bss               zero     0x2000a070     0x4  motor.o [1]
-  .bss               zero     0x2000a074     0x4  tasks.o [1]
-  .bss               zero     0x2000a078     0x4  tasks.o [1]
-  .bss               zero     0x2000a07c     0x4  tasks.o [1]
-  .bss               zero     0x2000a080     0x4  tasks.o [1]
-  .bss               zero     0x2000a084     0x4  tasks.o [1]
-  .bss               zero     0x2000a088     0x4  tasks.o [1]
-  .bss               zero     0x2000a08c     0x4  tasks.o [1]
-  .bss               zero     0x2000a090     0x4  tasks.o [1]
-  .bss               zero     0x2000a094     0x4  tasks.o [1]
-  .bss               zero     0x2000a098     0x4  tasks.o [1]
-  .bss               zero     0x2000a09c     0x4  tasks.o [1]
-  .bss               zero     0x2000a0a0     0x4  tasks.o [1]
-  .bss               zero     0x2000a0a4     0x4  tasks.o [1]
-  .bss               zero     0x2000a0a8     0x4  tasks.o [1]
-  .bss               zero     0x2000a0ac     0x4  tasks.o [1]
-  .bss               zero     0x2000a0b0     0x4  tasks.o [1]
-  .bss               zero     0x2000a0b4     0x4  tasks.o [1]
-  .bss               zero     0x2000a0b8     0x4  timertest.o [1]
-                            - 0x2000a0bc  0x609c
+"P2", part 3 of 3:                         0x77b0
+  .bss                zero     0x20004b30  0x5dc0  heap_2.o [1]
+  .bss                zero     0x2000a8f0  0x14c0  interpret.o [1]
+  .bss                zero     0x2000bdb0   0x108  interpret.o [1]
+  .bss                zero     0x2000beb8    0xc8  IntQueue.o [1]
+  .bss                zero     0x2000bf80    0xc8  IntQueue.o [1]
+  .bss                zero     0x2000c048    0x64  tasks.o [1]
+  .bss                zero     0x2000c0ac    0x50  xfiles.o [3]
+  .bss                zero     0x2000c0fc    0x50  xfiles.o [3]
+  .bss                zero     0x2000c14c    0x14  tasks.o [1]
+  .bss                zero     0x2000c160    0x14  tasks.o [1]
+  .bss                zero     0x2000c174    0x14  tasks.o [1]
+  .bss                zero     0x2000c188    0x14  tasks.o [1]
+  .bss                zero     0x2000c19c    0x14  tasks.o [1]
+  .bss                zero     0x2000c1b0    0x14  xsyslock.o [3]
+  .bss                zero     0x2000c1c4     0x8  heap_2.o [1]
+  .bss                zero     0x2000c1cc     0x8  heap_2.o [1]
+  .bss                zero     0x2000c1d4     0x8  errno.o [3]
+  .bss                zero     0x2000c1dc     0x8  xxmemxmalloc.o [3]
+  .bss                zero     0x2000c1e4     0x4  IntQueue.o [1]
+  .bss                zero     0x2000c1e8     0x4  IntQueue.o [1]
+  .bss                zero     0x2000c1ec     0x4  IntQueue.o [1]
+  .bss                zero     0x2000c1f0     0x4  IntQueue.o [1]
+  .bss                zero     0x2000c1f4     0x4  IntQueue.o [1]
+  .bss                zero     0x2000c1f8     0x4  IntQueue.o [1]
+  .bss                zero     0x2000c1fc     0x4  IntQueue.o [1]
+  .bss                zero     0x2000c200     0x4  heap_2.o [1]
+  .bss                zero     0x2000c204     0x4  interpret.o [1]
+  .bss                zero     0x2000c208     0x4  interpret.o [1]
+  .bss                zero     0x2000c20c     0x4  interpret.o [1]
+  .bss                zero     0x2000c210     0x4  motor.o [1]
+  .bss                zero     0x2000c214     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c218     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c21c     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c220     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c224     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c228     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c22c     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c230     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c234     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c238     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c23c     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c240     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c244     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c248     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c24c     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c250     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c254     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c258     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c25c     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c260     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c264     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c268     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c26c     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c270     0x4  motor.tab.o [1]
+  .bss                zero     0x2000c274     0x4  tasks.o [1]
+  .bss                zero     0x2000c278     0x4  tasks.o [1]
+  .bss                zero     0x2000c27c     0x4  tasks.o [1]
+  .bss                zero     0x2000c280     0x4  tasks.o [1]
+  .bss                zero     0x2000c284     0x4  tasks.o [1]
+  .bss                zero     0x2000c288     0x4  tasks.o [1]
+  .bss                zero     0x2000c28c     0x4  tasks.o [1]
+  .bss                zero     0x2000c290     0x4  tasks.o [1]
+  .bss                zero     0x2000c294     0x4  tasks.o [1]
+  .bss                zero     0x2000c298     0x4  tasks.o [1]
+  .bss                zero     0x2000c29c     0x4  tasks.o [1]
+  .bss                zero     0x2000c2a0     0x4  tasks.o [1]
+  .bss                zero     0x2000c2a4     0x4  tasks.o [1]
+  .bss                zero     0x2000c2a8     0x4  tasks.o [1]
+  .bss                zero     0x2000c2ac     0x4  tasks.o [1]
+  .bss                zero     0x2000c2b0     0x4  tasks.o [1]
+  .bss                zero     0x2000c2b4     0x4  tasks.o [1]
+  .bss                zero     0x2000c2b8     0x4  timertest.o [1]
+  .bss                zero     0x2000c2bc     0x4  cppinit.o [3]
+  .bss                zero     0x2000c2c0     0x4  cppinit.o [3]
+  .bss                zero     0x2000c2c4     0x4  MtxWrapper.o [3]
+  .bss                zero     0x2000c2c8     0x4  MtxWrapper.o [3]
+  .bss                zero     0x2000c2cc     0x4  MtxWrapper.o [3]
+  .bss                zero     0x2000c2d0     0x4  MtxWrapper.o [3]
+  .bss                zero     0x2000c2d4     0x4  xgetmemchunk.o [3]
+  .bss                zero     0x2000c2d8     0x1  interpret.o [1]
+  .bss                zero     0x2000c2d9     0x1  interpret.o [1]
+  .bss                zero     0x2000c2da     0x1  interpret.o [1]
+  .bss                zero     0x2000c2db     0x1  motor.tab.o [1]
+  .bss                zero     0x2000c2dc     0x1  motor.tab.o [1]
+                             - 0x2000c2dd  0x77ad
 
 
 *******************************************************************************
@@ -237,111 +445,149 @@
           Address     Size
           -------     ----
 Zero (__iar_zero_init3)
-    1 destination range, total size 0x609c:
-          0x20004020  0x609c
+    1 destination range, total size 0x77ad:
+          0x20004b30  0x77ad
 
-Copy (__iar_copy_init3)
-    1 source range, total size 0x1c (100% of destination):
-          0x000034c0    0x1c
-    1 destination range, total size 0x1c:
-          0x20004000    0x1c
+Copy/packbits (__iar_packbits_init3)
+    1 source range, total size 0xa0 (40% of destination):
+          0x000076d1    0xa0
+    1 destination range, total size 0x188:
+          0x200049a4   0x188
+
+Extra (__iar_cstart_call_ctors)
 
 
 *******************************************************************************
 *** MODULE SUMMARY
 ***
 
-    Module            ro code  ro data  rw data
-    ------            -------  -------  -------
+    Module              ro code  ro data  rw data
+    ------              -------  -------  -------
 C:\dev\docs\scottdesign\motor\Debug\Obj: [1]
-    IntQueue.o            810        4      432
-    IntQueueTimer.o        56
-    accel.o               786
-    heap_2.o              324        6   24 024
-    list.o                104
-    main.o                580       24
-    motor.o               348                 4
-    port.o                192        4        4
-    portasm.o             140
-    queue.o               392
-    startup_ewarm.o         6      256   16 384
-    stepper.o           1 794      116
-    tasks.o             1 864       36      276
-    timertest.o           144                 4
-    -------------------------------------------
-    Total:              7 540      446   41 128
+    IntQueue.o              810        2      432
+    IntQueueTimer.o          56
+    accel.o                 786
+    heap_2.o                324        4   24 024
+    interpret.o           4 146      271    5 599
+    list.o                  164
+    main.o                  572       24
+    motor.o                 348                 4
+    motor.tab.o           4 566    4 254      102
+    parseTreeEntry.o        118
+    port.o                  192        1        4
+    portasm.o               140
+    queue.o                 370
+    startup_ewarm.o           6      256   16 384
+    stepper.o             1 814      116
+    symbolTableEntry.o      110
+    tasks.o               2 128       32      276
+    timertest.o             144                 4
+    ---------------------------------------------
+    Total:               16 794    4 960   46 829
 
 command line: [2]
-    -------------------------------------------
+    ---------------------------------------------
     Total:
 
-dl7M_tl_in.a: [3]
-    XShttio.o               8        8        8
-    errno.o                20                 8
-    exit.o                  6
-    expf.o                104
-    low_level_init.o        4
-    sprintf.o              48
-    xfdnorm.o             130
-    xfdscale.o            192
-    xfexp.o               352
-    xprintftiny.o         294
-    xsprout.o              10
-    -------------------------------------------
-    Total:              1 168        8       16
+dl7M_tl_if.a: [3]
+    MtxWrapper.o             72                16
+    XShttio.o                 8        3        8
+    abort.o                   8
+    cppinit.o               136                20
+    errno.o                  20                 8
+    exit.o                    6
+    expf.o                  104
+    fclose.o                168
+    fflush.o                172
+    fileno.o                  6
+    fputc.o                  80
+    isxxx.o                  20
+    low_level_init.o          4
+    realloc.o               390
+    setlocale.o              24       53      128
+    sprintf.o                48
+    targetabi.o              78
+    tolower.o                20
+    xassert.o                72
+    xcloseall.o              40
+    xfdnorm.o               130
+    xfdscale.o              192
+    xfexp.o                 352
+    xfiles.o                          91      384
+    xfwprep.o               162
+    xgetmemchunk.o           40                 4
+    xlocale_c.o              32
+    xprintftiny.o           294
+    xreportassert.o         132       48
+    xsprout.o                10
+    xstoul.o                276       80
+    xsyslock.o              136                20
+    xxmemxfree.o            136
+    xxmemxmalloc.o          188                 8
+    ---------------------------------------------
+    Total:                3 556      275      596
 
 driverlib.a: [4]
-    cpu.o                  20
-    gpio.o                218
-    interrupt.o           156       64
-    sysctl.o               38       12
-    timer.o               102
-    uart.o                 18
-    -------------------------------------------
-    Total:                552       76
+    cpu.o                    20
+    gpio.o                  218
+    interrupt.o             156       64
+    sysctl.o                 38       12
+    timer.o                 102
+    uart.o                   18
+    ---------------------------------------------
+    Total:                  552       76
 
 rt7M_tl.a: [5]
-    ABImemcpy.o           112
-    ABImemset.o           102
-    DblAdd.o              230
-    DblDiv.o              582
-    DblMul.o              418
-    DblSub.o              382
-    DblToFlt.o            144
-    FltAdd.o              140
-    FltCmpEq.o             28
-    FltCmpGe.o             36
-    FltCmpLe.o             36
-    FltDiv.o              252
-    FltMul.o              216
-    FltSub.o              228
-    FltToDbl.o             78
-    FltToS32.o             68
-    FltToU32.o             36
-    I32ToDbl.o             46
-    I32ToFlt.o             48
-    cexit.o                10
-    cmain.o                22
-    copy_init3.o           48
-    cstartup_M.o           12
-    data_init3.o           44
-    memcmp.o               98
-    strlen.o               54
-    strncpy.o             108
-    zero_init3.o           36
-    -------------------------------------------
-    Total:              3 614
+    ABImemcpy.o             112
+    ABImemmove.o            120
+    ABImemset.o             102
+    DblAdd.o                230
+    DblDiv.o                582
+    DblMul.o                418
+    DblSub.o                382
+    DblToFlt.o              144
+    FltAdd.o                140
+    FltCmpEq.o               28
+    FltCmpGe.o               36
+    FltCmpLe.o               36
+    FltDiv.o                252
+    FltMul.o                216
+    FltSub.o                228
+    FltToDbl.o               78
+    FltToS32.o               68
+    FltToU32.o               36
+    I32ToDbl.o               46
+    I32ToFlt.o               48
+    cexit.o                  18
+    cmain.o                  22
+    cmain_call_ctors.o       32
+    cstartup_M.o             12
+    data_init3.o             44
+    memchr.o                 88
+    memcmp.o                 98
+    packbits_init3.o        168
+    strlen.o                 54
+    strncpy.o               108
+    zero_init3.o             36
+    ---------------------------------------------
+    Total:                3 982
 
 shb_l.a: [6]
-    exit.o                 20
-    iarttio.o              40
-    -------------------------------------------
-    Total:                 60
+    close.o                  26
+    dwrite.o                 30
+    exit.o                   20
+    iarttio.o               104        4
+    iarwrite.o               34
+    iarwstd.o                32
+    remove.o                 22
+    write.o                  16
+    ---------------------------------------------
+    Total:                  284        4
 
-    Gaps                   28        4
-    Linker created                  36
------------------------------------------------
-    Grand Total:       12 962      570   41 144
+    Gaps                     36       10
+    Linker created                    48    2 456
+-------------------------------------------------
+    Grand Total:         25 204    5 373   49 881
 
 
 *******************************************************************************
@@ -350,308 +596,634 @@ shb_l.a: [6]
 
 Entry                      Address    Size  Type      Object
 -----                      -------    ----  ----      ------
-CPUcpsid                0x0000330d          Code  Gb  cpu.o [4]
-CPUcpsie                0x00003315          Code  Gb  cpu.o [4]
-CPUwfi                  0x0000331d          Code  Gb  cpu.o [4]
-FaultISR                0x0000349f     0x2  Code  Lc  startup_ewarm.o [1]
-GPIODirModeSet          0x000022f1    0x2c  Code  Gb  gpio.o [4]
-GPIOPadConfigSet        0x0000231d    0xa8  Code  Gb  gpio.o [4]
-GPIOPinWrite            0x000023c5     0x6  Code  Gb  gpio.o [4]
-IntDefaultHandler       0x000034a1     0x2  Code  Lc  startup_ewarm.o [1]
-IntEnable               0x000026f9    0x4c  Code  Gb  interrupt.o [4]
-IntMasterEnable         0x000026c5     0xa  Code  Gb  interrupt.o [4]
-IntPrioritySet          0x000026cf    0x24  Code  Gb  interrupt.o [4]
-LEDOff                  0x00001615     0xe  Code  Gb  main.o [1]
-LEDOn                   0x00001607     0xe  Code  Gb  main.o [1]
-NmiSR                   0x0000349d     0x2  Code  Lc  startup_ewarm.o [1]
-Region$$Table$$Base     0x000031b8           --   Gb  - Linker created -
-Region$$Table$$Limit    0x000031dc           --   Gb  - Linker created -
-SysCtlPeripheralEnable  0x00003071     0x6  Code  Gb  sysctl.o [4]
-Timer0IntHandler        0x000027cb    0x10  Code  Gb  timertest.o [1]
-TimerConfigure          0x00002bf1    0x24  Code  Gb  timer.o [4]
-TimerDisable            0x00002bdd     0xc  Code  Gb  timer.o [4]
-TimerEnable             0x00002bc9     0xc  Code  Gb  timer.o [4]
-TimerIntClear           0x00002c2b     0x4  Code  Gb  timer.o [4]
-TimerIntEnable          0x00002c25     0x6  Code  Gb  timer.o [4]
-TimerLoadSet            0x00002c15    0x10  Code  Gb  timer.o [4]
-UARTCharsAvail          0x00003335     0x8  Code  Gb  uart.o [4]
-UARTIntHandler          0x00001581    0x4a  Code  Gb  main.o [1]
-UARTSend                0x000015cb    0x20  Code  Gb  main.o [1]
-_PrintfTiny             0x00001f01   0x126  Code  Gb  xprintftiny.o [3]
-_SProut                 0x000033dd     0xa  Code  Gb  xsprout.o [3]
-__aeabi_cfcmpeq         0x00003215          Code  Gb  FltCmpEq.o [5]
-__aeabi_cfcmple         0x00003109          Code  Gb  FltCmpLe.o [5]
-__aeabi_cfrcmple        0x0000312d          Code  Gb  FltCmpGe.o [5]
-__aeabi_d2f             0x000027f1          Code  Gb  DblToFlt.o [5]
-__aeabi_dadd            0x00002125          Code  Gb  DblAdd.o [5]
-__aeabi_ddiv            0x00001339          Code  Gb  DblDiv.o [5]
-__aeabi_dmul            0x000017c5          Code  Gb  DblMul.o [5]
-__aeabi_dsub            0x00001969          Code  Gb  DblSub.o [5]
-__aeabi_errno_addr      0x000032e5    0x14  Code  Gb  errno.o [3]
-__aeabi_f2d             0x00002cfd          Code  Gb  FltToDbl.o [5]
-__aeabi_f2iz            0x00002d4d          Code  Gb  FltToS32.o [5]
-__aeabi_f2uiz           0x000030e5          Code  Gb  FltToU32.o [5]
-__aeabi_fadd            0x00002881          Code  Gb  FltAdd.o [5]
-__aeabi_fdiv            0x00002029          Code  Gb  FltDiv.o [5]
-__aeabi_fmul            0x000023cd          Code  Gb  FltMul.o [5]
-__aeabi_fsub            0x0000220d          Code  Gb  FltSub.o [5]
-__aeabi_i2d             0x00002f6d          Code  Gb  I32ToDbl.o [5]
-__aeabi_i2f             0x00002e7d          Code  Gb  I32ToFlt.o [5]
-__aeabi_memcpy          0x00002a1d          Code  Gb  ABImemcpy.o [5]
-__aeabi_memcpy4         0x00002a37          Code  Gb  ABImemcpy.o [5]
-__aeabi_memcpy8         0x00002a37          Code  Gb  ABImemcpy.o [5]
-__aeabi_memset          0x00002c31          Code  Gb  ABImemset.o [5]
-__aeabi_ui2d            0x00002f81          Code  Gb  I32ToDbl.o [5]
-__aeabi_ui2f            0x00002e91          Code  Gb  I32ToFlt.o [5]
-__cmain                 0x00003279          Code  Gb  cmain.o [5]
-__exit                  0x000032f9    0x14  Code  Gb  exit.o [6]
-__iar_Errno             0x2000a04c     0x4  Data  Gb  errno.o [3]
-__iar_FDnorm            0x00002999    0x82  Code  Gb  xfdnorm.o [3]
-__iar_FDscale           0x00002565    0xc0  Code  Gb  xfdscale.o [3]
-__iar_FExp              0x00001c5d   0x160  Code  Gb  xfexp.o [3]
-__iar_Memset            0x00002c31          Code  Gb  ABImemset.o [5]
-__iar_Memset_word       0x00002c39          Code  Gb  ABImemset.o [5]
+.iar.dynexit$$Base      0x20004800           --   Gb  - Linker created -
+.iar.dynexit$$Limit     0x200049a4           --   Gb  - Linker created -
+CPUcpsid                0x00007289          Code  Gb  cpu.o [4]
+CPUcpsie                0x00007291          Code  Gb  cpu.o [4]
+CPUwfi                  0x00007299          Code  Gb  cpu.o [4]
+DtorRecArray            0x20004800     0xc  Data  Lc  cppinit.o [3]
+FaultISR                0x00007659     0x2  Code  Lc  startup_ewarm.o [1]
+GPIODirModeSet          0x00005129    0x2c  Code  Gb  gpio.o [4]
+GPIOPadConfigSet        0x00005155    0xa8  Code  Gb  gpio.o [4]
+GPIOPinWrite            0x000051fd     0x6  Code  Gb  gpio.o [4]
+HEAP$$Base              0x20004000           --   Gb  - Linker created -
+HEAP$$Limit             0x20004800           --   Gb  - Linker created -
+IntDefaultHandler       0x0000765b     0x2  Code  Lc  startup_ewarm.o [1]
+IntEnable               0x000059f5    0x4c  Code  Gb  interrupt.o [4]
+IntMasterEnable         0x000059c1     0xa  Code  Gb  interrupt.o [4]
+IntPrioritySet          0x000059cb    0x24  Code  Gb  interrupt.o [4]
+LEDOff                  0x00003995     0xe  Code  Gb  main.o [1]
+LEDOn                   0x00003987     0xe  Code  Gb  main.o [1]
+NmiSR                   0x00007657     0x2  Code  Lc  startup_ewarm.o [1]
+Region$$Table$$Base     0x00006edc           --   Gb  - Linker created -
+Region$$Table$$Limit    0x00006f0c           --   Gb  - Linker created -
+SHT$$INIT_ARRAY$$Base   0x00007680           --   Gb  - Linker created -
+SHT$$INIT_ARRAY$$Limit  0x00007684           --   Gb  - Linker created -
+SHT$$PREINIT_ARRAY$$Base
+                        0x00007680           --   Gb  - Linker created -
+SHT$$PREINIT_ARRAY$$Limit
+                        0x00007680           --   Gb  - Linker created -
+SysCtlPeripheralEnable  0x00006d4d     0x6  Code  Gb  sysctl.o [4]
+Timer0IntHandler        0x00005ac7    0x10  Code  Gb  timertest.o [1]
+TimerConfigure          0x000062e9    0x24  Code  Gb  timer.o [4]
+TimerDisable            0x000062d5     0xc  Code  Gb  timer.o [4]
+TimerEnable             0x000062c1     0xc  Code  Gb  timer.o [4]
+TimerIntClear           0x00006323     0x4  Code  Gb  timer.o [4]
+TimerIntEnable          0x0000631d     0x6  Code  Gb  timer.o [4]
+TimerLoadSet            0x0000630d    0x10  Code  Gb  timer.o [4]
+UARTCharsAvail          0x00007329     0x8  Code  Gb  uart.o [4]
+UARTIntHandler          0x00003909    0x42  Code  Gb  main.o [1]
+UARTSend                0x0000394b    0x20  Code  Gb  main.o [1]
+_Close_all              0x00006cfd    0x28  Code  Gb  xcloseall.o [3]
+_Files                  0x20004ae4    0x20  Data  Gb  xfiles.o [3]
+_Fwprep                 0x0000587d    0xa2  Code  Gb  xfwprep.o [3]
+_IsdstStr               0x200049c8     0x4  Data  Gb  setlocale.o [3]
+_LocaleC_isspace        0x00007315    0x14  Code  Gb  xlocale_c.o [3]
+_LocaleC_tolower        0x00007519     0xc  Code  Gb  xlocale_c.o [3]
+_LocaleForCat           0x00007105    0x14  Code  Gb  setlocale.o [3]
+_LocaleReturnString     0x200049d4    0x50  Data  Lc  setlocale.o [3]
+_Locale_Profile         0x200049a4    0x1c  Data  Gb  setlocale.o [3]
+_PrintfTiny             0x00004b09   0x126  Code  Gb  xprintftiny.o [3]
+_SProut                 0x00007557     0xa  Code  Gb  xsprout.o [3]
+_TzoneStr               0x200049c0     0x4  Data  Gb  setlocale.o [3]
+__aeabi_assert          0x000065cf    0x46  Code  Gb  xassert.o [3]
+__aeabi_atexit          0x0000754d     0xa  Code  Gb  targetabi.o [3]
+__aeabi_cfcmpeq         0x00007099          Code  Gb  FltCmpEq.o [5]
+__aeabi_cfcmple         0x00006de5          Code  Gb  FltCmpLe.o [5]
+__aeabi_cfrcmple        0x00006e09          Code  Gb  FltCmpGe.o [5]
+__aeabi_d2f             0x00005aed          Code  Gb  DblToFlt.o [5]
+__aeabi_dadd            0x00004f5d          Code  Gb  DblAdd.o [5]
+__aeabi_ddiv            0x000036c1          Code  Gb  DblDiv.o [5]
+__aeabi_dmul            0x00003ebd          Code  Gb  DblMul.o [5]
+__aeabi_dsub            0x000041e9          Code  Gb  DblSub.o [5]
+__aeabi_errno_addr      0x00007261    0x14  Code  Gb  errno.o [3]
+__aeabi_f2d             0x000064ed          Code  Gb  FltToDbl.o [5]
+__aeabi_f2iz            0x00006615          Code  Gb  FltToS32.o [5]
+__aeabi_f2uiz           0x00006dc1          Code  Gb  FltToU32.o [5]
+__aeabi_fadd            0x00005b7d          Code  Gb  FltAdd.o [5]
+__aeabi_fdiv            0x00004e61          Code  Gb  FltDiv.o [5]
+__aeabi_fmul            0x00005205          Code  Gb  FltMul.o [5]
+__aeabi_fsub            0x00005045          Code  Gb  FltSub.o [5]
+__aeabi_i2d             0x000069d5          Code  Gb  I32ToDbl.o [5]
+__aeabi_i2f             0x000068e5          Code  Gb  I32ToFlt.o [5]
+__aeabi_memcpy          0x000060a5          Code  Gb  ABImemcpy.o [5]
+__aeabi_memcpy4         0x000060bf          Code  Gb  ABImemcpy.o [5]
+__aeabi_memcpy8         0x000060bf          Code  Gb  ABImemcpy.o [5]
+__aeabi_memmove         0x00005fb9          Code  Gb  ABImemmove.o [5]
+__aeabi_memmove4        0x00005fb9          Code  Gb  ABImemmove.o [5]
+__aeabi_memmove8        0x00005fb9          Code  Gb  ABImemmove.o [5]
+__aeabi_memset          0x00006329          Code  Gb  ABImemset.o [5]
+__aeabi_ui2d            0x000069e9          Code  Gb  I32ToDbl.o [5]
+__aeabi_ui2f            0x000068f9          Code  Gb  I32ToFlt.o [5]
+__aeabi_vec_ctor_nocookie_nodtor
+                        0x00006e2d    0x24  Code  Gb  targetabi.o [3]
+__aeabi_vec_dtor        0x00006fad    0x20  Code  Gb  targetabi.o [3]
+__call_ctors            0x00005c95    0x18  Code  Gb  cppinit.o [3]
+__call_dtors            0x00005cd9     0x2  Code  Gb  cppinit.o [3]
+__close                 0x000070eb    0x1a  Code  Gb  close.o [6]
+__cmain                 0x00007165          Code  Gb  cmain.o [5]
+__cstart_call_dtors     0x0000733f          Code  Gb  cexit.o [5]
+__cstart_closeall       0x00007343          Code  Gb  cexit.o [5]
+__cxa_atexit            0x00005cad    0x2c  Code  Gb  cppinit.o [3]
+__cxa_finalize          0x00005cdb    0x36  Code  Gb  cppinit.o [3]
+__data_Aldata           0x2000c1dc     0x8  Data  Gb  xxmemxmalloc.o [3]
+__data_GetMemChunk      0x00006cd5    0x28  Code  Gb  xgetmemchunk.o [3]
+__data_myrealloc        0x00004061    0xde  Code  Lc  realloc.o [3]
+__dso_handle            0x2000c2c0     0x4  Data  Gb  cppinit.o [3]
+__dwrite                0x00006fed    0x1e  Code  Gb  dwrite.o [6]
+__exit                  0x00007275    0x14  Code  Gb  exit.o [6]
+__iar_EmptyStepPoint    0x000065cd     0x2  Code  Gb  xassert.o [3]
+__iar_Errno             0x2000c1d8     0x4  Data  Gb  errno.o [3]
+__iar_FDnorm            0x00005f35    0x82  Code  Gb  xfdnorm.o [3]
+__iar_FDscale           0x00005461    0xc0  Code  Gb  xfdscale.o [3]
+__iar_FExp              0x000044dd   0x160  Code  Gb  xfexp.o [3]
+__iar_Locksyslock       0x00005dcb    0x46  Code  Gb  xsyslock.o [3]
+__iar_Memchr            0x000063f5          Code  Gb  memchr.o [5]
+__iar_Memset            0x00006329          Code  Gb  ABImemset.o [5]
+__iar_Memset_word       0x00006331          Code  Gb  ABImemset.o [5]
+__iar_Mtxdst            0x00006593     0xe  Code  Gb  MtxWrapper.o [3]
+__iar_Mtxinit           0x00006585     0xe  Code  Gb  MtxWrapper.o [3]
+__iar_Mtxlock           0x000065a1     0xe  Code  Gb  MtxWrapper.o [3]
+__iar_Mtxunlock         0x000065af     0xe  Code  Gb  MtxWrapper.o [3]
+__iar_ReportAssert      0x00005ecb    0x58  Code  Gb  xreportassert.o [3]
+__iar_Stderr            0x20004aa4    0x40  Data  Gb  xfiles.o [3]
+__iar_Stdin             0x20004a24    0x40  Data  Gb  xfiles.o [3]
+__iar_Stdout            0x20004a64    0x40  Data  Gb  xfiles.o [3]
+__iar_Stoul             0x00004d4d   0x114  Code  Gb  xstoul.o [3]
+__iar_Tls_setup__IsdstStr
+                        0x200049cc     0x4  Data  Gb  setlocale.o [3]
+__iar_Tls_setup__Locale_Profile
+                        0x200049d0     0x4  Data  Gb  setlocale.o [3]
+__iar_Tls_setup__TzoneStr
+                        0x200049c4     0x4  Data  Gb  setlocale.o [3]
 __iar_Tls_setup___iar_Errno
-                        0x2000a048     0x4  Data  Gb  errno.o [3]
-__iar_close_ttio        0x00003049    0x26  Code  Gb  iarttio.o [6]
-__iar_copy_init3        0x00002f3d    0x30  Code  Gb  copy_init3.o [5]
-__iar_dadd              0x00002137          Code  Gb  DblAdd.o [5]
-__iar_data_init3        0x00002fc9    0x2c  Code  Gb  data_init3.o [5]
-__iar_dsub              0x0000197b          Code  Gb  DblSub.o [5]
-__iar_dsubStart         0x0000198d          Code  Gb  DblSub.o [5]
-__iar_fadd              0x0000288f          Code  Gb  FltAdd.o [5]
-__iar_fsub              0x0000221b          Code  Gb  FltSub.o [5]
-__iar_fsubStart         0x00002229          Code  Gb  FltSub.o [5]
-__iar_lookup_ttioh      0x00003471     0x8  Code  Gb  XShttio.o [3]
-__iar_program_start     0x000033bd          Code  Gb  cstartup_M.o [5]
-__iar_ttio_handles      0x20004000     0x8  Data  Lc  XShttio.o [3]
-__iar_ui2d              0x00002f83          Code  Gb  I32ToDbl.o [5]
-__iar_ui2f              0x00002e93          Code  Gb  I32ToFlt.o [5]
-__iar_zero_init3        0x00003151    0x24  Code  Gb  zero_init3.o [5]
-__low_level_init        0x000034bb     0x4  Code  Gb  low_level_init.o [3]
+                        0x2000c1d4     0x4  Data  Gb  errno.o [3]
+__iar_Unlocksyslock     0x00005e11    0x14  Code  Gb  xsyslock.o [3]
+__iar_close_ttio        0x000061f1    0x26  Code  Gb  iarttio.o [6]
+__iar_cstart_call_ctors
+                        0x00006f8d    0x20  Code  Gb  cmain_call_ctors.o [5]
+__iar_dadd              0x00004f6f          Code  Gb  DblAdd.o [5]
+__iar_data_init3        0x00006b39    0x2c  Code  Gb  data_init3.o [5]
+__iar_dsub              0x000041fb          Code  Gb  DblSub.o [5]
+__iar_dsubStart         0x0000420d          Code  Gb  DblSub.o [5]
+__iar_fadd              0x00005b8b          Code  Gb  FltAdd.o [5]
+__iar_fsub              0x00005053          Code  Gb  FltSub.o [5]
+__iar_fsubStart         0x00005061          Code  Gb  FltSub.o [5]
+__iar_get_ttio          0x00006219    0x40  Code  Gb  iarttio.o [6]
+__iar_lookup_ttioh      0x00007611     0x8  Code  Gb  XShttio.o [3]
+__iar_packbits_init3    0x00005731    0xa8  Code  Gb  packbits_init3.o [5]
+__iar_program_start     0x0000750d          Code  Gb  cstartup_M.o [5]
+__iar_sh_stdout         0x00006fcd    0x20  Code  Gb  iarwstd.o [6]
+__iar_sh_write          0x00006eb9    0x22  Code  Gb  iarwrite.o [6]
+__iar_ttio_handles      0x20004b04     0x8  Data  Lc  XShttio.o [3]
+__iar_ui2d              0x000069eb          Code  Gb  I32ToDbl.o [5]
+__iar_ui2f              0x000068fb          Code  Gb  I32ToFlt.o [5]
+__iar_zero_init3        0x00006e51    0x24  Code  Gb  zero_init3.o [5]
+__low_level_init        0x000076bd     0x4  Code  Gb  low_level_init.o [3]
 __vector_table          0x00000000   0x100  Data  Gb  startup_ewarm.o [1]
-_call_main              0x00003285          Code  Gb  cmain.o [5]
-_exit                   0x000033c9          Code  Gb  cexit.o [5]
-_main                   0x0000328b          Code  Gb  cmain.o [5]
+__write                 0x00007405    0x10  Code  Gb  write.o [6]
+_call_main              0x00007171          Code  Gb  cmain.o [5]
+_exit                   0x0000733d          Code  Gb  cexit.o [5]
+_main                   0x00007177          Code  Gb  cmain.o [5]
+abort                   0x00007619     0x8  Code  Gb  abort.o [3]
 accel::RPM(float, float)
-                        0x000030bd    0x26  Code  Gb  motor.o [1]
+                        0x00006d99    0x26  Code  Gb  motor.o [1]
 accel::_RPMtoFreq(float)
-                        0x000031dd    0x1c  Code  Gb  motor.o [1]
+                        0x00007061    0x1c  Code  Gb  motor.o [1]
 accel::_initUnitCurve(int)
-                        0x000011c5    0x82  Code  Gb  accel.o [1]
+                        0x0000354d    0x82  Code  Gb  accel.o [1]
 accel::_scaleYAxisToClockTicks()
-                        0x000012c3    0x42  Code  Gb  accel.o [1]
+                        0x0000364b    0x42  Code  Gb  accel.o [1]
 accel::_scaleYAxisToFrequency()
-                        0x0000125d    0x66  Code  Gb  accel.o [1]
-accel::accel()          0x000010c1     0xc  Code  Gb  accel.o [1]
+                        0x000035e5    0x66  Code  Gb  accel.o [1]
+accel::accel()          0x00003449     0xc  Code  Gb  accel.o [1]
 accel::accel() [internal]
-                        0x000010cd    0x4a  Code  Gb  accel.o [1]
-accel::accelTime()      0x0000347f     0x6  Code  Gb  accel.o [1]
+                        0x00003455    0x4a  Code  Gb  accel.o [1]
+accel::accelTime()      0x00007627     0x6  Code  Gb  accel.o [1]
 accel::accelTime(unsigned int)
-                        0x00003479     0x6  Code  Gb  accel.o [1]
+                        0x00007621     0x6  Code  Gb  accel.o [1]
 accel::clockTicksToCurveIndex(unsigned int)
-                        0x00003231    0x18  Code  Gb  accel.o [1]
+                        0x0000711d    0x18  Code  Gb  accel.o [1]
 accel::clockTicksToCurveIndexReverse(unsigned int)
-                        0x00003261    0x18  Code  Gb  stepper.o [1]
+                        0x0000714d    0x18  Code  Gb  stepper.o [1]
 accel::clockTicksToMicroSec(unsigned int)
-                        0x00003249    0x18  Code  Gb  accel.o [1]
+                        0x00007135    0x18  Code  Gb  accel.o [1]
 accel::curveIndexToClockTicks(unsigned int)
-                        0x000033d3     0xa  Code  Gb  accel.o [1]
+                        0x00007525     0xa  Code  Gb  accel.o [1]
 accel::degreesPerMicrostep() const
-                        0x0000348b     0x6  Code  Gb  motor.o [1]
+                        0x00007645     0x6  Code  Gb  motor.o [1]
 accel::degreesPerMicrostep(float)
-                        0x00003485     0x6  Code  Gb  motor.o [1]
-accel::fmax()           0x000034a9     0x6  Code  Gb  stepper.o [1]
-accel::fmin()           0x000034a3     0x6  Code  Gb  stepper.o [1]
+                        0x0000763f     0x6  Code  Gb  motor.o [1]
+accel::fmax()           0x00007663     0x6  Code  Gb  stepper.o [1]
+accel::fmin()           0x0000765d     0x6  Code  Gb  stepper.o [1]
 accel::freqCloseToStop(unsigned int)
-                        0x00003347    0x12  Code  Gb  stepper.o [1]
+                        0x00007361    0x12  Code  Gb  stepper.o [1]
 accel::freqFromClockTicks(unsigned int)
-                        0x00002ff5    0x2a  Code  Gb  stepper.o [1]
+                        0x00006bb9    0x2a  Code  Gb  stepper.o [1]
 accel::freqFromTime(unsigned int)
-                        0x000032bb    0x16  Code  Gb  stepper.o [1]
+                        0x000071bd    0x16  Code  Gb  stepper.o [1]
 accel::frequency(unsigned int, unsigned int)
-                        0x00001305    0x34  Code  Gb  accel.o [1]
+                        0x0000368d    0x34  Code  Gb  accel.o [1]
 accel::initAccelTime(unsigned int)
-                        0x00003175    0x22  Code  Gb  accel.o [1]
+                        0x00006e75    0x22  Code  Gb  accel.o [1]
 accel::microSecToCurveIndex(unsigned int)
-                        0x00003097    0x26  Code  Gb  accel.o [1]
+                        0x00006d73    0x26  Code  Gb  accel.o [1]
 accel::microSecToCurveIndexReverse(unsigned int)
-                        0x0000301f    0x2a  Code  Gb  stepper.o [1]
+                        0x00006be3    0x2a  Code  Gb  stepper.o [1]
 accel::stepsToTime(unsigned int)
-                        0x00001163    0x62  Code  Gb  accel.o [1]
+                        0x000034eb    0x62  Code  Gb  accel.o [1]
 accel::timeToSteps(unsigned int)
-                        0x00001117    0x4c  Code  Gb  accel.o [1]
+                        0x0000349f    0x4c  Code  Gb  accel.o [1]
 accel::updateClockPeriod()
-                        0x00002edd    0x30  Code  Gb  stepper.o [1]
+                        0x00006975    0x30  Code  Gb  stepper.o [1]
 accel::updateClockPeriodReverse()
-                        0x00002f0d    0x30  Code  Gb  stepper.o [1]
-delay                   0x000015eb    0x1c  Code  Gb  main.o [1]
-exit                    0x000034b5     0x6  Code  Gb  exit.o [3]
-exp(float)              0x000033a5     0xc  Code  Gb  accel.o [1]
-expf                    0x00002b61    0x68  Code  Gb  expf.o [3]
-flashLED                0x00001623    0x14  Code  Gb  main.o [1]
-g_pulRCGCRegs           0x00003398     0xc  Data  Lc  sysctl.o [4]
-g_pulRegs               0x00002d90    0x40  Data  Lc  interrupt.o [4]
-heapSTRUCT_SIZE         0x000034be     0x2  Data  Lc  heap_2.o [1]
-main                    0x00001637    0xe0  Code  Gb  main.o [1]
-mainA                   0x00002639    0x74  Code  Gb  motor.o [1]
-memcmp                  0x00002c99          Code  Gb  memcmp.o [5]
-memcpy                  0x000032a5    0x16  Code  Gb  queue.o [1]
-memset                  0x0000328f    0x16  Code  Gb  IntQueue.o [1]
-pcTraceBuffer           0x2000a0ac     0x4  Data  Lc  tasks.o [1]
-pcTraceBufferEnd        0x2000a0b0     0x4  Data  Lc  tasks.o [1]
-prvAllocateTCBAndStack  0x00000749    0x46  Code  Lc  tasks.o [1]
+                        0x000069a5    0x30  Code  Gb  stepper.o [1]
+accel::~accel()         0x00007431     0xe  Code  Gb  interpret.o [1]
+accel::~accel() [internal]
+                        0x000076c7     0x2  Code  Gb  interpret.o [1]
+atoi                    0x000073f5    0x10  Code  Gb  motor.tab.o [1]
+bufferInput             0x00001373   0x154  Code  Gb  interpret.o [1]
+clearlocks              0x00005da5    0x26  Code  Lc  xsyslock.o [3]
+delay                   0x0000396b    0x1c  Code  Gb  main.o [1]
+digits                  0x00006474    0x28  Data  Lc  xstoul.o [3]
+ebuf                    0x2000c0ac    0x50  Data  Lc  xfiles.o [3]
+errMsg()                0x00001327    0x36  Code  Gb  interpret.o [1]
+exit                    0x00007675     0x6  Code  Gb  exit.o [3]
+exp(float)              0x000074d1     0xc  Code  Gb  accel.o [1]
+expf                    0x00006259    0x68  Code  Gb  expf.o [3]
+fclose                  0x00005689    0xa8  Code  Gb  fclose.o [3]
+fflush                  0x0000564d    0x38  Code  Gb  fflush.o [3]
+fflushOne               0x000055dd    0x70  Code  Lc  fflush.o [3]
+fileno                  0x0000766f     0x6  Code  Gb  fileno.o [3]
+flashLED                0x000039a3    0x14  Code  Gb  main.o [1]
+fputc                   0x0000649d    0x50  Code  Gb  fputc.o [3]
+free                    0x00005d1d    0x84  Code  Gb  xxmemxfree.o [3]
+g_pulRCGCRegs           0x000074c4     0xc  Data  Lc  sysctl.o [4]
+g_pulRegs               0x00006658    0x40  Data  Lc  interrupt.o [4]
+heapSTRUCT_SIZE         0x000076c0     0x2  Data  Lc  heap_2.o [1]
+interpret::_currentProgramNodeLevel() const
+                        0x000072c5    0x14  Code  Gb  interpret.o [1]
+interpret::_currentProgramNodeType() const
+                        0x0000729d    0x14  Code  Gb  interpret.o [1]
+interpret::_currentProgramNodeValue() const
+                        0x000072b1    0x14  Code  Gb  interpret.o [1]
+interpret::_evalValue()
+                        0x00006699    0x3c  Code  Gb  interpret.o [1]
+interpret::_evalValue()::string
+                        0x00006f0c    0x20  Data  Gb  interpret.o [1]
+interpret::_evalValue()::string (instance 2)
+                        0x00006a30    0x2c  Data  Gb  interpret.o [1]
+interpret::_findFirstParseTreeEntry(const parseTreeEntry &, unsigned int)
+                        0x00001a89    0x6e  Code  Gb  interpret.o [1]
+interpret::_programNodeType(unsigned int) const
+                        0x0000734f    0x12  Code  Gb  interpret.o [1]
+interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int)
+                        0x00001ef9    0x58  Code  Gb  interpret.o [1]
+interpret::_resetSymbolTableTemporaryBoundary()
+                        0x00007543     0xa  Code  Gb  interpret.o [1]
+interpret::appendToProgram(const parseTreeEntry &)
+                        0x0000152d    0x2c  Code  Gb  interpret.o [1]
+interpret::appendToSymbolTable(const symbolTableEntry &)
+                        0x00001559    0x2e  Code  Gb  interpret.o [1]
+interpret::evaluate(unsigned int)
+                        0x00001bb9   0x336  Code  Gb  interpret.o [1]
+interpret::interpret()  0x000012c9     0xc  Code  Gb  interpret.o [1]
+interpret::interpret() [internal]
+                        0x000014c7    0x66  Code  Gb  interpret.o [1]
+interpret::run()        0x00001587   0x502  Code  Gb  interpret.o [1]
+interpret::symbolFromIndex(int)
+                        0x000070b5    0x1c  Code  Gb  interpret.o [1]
+interpret::symbolTableIndexMorph(int)
+                        0x00001af7    0x72  Code  Gb  interpret.o [1]
+interpret::~interpret()
+                        0x00007493     0xe  Code  Gb  interpret.o [1]
+interpret::~interpret() [internal]
+                        0x0000653d    0x48  Code  Gb  interpret.o [1]
+interpreter             0x2000a8f0  0x14c0  Data  Gb  interpret.o [1]
+isatty                  0x000012bf     0x6  Code  Gb  motor.tab.o [1]
+isspace                 0x000072ed    0x14  Code  Gb  isxxx.o [3]
+led::Off()              0x0000724d    0x14  Code  Gb  interpret.o [1]
+led::On()               0x00007239    0x14  Code  Gb  interpret.o [1]
+led::led(bool)          0x00007477     0xe  Code  Gb  interpret.o [1]
+led::led(bool) [internal]
+                        0x000076cf     0x2  Code  Gb  interpret.o [1]
+led::set(unsigned int)  0x000070d1    0x1a  Code  Gb  interpret.o [1]
+led::~led()             0x00007485     0xe  Code  Gb  interpret.o [1]
+led::~led() [internal]  0x000073c5    0x10  Code  Gb  interpret.o [1]
+main                    0x000039b7    0xe0  Code  Gb  main.o [1]
+mainA                   0x00005935    0x74  Code  Gb  motor.o [1]
+malloc                  0x00005521    0xb6  Code  Gb  xxmemxmalloc.o [3]
+memchr                  0x000063f5          Code  Gb  memchr.o [5]
+memcmp                  0x00006391          Code  Gb  memcmp.o [5]
+memcpy                  0x000071a7    0x16  Code  Gb  interpret.o [1]
+memset                  0x0000717b    0x16  Code  Gb  IntQueue.o [1]
+motorFatalError         0x000012bd     0x2  Code  Gb  motor.tab.o [1]
+mtx                     0x2000c1b4    0x10  Data  Lc  xsyslock.o [3]
+mtxdst                  0x2000c2c8     0x4  Data  Lc  MtxWrapper.o [3]
+mtxinit                 0x2000c2c4     0x4  Data  Lc  MtxWrapper.o [3]
+mtxlock                 0x2000c2cc     0x4  Data  Lc  MtxWrapper.o [3]
+mtxunlock               0x2000c2d0     0x4  Data  Lc  MtxWrapper.o [3]
+ndigs                   0x0000644c    0x28  Data  Lc  xstoul.o [3]
+net                     0x2000c2db     0x1  Data  Gb  motor.tab.o [1]
+next_abi_dtor_rec       0x2000c2bc     0x4  Data  Lc  cppinit.o [3]
+obuf                    0x2000c0fc    0x50  Data  Lc  xfiles.o [3]
+out                     0x00005eb1    0x1a  Code  Lc  xreportassert.o [3]
+parseTreeEntry::level() const
+                        0x00007685     0x4  Code  Gb  interpret.o [1]
+parseTreeEntry::level(unsigned int)
+                        0x00007689     0x4  Code  Gb  interpret.o [1]
+parseTreeEntry::operator =(const parseTreeEntry&)
+                        0x00006059    0x4a  Code  Gb  parseTreeEntry.o [1]
+parseTreeEntry::parseTreeEntry()
+                        0x00006031     0xc  Code  Gb  parseTreeEntry.o [1]
+parseTreeEntry::parseTreeEntry() [internal]
+                        0x0000604b     0x6  Code  Gb  parseTreeEntry.o [1]
+parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int)
+                        0x0000603d     0xe  Code  Gb  parseTreeEntry.o [1]
+parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int) [internal]
+                        0x00006051     0x8  Code  Gb  parseTreeEntry.o [1]
+parseTreeEntry::position() const
+                        0x000076b9     0x4  Code  Gb  parseTreeEntry.o [1]
+parseTreeEntry::position(nodePosition)
+                        0x0000769d     0x4  Code  Gb  interpret.o [1]
+parseTreeEntry::type() const
+                        0x00007695     0x4  Code  Gb  interpret.o [1]
+parseTreeEntry::type(nodeType)
+                        0x00007699     0x4  Code  Gb  interpret.o [1]
+parseTreeEntry::value() const
+                        0x0000768d     0x4  Code  Gb  interpret.o [1]
+parseTreeEntry::value(int)
+                        0x00007691     0x4  Code  Gb  interpret.o [1]
+parseTreeEntry::~parseTreeEntry()
+                        0x00007415     0xe  Code  Gb  interpret.o [1]
+parseTreeEntry::~parseTreeEntry() [internal]
+                        0x000076c3     0x2  Code  Gb  interpret.o [1]
+pcTraceBuffer           0x2000c2ac     0x4  Data  Lc  tasks.o [1]
+pcTraceBufferEnd        0x2000c2b0     0x4  Data  Lc  tasks.o [1]
+postMsg(bool)           0x0000135d    0x16  Code  Gb  interpret.o [1]
+prvAddCurrentTaskToDelayedList
+                        0x00002671    0x3e  Code  Lc  tasks.o [1]
+prvAllocateTCBAndStack  0x000026bd    0x46  Code  Lc  tasks.o [1]
 prvCheckTasksWaitingTermination
-                        0x000006d5    0x58  Code  Lc  tasks.o [1]
-prvCopyDataFromQueue    0x00001c1b    0x2c  Code  Lc  queue.o [1]
-prvCopyDataToQueue      0x00001ba9    0x72  Code  Lc  queue.o [1]
-prvDeleteTCB            0x00000795    0x12  Code  Lc  tasks.o [1]
-prvIdleTask             0x00000635     0xa  Code  Lc  tasks.o [1]
+                        0x00002609    0x58  Code  Lc  tasks.o [1]
+prvCopyDataFromQueue    0x0000449b    0x2c  Code  Lc  queue.o [1]
+prvCopyDataToQueue      0x00004429    0x72  Code  Lc  queue.o [1]
+prvDeleteTCB            0x00002709    0x12  Code  Lc  tasks.o [1]
+prvIdleTask             0x0000256b     0xa  Code  Lc  tasks.o [1]
 prvInitialiseTCBVariables
-                        0x0000063f    0x48  Code  Lc  tasks.o [1]
-prvInitialiseTaskLists  0x00000687    0x46  Code  Lc  tasks.o [1]
-prvQueueAccessLogError  0x00000df3    0x10  Code  Lc  IntQueue.o [1]
+                        0x00002575    0x48  Code  Lc  tasks.o [1]
+prvInitialiseTaskLists  0x000025bd    0x46  Code  Lc  tasks.o [1]
+prvQueueAccessLogError  0x0000317b    0x10  Code  Lc  IntQueue.o [1]
 prvRecordValue_NormallyEmpty
-                        0x00000dcf    0x24  Code  Lc  IntQueue.o [1]
+                        0x00003157    0x24  Code  Lc  IntQueue.o [1]
 prvRecordValue_NormallyFull
-                        0x00000dad    0x22  Code  Lc  IntQueue.o [1]
-prvSetupTimerInterrupt  0x0000253d    0x10  Code  Lc  port.o [1]
+                        0x00003135    0x22  Code  Lc  IntQueue.o [1]
+prvSetupTimerInterrupt  0x00005439    0x10  Code  Lc  port.o [1]
 pulStack                0x20000000  0x4000  Data  Lc  startup_ewarm.o [1]
-pvPortMalloc            0x00001dbd    0xe6  Code  Gb  heap_2.o [1]
-pxCurrentTCB            0x2000a074     0x4  Data  Gb  tasks.o [1]
-pxDelayedTaskList       0x2000a078     0x4  Data  Lc  tasks.o [1]
+pvPortMalloc            0x0000463d    0xe6  Code  Gb  heap_2.o [1]
+pxCurrentTCB            0x2000c274     0x4  Data  Gb  tasks.o [1]
+pxDelayedTaskList       0x2000c278     0x4  Data  Lc  tasks.o [1]
 pxOverflowDelayedTaskList
-                        0x2000a07c     0x4  Data  Lc  tasks.o [1]
-pxPortInitialiseStack   0x000024a5    0x1a  Code  Gb  port.o [1]
-pxReadyTasksLists       0x20009f70    0x64  Data  Lc  tasks.o [1]
-sp                      0x2000a070     0x4  Data  Gb  motor.o [1]
-sprintf                 0x00002ead    0x30  Code  Gb  sprintf.o [3]
+                        0x2000c27c     0x4  Data  Lc  tasks.o [1]
+pxPortInitialiseStack   0x000053a1    0x1a  Code  Gb  port.o [1]
+pxReadyTasksLists       0x2000c048    0x64  Data  Lc  tasks.o [1]
+realloc                 0x00004145    0xa2  Code  Gb  realloc.o [3]
+remove                  0x000071d3    0x16  Code  Gb  remove.o [6]
+sp                      0x2000c210     0x4  Data  Gb  motor.o [1]
+sprintf                 0x00006915    0x30  Code  Gb  sprintf.o [3]
+statementNestingLevel   0x2000c214     0x4  Data  Gb  motor.tab.o [1]
+statementPosition       0x2000c218     0x4  Data  Gb  motor.tab.o [1]
+statementType           0x2000c21c     0x4  Data  Gb  motor.tab.o [1]
+statementValue          0x2000c220     0x4  Data  Gb  motor.tab.o [1]
 stepper::RPM(float, float)
-                        0x00003321    0x14  Code  Gb  motor.o [1]
-stepper::_timer()       0x000034af     0x6  Code  Gb  stepper.o [1]
+                        0x000072d9    0x14  Code  Gb  motor.o [1]
+stepper::_timer()       0x00007669     0x6  Code  Gb  stepper.o [1]
 stepper::_timer(unsigned long)
-                        0x000031f9    0x1c  Code  Gb  stepper.o [1]
+                        0x0000707d    0x1c  Code  Gb  stepper.o [1]
 stepper::_timerStart(bool)
-                        0x00000d1f    0x4e  Code  Gb  stepper.o [1]
+                        0x00002ca7    0x4e  Code  Gb  stepper.o [1]
 stepper::accelerationTimeMicrosecs(unsigned int)
-                        0x0000336b    0x10  Code  Gb  motor.o [1]
+                        0x000073d5    0x10  Code  Gb  motor.o [1]
 stepper::degreesPerMicrostep() const
-                        0x000033b1     0xc  Code  Gb  motor.o [1]
+                        0x00007501     0xc  Code  Gb  motor.o [1]
 stepper::degreesPerMicrostep(float)
-                        0x0000337b    0x10  Code  Gb  motor.o [1]
+                        0x000073e5    0x10  Code  Gb  motor.o [1]
 stepper::directionPositive(bool)
-                        0x00002f9b    0x2e  Code  Gb  stepper.o [1]
-stepper::enable()       0x00003359    0x12  Code  Gb  stepper.o [1]
-stepper::isr()          0x00000a19   0x306  Code  Gb  stepper.o [1]
+                        0x00006a03    0x2e  Code  Gb  stepper.o [1]
+stepper::enable()       0x00007373    0x12  Code  Gb  stepper.o [1]
+stepper::isr()          0x000029a1   0x306  Code  Gb  stepper.o [1]
 stepper::moveAbsolute(int)
-                        0x0000087b   0x19e  Code  Gb  stepper.o [1]
+                        0x000027ef   0x19e  Code  Gb  stepper.o [1]
 stepper::moveAbsoluteDegree(float)
-                        0x00003197    0x22  Code  Gb  motor.o [1]
+                        0x00006e97    0x22  Code  Gb  motor.o [1]
+stepper::moveRelative(int)
+                        0x0000298d    0x14  Code  Gb  stepper.o [1]
 stepper::positionSteps(int)
-                        0x00003491     0x6  Code  Gb  motor.o [1]
-stepper::state() const  0x00003497     0x6  Code  Gb  motor.o [1]
-stepper::step()         0x00002dd1    0x3c  Code  Gb  stepper.o [1]
-stepper::stepper()      0x00000849     0xc  Code  Gb  stepper.o [1]
+                        0x0000764b     0x6  Code  Gb  motor.o [1]
+stepper::state() const  0x00007651     0x6  Code  Gb  motor.o [1]
+stepper::step()         0x000066d5    0x3c  Code  Gb  stepper.o [1]
+stepper::stepper()      0x000027bd     0xc  Code  Gb  stepper.o [1]
 stepper::stepper() [internal]
-                        0x00000855    0x26  Code  Gb  stepper.o [1]
-stepperISR              0x00002625    0x14  Code  Gb  motor.o [1]
-strlen                  0x00002e45          Code  Gb  strlen.o [5]
-strncpy                 0x00002a8d          Code  Gb  strncpy.o [5]
+                        0x000027c9    0x26  Code  Gb  stepper.o [1]
+stepper::~stepper()     0x0000743f     0xe  Code  Gb  interpret.o [1]
+stepper::~stepper() [internal]
+                        0x000073a5    0x10  Code  Gb  interpret.o [1]
+stepperISR              0x00005921    0x14  Code  Gb  motor.o [1]
+strlen                  0x00006781          Code  Gb  strlen.o [5]
+strncpy                 0x00006185          Code  Gb  strncpy.o [5]
+successMsg()            0x000012f1    0x36  Code  Gb  interpret.o [1]
+symbolFcnLink           0x2000c22c     0x4  Data  Gb  motor.tab.o [1]
+symbolTableEntry::dumpEntry()
+                        0x00006181     0x2  Code  Gb  symbolTableEntry.o [1]
+symbolTableEntry::fcnLink() const
+                        0x000076b1     0x4  Code  Gb  interpret.o [1]
+symbolTableEntry::fcnLink(int)
+                        0x000076b5     0x4  Code  Gb  interpret.o [1]
+symbolTableEntry::operator =(const symbolTableEntry&)
+                        0x00006147    0x3a  Code  Gb  symbolTableEntry.o [1]
+symbolTableEntry::symbolTableEntry()
+                        0x00006115     0xc  Code  Gb  symbolTableEntry.o [1]
+symbolTableEntry::symbolTableEntry() [internal]
+                        0x0000612f     0xe  Code  Gb  symbolTableEntry.o [1]
+symbolTableEntry::symbolTableEntry(nodeType, int)
+                        0x00006121     0xe  Code  Gb  symbolTableEntry.o [1]
+symbolTableEntry::symbolTableEntry(nodeType, int) [internal]
+                        0x0000613d     0xa  Code  Gb  symbolTableEntry.o [1]
+symbolTableEntry::type() const
+                        0x000076a9     0x4  Code  Gb  interpret.o [1]
+symbolTableEntry::type(nodeType)
+                        0x000076ad     0x4  Code  Gb  interpret.o [1]
+symbolTableEntry::value() const
+                        0x000076a1     0x4  Code  Gb  interpret.o [1]
+symbolTableEntry::value(int)
+                        0x000076a5     0x4  Code  Gb  interpret.o [1]
+symbolTableEntry::~symbolTableEntry()
+                        0x00007423     0xe  Code  Gb  interpret.o [1]
+symbolTableEntry::~symbolTableEntry() [internal]
+                        0x000076c5     0x2  Code  Gb  interpret.o [1]
+symbolType              0x2000c224     0x4  Data  Gb  motor.tab.o [1]
+symbolValue             0x2000c228     0x4  Data  Gb  motor.tab.o [1]
+syslock_o               0x2000c1b0     0x4  Data  Lc  xsyslock.o [3]
+tinyQueue<int>::empty() const
+                        0x00007191    0x16  Code  Gb  interpret.o [1]
+tinyQueue<int>::front() const
+                        0x00007539     0xa  Code  Gb  interpret.o [1]
+tinyQueue<int>::peekAtIndex(unsigned int) const
+                        0x00007639     0x6  Code  Gb  interpret.o [1]
+tinyQueue<int>::pop_front()
+                        0x00006d25    0x28  Code  Gb  interpret.o [1]
+tinyQueue<int>::push_front(int)
+                        0x00006821    0x34  Code  Gb  interpret.o [1]
+tinyQueue<int>::size() const
+                        0x000073b5    0x10  Code  Gb  interpret.o [1]
+tinyQueue<int>::spaceAvail() const
+                        0x00006b65    0x2a  Code  Gb  interpret.o [1]
+tinyQueue<int>::stackFrameIndex() const
+                        0x0000762d     0x6  Code  Gb  interpret.o [1]
+tinyQueue<int>::stackFrameIndex(unsigned int)
+                        0x00007633     0x6  Code  Gb  interpret.o [1]
+tinyQueue<int>::tinyQueue()
+                        0x000074dd     0xc  Code  Gb  interpret.o [1]
+tinyQueue<int>::tinyQueue() [internal]
+                        0x0000744d     0xe  Code  Gb  interpret.o [1]
+tinyQueue<int>::~tinyQueue()
+                        0x0000745b     0xe  Code  Gb  interpret.o [1]
+tinyQueue<int>::~tinyQueue() [internal]
+                        0x000076c9     0x2  Code  Gb  interpret.o [1]
+tinyQueue<unsigned char>::clear()
+                        0x000074f5     0xc  Code  Gb  interpret.o [1]
+tinyQueue<unsigned char>::getBuffer()
+                        0x000076cd     0x2  Code  Gb  interpret.o [1]
+tinyQueue<unsigned char>::push(unsigned char)
+                        0x00006945    0x30  Code  Gb  interpret.o [1]
+tinyQueue<unsigned char>::spaceAvail() const
+                        0x00006b8f    0x2a  Code  Gb  interpret.o [1]
+tinyQueue<unsigned char>::tinyQueue(int)
+                        0x000074e9     0xc  Code  Gb  interpret.o [1]
+tinyQueue<unsigned char>::tinyQueue(int) [internal]
+                        0x0000752f     0xa  Code  Gb  interpret.o [1]
+tinyQueue<unsigned char>::~tinyQueue()
+                        0x00007469     0xe  Code  Gb  interpret.o [1]
+tinyQueue<unsigned char>::~tinyQueue() [internal]
+                        0x000076cb     0x2  Code  Gb  interpret.o [1]
+tolower                 0x00007301    0x14  Code  Gb  tolower.o [3]
 ucNormallyEmptyReceivedValues
-                        0x20009de0    0xc8  Data  Lc  IntQueue.o [1]
+                        0x2000beb8    0xc8  Data  Lc  IntQueue.o [1]
 ucNormallyFullReceivedValues
-                        0x20009ea8    0xc8  Data  Lc  IntQueue.o [1]
-ulTimerCount            0x2000a0b8     0x4  Data  Lc  timertest.o [1]
-uxCriticalNesting       0x20004010     0x4  Data  Lc  port.o [1]
-uxCurrentNumberOfTasks  0x2000a084     0x4  Data  Lc  tasks.o [1]
-uxMissedTicks           0x2000a09c     0x4  Data  Lc  tasks.o [1]
-uxPreviousTask          0x20004018     0x4  Data  Lc  tasks.o [1]
-uxSchedulerSuspended    0x2000a098     0x4  Data  Lc  tasks.o [1]
-uxTaskNumber            0x2000a0a8     0x4  Data  Lc  tasks.o [1]
-uxTasksDeleted          0x2000a080     0x4  Data  Lc  tasks.o [1]
-uxTopReadyPriority      0x2000a090     0x4  Data  Lc  tasks.o [1]
-uxTopUsedPriority       0x2000a08c     0x4  Data  Lc  tasks.o [1]
+                        0x2000bf80    0xc8  Data  Lc  IntQueue.o [1]
+ulTimerCount            0x2000c2b8     0x4  Data  Lc  timertest.o [1]
+uxCriticalNesting       0x20004b20     0x4  Data  Lc  port.o [1]
+uxCurrentNumberOfTasks  0x2000c284     0x4  Data  Lc  tasks.o [1]
+uxMissedTicks           0x2000c29c     0x4  Data  Lc  tasks.o [1]
+uxPreviousTask          0x20004b28     0x4  Data  Lc  tasks.o [1]
+uxSchedulerSuspended    0x2000c298     0x4  Data  Lc  tasks.o [1]
+uxTaskNumber            0x2000c2a8     0x4  Data  Lc  tasks.o [1]
+uxTasksDeleted          0x2000c280     0x4  Data  Lc  tasks.o [1]
+uxTopReadyPriority      0x2000c290     0x4  Data  Lc  tasks.o [1]
+uxTopUsedPriority       0x2000c28c     0x4  Data  Lc  tasks.o [1]
 uxValueForNormallyEmptyQueue
-                        0x2000a05c     0x4  Data  Gb  IntQueue.o [1]
+                        0x2000c1f0     0x4  Data  Gb  IntQueue.o [1]
 uxValueForNormallyFullQueue
-                        0x2000a060     0x4  Data  Gb  IntQueue.o [1]
+                        0x2000c1f4     0x4  Data  Gb  IntQueue.o [1]
 vApplicationStackOverflowHook
-                        0x000017c3     0x2  Code  Gb  main.o [1]
-vApplicationTickHook    0x000017c1     0x2  Code  Gb  main.o [1]
-vLEDOnTask              0x00001739    0x12  Code  Lc  main.o [1]
-vListInitialise         0x00002af9    0x1e  Code  Gb  list.o [1]
-vListInitialiseItem     0x00002b17     0x6  Code  Gb  list.o [1]
-vListInsertEnd          0x00002b1d    0x1e  Code  Gb  list.o [1]
-vListRemove             0x00002b3b    0x26  Code  Gb  list.o [1]
+                        0x00003b43     0x2  Code  Gb  main.o [1]
+vApplicationTickHook    0x00003b41     0x2  Code  Gb  main.o [1]
+vLEDOnTask              0x00003ab9    0x12  Code  Lc  main.o [1]
+vListInitialise         0x000057d9    0x1e  Code  Gb  list.o [1]
+vListInitialiseItem     0x000057f7     0x6  Code  Gb  list.o [1]
+vListInsert             0x0000581b    0x3c  Code  Gb  list.o [1]
+vListInsertEnd          0x000057fd    0x1e  Code  Gb  list.o [1]
+vListRemove             0x00005857    0x26  Code  Gb  list.o [1]
 vPortClearInterruptMask
-                        0x00002957          Code  Gb  portasm.o [1]
-vPortEnterCritical      0x000024f5    0x12  Code  Gb  port.o [1]
-vPortExitCritical       0x00002507    0x1a  Code  Gb  port.o [1]
-vPortFree               0x00001ea3    0x44  Code  Gb  heap_2.o [1]
-vPortSVCHandler         0x00002965          Code  Gb  portasm.o [1]
-vPortSetInterruptMask   0x00002949          Code  Gb  portasm.o [1]
-vPortStartFirstTask     0x00002981          Code  Gb  portasm.o [1]
-vPortYieldFromISR       0x000024eb     0xa  Code  Gb  port.o [1]
-vSetMSP                 0x0000290d          Code  Gb  portasm.o [1]
+                        0x00005c53          Code  Gb  portasm.o [1]
+vPortEnterCritical      0x000053f1    0x12  Code  Gb  port.o [1]
+vPortExitCritical       0x00005403    0x1a  Code  Gb  port.o [1]
+vPortFree               0x00004723    0x44  Code  Gb  heap_2.o [1]
+vPortSVCHandler         0x00005c61          Code  Gb  portasm.o [1]
+vPortSetInterruptMask   0x00005c45          Code  Gb  portasm.o [1]
+vPortStartFirstTask     0x00005c7d          Code  Gb  portasm.o [1]
+vPortYieldFromISR       0x000053e7     0xa  Code  Gb  port.o [1]
+vSetMSP                 0x00005c09          Code  Gb  portasm.o [1]
 vSetupHighFrequencyTimer
-                        0x00002761    0x6a  Code  Gb  timertest.o [1]
-vStartLEDOnTasks        0x00001717    0x22  Code  Gb  main.o [1]
-vStartUARTTasks         0x0000174b    0x22  Code  Gb  main.o [1]
-vT2InterruptHandler     0x00002e0d    0x18  Code  Gb  IntQueueTimer.o [1]
-vT3InterruptHandler     0x00002e25    0x18  Code  Gb  IntQueueTimer.o [1]
-vTaskIncrementTick      0x00000379   0x120  Code  Gb  tasks.o [1]
+                        0x00005a5d    0x6a  Code  Gb  timertest.o [1]
+vStartLEDOnTasks        0x00003a97    0x22  Code  Gb  main.o [1]
+vStartUARTTasks         0x00003acb    0x22  Code  Gb  main.o [1]
+vT2InterruptHandler     0x00006749    0x18  Code  Gb  IntQueueTimer.o [1]
+vT3InterruptHandler     0x00006761    0x18  Code  Gb  IntQueueTimer.o [1]
+vTaskDelay              0x0000212d    0x3c  Code  Gb  tasks.o [1]
+vTaskDelayUntil         0x000020b5    0x78  Code  Gb  tasks.o [1]
+vTaskIncrementTick      0x000022af   0x120  Code  Gb  tasks.o [1]
 vTaskPriorityDisinherit
-                        0x000007ad    0x46  Code  Gb  tasks.o [1]
-vTaskStartScheduler     0x00000249    0x42  Code  Gb  tasks.o [1]
-vTaskSuspendAll         0x0000028b    0x10  Code  Gb  tasks.o [1]
-vTaskSwitchContext      0x0000049b   0x130  Code  Gb  tasks.o [1]
-vUARTTask               0x000017ad    0x14  Code  Lc  main.o [1]
-xDelayedTaskList1       0x20009fd4    0x14  Data  Lc  tasks.o [1]
-xDelayedTaskList2       0x20009fe8    0x14  Data  Lc  tasks.o [1]
-xEnd                    0x2000a040     0x8  Data  Lc  heap_2.o [1]
-xErrorLine              0x2000a058     0x4  Data  Lc  IntQueue.o [1]
-xErrorStatus            0x20004008     0x4  Data  Lc  IntQueue.o [1]
-xFirstTimerHandler      0x00000e03    0xfc  Code  Gb  IntQueue.o [1]
-xFreeBytesRemaining     0x2000400c     0x4  Data  Lc  heap_2.o [1]
-xHeap                   0x20004020  0x5dc0  Data  Lc  heap_2.o [1]
-xMissedYield            0x2000a0a0     0x4  Data  Lc  tasks.o [1]
-xNextTaskUnblockTime    0x20004014     0x4  Data  Lc  tasks.o [1]
-xNormallyEmptyQueue     0x2000a050     0x4  Data  Lc  IntQueue.o [1]
-xNormallyFullQueue      0x2000a054     0x4  Data  Lc  IntQueue.o [1]
-xNumOfOverflows         0x2000a0a4     0x4  Data  Lc  tasks.o [1]
-xPendingReadyList       0x20009ffc    0x14  Data  Lc  tasks.o [1]
-xPortPendSVHandler      0x00002913          Code  Gb  portasm.o [1]
-xPortStartScheduler     0x000024bf    0x2c  Code  Gb  port.o [1]
-xPortSysTickHandler     0x00002521    0x1c  Code  Gb  port.o [1]
+                        0x00002721    0x46  Code  Gb  tasks.o [1]
+vTaskStartScheduler     0x00002169    0x42  Code  Gb  tasks.o [1]
+vTaskSuspendAll         0x000021ab    0x10  Code  Gb  tasks.o [1]
+vTaskSwitchContext      0x000023d1   0x130  Code  Gb  tasks.o [1]
+vUARTTask               0x00003b2d    0x14  Code  Lc  main.o [1]
+xDelayedTaskList1       0x2000c14c    0x14  Data  Lc  tasks.o [1]
+xDelayedTaskList2       0x2000c160    0x14  Data  Lc  tasks.o [1]
+xEnd                    0x2000c1cc     0x8  Data  Lc  heap_2.o [1]
+xErrorLine              0x2000c1ec     0x4  Data  Lc  IntQueue.o [1]
+xErrorStatus            0x20004b0c     0x4  Data  Lc  IntQueue.o [1]
+xFirstTimerHandler      0x0000318b    0xfc  Code  Gb  IntQueue.o [1]
+xFreeBytesRemaining     0x20004b10     0x4  Data  Lc  heap_2.o [1]
+xHeap                   0x20004b30  0x5dc0  Data  Lc  heap_2.o [1]
+xMissedYield            0x2000c2a0     0x4  Data  Lc  tasks.o [1]
+xNextTaskUnblockTime    0x20004b24     0x4  Data  Lc  tasks.o [1]
+xNormallyEmptyQueue     0x2000c1e4     0x4  Data  Lc  IntQueue.o [1]
+xNormallyFullQueue      0x2000c1e8     0x4  Data  Lc  IntQueue.o [1]
+xNumOfOverflows         0x2000c2a4     0x4  Data  Lc  tasks.o [1]
+xPendingReadyList       0x2000c174    0x14  Data  Lc  tasks.o [1]
+xPortPendSVHandler      0x00005c0f          Code  Gb  portasm.o [1]
+xPortStartScheduler     0x000053bb    0x2c  Code  Gb  port.o [1]
+xPortSysTickHandler     0x0000541d    0x1c  Code  Gb  port.o [1]
 xQueueGenericSendFromISR
-                        0x00001ae9    0x60  Code  Gb  queue.o [1]
+                        0x00004369    0x60  Code  Gb  queue.o [1]
 xQueueIsQueueFullFromISR
-                        0x00001c47    0x14  Code  Gb  queue.o [1]
-xQueueReceiveFromISR    0x00001b49    0x60  Code  Gb  queue.o [1]
-xSchedulerRunning       0x2000a094     0x4  Data  Lc  tasks.o [1]
-xSecondTimerHandler     0x00000eff   0x19a  Code  Gb  IntQueue.o [1]
-xStart                  0x2000a038     0x8  Data  Lc  heap_2.o [1]
-xSuspendedTaskList      0x2000a024    0x14  Data  Lc  tasks.o [1]
-xTaskGenericCreate      0x00000101   0x148  Code  Gb  tasks.o [1]
+                        0x000044c7    0x14  Code  Gb  queue.o [1]
+xQueueReceiveFromISR    0x000043c9    0x60  Code  Gb  queue.o [1]
+xSchedulerRunning       0x2000c294     0x4  Data  Lc  tasks.o [1]
+xSecondTimerHandler     0x00003287   0x19a  Code  Gb  IntQueue.o [1]
+xStart                  0x2000c1c4     0x8  Data  Lc  heap_2.o [1]
+xSuspendedTaskList      0x2000c19c    0x14  Data  Lc  tasks.o [1]
+xTaskGenericCreate      0x00001f6d   0x148  Code  Gb  tasks.o [1]
+xTaskGetTickCount       0x00002299    0x16  Code  Gb  tasks.o [1]
 xTaskRemoveFromEventList
-                        0x000005cb    0x6a  Code  Gb  tasks.o [1]
-xTaskResumeAll          0x0000029b    0xde  Code  Gb  tasks.o [1]
+                        0x00002501    0x6a  Code  Gb  tasks.o [1]
+xTaskResumeAll          0x000021bb    0xde  Code  Gb  tasks.o [1]
+xTaskWakeTime           0x2000c204     0x4  Data  Lc  interpret.o [1]
 xTasksWaitingTermination
-                        0x2000a010    0x14  Data  Lc  tasks.o [1]
-xTickCount              0x2000a088     0x4  Data  Lc  tasks.o [1]
-xTracing                0x2000a0b4     0x4  Data  Lc  tasks.o [1]
+                        0x2000c188    0x14  Data  Lc  tasks.o [1]
+xTickCount              0x2000c288     0x4  Data  Lc  tasks.o [1]
+xTracing                0x2000c2b4     0x4  Data  Lc  tasks.o [1]
+yy_accept               0x000049e0   0x128  Data  Lc  motor.tab.o [1]
+yy_base                 0x00004780   0x130  Data  Lc  motor.tab.o [1]
+yy_buffer_stack         0x2000c240     0x4  Data  Lc  motor.tab.o [1]
+yy_buffer_stack_max     0x2000c23c     0x4  Data  Lc  motor.tab.o [1]
+yy_buffer_stack_top     0x2000c238     0x4  Data  Lc  motor.tab.o [1]
+yy_c_buf_p              0x2000c24c     0x4  Data  Lc  motor.tab.o [1]
+yy_chk                  0x00003d00   0x1bc  Data  Lc  motor.tab.o [1]
+yy_create_buffer        0x00000f9d    0x44  Code  Gb  motor.tab.o [1]
+yy_def                  0x000048b0   0x130  Data  Lc  motor.tab.o [1]
+yy_did_buffer_switch_on_eof
+                        0x2000c258     0x4  Data  Lc  motor.tab.o [1]
+yy_ec                   0x00002d34   0x400  Data  Lc  motor.tab.o [1]
+yy_flush_buffer         0x00001069    0x46  Code  Gb  motor.tab.o [1]
+yy_get_next_buffer      0x000009ed   0x2e8  Code  Lc  motor.tab.o [1]
+yy_get_previous_state   0x00000cd5    0x94  Code  Lc  motor.tab.o [1]
+yy_hold_char            0x2000c2dc     0x1  Data  Lc  motor.tab.o [1]
+yy_init                 0x2000c250     0x4  Data  Lc  motor.tab.o [1]
+yy_init_buffer          0x00000ffd    0x68  Code  Lc  motor.tab.o [1]
+yy_last_accepting_cpos  0x2000c268     0x4  Data  Lc  motor.tab.o [1]
+yy_last_accepting_state
+                        0x2000c264     0x4  Data  Lc  motor.tab.o [1]
+yy_load_buffer_state    0x00000f2d    0x5c  Code  Lc  motor.tab.o [1]
+yy_meta                 0x000052dc    0xc4  Data  Lc  motor.tab.o [1]
+yy_n_chars              0x2000c244     0x4  Data  Lc  motor.tab.o [1]
+yy_nxt                  0x00003b44   0x1bc  Data  Lc  motor.tab.o [1]
+yy_rule_can_match_eol   0x00005e2c    0x84  Data  Lc  motor.tab.o [1]
+yy_scan_buffer          0x000011a5    0x62  Code  Gb  motor.tab.o [1]
+yy_scan_bytes           0x00001211    0x5a  Code  Gb  motor.tab.o [1]
+yy_start                0x2000c254     0x4  Data  Lc  motor.tab.o [1]
+yy_switch_to_buffer     0x00000e81    0xa8  Code  Gb  motor.tab.o [1]
+yy_try_NUL_trans        0x00000d71    0x82  Code  Lc  motor.tab.o [1]
+yyalloc                 0x000012a1     0xc  Code  Gb  motor.tab.o [1]
+yychar                  0x2000c230     0x4  Data  Gb  motor.tab.o [1]
+yycheck                 0x00006c84    0x28  Data  Lc  motor.tab.o [1]
+yydefact                0x00006c0c    0x28  Data  Lc  motor.tab.o [1]
+yydefgoto               0x00007590     0x8  Data  Lc  motor.tab.o [1]
+yydestruct              0x00000101     0xc  Code  Lc  motor.tab.o [1]
+yyensure_buffer_stack   0x000010ed    0x8e  Code  Lc  motor.tab.o [1]
+yyerror                 0x000012c5     0x2  Code  Gb  motor.tab.o [1]
+yyin                    0x2000c25c     0x4  Data  Gb  motor.tab.o [1]
+yyleng                  0x2000c248     0x4  Data  Gb  motor.tab.o [1]
+yylex                   0x0000055f   0x48e  Code  Gb  motor.tab.o [1]
+yylineno                0x20004b1c     0x4  Data  Gb  motor.tab.o [1]
+yylval                  0x2000c270     0x4  Data  Gb  motor.tab.o [1]
+yynerrs                 0x2000c234     0x4  Data  Gb  motor.tab.o [1]
+yyout                   0x2000c260     0x4  Data  Gb  motor.tab.o [1]
+yypact                  0x00006c34    0x28  Data  Lc  motor.tab.o [1]
+yyparse                 0x0000010d   0x452  Code  Gb  motor.tab.o [1]
+yypgoto                 0x00007598     0x8  Data  Lc  motor.tab.o [1]
+yyr1                    0x00007028    0x1c  Data  Lc  motor.tab.o [1]
+yyr2                    0x00007044    0x1c  Data  Lc  motor.tab.o [1]
+yyrealloc               0x000012ad    0x10  Code  Gb  motor.tab.o [1]
+yyrestart               0x00000df3    0x72  Code  Gb  motor.tab.o [1]
+yystos                  0x00006cac    0x28  Data  Lc  motor.tab.o [1]
+yytable                 0x00006c5c    0x28  Data  Lc  motor.tab.o [1]
+yytext                  0x2000c26c     0x4  Data  Gb  motor.tab.o [1]
+yytranslate             0x00004c30   0x11c  Data  Lc  motor.tab.o [1]
 
 
 [1] = C:\dev\docs\scottdesign\motor\Debug\Obj
 [2] = command line
-[3] = dl7M_tl_in.a
+[3] = dl7M_tl_if.a
 [4] = driverlib.a
 [5] = rt7M_tl.a
 [6] = shb_l.a
 
-  12 962 bytes of readonly  code memory
-     570 bytes of readonly  data memory
-  41 144 bytes of readwrite data memory
+  25 204 bytes of readonly  code memory
+   5 373 bytes of readonly  data memory
+  49 881 bytes of readwrite data memory
 
 Errors: none
 Warnings: none
