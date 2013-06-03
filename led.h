@@ -13,6 +13,7 @@
 //#include "hw_types.h"
 //#include "gpio.h"
 //#include "lmi_timer.h"
+#include "compilerHelper.h" // Contains TRUE, FALSE definitions
 
 #if CYGWIN
 #include "log.h"
@@ -32,16 +33,22 @@ public:
 #if CYGWIN 
         : logc(std::string("LED"))
 #endif /* CYGWIN */					
-    {/*if (onAtConstruction) {On();} else {Off();}*/}
+    {if (onAtConstruction) {On();} else {Off();}}
     ~led() {Off();} // Off when destroyed
 
     void set(const unsigned int onOrOff) {if (onOrOff) {On();} else {Off();}}
 #if CYGWIN
     void On(void) {oss() << "LED on "; dump();}
     void Off(void) {oss() << "LED off "; dump();}
-#else // not CYGWIN    
-    void On(void) {GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_PIN_0);}
-    void Off(void) {GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, ~GPIO_PIN_0);}
+#else // not CYGWIN 
+    // Trying to access a GPIO port before it is configured results in the hard fault handler being called.
+    void On(void) {if (!enable()){return;} GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_PIN_0);}
+    void Off(void) {if (!enable()){return;} GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, ~GPIO_PIN_0);}
+    static bool enable(void) {return _enable;}
+    static void enable(bool e) {_enable = e;}
+    
+private:
+    static bool _enable;    
 #endif // CYGWIN    
 };
 

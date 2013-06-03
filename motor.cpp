@@ -8,6 +8,7 @@
 */
 
 #include "stepper.h"
+#include "led.h"
 //#include "log.h"
 
 #include <iostream>
@@ -27,9 +28,10 @@ extern "C" void stepperISR(void) {
     }
 }
 
-extern "C" int mainA(void);    
-    
-int mainA(void) {    
+extern "C" int mainA(void); 
+
+int mainA(void) {
+    led::enable(1);    
 #endif /* CYGWIN */    
 	//logc l("TESTa");
 	//l.dump("start motor");
