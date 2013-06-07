@@ -127,7 +127,7 @@ UARTIntHandler(void)
     ROM_UARTIntClear(UART0_BASE, ulStatus);
 
     //UARTSend("x", 1);
-    flashLED();
+    //flashLED();
     
     //
     // Loop while there are characters in the receive FIFO.
