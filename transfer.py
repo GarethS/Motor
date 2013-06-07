@@ -6,9 +6,12 @@ import serial
 import lex
 import yacc
 import datetime as dt
+from time import sleep
 
 # Globals
-currentToken    = 0
+currentToken        = 0
+# 4 = COM5 on system
+currentSerialPort   = 4   # May vary if using USB to COM port hardware
 
 # List of token names.   This is always required
 tokens = (
@@ -62,12 +65,12 @@ yacc.yacc()
 class Transfer():
     def __init__(self, fileName):
         self.__fileName = fileName
-        self.__lineCount = 0
-        self.__haveSerialPort = False
+        self.__lineCount = currentSerialPort
+        self.__haveSerialPort = True # Set to false for debugging with no serial port on computer
         if self.__haveSerialPort:
             self.__ser = serial.Serial(
-                port     = 0,
-                baudrate = 9600,
+                port     = currentSerialPort,
+                baudrate = 115200,
                 bytesize = serial.EIGHTBITS,
                 parity   = serial.PARITY_NONE,
                 stopbits = serial.STOPBITS_ONE,
@@ -78,8 +81,9 @@ class Transfer():
             print "Serial port:", self.__ser.isOpen()
             print self.__ser
         
-        self.cmdOK =            "<OK>"
-        self.cmdErr =           "<ERR>"
+        self.cmdOK =    "<OK>"
+        self.cmdErr =   "<ERR>"
+        self.EOT =      '$'     # End-of-transmission
         
         self.parseStr = ""
 
@@ -91,9 +95,11 @@ class Transfer():
         f.close()
         
     def sendLine(self, line):
+        line = line.rstrip('\r\n')
         print 'Sending:{0}[{1}]'.format(self.__lineCount, line)
         self.__lineCount = self.__lineCount + 1
         if self.__haveSerialPort:
+            line = line + self.EOT 
             self.__ser.write(line)
             self.parseInputTimeout()
             # read input, allow delay
@@ -101,6 +107,8 @@ class Transfer():
         return True
 
     def parseInputTimeout(self):
+        sleep(1.0)
+        return True
         # 1. Get current time
         startTime = currentTime = dt.datetime.now()
         while (currentTime - startTime).microseconds < 100000: 
@@ -139,5 +147,6 @@ class Transfer():
                 break
             
 if __name__ == "__main__":
-    t = Transfer("..\parser\symbolTable.txt")
+    t = Transfer("/dev/docs/scottdesign/parser/tree.txt")
+    #t = Transfer("..\parser\symbolTable.txt")
     t.send()
