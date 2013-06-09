@@ -3,13 +3,17 @@
 
 # See: http://pyserial.sourceforge.net/pyserial_api.html#module-serial
 import serial
+# See: http://www.dabeaz.com/ply/ply.html
 import lex
 import yacc
 import datetime as dt
 from time import sleep
+import time
 
 # Globals
 currentToken        = 0
+OK                  = 0
+ERR                 = 1
 # 4 = COM5 on system
 currentSerialPort   = 4   # May vary if using USB to COM port hardware
 
@@ -45,13 +49,15 @@ lex.lex()
 
 def p_OK(t):
     'expression : TOKEN_START OK TOKEN_END'
-    global currentCount
-    currentToken = 1
+    global currentToken
+    currentToken = OK
+    print 'PKPK'
 
 def p_ERR(t):
     'expression : TOKEN_START ERR TOKEN_END'
-    global currentCount
-    currentToken = 2
+    global currentToken
+    currentToken = ERR
+    print 'ERRERR'
 
 def p_error(t):
     print "Syntax error at:'%s'" % t.value
@@ -107,27 +113,38 @@ class Transfer():
         return True
 
     def parseInputTimeout(self):
-        sleep(1.0)
-        return True
+        global currentToken
         # 1. Get current time
-        startTime = currentTime = dt.datetime.now()
-        while (currentTime - startTime).microseconds < 100000: 
+        startTime = time.time()
+        #sleep(2.1)
+        #currentTime = dt.datetime.now()
+        deltaTime = time.time() - startTime
+        #print deltaTime
+        #self.parseInput()
+        #return True
+        while deltaTime < 1.0: 
             # 2. Call parseInput
-            parseInput()
+            self.parseInput()
+            sleep(0.1)
             # 3. Got OK return True; got ERR, return False
             if currentToken == OK:
+                print 'OK'
                 return True
-            currentTime = dt.datetime.now()
+            deltaTime = time.time() - startTime
             # 4. If timer not expired, goto 2 above
+        print 'ERROR'
         return False
         
     def parseInput(self):
-        waitingCount = self.__ser.inWaiting()
-        #waitingCount = 1
-        if waitingCount == 0:
-            return
-        x = self.__ser.read(waitingCount)
-        self.parseStr += x
+        if self.__haveSerialPort:        
+            waitingCount = self.__ser.inWaiting()
+            #waitingCount = 1
+            if waitingCount == 0:
+                return
+            x = self.__ser.read(waitingCount)
+            self.parseStr += x
+        else:
+            self.parseStr = ' <OK> '
         while len(self.parseStr) >= 1:
             print "before:", self.parseStr
             foundEndTokenIndex = self.parseStr.find(">")
@@ -149,4 +166,5 @@ class Transfer():
 if __name__ == "__main__":
     t = Transfer("/dev/docs/scottdesign/parser/tree.txt")
     #t = Transfer("..\parser\symbolTable.txt")
+    t.parseInput()
     t.send()

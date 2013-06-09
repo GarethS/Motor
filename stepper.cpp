@@ -394,7 +394,7 @@ void stepper::isr(void) {
             sprintf(isrBuf, "<UNK%d>", _superState);
             break;
         }
-        UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
+        //UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
         _superStateLast = _superState;
     }
 #endif /* CYGWIN */
@@ -458,7 +458,7 @@ void stepper::isr(void) {
             sprintf(isrBuf, "<?%d>", _subState);
             break;
         }    
-        UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
+        //UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
         _subStateLast = _subState;
     }
 #endif /* CYGWIN */
