@@ -51,13 +51,11 @@ def p_OK(t):
     'expression : TOKEN_START OK TOKEN_END'
     global currentToken
     currentToken = OK
-    print 'PKPK'
 
 def p_ERR(t):
     'expression : TOKEN_START ERR TOKEN_END'
     global currentToken
     currentToken = ERR
-    print 'ERRERR'
 
 def p_error(t):
     print "Syntax error at:'%s'" % t.value
@@ -71,7 +69,7 @@ yacc.yacc()
 class Transfer():
     def __init__(self, fileName):
         self.__fileName = fileName
-        self.__lineCount = currentSerialPort
+        self.__lineCount = 0
         self.__haveSerialPort = True # Set to false for debugging with no serial port on computer
         if self.__haveSerialPort:
             self.__ser = serial.Serial(
@@ -99,15 +97,17 @@ class Transfer():
             if self.sendLine(line) == False:
                 break
         f.close()
+        self.__ser.close()
         
     def sendLine(self, line):
         line = line.rstrip('\r\n')
-        print 'Sending:{0}[{1}]'.format(self.__lineCount, line)
+        print 'Sending:{0} [{1}]'.format(self.__lineCount, line)
         self.__lineCount = self.__lineCount + 1
         if self.__haveSerialPort:
             line = line + self.EOT 
             self.__ser.write(line)
-            self.parseInputTimeout()
+            if self.parseInputTimeout() == False:
+                return False
             # read input, allow delay
             # if <ERR> resend x2 then exit with fatal error
         return True
@@ -116,20 +116,18 @@ class Transfer():
         global currentToken
         # 1. Get current time
         startTime = time.time()
-        #sleep(2.1)
-        #currentTime = dt.datetime.now()
-        deltaTime = time.time() - startTime
-        #print deltaTime
+        deltaTime = 0.0
         #self.parseInput()
         #return True
+        currentToken = ERR
         while deltaTime < 1.0: 
             # 2. Call parseInput
             self.parseInput()
-            sleep(0.1)
             # 3. Got OK return True; got ERR, return False
             if currentToken == OK:
-                print 'OK'
+                #print 'OK'
                 return True
+            sleep(0.1)
             deltaTime = time.time() - startTime
             # 4. If timer not expired, goto 2 above
         print 'ERROR'
@@ -146,7 +144,7 @@ class Transfer():
         else:
             self.parseStr = ' <OK> '
         while len(self.parseStr) >= 1:
-            print "before:", self.parseStr
+            #print "before:", self.parseStr
             foundEndTokenIndex = self.parseStr.find(">")
             if foundEndTokenIndex != -1:
                 # Found '>' token delimiter
@@ -159,12 +157,13 @@ class Transfer():
                     yacc.parse(yaccInput, debug=1)
                 # Remove up to end of token from string
                 self.parseStr = self.parseStr[foundEndTokenIndex+1:]
-                print "after:", self.parseStr
+                #print "after:", self.parseStr
             else:
                 break
             
 if __name__ == "__main__":
     t = Transfer("/dev/docs/scottdesign/parser/tree.txt")
-    #t = Transfer("..\parser\symbolTable.txt")
-    t.parseInput()
     t.send()
+    t = Transfer("/dev/docs/scottdesign/parser/symbolTable.txt")
+    t.send()
+    #t = Transfer("..\parser\symbolTable.txt")

@@ -1707,9 +1707,6 @@
       <name>$PROJ_DIR$\motor.cpp</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\parser\motor.tab.c</name>
-    </file>
-    <file>
       <name>$PROJ_DIR$\..\parser\parseTreeEntry.cpp</name>
     </file>
     <file>
