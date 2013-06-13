@@ -166,4 +166,6 @@ if __name__ == "__main__":
     t.send()
     t = Transfer("/dev/docs/scottdesign/parser/symbolTable.txt")
     t.send()
+    t = Transfer("/dev/docs/scottdesign/parser/prun.txt")
+    t.send()
     #t = Transfer("..\parser\symbolTable.txt")

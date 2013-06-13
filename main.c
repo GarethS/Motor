@@ -359,11 +359,14 @@ void vStartLEDOnTasks( unsigned portBASE_TYPE uxPriority )
     xTaskCreate( vLEDOnTask, ( signed char * ) "LEDx", 4000 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
 }
 
+void interpretRun(void);
+
 static portTASK_FUNCTION( vLEDOnTask, pvParameters )
 {
 //portTickType xFlashRate, xLastFlashTime;
 //unsigned portBASE_TYPE uxLED;
     //enable(); // Turn this on for the plain stepper demo
+    interpretRun();
     mainA();
     for (;;) {
        	//portENTER_CRITICAL();
