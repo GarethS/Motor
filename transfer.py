@@ -127,7 +127,7 @@ class Transfer():
             if currentToken == OK:
                 #print 'OK'
                 return True
-            sleep(0.1)
+            sleep(0.005)
             deltaTime = time.time() - startTime
             # 4. If timer not expired, goto 2 above
         print 'ERROR'
@@ -162,6 +162,7 @@ class Transfer():
                 break
             
 if __name__ == "__main__":
+    startTime = time.time()
     t = Transfer("/dev/docs/scottdesign/parser/tree.txt")
     t.send()
     t = Transfer("/dev/docs/scottdesign/parser/symbolTable.txt")
@@ -169,3 +170,5 @@ if __name__ == "__main__":
     t = Transfer("/dev/docs/scottdesign/parser/prun.txt")
     t.send()
     #t = Transfer("..\parser\symbolTable.txt")
+    print 'Done in {0:.2f} sec'.format(time.time() - startTime)
+    
