@@ -216,10 +216,10 @@ void stepper::moveAbsolute(int positionNew) {
 		_superState = MOVE_TRUNCATED;
 	}
 	_subState = MOVE_START;
-#if !CYGWIN    
+#if REGRESS_2 && !CYGWIN    
     _subStateLast = SUB_STATE_UNKNOWN;
     _superStateLast = SUPER_STATE_UNKNOWN;
-#endif /* not CYGWIN */    
+#endif /* REGRESS_2 and not CYGWIN */    
 	_timerStart();
 }
 

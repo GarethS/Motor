@@ -120,14 +120,14 @@ class Transfer():
         #self.parseInput()
         #return True
         currentToken = ERR
-        while deltaTime < 1.0: 
+        while deltaTime < 2.0: 
             # 2. Call parseInput
             self.parseInput()
             # 3. Got OK return True; got ERR, return False
             if currentToken == OK:
                 #print 'OK'
                 return True
-            sleep(0.005)
+            sleep(0.1)
             deltaTime = time.time() - startTime
             # 4. If timer not expired, goto 2 above
         print 'ERROR'

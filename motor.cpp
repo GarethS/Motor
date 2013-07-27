@@ -101,9 +101,8 @@ int mainA(void) {
             direction *= -1;
         }
     }
-#endif /* CYGWIN */
-	
+#else /* CYGWIN */    
 	cout << "done" << endl;
-	
+#endif /* CYGWIN */
 	return 0;
 }

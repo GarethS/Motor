@@ -1,0 +1,51 @@
+
+# Build in a GNU bash shell v4.1.10(4)-release (i686-pc-cygwin) from Cygwin running under Windows 7
+# Using ARM GCC compiler from: https://launchpad.net/gcc-arm-embedded
+# Currently using FreeRTOS 7.0.0  Change entries below to point to your instalation
+# Make sure motor and parser projects are both at the same level. You'll need files in the parser project to do a successful build
+
+GCC = "/cygdrive/c/Program Files/GNU Tools ARM Embedded/4.7 2013q2/bin/arm-none-eabi-gcc"
+INCLUDE = -I ../parser -I ../motor -I ../../rtos/freertos/FreeRTOS/Source/include -I ../../rtos/freertos/FreeRTOS/Demo/CORTEX_LM3Sxxxx_IAR_Keil -I ../../rtos/freertos/FreeRTOS/Source/portable/GCC/ARM_CM3
+#INCLUDE = -I ../parser -I ../motor -I /cygdrive/c/dev/docs/rtos/freertos/FreeRTOS/Source/include  
+# 1 = debug build, 0 = release
+myDebug := 1
+
+.PHONY: all clean run
+
+ifeq ($(myDebug), 1)
+FLEX_FLAGS = -d --nounistd
+#FLEX_FLAGS = --noline --nounistd
+BISON_FLAGS = --verbose --debug --report=state
+GCC_FLAGS = -g -Wall
+GPP_FLAGS = -g -Wall
+DEBUG_FLAGS = -D CYGWIN=1 -D DUMP=1 -D REGRESS_1=1
+else    # not Debug
+FLEX_FLAGS =
+BISON_FLAGS = --verbose --debug --report=state
+GCC_FLAGS =
+GPP_FLAGS = 
+DEBUG_FLAGS = -D CYGWIN=1
+endif 
+
+#all: lextest.exe parsetest.exe lex.yy.c valve.tab.c run
+OBJS = interpret.o accel.o log.o motor.o stepper.o
+all: $(OBJS)
+
+clean:
+	rm $(OBJS)
+
+interpret.o: ../parser/interpret.cpp
+	$(GCC) $(INCLUDE) -c $<
+    
+accel.o: accel.cpp
+	$(GCC) -c $<
+    
+log.o: log.cpp
+	$(GCC) -c $<
+
+motor.o: motor.cpp
+	$(GCC) $(INCLUDE) -c $<
+
+stepper.o: stepper.cpp
+	$(GCC) $(INCLUDE) -c $<
+        
