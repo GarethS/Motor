@@ -14,8 +14,9 @@ import time
 currentToken        = 0
 OK                  = 0
 ERR                 = 1
-# 4 = COM5 on system
-currentSerialPort   = 4   # May vary if using USB to COM port hardware
+# 4 = COM5 on Toshiba laptop. Look under Device Manager to determine com port
+# 2 = COM3 on 
+currentSerialPort   = 2   # May vary if using USB to COM port hardware
 
 # List of token names.   This is always required
 tokens = (
@@ -127,7 +128,7 @@ class Transfer():
             if currentToken == OK:
                 #print 'OK'
                 return True
-            sleep(0.1)
+            sleep(0.005)
             deltaTime = time.time() - startTime
             # 4. If timer not expired, goto 2 above
         print 'ERROR'

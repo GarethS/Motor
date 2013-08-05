@@ -323,7 +323,7 @@ main(void)
     flashLED();
 
     vStartLEDOnTasks(mainLED_TASK_PRIORITY);
-    vStartUARTTasks(mainLED_TASK_PRIORITY);
+    //vStartUARTTasks(mainLED_TASK_PRIORITY);
     /* Configure the high frequency interrupt used to measure the interrupt jitter time. */
     vSetupHighFrequencyTimer();
     vTaskStartScheduler();
@@ -356,7 +356,7 @@ void vStartLEDOnTasks( unsigned portBASE_TYPE uxPriority )
     //signed portBASE_TYPE xLEDTask;
 
     /* Spawn the task. */
-    xTaskCreate( vLEDOnTask, ( signed char * ) "LEDx", 4000 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
+    xTaskCreate( vLEDOnTask, ( signed char * ) "LEDx", 4200 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
 }
 
 void interpretRun(void);
