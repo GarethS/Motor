@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>1788634188</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\device\usbdevicepriv.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_ints.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\device\usbdcdc.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_uart.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\usbcdc.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\interrupt.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\usb-ids.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\device\usbdevice.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\utils\uartstdio.c</file>
+      <file>$PROJ_DIR$\ewarm\Obj\usb_dev_serial.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\usb_dev_serial.c</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\ustdlib.c</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\usb_serial_structs.c</file>
+      <file>$PROJ_DIR$\usb_dev_serial.c</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\ewarm\Exe\driverlib.a</file>
+      <file>$TOOLKIT_DIR$\inc\c\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_types.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\ewarm\Exe\usblib.a</file>
+      <file>$PROJ_DIR$\ewarm\Obj\startup_ewarm.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\uartstdio.c</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\startup_ewarm.c</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\debug.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_nvic.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_memmap.h</file>
+      <file>$PROJ_DIR$\inc\hw_types.h</file>
+      <file>$PROJ_DIR$\ewarm\Exe\motorTiva.out</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\rom.h</file>
+      <file>$PROJ_DIR$\ewarm\Obj\ustdlib.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_gpio.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\ustdlib.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\timer.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\rom_map.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\time.h</file>
+      <file>$PROJ_DIR$\ti\TivaWare_C_Series-1.0\usb_serial_structs.c</file>
+      <file>$PROJ_DIR$\ewarm\Obj\usb_serial_structs.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\sysctl.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\uart.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\fpu.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\gpio.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_sysctl.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usb_serial_structs.c</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\systick.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\uartstdio.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usb_dev_serial.c</file>
+      <file>$TOOLKIT_DIR$\lib\m7M_tlv.a</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\pin_map.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\usb_serial_structs.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
+      <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdarg.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
+      <file>$PROJ_DIR$\ewarm\Obj\motorTiva.pbd</file>
+      <file>$PROJ_DIR$\ewarm\Obj\uartstdio.o</file>
+      <file>$PROJ_DIR$\ti\TivaWare_C_Series-1.0\usb_dev_serial.c</file>
+      <file>$PROJ_DIR$\startup_ewarm.c</file>
+      <file>$PROJ_DIR$\ewarm\Obj\uartstdio.pbi</file>
+      <file>$PROJ_DIR$\ewarm\Exe\usb_dev_serial.out</file>
+      <file>$PROJ_DIR$\ewarm\Obj\startup_ewarm.o</file>
+      <file>$PROJ_DIR$\ewarm\List\motorTiva.map</file>
+      <file>$PROJ_DIR$\ewarm\Exe\motorTiva.bin</file>
+      <file>$PROJ_DIR$\ewarm\Obj\usb_dev_serial.o</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\usblib.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\utils\ustdlib.c</file>
+      <file>$PROJ_DIR$\usb_serial_structs.c</file>
+      <file>$PROJ_DIR$\motorTiva.icf</file>
+      <file>$PROJ_DIR$\ewarm\Obj\usb_serial_structs.o</file>
+      <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\usb.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\ewarm\Obj\ustdlib.o</file>
+      <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 28 63</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\utils\uartstdio.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 57</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\usb_dev_serial.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 65</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 67 53 8 11 74 55 23 17 41 1 26 18 31 3 43 24 40 42 49 5 38 45 33 39 73 29 66 4 6 7 0 2 32 54 35 51 50 46</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 67 53 8 11 74 55 23 17 41 1 26 18 31 3 43 24 40 42 49 5 38 45 33 39 73 29 66 4 6 7 0 2 32 54 35 51 50 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\ustdlib.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 75</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 30</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 53 8 11 74 55 23 17 41 24 32 54 35 51</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 53 8 11 74 55 23 17 41 24 32 54 35 51</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\usb_serial_structs.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 71</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 53 8 11 74 55 23 17 41 67 18 73 66 4 6 7 0 2 50</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 53 8 11 74 55 23 17 41 67 18 73 66 4 6 7 0 2 50</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\usb_dev_serial.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 65</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 67 53 8 11 74 55 23 17 41 1 26 27 31 3 43 24 40 42 49 5 38 45 33 39 73 29 66 4 6 7 0 2 32 54 35 51 50 46</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 67 53 8 11 74 55 23 17 41 1 26 27 31 3 43 24 40 42 49 5 38 45 33 39 73 29 66 4 6 7 0 2 32 54 35 51 50 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\uartstdio.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 57</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 67 53 8 11 74 55 23 17 41 54 1 26 18 3 24 5 29 34 38 39 46</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 67 53 8 11 74 55 23 17 41 54 1 26 18 3 24 5 29 34 38 39 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\startup_ewarm.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 62</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 20</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 53 8 11 74 55 23 17 41 25 18</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 53 8 11 74 55 23 17 41 25 18</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\ewarm\Exe\motorTiva.out</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 63</file>
+        </tool>
+        <tool>
+          <name>OBJCOPY</name>
+          <file> 64</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 70 62 57 65 71 75 16 19 76 52 48 72</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\ti\TivaWare_C_Series-1.0\usb_serial_structs.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 71</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usb_serial_structs.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 71</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usb_dev_serial.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 65</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\ti\TivaWare_C_Series-1.0\usb_dev_serial.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 65</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\startup_ewarm.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 62</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 20</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\ewarm\Exe\usb_dev_serial.out</name>
+      <outputs>
+        <tool>
+          <name>OBJCOPY</name>
+          <file> 64</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 70 62 57 65 71 75 16 19 76 52 48 72</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\utils\ustdlib.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 75</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 30</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\usb_serial_structs.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 71</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+      </outputs>
+    </file>
+  </configuration>
+</project>
+
+

@@ -235,7 +235,7 @@ void stepper::moveRelativeModify(const int positionRelative) {
 void stepper::controlledStopNow(void) {
     if (_superState == MOVE_FULL) {
         if (_subState == MOVE_CONSTANT_VELOCITY) {
-            // move _positionTarget closer to we're just ready to enter the deceleration phase
+            // move _positionTarget closer so we're just ready to enter the deceleration phase
             if (_directionPositive) {
                 moveAbsoluteModify(_positionConstantVelocityEnd - _positionCurrent);
             } else {

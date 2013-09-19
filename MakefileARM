@@ -4,9 +4,27 @@
 # Currently using FreeRTOS 7.0.0  Change entries below to point to your instalation
 # Make sure motor and parser projects are both at the same level. You'll need files in the parser project to do a successful build
 
-GCC = "/cygdrive/c/Program Files/GNU Tools ARM Embedded/4.7 2013q2/bin/arm-none-eabi-gcc"
-INCLUDE = -I ../parser -I ../motor -I ../../rtos/freertos/FreeRTOS/Source/include -I ../../rtos/freertos/FreeRTOS/Demo/CORTEX_LM3Sxxxx_IAR_Keil -I ../../rtos/freertos/FreeRTOS/Source/portable/GCC/ARM_CM3
-#INCLUDE = -I ../parser -I ../motor -I /cygdrive/c/dev/docs/rtos/freertos/FreeRTOS/Source/include  
+TIROOT=/cygdrive/c/ti/TivaWare_C_Series-1.0
+
+PREFIX = '/cygdrive/c/Program Files/GNU Tools ARM Embedded/4.7 2013q2/bin/arm-none-eabi'
+GCC = $(PREFIX)-gcc
+AR = $(PREFIX)-ar
+LD = $(PREFIX)-ld
+LDFLAGS = --gc-sections
+LIBGCC = '/cygdrive/c/Program Files/GNU Tools ARM Embedded/4.7 2013q2/lib/gcc/arm-none-eabi/4.7.4/armv7e-m/softfp/libgcc.a'
+LIBC = '/cygdrive/c/Program Files/GNU Tools ARM Embedded/4.7 2013q2/lib/gcc/arm-none-eabi/4.7.4/armv7e-m/softfp/libc.a'
+LIBM = '/cygdrive/c/Program Files/GNU Tools ARM Embedded/4.7 2013q2/arm-none-eabi/lib/armv7e-m/softfp/libm.a'
+LIBDRIVER = $(TIROOT)/driverlib/gcc/libdriver.a
+
+INCLUDE = -I inc -I ../parser -I ../motor -I ../../rtos/freertos/FreeRTOS/Source/include -I ../../rtos/freertos/FreeRTOS/Demo/CORTEX_LM3Sxxxx_IAR_Keil -I ../../rtos/freertos/FreeRTOS/Source/portable/GCC/ARM_CM3
+INCLUDE +=  -I ../../rtos/freertos/FreeRTOS/Demo/Common/drivers/LuminaryMicro -I ../../rtos/freertos/FreeRTOS/Demo/Common/include -I ../../../../DriverLib
+#INCLUDE = -I ../parser -I ../motor -I /cygdrive/c/dev/docs/rtos/freertos/FreeRTOS/Source/include 
+OPTIONS = -mcpu=cortex-m4 -mfloat-abi=softfp
+CPPFLAGS=-mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -ffunction-sections -fdata-sections -MD -Wall -pedantic -DPART_TM4C1233D5PM
+CFLAGS=$(CPPFLAGS) -std=c99 
+
+ASSEMBLER_FLAGS = -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -MD
+
 # 1 = debug build, 0 = release
 myDebug := 1
 
@@ -28,24 +46,67 @@ DEBUG_FLAGS = -D CYGWIN=1
 endif 
 
 #all: lextest.exe parsetest.exe lex.yy.c valve.tab.c run
-OBJS = interpret.o accel.o log.o motor.o stepper.o
-all: $(OBJS)
+OBJS = gcc/parseTreeEntry.o gcc/symbolTableEntry.o gcc/interpret.o gcc/accel.o gcc/log.o gcc/motor.o gcc/stepper.o gcc/startup_gcc.o gcc/main.o
+OBJS += gcc/list.o gcc/heap_2.o gcc/port.o gcc/queue.o gcc/tasks.o gcc/IntQueue.o gcc/IntQueueTimer.o gcc/timertest.o
+DOBJS = gcc/parseTreeEntry.d gcc/symbolTableEntry.d gcc/interpret.d gcc/accel.d gcc/log.d gcc/motor.d gcc/stepper.d gcc/startup_gcc.d gcc/main.d
+DOBJS += gcc/list.d gcc/heap_2.d gcc/port.d gcc/queue.d gcc/tasks.d gcc/IntQueue.d gcc/IntQueueTimer.d gcc/timertest.d
+all: $(OBJS) gcc/motor.axf
 
 clean:
-	rm $(OBJS)
+	rm $(OBJS) $(DOBJS) gcc/motor.axf
 
-interpret.o: ../parser/interpret.cpp
-	$(GCC) $(INCLUDE) -c $<
+gcc/IntQueueTimer.o: ../../rtos/freertos/FreeRTOS/Demo/CORTEX_LM3Sxxxx_IAR_KEIL/IntQueueTimer.c
+	$(GCC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
     
-accel.o: accel.cpp
-	$(GCC) -c $<
+gcc/timertest.o: ../../rtos/freertos/FreeRTOS/Demo/CORTEX_LM3Sxxxx_IAR_KEIL/timertest.c
+	$(GCC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
     
-log.o: log.cpp
-	$(GCC) -c $<
+gcc/IntQueue.o: ../../rtos/freertos/FreeRTOS/Demo/Common/Minimal/IntQueue.c
+	$(GCC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
+    
+gcc/heap_2.o: ../../rtos/freertos/FreeRTOS/Source/portable/MemMang/heap_2.c
+	$(GCC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
+    
+gcc/list.o: ../../rtos/freertos/FreeRTOS/Source/list.c
+	$(GCC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
+    
+gcc/queue.o: ../../rtos/freertos/FreeRTOS/Source/queue.c
+	$(GCC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
+    
+gcc/tasks.o: ../../rtos/freertos/FreeRTOS/Source/tasks.c
+	$(GCC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
+    
+gcc/port.o: ../../rtos/freertos/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c
+	$(GCC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
+    
+gcc/interpret.o: ../parser/interpret.cpp
+	$(GCC) $(CPPFLAGS) $(INCLUDE) -o $@ -c $<
+    
+gcc/parseTreeEntry.o: ../parser/parseTreeEntry.cpp
+	$(GCC) $(CPPFLAGS) $(INCLUDE) -o $@ -c $<
+    
+gcc/symbolTableEntry.o: ../parser/symbolTableEntry.cpp
+	$(GCC) $(CPPFLAGS) $(INCLUDE) -o $@ -c $<
+    
+gcc/accel.o: accel.cpp
+	$(GCC) $(CPPFLAGS) -o $@ -c $<
+    
+gcc/main.o: main.c
+	$(GCC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
+    
+gcc/log.o: log.cpp
+	$(GCC) $(CPPFLAGS) -o $@ -c $<
 
-motor.o: motor.cpp
-	$(GCC) $(INCLUDE) -c $<
+gcc/motor.o: motor.cpp
+	$(GCC) $(CPPFLAGS) $(INCLUDE) -o $@ -c $<
 
-stepper.o: stepper.cpp
-	$(GCC) $(INCLUDE) -c $<
-        
+gcc/stepper.o: stepper.cpp
+	$(GCC) $(CPPFLAGS) $(INCLUDE) -o $@ -c $<
+
+gcc/startup_gcc.o: startup_gcc.c
+	$(GCC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
+  
+gcc/motor.axf: $(OBJS) MakefileARM
+	$(LD) -T motor.ld --entry ResetISR --gc-sections -o $@ $(OBJS) lib/libdriver.a lib/libm.a lib/libgcc.a lib/libc.a
+	#$(LD) -T motor.ld --entry ResetISR --gc-sections -o $@ $(OBJS) lib/libdriver.a lib/libm.a lib/libgcc.a lib/libc.a
+  

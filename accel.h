@@ -74,7 +74,7 @@ public:
     unsigned int accelTime(void) {return _accelTime;}
 	
     unsigned int dryRunAccel(void);
-	void frequency(const unsigned int fmin = 200, const unsigned int fmax = 1200);
+	void frequency(const unsigned int fmin = 200, const unsigned int fmax = 3200);
     // Convert RPM to frequency
     void RPMx10k(const unsigned int RPMx10kmin, const unsigned int RPMx10kmax) {frequency(_RPMx10ktoFreq(RPMx10kmin), _RPMx10ktoFreq(RPMx10kmax));}
     void RPM(const float RPMmin, const float RPMmax) {frequency(_RPMtoFreq(RPMmin), _RPMtoFreq(RPMmax));}
@@ -200,12 +200,13 @@ private:
     void _scaleYAxisToClockTicks(void);
 #endif /* OPTIMIZE_CURVE_CALC */	
     
+    // Avoid using floats
     unsigned int _RPMx10ktoFreq(unsigned int RPMx10k) {
 #if REGRESS_1
-        oss() << "_RPMx10ktoFreq rpmx10k:" << RPMx10k << " frequency:" << (unsigned int)(RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC / _degreesPerMicrostep / 10000.0);
+        oss() << "_RPMx10ktoFreq rpmx10k:" << RPMx10k << " frequency:" << (unsigned int)(RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC / _degreesPerMicrostepx10k);
         dump();
 #endif /* REGRESS_1 */    
-        return (unsigned int)(RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC / _degreesPerMicrostep / 10000.0);
+        return (unsigned int)(RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC / _degreesPerMicrostepx10k);
     }
     
     unsigned int _RPMtoFreq(float rpm) {
@@ -248,6 +249,7 @@ private:
     // 16 microsteps = .1125
     // 32 microsteps = .05625
     float _degreesPerMicrostep;
+    unsigned int _degreesPerMicrostepx10k;
 };
 
 #endif /* _ACCEL_H_ */
