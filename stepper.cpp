@@ -6,7 +6,6 @@
 */
 
 #include "stepper.h"
-#include "lmi_timer.h"
 #include <math.h>
 #include <assert.h>
 
@@ -15,6 +14,15 @@
 #include <string.h>
 
 extern "C" void UARTSend(const unsigned char *pucBuffer, unsigned long ulCount);
+#ifdef PART_TM4C1233D5PM
+stepper* sp = NULL;
+
+extern "C" void stepperISR(void) {
+    if (sp != NULL) {
+        sp->isr();
+    }
+}
+#endif // PART_TM4C1233D5PM
 #endif /* not CYGWIN */
 
 stepper::stepper() :

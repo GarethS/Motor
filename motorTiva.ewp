@@ -17,15 +17,15 @@
         <debug>1</debug>
         <option>
           <name>ExePath</name>
-          <state>ewarm\Exe</state>
+          <state>Debug\Exe</state>
         </option>
         <option>
           <name>ObjPath</name>
-          <state>ewarm\Obj</state>
+          <state>Debug\Obj</state>
         </option>
         <option>
           <name>ListPath</name>
-          <state>ewarm\List</state>
+          <state>Debug\List</state>
         </option>
         <option>
           <name>Variant</name>
@@ -296,10 +296,15 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$</state>
           <state>$PROJ_DIR$\..</state>
           <state>$PROJ_DIR$\..\..\..\..</state>
-          <state>c:\ti\TivaWare_C_Series-1.0</state>
-          <state>c:\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial</state>
+          <state>C:\ti\TivaWare_C_Series-1.0</state>
+          <state>C:\ti\TivaWare_C_Series-1.0\inc</state>
+          <state>C:\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial</state>
+          <state>$PROJ_DIR$\..\FreeRTOS\Source\portable\IAR\ARM_CM4F</state>
+          <state>$PROJ_DIR$\..\FreeRTOS</state>
+          <state>$PROJ_DIR$\..\FreeRTOS\Source\include</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -548,6 +553,7 @@
         </option>
         <option>
           <name>AUserIncludes</name>
+          <state>$PROJ_DIR$</state>
           <state>$PROJ_DIR$\..</state>
           <state>$PROJ_DIR$\..\..\..\..</state>
         </option>
@@ -937,7 +943,46 @@
   <group>
     <name>Source</name>
     <file>
+      <name>$PROJ_DIR$\accel.cpp</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\flashio.cpp</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\FreeRTOS\Source\portable\MemMang\heap_2.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\parser\interpret.cpp</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\FreeRTOS\Source\list.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\parser\parseTreeEntry.cpp</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\FreeRTOS\Source\portable\IAR\ARM_CM4F\port.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\FreeRTOS\Source\portable\IAR\ARM_CM4F\portasm.s</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\FreeRTOS\Source\queue.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\startup_ewarm.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\stepper.cpp</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\parser\symbolTableEntry.cpp</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\FreeRTOS\Source\tasks.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\uartstdio.c</name>

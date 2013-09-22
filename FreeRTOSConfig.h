@@ -69,8 +69,11 @@
 #define configUSE_PREEMPTION			1
 #define configUSE_IDLE_HOOK				0
 #define configUSE_TICK_HOOK				1
+#ifdef PART_TM4C1233D5PM
+#define configCPU_CLOCK_HZ				( ( unsigned long ) 50000000 )
+#else // not PART_TM4C1233D5PM
 #define configCPU_CLOCK_HZ				( ( unsigned long ) 8000000 )
-//#define configCPU_CLOCK_HZ				( ( unsigned long ) 50000000 )
+#endif // PART_TM4C1233D5PM
 #define configTICK_RATE_HZ				( ( portTickType ) 1000 )
 #define configMINIMAL_STACK_SIZE		( ( unsigned short ) 70 )
 #define configTOTAL_HEAP_SIZE			( ( size_t ) ( 24000 ) )

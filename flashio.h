@@ -18,7 +18,7 @@ public:
     flashio();
     ~flashio() {}
       
-    void saveData(unsigned long* pData, unsigned long count);  
+    void saveData(uint32_t* pData, unsigned long count);  
 };
 
 #endif /* _FLASHIO_H_ */

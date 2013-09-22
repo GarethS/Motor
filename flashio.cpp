@@ -5,17 +5,19 @@
 
 */
 
-#include "flashio.h"
+#include <stdbool.h>
+#include <stdint.h>
 #include "hw_ints.h"
 #include "hw_memmap.h"
 #include "hw_types.h"
-#include "/DriverLib/src/flash.h"   // Using "flash.h" pulls in file from FreeRTOS
+#include "driverlib/flash.h"   // Using "flash.h" pulls in file from FreeRTOS
+#include "flashio.h"
 
 flashio::flashio() {
 }
 
-void flashio::saveData(unsigned long* pData, unsigned long count) {
-    unsigned long* remainingDataPointer = pData;
+void flashio::saveData(uint32_t* pData, unsigned long count) {
+    uint32_t* remainingDataPointer = pData;
     unsigned long remainingCount = count;
     unsigned int pageCount = 0;
     while (remainingCount > 0) {

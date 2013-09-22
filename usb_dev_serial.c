@@ -1051,7 +1051,7 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
 //
 //*****************************************************************************
 int
-main(void)
+mainA(void)
 {
     uint32_t ui32TxCount;
     uint32_t ui32RxCount;

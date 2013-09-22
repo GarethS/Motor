@@ -27,19 +27,31 @@
 //
 //*****************************************************************************
 
+#include <stdbool.h>
+#include <stdint.h>
 #include "hw_ints.h"
 #include "hw_memmap.h"
 #include "hw_types.h"
+#ifdef PART_TM4C1233D5PM
+#include "driverlib/debug.h"
+#include "driverlib/gpio.h"
+#include "driverlib/interrupt.h"
+#include "driverlib/sysctl.h"
+#include "driverlib/uart.h"
+#include "driverlib/rom.h"
+#include "driverlib/timer.h"
+#else // not PART_TM4C1233D5PM
 #include "debug.h"
 #include "gpio.h"
 #include "interrupt.h"
 #include "sysctl.h"
 #include "uart.h"
 #include "rom.h"
-#include "grlib/grlib.h"
-#include "formike128x128x16.h"
+//#include "grlib/grlib.h"
+//#include "formike128x128x16.h"
+#endif // PART_TM4C1233D5PM
 
-#include "inc/lm3s3748.h"
+//#include "inc/lm3s3748.h"
 
 /* Scheduler includes. */
 #include "FreeRTOS.h"
@@ -88,7 +100,7 @@ static portTASK_FUNCTION_PROTO( vUARTTask, pvParameters );
 // Graphics context used to show text on the CSTN display.
 //
 //*****************************************************************************
-tContext g_sContext;
+//tContext g_sContext;
 
 //*****************************************************************************
 //
@@ -205,6 +217,39 @@ void flashLED(void) {
     LEDOff();
     delay();
 }
+
+#ifdef PART_TM4C1233D5PM
+#define timerHIGHEST_PRIORITY			( 0 )
+#define timerINTERRUPT_FREQUENCY		( 200UL )
+void vSetupHighFrequencyTimer( void )
+{
+	/* Timer zero is used to generate the interrupts, and timer 1 is used
+	to measure the jitter. */
+	SysCtlPeripheralEnable( SYSCTL_PERIPH_TIMER0 );
+    SysCtlPeripheralEnable( SYSCTL_PERIPH_TIMER1 );
+    TimerConfigure( TIMER0_BASE, TIMER_CFG_PERIODIC );
+    //TimerConfigure( TIMER1_BASE, TIMER_CFG_PERIODIC );
+	
+	/* Set the timer interrupt to be above the kernel - highest. */
+	IntPrioritySet( INT_TIMER0A, timerHIGHEST_PRIORITY );
+
+	/* Just used to measure time. */
+    //TimerLoadSet(TIMER1_BASE, TIMER_A, timerMAX_32BIT_VALUE );
+	
+	/* Ensure interrupts do not start until the scheduler is running. */
+	portDISABLE_INTERRUPTS();
+	
+	/* The rate at which the timer will interrupt. */
+	unsigned long ulTimerCount = configCPU_CLOCK_HZ / timerINTERRUPT_FREQUENCY;	
+    TimerLoadSet( TIMER0_BASE, TIMER_A, ulTimerCount );
+    IntEnable( INT_TIMER0A );
+    TimerIntEnable( TIMER0_BASE, TIMER_TIMA_TIMEOUT );
+
+	/* Enable both timers. */	
+    TimerEnable( TIMER0_BASE, TIMER_A );
+    //TimerEnable( TIMER1_BASE, TIMER_A );
+}
+#endif // PART_TM4C1233D5PM
 
 //*****************************************************************************
 //

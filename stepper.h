@@ -8,11 +8,23 @@
 #ifndef _STEPPER_H_
 #define _STEPPER_H_
 
+#include <stdbool.h>
+#include <stdint.h>
 #include "hw_ints.h"
 #include "hw_memmap.h"
 #include "hw_types.h"
+#if CYGWIN
 #include "gpio.h"
 #include "lmi_timer.h"
+#else // not CYGWIN
+#ifdef PART_TM4C1233D5PM
+#include "driverlib/gpio.h"
+#include "driverlib/timer.h"
+#else // not PART_TM4C1233D5PM
+#include "gpio.h"
+#include "timer.h"
+#endif // PART_TM4C1233D5PM
+#endif // CYGWIN
 
 #include "accel.h"
 

@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR ELF Linker V5.50.0.51878/W32 for ARM              03/Sep/2013  23:07:11 #
+# IAR ELF Linker V5.50.0.51878/W32 for ARM              21/Sep/2013  22:23:24 #
 # Copyright (C) 2007-2010 IAR Systems AB.                                     #
 #                                                                             #
 #    Output file  =  C:\dev\docs\scottdesign\motor\Debug\Exe\motor.out        #
@@ -10,7 +10,6 @@
 #                    C:\dev\docs\scottdesign\motor\Debug\Obj\IntQueue.o       #
 #                    C:\dev\docs\scottdesign\motor\Debug\Obj\IntQueueTimer.o  #
 #                    C:\dev\docs\scottdesign\motor\Debug\Obj\accel.o          #
-#                    C:\dev\docs\scottdesign\motor\Debug\Obj\flashio.o        #
 #                    C:\dev\docs\scottdesign\motor\Debug\Obj\formike128x128x1 #
 #                    6.o C:\dev\docs\scottdesign\motor\Debug\Obj\heap_2.o     #
 #                    C:\dev\docs\scottdesign\motor\Debug\Obj\interpret.o      #
