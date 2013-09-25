@@ -72,10 +72,13 @@ int mainA(void);
 #define mainLED_TASK_PRIORITY           ( tskIDLE_PRIORITY + 1 )
 
 void vStartLEDOnTasks( unsigned portBASE_TYPE uxPriority );
-static portTASK_FUNCTION_PROTO( vLEDOnTask, pvParameters );
+static void vLEDOnTask(void* pvParameters );
+
+void vStartIdleTask( unsigned portBASE_TYPE uxPriority );
+static void vIdleTask(void* pvParameters );
 
 void vStartUARTTasks( unsigned portBASE_TYPE uxPriority );
-static portTASK_FUNCTION_PROTO( vUARTTask, pvParameters );
+static void vUARTTask(void* pvParameters );
 
 #define PIN_ENABLE  (GPIO_PIN_4)
 #define PIN_SLEEP   (GPIO_PIN_5)
@@ -257,8 +260,10 @@ void vSetupHighFrequencyTimer( void )
 //
 //*****************************************************************************
 int
-main(void)
-{
+#if PART_TM4C1233D5PM
+mainA(void) {
+#else // not PART_TM4C1233D5PM
+main(void) {
     //tRectangle sRect;
 
     //
@@ -366,7 +371,9 @@ main(void)
     //
     UARTSend((unsigned char *)"Start", 5);
     flashLED();
+#endif // PART_TM4C1233D5PM
 
+    vStartIdleTask(tskIDLE_PRIORITY);
     vStartLEDOnTasks(mainLED_TASK_PRIORITY);
     //vStartUARTTasks(mainLED_TASK_PRIORITY);
     /* Configure the high frequency interrupt used to measure the interrupt jitter time. */
@@ -396,17 +403,31 @@ main(void)
     }
 }
 
+void vStartIdleTask( unsigned portBASE_TYPE uxPriority )
+{
+    xTaskCreate( vIdleTask, ( signed char * ) "LEDx", 4200 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
+}
+
+static void vIdleTask(void* pvParameters) {
+#define IDLE_MS (250)    
+    for (;;) {
+        GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, GPIO_PIN_0);
+        vTaskDelay(IDLE_MS / portTICK_RATE_MS);
+        GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 0);
+        vTaskDelay(IDLE_MS / portTICK_RATE_MS);
+    }
+}
+
 void vStartLEDOnTasks( unsigned portBASE_TYPE uxPriority )
 {
     //signed portBASE_TYPE xLEDTask;
 
-    /* Spawn the task. */
     xTaskCreate( vLEDOnTask, ( signed char * ) "LEDx", 4200 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
 }
 
 void interpretRun(void);
 
-static portTASK_FUNCTION( vLEDOnTask, pvParameters )
+static void vLEDOnTask(void* pvParameters )
 {
 //portTickType xFlashRate, xLastFlashTime;
 //unsigned portBASE_TYPE uxLED;

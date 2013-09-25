@@ -973,7 +973,7 @@
       <name>$PROJ_DIR$\..\FreeRTOS\Source\queue.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\startup_ewarm.c</name>
+      <name>$PROJ_DIR$\startup_ewarm.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\stepper.cpp</name>

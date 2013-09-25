@@ -83,6 +83,8 @@
 //
 //*****************************************************************************
 
+extern void mainA(void);
+
 //*****************************************************************************
 //
 // Configuration and tuning parameters.
@@ -167,7 +169,7 @@ static bool g_bSendingBreak = false;
 // Global system tick counter
 //
 //*****************************************************************************
-volatile uint32_t g_ui32SysTickCount = 0;
+//volatile uint32_t g_ui32SysTickCount = 0;
 
 //*****************************************************************************
 //
@@ -420,6 +422,7 @@ USBUARTPrimeTransmit(uint32_t ui32Base)
 // Interrupt handler for the system tick counter.
 //
 //*****************************************************************************
+#if 0
 void
 SysTickIntHandler(void)
 {
@@ -428,6 +431,7 @@ SysTickIntHandler(void)
     //
     g_ui32SysTickCount++;
 }
+#endif
 
 //*****************************************************************************
 //
@@ -1051,7 +1055,7 @@ RxHandler(void *pvCBData, uint32_t ui32Event, uint32_t ui32MsgValue,
 //
 //*****************************************************************************
 int
-mainA(void)
+main(void)
 {
     uint32_t ui32TxCount;
     uint32_t ui32RxCount;
@@ -1079,7 +1083,7 @@ mainA(void)
     //
     // Enable the GPIO port that is used for the on-board LED.
     //
-    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);    // gjs Our board uses GPIOB
     // gjs ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
     //
@@ -1127,10 +1131,11 @@ mainA(void)
     //
     // Enable the system tick.
     //
+#if 0    
     ROM_SysTickPeriodSet(ROM_SysCtlClockGet() / SYSTICKS_PER_SECOND);
     ROM_SysTickIntEnable();
     ROM_SysTickEnable();
-
+#endif
     //
     // Initialize the transmit and receive buffers.
     //
@@ -1159,6 +1164,9 @@ mainA(void)
     //
     ROM_IntEnable(USB_UART_INT);
 
+    // Enable FreeRTOS
+    mainA();
+    
     //
     // Main application loop.
     //
