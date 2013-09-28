@@ -72,7 +72,7 @@
 #ifdef PART_TM4C1233D5PM
 // 24k, 24576 sRAM
 #define configCPU_CLOCK_HZ				( ( unsigned long ) 50000000 )
-#define configTOTAL_HEAP_SIZE			( ( size_t ) ( 14000 ) )
+#define configTOTAL_HEAP_SIZE			( ( size_t ) ( 16000 ) )
 #else // not PART_TM4C1233D5PM
 // LM3S3748 64k sRAM
 #define configCPU_CLOCK_HZ				( ( unsigned long ) 8000000 )
