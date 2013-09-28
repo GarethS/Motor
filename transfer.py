@@ -153,7 +153,8 @@ class Transfer():
                 foundBeginTokenIndex = newTokenString.rfind("<")
                 if foundBeginTokenIndex != -1 and foundBeginTokenIndex < foundEndTokenIndex:
                     yaccInput = newTokenString[foundBeginTokenIndex:]
-                    print "yacc:", yaccInput
+                    if yaccInput != '<OK>':
+                        print "yacc:", yaccInput
                     currentToken = 0
                     yacc.parse(yaccInput, debug=1)
                 # Remove up to end of token from string

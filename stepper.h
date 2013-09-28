@@ -45,11 +45,22 @@ using namespace std;
 #define MICROSTEPS_16_STD       (0.1125)    // degrees per step for 16 microsteps
 #define MICROSTEPS_32_STD       (0.05625)   // degrees per step for 32 microsteps
 
+#ifdef PART_TM4C1233D5PM
+#define PIN_ENABLE  (GPIO_PIN_4)    // PORTC
+#define PIN_SLEEP   (GPIO_PIN_7)    // PORTC
+#define PIN_STEP    (GPIO_PIN_6)    // PORTD
+#define PIN_DIR     (GPIO_PIN_5)    // PORTC
+#define GPIO_STEP_PORT  (GPIO_PORTD_BASE)
+#define GPIO_DIR_PORT   (GPIO_PORTC_BASE)
+#else // not PART_TM4C1233D5PM
 #define PIN_ENABLE  (GPIO_PIN_4)
 #define PIN_SLEEP   (GPIO_PIN_5)
 #define PIN_STEP    (GPIO_PIN_6)
 #define PIN_DIR     (GPIO_PIN_7)
 #define PIN_ALL     (PIN_ENABLE | PIN_SLEEP | PIN_STEP | PIN_DIR)
+#define GPIO_STEP_PORT  (GPIO_PORTA_BASE)
+#define GPIO_DIR_PORT   (GPIO_PORTA_BASE)
+#endif // PART_TM4C1233D5PM
 
 class stepper
 #if CYGWIN
@@ -63,21 +74,21 @@ public:
 	accel a;    // Handle math in acceleration class
 	
     void step(void) {
-        GPIOPinWrite(GPIO_PORTA_BASE, PIN_STEP, PIN_STEP);
+        GPIOPinWrite(GPIO_STEP_PORT, PIN_STEP, PIN_STEP);
         if (_directionPositive) {
             ++_positionCurrent;
         } else {
             --_positionCurrent;
         }
-        GPIOPinWrite(GPIO_PORTA_BASE, PIN_STEP, ~PIN_STEP);
+        GPIOPinWrite(GPIO_STEP_PORT, PIN_STEP, ~PIN_STEP);
     }
       
     void directionPositive(bool positive = true) {
         _directionPositive = positive;
         if (_directionPositive) {
-            GPIOPinWrite(GPIO_PORTA_BASE, PIN_DIR, (unsigned char)~PIN_DIR);
+            GPIOPinWrite(GPIO_DIR_PORT, PIN_DIR, (unsigned char)~PIN_DIR);
         } else {
-            GPIOPinWrite(GPIO_PORTA_BASE, PIN_DIR, PIN_DIR);
+            GPIOPinWrite(GPIO_DIR_PORT, PIN_DIR, PIN_DIR);
         }
     }
     //bool directionPositive(void) {return _directionPositive;}

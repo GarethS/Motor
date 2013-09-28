@@ -15,9 +15,12 @@
 
 extern "C" void UARTSend(const unsigned char *pucBuffer, unsigned long ulCount);
 #ifdef PART_TM4C1233D5PM
+#include "driverlib/rom.h"
+
 stepper* sp = NULL;
 
 extern "C" void stepperISR(void) {
+    ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
     if (sp != NULL) {
         sp->isr();
     }
@@ -33,8 +36,15 @@ stepper::stepper() :
 }
 
 void stepper_init(void) {
+#ifdef PART_TM4C1233D5PM
+    GPIODirModeSet(GPIO_PORTC_BASE, PIN_ENABLE | PIN_SLEEP | PIN_DIR, GPIO_DIR_MODE_OUT);
+    GPIOPadConfigSet(GPIO_PORTC_BASE, PIN_ENABLE | PIN_SLEEP | PIN_DIR, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD);
+    GPIODirModeSet(GPIO_PORTD_BASE, PIN_STEP, GPIO_DIR_MODE_OUT);
+    GPIOPadConfigSet(GPIO_PORTD_BASE, PIN_STEP, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD);
+#else // not PART_TM4C1233D5PM    
     GPIODirModeSet(GPIO_PORTA_BASE, PIN_ALL, GPIO_DIR_MODE_OUT);
     GPIOPadConfigSet(GPIO_PORTA_BASE, PIN_ALL, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD);
+#endif // PART_TM4C1233D5PM    
 }
 
 #if CYGWIN

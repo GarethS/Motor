@@ -373,11 +373,14 @@ main(void) {
     flashLED();
 #endif // PART_TM4C1233D5PM
 
+#if PART_TM4C1233D5PM    
     vStartIdleTask(tskIDLE_PRIORITY);
-    //vStartLEDOnTasks(mainLED_TASK_PRIORITY);
+#else // not PART_TM4C1233D5PM    
+    vStartLEDOnTasks(mainLED_TASK_PRIORITY);
     //vStartUARTTasks(mainLED_TASK_PRIORITY);
     /* Configure the high frequency interrupt used to measure the interrupt jitter time. */
-    //vSetupHighFrequencyTimer();
+#endif // PART_TM4C1233D5PM    
+    vSetupHighFrequencyTimer();
     vTaskStartScheduler();
     // Normally will never reach here.
     
@@ -405,7 +408,7 @@ main(void) {
 
 void vStartIdleTask( unsigned portBASE_TYPE uxPriority )
 {
-    xTaskCreate( vIdleTask, ( signed char * ) "LEDx", 1200 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
+    xTaskCreate( vIdleTask, ( signed char * ) "Idle", 32 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
 }
 
 static void vIdleTask(void* pvParameters) {
