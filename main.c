@@ -374,10 +374,10 @@ main(void) {
 #endif // PART_TM4C1233D5PM
 
     vStartIdleTask(tskIDLE_PRIORITY);
-    vStartLEDOnTasks(mainLED_TASK_PRIORITY);
+    //vStartLEDOnTasks(mainLED_TASK_PRIORITY);
     //vStartUARTTasks(mainLED_TASK_PRIORITY);
     /* Configure the high frequency interrupt used to measure the interrupt jitter time. */
-    vSetupHighFrequencyTimer();
+    //vSetupHighFrequencyTimer();
     vTaskStartScheduler();
     // Normally will never reach here.
     
@@ -405,11 +405,11 @@ main(void) {
 
 void vStartIdleTask( unsigned portBASE_TYPE uxPriority )
 {
-    xTaskCreate( vIdleTask, ( signed char * ) "LEDx", 4200 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
+    xTaskCreate( vIdleTask, ( signed char * ) "LEDx", 1200 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
 }
 
 static void vIdleTask(void* pvParameters) {
-#define IDLE_MS (250)    
+#define IDLE_MS (1000)    
     for (;;) {
         GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, GPIO_PIN_0);
         vTaskDelay(IDLE_MS / portTICK_RATE_MS);

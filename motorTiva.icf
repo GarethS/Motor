@@ -31,12 +31,16 @@ define memory mem with size = 4G;
 //
 // Define a region for the on-chip flash.
 //
-define region FLASH = mem:[from 0x00000000 to 0x0003ffff];
+//define region FLASH = mem:[from 0x00000000 to 0x0003ffff];
+// 64k for TM4C1233D5PM 65535. = 0x10000 - 1 = 0xffff
+define region FLASH = mem:[from 0x00000000 to 0x0000ffff];
 
 //
 // Define a region for the on-chip SRAM.
 //
-define region SRAM = mem:[from 0x20000000 to 0x20007fff];
+//define region SRAM = mem:[from 0x20000000 to 0x20007fff];
+// 24k for TM4C1233D5PM  24575. = 0x6000 - 1 = 0x5fff
+define region SRAM = mem:[from 0x20000000 to 0x20005fff];
 
 //
 // Define a block for the heap.  The size should be set to something other

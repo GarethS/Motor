@@ -70,13 +70,16 @@
 #define configUSE_IDLE_HOOK				0
 #define configUSE_TICK_HOOK				1
 #ifdef PART_TM4C1233D5PM
+// 24k, 24576 sRAM
 #define configCPU_CLOCK_HZ				( ( unsigned long ) 50000000 )
+#define configTOTAL_HEAP_SIZE			( ( size_t ) ( 14000 ) )
 #else // not PART_TM4C1233D5PM
+// LM3S3748 64k sRAM
 #define configCPU_CLOCK_HZ				( ( unsigned long ) 8000000 )
+#define configTOTAL_HEAP_SIZE			( ( size_t ) ( 24000 ) )
 #endif // PART_TM4C1233D5PM
 #define configTICK_RATE_HZ				( ( portTickType ) 1000 )
 #define configMINIMAL_STACK_SIZE		( ( unsigned short ) 70 )
-#define configTOTAL_HEAP_SIZE			( ( size_t ) ( 24000 ) )
 #define configMAX_TASK_NAME_LEN			( 12 )
 #define configUSE_TRACE_FACILITY		1
 #define configUSE_16_BIT_TICKS			0
