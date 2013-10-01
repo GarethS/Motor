@@ -322,13 +322,13 @@ ReadUARTData(void)
         if(!(i32Char & ~0xFF))
         {
             ui8Char = (uint8_t)(i32Char & 0xFF);
-            USBBufferWrite((tUSBBuffer *)&g_sTxBuffer, (uint8_t *)&ui8Char, 1);
+            //USBBufferWrite((tUSBBuffer *)&g_sTxBuffer, (uint8_t *)&ui8Char, 1);
             bufferInput(ui8Char);
             
 #if 0            
             // Write dummy character to make sure this is working using minicom on Linux
             ui8Char = 'x';
-            USBBufferWrite((tUSBBuffer *)&g_sTxBuffer, (uint8_t *)&ui8Char, 1);
+            USBBufferWrite((tUSBBuffer *)&g_sTxBuffer, (uint8_t *)&ui8Char, 1);            
 #endif     
             
             //

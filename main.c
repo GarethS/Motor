@@ -40,6 +40,8 @@
 #include "driverlib/uart.h"
 #include "driverlib/rom.h"
 #include "driverlib/timer.h"
+
+#include "usblib/usblib.h"      // provides definition of: tUSBBuffer
 #else // not PART_TM4C1233D5PM
 #include "debug.h"
 #include "gpio.h"
@@ -80,12 +82,19 @@ static void vIdleTask(void* pvParameters );
 void vStartUARTTasks( unsigned portBASE_TYPE uxPriority );
 static void vUARTTask(void* pvParameters );
 
+#ifdef PART_TM4C1233D5PM
+extern const tUSBBuffer g_sTxBuffer;
+extern const tUSBBuffer g_sRxBuffer;
+#endif // PART_TM4C1233D5PM
+
+#if 0
 #define PIN_ENABLE  (GPIO_PIN_4)
 #define PIN_SLEEP   (GPIO_PIN_5)
 #define PIN_STEP    (GPIO_PIN_6)
 #define PIN_DIR     (GPIO_PIN_7)
 #define PIN_ALL     (PIN_ENABLE | PIN_SLEEP | PIN_STEP | PIN_DIR)
-    
+#endif    
+
 //*****************************************************************************
 //
 //! \addtogroup ek_lm3s3748_list
@@ -165,6 +174,9 @@ UARTIntHandler(void)
 void
 UARTSend(const unsigned char *pucBuffer, unsigned long ulCount)
 {
+#ifdef PART_TM4C1233D5PM
+    USBBufferWrite((tUSBBuffer *)&g_sTxBuffer, (uint8_t *)pucBuffer, ulCount);
+#else // not PART_TM4C1233D5PM    
     //
     // Loop while there are more characters to send.
     //
@@ -175,6 +187,7 @@ UARTSend(const unsigned char *pucBuffer, unsigned long ulCount)
         //
         ROM_UARTCharPutNonBlocking(UART0_BASE, *pucBuffer++);
     }
+#endif // PART_TM4C1233D5PM    
 }
 
 void delay(void) {
@@ -202,6 +215,7 @@ void LEDOff(void) {
     //GPIO_PORTF_DATA_R &= ~(0x01); // LED off
 }
 
+#if 0
 void enable(void) {
     GPIOPinWrite(GPIO_PORTA_BASE, PIN_ENABLE | PIN_SLEEP, PIN_SLEEP);
     //GPIOPinWrite(GPIO_PORTA_BASE, PIN_ENABLE , PIN_ENABLE );
@@ -213,6 +227,7 @@ void motorStep(void) {
     GPIOPinWrite(GPIO_PORTA_BASE, PIN_STEP, ~PIN_STEP);
     delay();
 }
+#endif
 
 void flashLED(void) {
     LEDOn();
@@ -260,7 +275,7 @@ void vSetupHighFrequencyTimer( void )
 //
 //*****************************************************************************
 int
-#if PART_TM4C1233D5PM
+#ifdef PART_TM4C1233D5PM
 mainA(void) {
 #else // not PART_TM4C1233D5PM
 main(void) {
@@ -373,7 +388,7 @@ main(void) {
     flashLED();
 #endif // PART_TM4C1233D5PM
 
-#if PART_TM4C1233D5PM    
+#ifdef PART_TM4C1233D5PM    
     vStartIdleTask(tskIDLE_PRIORITY);
 #endif // PART_TM4C1233D5PM    
     vStartLEDOnTasks(mainLED_TASK_PRIORITY);
@@ -410,7 +425,7 @@ void vStartIdleTask( unsigned portBASE_TYPE uxPriority )
 }
 
 static void vIdleTask(void* pvParameters) {
-#define IDLE_MS (1000)    
+#define IDLE_MS (500)    
     for (;;) {
         GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, GPIO_PIN_0);
         vTaskDelay(IDLE_MS / portTICK_RATE_MS);
