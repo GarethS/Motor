@@ -72,7 +72,7 @@ yacc.yacc()
 class Transfer():
     def __init__(self, fileName):
         self.__fileName = fileName
-        self.__lineCount = 0
+        self.__lineCount = 1
         self.__haveSerialPort = True # Set to false for debugging with no serial port on computer
         if self.__haveSerialPort:
             self.__ser = serial.Serial(

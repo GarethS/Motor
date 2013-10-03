@@ -24,6 +24,7 @@ using namespace std;
 
 #define SECONDS_PER_MINUTE      (60)
 #define MICROSEC_PER_SEC        (1000000)
+#define MHZ                     (MICROSEC_PER_SEC)
 #define DEGREES_PER_REV         (360)
 #define DEGREES_PER_REV_TIMES_MINUTE_PER_SEC    (6) // 360 * 0.01666 = 6
 #define DEGREES_PER_MICROSTEP_NOMINAL   (1.8)   // A lot of stepper motors are 1.8 degrees per full-step

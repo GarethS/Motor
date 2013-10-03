@@ -1171,8 +1171,9 @@ main(void)
     ROM_IntEnable(USB_UART_INT);
 
     // Enable FreeRTOS
-    mainA();
+    mainA(); // FreeRTOS. Will not return
     
+#if 0    
     //
     // Main application loop.
     //
@@ -1269,4 +1270,5 @@ main(void)
 
         }
     }
+#endif    
 }

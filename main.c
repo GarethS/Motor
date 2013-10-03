@@ -82,8 +82,8 @@ void localAssert(void) {
 #define ledSTACK_SIZE		(400)
 #define mainLED_TASK_PRIORITY           ( tskIDLE_PRIORITY + 1 )
 
-void vStartLEDOnTasks( unsigned portBASE_TYPE uxPriority );
-static void vLEDOnTask(void* pvParameters );
+void vStartInterpretTask( unsigned portBASE_TYPE uxPriority );
+static void vInterpretTask(void* pvParameters );
 
 void vStartIdleTask( unsigned portBASE_TYPE uxPriority );
 static void vIdleTask(void* pvParameters );
@@ -361,12 +361,15 @@ main(void) {
 #ifdef PART_TM4C1233D5PM    
     vStartIdleTask(tskIDLE_PRIORITY);
 #endif // PART_TM4C1233D5PM    
-    vStartLEDOnTasks(mainLED_TASK_PRIORITY);
+    vStartInterpretTask(mainLED_TASK_PRIORITY);
     //vStartUARTTasks(mainLED_TASK_PRIORITY);
     vSetupHighFrequencyTimer();
     vTaskStartScheduler();
     // Normally will never reach here.
     
+#if 1
+    for (;;) {}
+#else     
     // Loop forever echoing data through the UART.
     while(1)
     {
@@ -387,6 +390,7 @@ main(void) {
       }
       
     }
+#endif    
 }
 
 void vStartIdleTask( unsigned portBASE_TYPE uxPriority )
@@ -396,10 +400,8 @@ void vStartIdleTask( unsigned portBASE_TYPE uxPriority )
 
 static void vIdleTask(void* pvParameters) {
 #define IDLE_MS (500)    
-    //static unsigned portBASE_TYPE uxHighWaterMark;
 
     for (;;) {
-        //uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
         GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, GPIO_PIN_0);
         vTaskDelay(IDLE_MS / portTICK_RATE_MS);
         GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 0);
@@ -407,16 +409,14 @@ static void vIdleTask(void* pvParameters) {
     }
 }
 
-void vStartLEDOnTasks( unsigned portBASE_TYPE uxPriority )
+void vStartInterpretTask( unsigned portBASE_TYPE uxPriority )
 {
-    //signed portBASE_TYPE xLEDTask;
-
-    xTaskCreate( vLEDOnTask, ( signed char * ) "LEDx", 2600 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
+    xTaskCreate( vInterpretTask, ( signed char * ) "Interpret", 2600 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
 }
 
 void interpretRun(void);
 
-static void vLEDOnTask(void* pvParameters )
+static void vInterpretTask(void* pvParameters )
 {
 #if 0
     // Used to initially test 2 tasks running simultaneously. The idle task blinked the other LED.
@@ -429,7 +429,7 @@ static void vLEDOnTask(void* pvParameters )
 #endif    
 //portTickType xFlashRate, xLastFlashTime;
 //unsigned portBASE_TYPE uxLED;
-    enable(); // Turn this on for the plain stepper demo
+    enable(); // Without this motor will not run!
     interpretRun();
     //mainA();
     for (;;) {

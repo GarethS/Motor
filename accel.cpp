@@ -6,6 +6,7 @@
 */
 
 #include "accel.h"
+#include "FreeRTOSConfig.h"
 #include <math.h>
 
 accel::accel() :
@@ -13,7 +14,7 @@ accel::accel() :
 					logc(std::string("ACCEL")),
 #endif /* CYGWIN */					
 					_accelTime(1000000),
-					_microSecPerSec(MICROSEC_PER_SEC), _maxDryRunCycles(10000), _clockMHz(8.0),
+					_microSecPerSec(MICROSEC_PER_SEC), _maxDryRunCycles(10000), _clockMHz(configCPU_CLOCK_HZ / MHZ),
 					_minTime(1000), _maxTime(4000000), _fStop(200), _degreesPerMicrostep(DEGREES_PER_MICROSTEP_NOMINAL) {
 	//_initUnitCurve();
 	frequency();	// set default min/max frequency (speed) curve

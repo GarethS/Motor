@@ -43,8 +43,8 @@ public:
 #else // not CYGWIN 
     // Trying to access a GPIO port before it is configured results in the hard fault handler being called.
 #ifdef PART_TM4C1233D5PM
-    void On(void) {return;}
-    void Off(void) {return;}
+    void On(void) {if (!enable()){return;} GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_1, GPIO_PIN_1);}
+    void Off(void) {if (!enable()){return;} GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_1, ~GPIO_PIN_1);}
 #else // not PART_TM4C1233D5PM    
     void On(void) {if (!enable()){return;} GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_PIN_0);}
     void Off(void) {if (!enable()){return;} GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, ~GPIO_PIN_0);}
