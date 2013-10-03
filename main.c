@@ -61,12 +61,21 @@
 #include "queue.h"
 #include "semphr.h"
 
+#include <assert.h>
+
 void vApplicationStackOverflowHook( xTaskHandle *pxTask, signed portCHAR *pcTaskName );
 void vApplicationTickHook( void );
 void vSetupHighFrequencyTimer( void );
 extern void bufferInput(unsigned char c);
+extern void stepper_init(void);
 
 int mainA(void);
+
+void localAssert(void) {
+//void localAssert(void* FILE, int LINE) {
+    assert(false);
+}
+
 
 /* The task that is created three times. */
 //#define ledSTACK_SIZE		(configMINIMAL_STACK_SIZE)
@@ -85,15 +94,22 @@ static void vUARTTask(void* pvParameters );
 #ifdef PART_TM4C1233D5PM
 extern const tUSBBuffer g_sTxBuffer;
 extern const tUSBBuffer g_sRxBuffer;
-#endif // PART_TM4C1233D5PM
-
-#if 0
+// used for testing
+#define PIN_ENABLE  (GPIO_PIN_4)    // PORTC
+#define PIN_SLEEP   (GPIO_PIN_7)    // PORTC
+#define PIN_STEP    (GPIO_PIN_6)    // PORTD
+#define PIN_DIR     (GPIO_PIN_5)    // PORTC
+#define GPIO_STEP_PORT  (GPIO_PORTD_BASE)
+#define GPIO_DIR_PORT   (GPIO_PORTC_BASE)
+#else // not PART_TM4C1233D5PM
 #define PIN_ENABLE  (GPIO_PIN_4)
 #define PIN_SLEEP   (GPIO_PIN_5)
 #define PIN_STEP    (GPIO_PIN_6)
 #define PIN_DIR     (GPIO_PIN_7)
 #define PIN_ALL     (PIN_ENABLE | PIN_SLEEP | PIN_STEP | PIN_DIR)
-#endif    
+#define GPIO_STEP_PORT  (GPIO_PORTA_BASE)
+#define GPIO_DIR_PORT   (GPIO_PORTA_BASE)
+#endif // PART_TM4C1233D5PM
 
 //*****************************************************************************
 //
@@ -215,25 +231,25 @@ void LEDOff(void) {
     //GPIO_PORTF_DATA_R &= ~(0x01); // LED off
 }
 
-#if 0
 void enable(void) {
-    GPIOPinWrite(GPIO_PORTA_BASE, PIN_ENABLE | PIN_SLEEP, PIN_SLEEP);
+    GPIOPinWrite(GPIO_DIR_PORT, PIN_ENABLE | PIN_SLEEP, PIN_SLEEP);
     //GPIOPinWrite(GPIO_PORTA_BASE, PIN_ENABLE , PIN_ENABLE );
 }
 
 void motorStep(void) {
-    GPIOPinWrite(GPIO_PORTA_BASE, PIN_STEP, PIN_STEP);
+    GPIOPinWrite(GPIO_STEP_PORT, PIN_STEP, PIN_STEP);
     delay();
-    GPIOPinWrite(GPIO_PORTA_BASE, PIN_STEP, ~PIN_STEP);
+    GPIOPinWrite(GPIO_STEP_PORT, PIN_STEP, ~PIN_STEP);
     delay();
 }
-#endif
 
 void flashLED(void) {
+#if 0
     LEDOn();
     delay();
     LEDOff();
     delay();
+#endif    
 }
 
 #ifdef PART_TM4C1233D5PM
@@ -289,55 +305,6 @@ main(void) {
     // A lot of people use this:
     //SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_8MHZ);
     
-#if 0
-    //
-    // Initialize the display driver.
-    //
-    Formike128x128x16Init();
-
-    //
-    // Turn on the backlight.
-    //
-    Formike128x128x16BacklightOn();
-
-    //
-    // Initialize the graphics context.
-    //
-    GrContextInit(&g_sContext, &g_sFormike128x128x16);
-
-    //
-    // Fill the top 15 rows of the screen with blue to create the banner.
-    //
-    sRect.sXMin = 0;
-    sRect.sYMin = 0;
-    sRect.sXMax = GrContextDpyWidthGet(&g_sContext) - 1;
-    sRect.sYMax = 14;
-    GrContextForegroundSet(&g_sContext, ClrDarkBlue);
-    GrRectFill(&g_sContext, &sRect);
-
-    //
-    // Put a white box around the banner.
-    //
-    GrContextForegroundSet(&g_sContext, ClrWhite);
-    GrRectDraw(&g_sContext, &sRect);
-
-    //
-    // Put the application name in the middle of the banner.
-    //
-    GrContextFontSet(&g_sContext, &g_sFontFixed6x8);
-    GrStringDrawCentered(&g_sContext, "uart_echo", -1,
-                         GrContextDpyWidthGet(&g_sContext) / 2, 7, 0);
-
-    //
-    // Initialize the CSTN display and write status.
-    //
-    GrStringDraw(&g_sContext, "Port:   Uart 0",       -1, 12, 24, 0);
-    GrStringDraw(&g_sContext, "Baud:   115,200 bps",  -1, 12, 32, 0);
-    GrStringDraw(&g_sContext, "Data:   8 Bit",        -1, 12, 40, 0);
-    GrStringDraw(&g_sContext, "Parity: None",         -1, 12, 48, 0);
-    GrStringDraw(&g_sContext, "Stop:   1 Bit",        -1, 12, 56, 0);
-#endif
-    
     //
     // Enable the peripherals used by this example.
     //
@@ -353,8 +320,10 @@ main(void) {
     // Set GPIO A0 and A1 as UART pins.
     //
     ROM_GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
-    GPIODirModeSet(GPIO_PORTA_BASE, PIN_ALL, GPIO_DIR_MODE_OUT);
-    GPIOPadConfigSet(GPIO_PORTA_BASE, PIN_ALL, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD);
+    
+    // Following 2 lines replaced by stepper_init() below
+    //GPIODirModeSet(GPIO_PORTA_BASE, PIN_ALL, GPIO_DIR_MODE_OUT);
+    //GPIOPadConfigSet(GPIO_PORTA_BASE, PIN_ALL, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD);
 
     //
     // Configure the UART for 115,200, 8-N-1 operation.
@@ -387,6 +356,7 @@ main(void) {
     UARTSend((unsigned char *)"Start", 5);
     flashLED();
 #endif // PART_TM4C1233D5PM
+    stepper_init();
 
 #ifdef PART_TM4C1233D5PM    
     vStartIdleTask(tskIDLE_PRIORITY);
@@ -421,12 +391,15 @@ main(void) {
 
 void vStartIdleTask( unsigned portBASE_TYPE uxPriority )
 {
-    xTaskCreate( vIdleTask, ( signed char * ) "Idle", 32 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
+    xTaskCreate( vIdleTask, (signed char *)"Idle", 32 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
 }
 
 static void vIdleTask(void* pvParameters) {
 #define IDLE_MS (500)    
+    //static unsigned portBASE_TYPE uxHighWaterMark;
+
     for (;;) {
+        //uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
         GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, GPIO_PIN_0);
         vTaskDelay(IDLE_MS / portTICK_RATE_MS);
         GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_0, 0);
@@ -438,31 +411,40 @@ void vStartLEDOnTasks( unsigned portBASE_TYPE uxPriority )
 {
     //signed portBASE_TYPE xLEDTask;
 
-    xTaskCreate( vLEDOnTask, ( signed char * ) "LEDx", 3400 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
+    xTaskCreate( vLEDOnTask, ( signed char * ) "LEDx", 2600 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
 }
 
 void interpretRun(void);
 
 static void vLEDOnTask(void* pvParameters )
 {
+#if 0
+    // Used to initially test 2 tasks running simultaneously. The idle task blinked the other LED.
+    for (;;) {
+        GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_1, GPIO_PIN_1);
+        vTaskDelay(505 / portTICK_RATE_MS);
+        GPIOPinWrite(GPIO_PORTB_BASE, GPIO_PIN_1, 0);
+        vTaskDelay(505 / portTICK_RATE_MS);
+    }
+#endif    
 //portTickType xFlashRate, xLastFlashTime;
 //unsigned portBASE_TYPE uxLED;
-    //enable(); // Turn this on for the plain stepper demo
+    enable(); // Turn this on for the plain stepper demo
     interpretRun();
-    mainA();
+    //mainA();
     for (;;) {
        	//portENTER_CRITICAL();
-#if 1
+#if 0
         //vTaskDelay(1 / portTICK_RATE_MS);
         //UARTSend((unsigned char *)"<L>", 3);
         LEDOn();
         //vTaskDelay(1 / portTICK_RATE_MS);
         LEDOff();
 #else        
-        vTaskDelay(100);
+        vTaskDelay(1);
         flashLED();
 #endif        
-        //motorStep();
+        motorStep();
         //LEDOn();
        	//portEXIT_CRITICAL();
     }

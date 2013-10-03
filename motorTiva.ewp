@@ -458,6 +458,7 @@
         <option>
           <name>ADefines</name>
           <state>ewarm</state>
+          <state>ASSEMBLER</state>
         </option>
         <option>
           <name>AList</name>

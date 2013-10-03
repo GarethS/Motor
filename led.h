@@ -42,8 +42,13 @@ public:
     void Off(void) {oss() << "LED off "; dump();}
 #else // not CYGWIN 
     // Trying to access a GPIO port before it is configured results in the hard fault handler being called.
+#ifdef PART_TM4C1233D5PM
+    void On(void) {return;}
+    void Off(void) {return;}
+#else // not PART_TM4C1233D5PM    
     void On(void) {if (!enable()){return;} GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_PIN_0);}
     void Off(void) {if (!enable()){return;} GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, ~GPIO_PIN_0);}
+#endif // PART_TM4C1233D5PM    
     static bool enable(void) {return _enable;}
     static void enable(bool e) {_enable = e;}
     

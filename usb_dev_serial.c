@@ -1089,14 +1089,14 @@ main(void)
     //
     // Enable the GPIO port that is used for the on-board LED.
     //
-    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);    // gjs Our board uses GPIOB
-    // gjs ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);    // gjs Our board uses GPIOB for LEDs
+    // gjs original ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 
     //
     // Enable the GPIO pins for the LED (PF2 & PF3).
     //
     ROM_GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_0|GPIO_PIN_1);
-    // gjs ROM_GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3|GPIO_PIN_2);
+    // gjs original ROM_GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3|GPIO_PIN_2);
 
     //
     // Not configured initially.
