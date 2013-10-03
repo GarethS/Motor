@@ -11,14 +11,14 @@
 #define _FLASHIO_H_
 
 #define FLASH_PAGE_SIZE (0x400) // 1024
-#define FLASH_START_ADDRESS (0x8000)    // TODO!!
+#define FLASH_START_ADDRESS (0xF000)    // Current code is located in flash at ~0x7200
 
 class flashio {
 public:
     flashio();
     ~flashio() {}
       
-    void saveData(uint32_t* pData, unsigned long count);  
+    void saveData(uint32_t* pData, unsigned long intCount);  
 };
 
 #endif /* _FLASHIO_H_ */

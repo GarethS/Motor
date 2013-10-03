@@ -1,7 +1,7 @@
 /*
-	Copyright (c) Gareth Scott 2011, 2012
+	Copyright (c) Gareth Scott 2011, 2012, 2013
 
-	accle.cpp 
+	accel.cpp 
 
 */
 

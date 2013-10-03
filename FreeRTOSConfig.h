@@ -110,10 +110,13 @@ to exclude the API function. */
 #define configKERNEL_INTERRUPT_PRIORITY 		( 7 << 5 )	/* Priority 7, or 255 as only the top three bits are implemented.  This is the lowest priority. */
 #define configMAX_SYSCALL_INTERRUPT_PRIORITY 	( 5 << 5 )  /* Priority 5, or 160 as only the top three bits are implemented. */
 
+#ifndef NDEBUG
+// debug
 #ifndef ASSEMBLER
 //portasm.s, which includes this file, doesn't like the following line
 void localAssert(); 
 #endif // not ASSEMBLER
 #define configASSERT(test) ((test) ? (void)0 : localAssert())
+#endif  // not NDEBUG
 
 #endif /* FREERTOS_CONFIG_H */

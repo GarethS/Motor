@@ -17,7 +17,8 @@ ERR                 = 1
 # 4 = COM5 on Toshiba laptop. Look under Device Manager to determine com port
 # 2 = COM3 on
 # 21 = COM22 (Virtual COM port over USB often comes up as this value on Windows 7)
-# /dev/ttyACM0 on LinuxMint
+# /dev/ttyACM0 or similar on LinuxMint
+# /dev/USB1234567 or similar on Mac
 currentSerialPort   = 21   # May vary if using USB to COM port hardware
 
 # List of token names.   This is always required

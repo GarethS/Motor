@@ -1,31 +1,9 @@
-//*****************************************************************************
-//
-// uart_echo.c - Example for reading data from and writing data to the UART in
-//               an interrupt driven fashion.
-//
-// Copyright (c) 2008 Luminary Micro, Inc.  All rights reserved.
-// 
-// Software License Agreement
-// 
-// Luminary Micro, Inc. (LMI) is supplying this software for use solely and
-// exclusively on LMI's microcontroller products.
-// 
-// The software is owned by LMI and/or its suppliers, and is protected under
-// applicable copyright laws.  All rights are reserved.  You may not combine
-// this software with "viral" open-source software in order to form a larger
-// program.  Any use in violation of the foregoing restrictions may subject
-// the user to criminal sanctions under applicable laws, as well as to civil
-// liability for the breach of the terms and conditions of this license.
-// 
-// THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
-// OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
-// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
-// LMI SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
-// CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
-// 
-// This is part of revision 2617 of the Stellaris Peripheral Driver Library.
-//
-//*****************************************************************************
+/*
+	Copyright (c) Gareth Scott 2011, 2012, 2013
+
+	main.c 
+
+*/
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -71,11 +49,13 @@ extern void stepper_init(void);
 
 int mainA(void);
 
+#ifndef NDEBUG
+// Catch assertions from FreeRTOS configASSERT macro
 void localAssert(void) {
 //void localAssert(void* FILE, int LINE) {
     assert(false);
 }
-
+#endif  // not NDEBUG, therefore, debug!
 
 /* The task that is created three times. */
 //#define ledSTACK_SIZE		(configMINIMAL_STACK_SIZE)
@@ -87,9 +67,6 @@ static void vInterpretTask(void* pvParameters );
 
 void vStartIdleTask( unsigned portBASE_TYPE uxPriority );
 static void vIdleTask(void* pvParameters );
-
-void vStartUARTTasks( unsigned portBASE_TYPE uxPriority );
-static void vUARTTask(void* pvParameters );
 
 #ifdef PART_TM4C1233D5PM
 extern const tUSBBuffer g_sTxBuffer;
@@ -446,33 +423,6 @@ static void vInterpretTask(void* pvParameters )
 #endif        
         motorStep();
         //LEDOn();
-       	//portEXIT_CRITICAL();
-    }
-}
-
-void vStartUARTTasks( unsigned portBASE_TYPE uxPriority )
-{
-    //signed portBASE_TYPE xLEDTask;
-
-    /* Spawn the task. */
-    xTaskCreate( vUARTTask, ( signed char * ) "UARTx", ledSTACK_SIZE, NULL, uxPriority, ( xTaskHandle * ) NULL );
-}
-
-static portTASK_FUNCTION( vUARTTask, pvParameters )
-{
-//portTickType xFlashRate, xLastFlashTime;
-//unsigned portBASE_TYPE uxLED;
-    for (;;) {
-       	//portENTER_CRITICAL();
-#if 0
-        vTaskDelay( 300 );
-#else
-        for (int x = 0; x < 10; ++x) {
-            delay();      
-        }
-#endif
-        //UARTSend((unsigned char *)"Enter text: ", 12);
-        //UARTSend((unsigned char *)"<B>", 3);
        	//portEXIT_CRITICAL();
     }
 }
