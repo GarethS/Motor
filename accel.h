@@ -3,7 +3,7 @@
 
 	accel.h 
 
-	This class generates an acceleration curve at construction time given 3 variables: min frequency, max frequency and time.
+	Generate acceleration curve at construction time given 3 variables: min frequency, max frequency and time.
 	
 */
 
@@ -31,6 +31,8 @@ using namespace std;
 #define ACCEL_SHARPNESS_MIN     (1)
 #define ACCEL_SHARPNESS_DEFAULT (8)
 #define ACCEL_SHARPNESS_MAX     (32)
+
+#define MAX_DRY_RUN_CYCLES      (10000)
 
 // _maxAccelIndex = 199 gives very smooth acceleration
 enum {_maxAccelIndex = 99, _maxAccelEntries, _maxBisectionTrys = 20};
@@ -78,7 +80,6 @@ public:
 	void frequency(const unsigned int fmin = 200, const unsigned int fmax = 3200);
     // Convert RPM to frequency
     void RPMx10k(const unsigned int RPMx10kmin, const unsigned int RPMx10kmax) {frequency(_RPMx10ktoFreq(RPMx10kmin), _RPMx10ktoFreq(RPMx10kmax));}
-    void RPM(const float RPMmin, const float RPMmax) {frequency(_RPMtoFreq(RPMmin), _RPMtoFreq(RPMmax));}
     unsigned int fmin(void) {return _fmin;}
     unsigned int fmax(void) {return _fmax;}
 	
@@ -144,7 +145,7 @@ public:
 			// Avoid divide-by-zero
 			return INT_MAX;
 		}
-		return _microSecPerSec / clockTicksToMicroSec(ct);
+		return MICROSEC_PER_SEC / clockTicksToMicroSec(ct);
 	}
 
 	// Given time, return frequency
@@ -153,7 +154,7 @@ public:
 			// Avoid divide-by-zero
 			return INT_MAX;
 		}
-		return _microSecPerSec / microsec;
+		return MICROSEC_PER_SEC / microsec;
 	}
 
     // Given microsec, return acceleration curve index to get speed
@@ -181,8 +182,8 @@ public:
 		return (unsigned int)((ct / _clockMHz));
 	}
 	
-    void degreesPerMicrostep(float dpus) {_degreesPerMicrostep = dpus;}
-    float degreesPerMicrostep(void) const  {return _degreesPerMicrostep;}
+    void degreesPerMicrostepx10k(unsigned int dpus) {_degreesPerMicrostepx10k = dpus;}
+    unsigned int degreesPerMicrostepx10k(void) const  {return _degreesPerMicrostepx10k;}
     
 #if CYGWIN    
     unsigned int currentClockTicks(void) const {return _currentClockTicks;}
@@ -204,18 +205,10 @@ private:
     // Avoid using floats
     unsigned int _RPMx10ktoFreq(unsigned int RPMx10k) {
 #if REGRESS_1
-        oss() << "_RPMx10ktoFreq rpmx10k:" << RPMx10k << " frequency:" << (unsigned int)(RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC / _degreesPerMicrostepx10k);
+        oss() << "_RPMx10ktoFreq rpmx10k:" << RPMx10k << " frequency:" << (RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC) / _degreesPerMicrostepx10k;
         dump();
 #endif /* REGRESS_1 */    
-        return (unsigned int)(RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC / _degreesPerMicrostepx10k);
-    }
-    
-    unsigned int _RPMtoFreq(float rpm) {
-#if REGRESS_1
-        oss() << "_RPMtoFreq rpm:" << rpm << " frequency:" << (unsigned int)(rpm * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC / _degreesPerMicrostep);
-        dump();
-#endif /* REGRESS_1 */    
-        return (unsigned int)(rpm * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC / _degreesPerMicrostep);
+        return (RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC) / _degreesPerMicrostepx10k;
     }
     
 #if DUMP	
@@ -237,19 +230,16 @@ private:
     //int _velocity;              // step/s
 	unsigned int _fmin, _fmax;	        // frequency min/max for acceleration
 
-    const unsigned int _microSecPerSec;
-    const unsigned int _maxDryRunCycles;
     const float _clockMHz;
 	const unsigned int _minTime;
 	const unsigned int _maxTime;
 	const unsigned int _fStop;	// Frequency that we can assume the motor is as good as stopped
-    // 0 microsteps = 1.8 deg/microstep -> 0.556 ustep/deg
+    // 0 microsteps = 1.8 deg/microstep -> 0.556 ustep/deg 
     // 2 microsteps = 1.8/2 = 0.9       -> 1.111 ustep/deg
     // 4 microsteps = .45               -> 2.222 ustep/deg
     // 8 microsteps = .225              -> 4.444 ustep/deg
     // 16 microsteps = .1125
     // 32 microsteps = .05625
-    float _degreesPerMicrostep;
     unsigned int _degreesPerMicrostepx10k;
 };
 

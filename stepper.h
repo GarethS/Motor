@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2011, 2012
+	Copyright (c) Gareth Scott 2011, 2012, 2013
 
 	stepper.h 
 
@@ -44,6 +44,8 @@ using namespace std;
 #define MICROSTEPS_8_STD        (0.225)     // degrees per step for 8 microsteps
 #define MICROSTEPS_16_STD       (0.1125)    // degrees per step for 16 microsteps
 #define MICROSTEPS_32_STD       (0.05625)   // degrees per step for 32 microsteps
+
+enum microsteps {MICROSTEPS_1, MICROSTEPS_2, MICROSTEPS_4, MICROSTEPS_8, MICROSTEPS_16, MICROSTEPS_32};
 
 #ifdef PART_TM4C1233D5PM
 #define PIN_ENABLE  (GPIO_PIN_4)    // PORTC
@@ -97,8 +99,8 @@ public:
     void moveAbsolute(int positionNew);
     void moveRelative(int positionRelative);
     
-    void moveAbsoluteDegree(float positionNewDegree) {moveAbsolute((int)(positionNewDegree / degreesPerMicrostep()));}
-    void moveRelativeDegree(float positionRelativeDegree) {moveRelative((int)(positionRelativeDegree / degreesPerMicrostep()));}
+    void moveAbsoluteDegreex10k(unsigned int positionNewDegreex10k) {moveAbsolute(positionNewDegreex10k / degreesPerMicrostepx10k());}
+    void moveRelativeDegreex10k(unsigned int positionRelativeDegreex10k) {moveRelative(positionRelativeDegreex10k / degreesPerMicrostepx10k());}
     // Used to modify moveAbsolute() that is currently running. Useful to extend or shorten
     //  the move as long as it's still in the same direction and doesn't interfere with
     //  a deceleration.
@@ -107,21 +109,23 @@ public:
     void controlledStopNow(void);
 	int velocity(const int f);
     void isr(void);
-    void disable(void) {GPIOPinWrite(GPIO_PORTA_BASE, PIN_ENABLE, PIN_ENABLE);}
-    void enable(void) {GPIOPinWrite(GPIO_PORTA_BASE, PIN_ENABLE | PIN_SLEEP, PIN_SLEEP);}
+    void disable(void) {GPIOPinWrite(GPIO_DIR_PORT, PIN_ENABLE, PIN_ENABLE);}
+    void enable(void) {GPIOPinWrite(GPIO_DIR_PORT, PIN_ENABLE | PIN_SLEEP, PIN_SLEEP);}
     //int acceleration(void) {/* TODO */}
     //int velocity(void) {/* TODO */}
-    int positionSteps(void) {return _positionCurrent;} // Need to return both degrees and scaled position.
+    int positionSteps(void) const {return _positionCurrent;} // Need to return both degrees and scaled position.
     void positionSteps(int p) {_positionCurrent = p;}   // set
-    float positionDegrees(void) {return positionSteps() * degreesPerMicrostep();} // get
-    void positionDegrees(float d) {_positionCurrent = (int)(d / degreesPerMicrostep());} // set
+    unsigned int positionDegreesx10k(void) const {return positionSteps() * degreesPerMicrostepx10k();} // get
+    void positionDegreesx10k(unsigned int d) {_positionCurrent = d / degreesPerMicrostepx10k();} // set
     unsigned int state(void) const {return _superState;}
     void accelerationTimeMicrosecs(unsigned int us) {a.accelTime(us);}   // Set acceleration time
     void frequency(unsigned int flow, unsigned int fhi) {a.frequency(flow, fhi);}  // Set high/low step frequency
-    void RPMx10k(const unsigned int RPMx10kmin = 1, const unsigned int RPMx10kmax = 1000000) {a.RPMx10k(RPMx10kmin, RPMx10kmax);}
-    void RPM(const float RPMmin = 1.0, const float RPMmax = 100.0) {a.RPM(RPMmin, RPMmax);}
-    void degreesPerMicrostep(float dpus) {a.degreesPerMicrostep(dpus);}
-    float degreesPerMicrostep(void) const  {return a.degreesPerMicrostep();}
+    // Use RPMx10k when you want finer precision over speed than RPM can give you. e.g. RPM = 23.456 -> RPMx10k = 234560
+    void RPMx10k(const unsigned int RPMx10kmin = 10000, const unsigned int RPMx10kmax = 1000000) {a.RPMx10k(RPMx10kmin, RPMx10kmax);}
+    void RPM(const unsigned int RPMmin = 1, const unsigned int RPMmax = 100) {RPMx10k(RPMmin * 10000, RPMmax * 10000);}
+    void microstepSet(const microsteps ms);
+    void degreesPerMicrostepx10k(const unsigned int dpus) {a.degreesPerMicrostepx10k(dpus);}
+    unsigned int degreesPerMicrostepx10k(void) const  {return a.degreesPerMicrostepx10k();}
 	
 #if CYGWIN    
 	void test(void);

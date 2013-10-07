@@ -14,8 +14,8 @@ accel::accel() :
 					logc(std::string("ACCEL")),
 #endif /* CYGWIN */					
 					_accelTime(1000000),
-					_microSecPerSec(MICROSEC_PER_SEC), _maxDryRunCycles(10000), _clockMHz(configCPU_CLOCK_HZ / MHZ),
-					_minTime(1000), _maxTime(4000000), _fStop(200), _degreesPerMicrostep(DEGREES_PER_MICROSTEP_NOMINAL) {
+					_clockMHz(configCPU_CLOCK_HZ / MHZ),
+					_minTime(1000), _maxTime(4000000), _fStop(200), _degreesPerMicrostepx10k(DEGREES_PER_MICROSTEP_NOMINAL * 10000) {
 	//_initUnitCurve();
 	frequency();	// set default min/max frequency (speed) curve
 }
@@ -24,8 +24,8 @@ accel::accel(const accel& a) :
 #if CYGWIN
     logc(a),
 #endif /* CYGWIN */
-    _microSecPerSec(a._microSecPerSec), _maxDryRunCycles(a._maxDryRunCycles), _clockMHz(a._clockMHz), _minTime(a._minTime), _maxTime(a._maxTime), _fStop(a._fStop),
-    _degreesPerMicrostep(DEGREES_PER_MICROSTEP_NOMINAL) {
+    _clockMHz(a._clockMHz), _minTime(a._minTime), _maxTime(a._maxTime), _fStop(a._fStop),
+    _degreesPerMicrostepx10k(DEGREES_PER_MICROSTEP_NOMINAL * 10000) {
 	assign(a);
 }
 
@@ -47,7 +47,7 @@ void accel::assign(const accel& a) {
 	//_velocity = a._velocity;
 	_fmin = a._fmin;
 	_fmax = a._fmax;
-	_degreesPerMicrostep = a._degreesPerMicrostep;
+	_degreesPerMicrostepx10k = a._degreesPerMicrostepx10k;
 }
 
 void accel::test(void) {
@@ -102,7 +102,7 @@ unsigned int accel::dryRunAccel(void) {
 #if DUMP
 	oss() << "start: dryRunAccel" << endl;
 #endif /* DUMP */	
-    for (; step < _maxDryRunCycles; ++step) {
+    for (; step < MAX_DRY_RUN_CYCLES; ++step) {
 		// Each step through is equivalent to an isr call from the timer.
         _totalClockTicks += _currentClockTicks;
         unsigned int index = clockTicksToCurveIndex(_totalClockTicks);
@@ -134,7 +134,7 @@ unsigned int accel::dryRunAccel(void) {
 unsigned int accel::timeToSteps(const unsigned int t) {
     initAccelTime(t);
     unsigned int step = 0;
-    for (; step < _maxDryRunCycles; ++step) {
+    for (; step < MAX_DRY_RUN_CYCLES; ++step) {
 		// Each step through is equivalent to an isr call from the timer.
         _totalClockTicks += _currentClockTicks;
         unsigned int index = clockTicksToCurveIndex(_totalClockTicks);
@@ -241,7 +241,7 @@ void accel::_scaleYAxisToFrequency(void) {
 
 #if OPTIMIZE_CURVE_CALC
 void accel::_scaleYAxisToClockTicks(void) {
-	unsigned int clockFrequency = (unsigned int)(_clockMHz * _microSecPerSec);
+	unsigned int clockFrequency = (unsigned int)(_clockMHz * MICROSEC_PER_SEC);
     for (int i = 0; i < _maxAccelEntries; ++i) {
         _curveInt[i] = (unsigned int)(clockFrequency / _curveFloat[i]);
     }
@@ -256,7 +256,7 @@ void accel::_scaleYAxisToClockTicks(void) {
 // Convert frequency scaled curve to period in microsec (us).
 void accel::_scaleYAxisToMicroSec(void) {
     for (int i = 0; i < _maxAccelEntries; ++i) {
-        _curveInt[i] = _microSecPerSec / _curveFloat[i];
+        _curveInt[i] = MICROSEC_PER_SEC / _curveFloat[i];
     }
 #if REGRESS_1
 	oss() << "_scaleYAxisToMicroSec" << endl;

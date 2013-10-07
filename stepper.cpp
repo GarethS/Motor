@@ -503,3 +503,25 @@ void stepper::_timerStart(bool start /* = true */) {
 		_superState = IDLE;
 	}
 }
+
+void stepper::microstepSet(const microsteps ms) {
+    switch (ms) {
+    case MICROSTEPS_1:
+        degreesPerMicrostepx10k(18000);
+        break;
+    case MICROSTEPS_2:
+        degreesPerMicrostepx10k(9000);
+        break;
+    case MICROSTEPS_4:
+        degreesPerMicrostepx10k(4500);
+        break;
+    case MICROSTEPS_8:
+        degreesPerMicrostepx10k(2250);
+        break;
+    default:
+    case MICROSTEPS_16:
+    case MICROSTEPS_32:
+        degreesPerMicrostepx10k(2250);
+        break;
+    }
+}
