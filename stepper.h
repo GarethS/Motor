@@ -29,19 +29,17 @@
 #include "accel.h"
 
 #if CYGWIN
-//#include <iostream>
 #include "log.h"
 #include <sstream>
 
 using namespace std;
 #endif /* CYGWIN */
 
-#define OPTIMIZE_CURVE_CALC 1
 #define MAX_VIRTUAL_MOTOR_STEPS (10000)
-#define MICROSTEPS_1_STD        (1.8)       // degrees per step for 1 microsteps, ie no microstepping
-#define MICROSTEPS_2_STD        (0.9)       // degrees per step for 2 microsteps
-#define MICROSTEPS_4_STD        (0.45)      // degrees per step for 4 microsteps
-#define MICROSTEPS_8_STD        (0.225)     // degrees per step for 8 microsteps
+#define MICROSTEPS_1_STD        (1.8)       // degrees per step for 1 microsteps, ie no microstepping -> 0.556 ustep/deg
+#define MICROSTEPS_2_STD        (0.9)       // degrees per step for 2 microsteps                      -> 1.111 ustep/deg
+#define MICROSTEPS_4_STD        (0.45)      // degrees per step for 4 microsteps                      -> 2.222 ustep/deg
+#define MICROSTEPS_8_STD        (0.225)     // degrees per step for 8 microsteps                      -> 4.444 ustep/deg
 #define MICROSTEPS_16_STD       (0.1125)    // degrees per step for 16 microsteps
 #define MICROSTEPS_32_STD       (0.05625)   // degrees per step for 32 microsteps
 
@@ -97,7 +95,7 @@ public:
       
 	// Only allow one of these, moveAbsolute() or velocity(), to be active at any one time.  
     void moveAbsolute(int positionNew);
-    void moveRelative(int positionRelative);
+    void moveRelative(int positionRelative) {moveAbsolute(_positionCurrent + positionRelative);}
     
     void moveAbsoluteDegreex10k(unsigned int positionNewDegreex10k) {moveAbsolute(positionNewDegreex10k / degreesPerMicrostepx10k());}
     void moveRelativeDegreex10k(unsigned int positionRelativeDegreex10k) {moveRelative(positionRelativeDegreex10k / degreesPerMicrostepx10k());}
@@ -105,7 +103,7 @@ public:
     //  the move as long as it's still in the same direction and doesn't interfere with
     //  a deceleration.
     void moveAbsoluteModify(const int positionNew);
-    void moveRelativeModify(const int positionRelative);
+    void moveRelativeModify(const int positionRelative) {moveAbsoluteModify(_positionCurrent + positionRelative);}
     void controlledStopNow(void);
 	int velocity(const int f);
     void isr(void);
@@ -161,7 +159,7 @@ private:
 		_timerPeriod = newClockPeriod;
 		TimerLoadSet(TIMER0_BASE, TIMER_A, _timerPeriod);
 	}
-	unsigned long _timer(void) {return _timerPeriod;}
+	unsigned long _timer(void) const {return _timerPeriod;}
 	void _updateConstantVelocityStart(void);
 	
 	// These 4 points represent a typical movement profile.
@@ -181,9 +179,6 @@ private:
     bool _directionPositive;    // false -> direction is negative
 	bool _timerRunning;
 	unsigned long _timerPeriod;
-    //int _acceleration;          // 0 when constant velocity
-    //bool _accelerating; 
-    //int _velocity;              // step/s
 	unsigned int _fminOld, _fmaxOld;	// save frequency min/max for acceleration. Used when acceleration is truncated.
 	unsigned int _superState;
 	unsigned int _subState;

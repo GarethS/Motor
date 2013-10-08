@@ -131,7 +131,7 @@ class Transfer():
             if currentToken == OK:
                 #print 'OK'
                 return True
-            sleep(0.005)
+            sleep(0.002)
             deltaTime = time.time() - startTime
             # 4. If timer not expired, goto 2 above
         print 'ERROR'

@@ -43,10 +43,8 @@ void accel::assign(const accel& a) {
 	_totalClockTicks = a._totalClockTicks;
 	_currentClockTicks = a._currentClockTicks;
 	_accelTime = a._accelTime;
-	//_acceleration = a._acceleration;
-	//_velocity = a._velocity;
-	_fmin = a._fmin;
-	_fmax = a._fmax;
+	_fmin = a.fmin();
+	_fmax = a.fmax();
 	_degreesPerMicrostepx10k = a._degreesPerMicrostepx10k;
 }
 
@@ -228,8 +226,8 @@ void accel::_initUnitCurve(int sharpness /* = ACCEL_SHARPNESS_DEFAULT */) {
 //  TODO: Actually, as sharpness decreases in _initUnitCurve(), the acceleration is not from 0-1, but inside that range.
 //   Need to find min/max values and adjust accordingly.
 void accel::_scaleYAxisToFrequency(void) {
-    float m = (_fmax - _fmin) / (_curveFloat[_maxAccelIndex] - _curveFloat[0]); 
-    float b = _fmin - (m * _curveFloat[0]);
+    float m = (fmax() - fmin()) / (_curveFloat[_maxAccelIndex] - _curveFloat[0]); 
+    float b = fmin() - (m * _curveFloat[0]);
     for (int i = 0; i < _maxAccelEntries; ++i) {
         _curveFloat[i] = (_curveFloat[i] * m) + b;
     }
@@ -239,7 +237,6 @@ void accel::_scaleYAxisToFrequency(void) {
 #endif /* REGRESS_1 */
 }
 
-#if OPTIMIZE_CURVE_CALC
 void accel::_scaleYAxisToClockTicks(void) {
 	unsigned int clockFrequency = (unsigned int)(_clockMHz * MICROSEC_PER_SEC);
     for (int i = 0; i < _maxAccelEntries; ++i) {
@@ -250,30 +247,6 @@ void accel::_scaleYAxisToClockTicks(void) {
 	_dumpCurveInt();
 #endif /* REGRESS_1 */
 } 
-
-#else /* not OPTIMIZE_CURVE_CALC */
-
-// Convert frequency scaled curve to period in microsec (us).
-void accel::_scaleYAxisToMicroSec(void) {
-    for (int i = 0; i < _maxAccelEntries; ++i) {
-        _curveInt[i] = MICROSEC_PER_SEC / _curveFloat[i];
-    }
-#if REGRESS_1
-	oss() << "_scaleYAxisToMicroSec" << endl;
-	_dumpCurveInt();
-#endif /* REGRESS_1 */
-}
-
-void accel::_scaleYAxisToClockTicks(void) {
-    for (int i = 0; i < _maxAccelEntries; ++i) {
-        _curveInt[i] *= _clockMHz;
-    }
-#if REGRESS_1
-	oss() << "_scaleYAxisToClockTicks" << endl;
-	_dumpCurveInt();
-#endif /* REGRESS_1 */
-} 
-#endif /* OPTIMIZE_CURVE_CALC */
 
 // Frequency is step per second but may want to increase this to step/sec * 100000 to get
 //  low RPM
@@ -288,10 +261,5 @@ void accel::frequency(const unsigned int fmin /* = 200 */, const unsigned int fm
 	}
     _initUnitCurve();
 	_scaleYAxisToFrequency();
-#if OPTIMIZE_CURVE_CALC	
 	_scaleYAxisToClockTicks();
-#else
-	_scaleYAxisToMicroSec();
-	_scaleYAxisToClockTicks();
-#endif /* OPTIMIZE_CURVE_CALC */	
 }

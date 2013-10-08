@@ -64,7 +64,7 @@ void stepper::testMoveAbsolute(int positionNew) {
 
 void stepper::testMoveAbsoluteDegree(int positionNewDegree) {
     oss() << endl << "testMoveAbsoluteDegree START" << endl;
-    testMoveAbsolute((int)(positionNewDegree / degreesPerMicrostep()));
+    testMoveAbsolute((int)(positionNewDegree * 10000 / degreesPerMicrostepx10k()));
 }
 
 void stepper::testVelocityMove(int v) {
@@ -85,7 +85,7 @@ void stepper::test(void) {
     testVelocityMove(800);
 
     positionSteps(0);
-    degreesPerMicrostep(MICROSTEPS_8_STD);
+    microstepSet(MICROSTEPS_8);
     testMoveAbsoluteDegree(360);
 }
 #endif /* CYGWIN */
@@ -242,15 +242,7 @@ void stepper::moveAbsolute(int positionNew) {
 	_timerStart();
 }
 
-void stepper::moveRelative(const int positionRelative) {
-    moveAbsolute(_positionCurrent + positionRelative);
-}
-
-void stepper::moveRelativeModify(const int positionRelative) {
-    moveAbsoluteModify(_positionCurrent + positionRelative);
-}
-
-// Start decellerating now to bring motor to a controlled stop
+// Start decelerating now to bring motor to a controlled stop
 void stepper::controlledStopNow(void) {
     if (_superState == MOVE_FULL) {
         if (_subState == MOVE_CONSTANT_VELOCITY) {

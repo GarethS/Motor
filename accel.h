@@ -11,7 +11,6 @@
 #define _ACCEL_H_
 
 #if CYGWIN
-//#include <iostream>
 #include "log.h"
 #include <sstream>
 
@@ -19,8 +18,6 @@ using namespace std;
 #endif /* CYGWIN */
 
 #include <limits.h>
-
-#define OPTIMIZE_CURVE_CALC 1
 
 #define SECONDS_PER_MINUTE      (60)
 #define MICROSEC_PER_SEC        (1000000)
@@ -74,18 +71,15 @@ public:
     
 	// set/get acceleration time
     void accelTime(const unsigned int us) {_accelTime = us;}
-    unsigned int accelTime(void) {return _accelTime;}
+    unsigned int accelTime(void) const {return _accelTime;}
 	
     unsigned int dryRunAccel(void);
 	void frequency(const unsigned int fmin = 200, const unsigned int fmax = 3200);
     // Convert RPM to frequency
     void RPMx10k(const unsigned int RPMx10kmin, const unsigned int RPMx10kmax) {frequency(_RPMx10ktoFreq(RPMx10kmin), _RPMx10ktoFreq(RPMx10kmax));}
-    unsigned int fmin(void) {return _fmin;}
-    unsigned int fmax(void) {return _fmax;}
+    unsigned int fmin(void) const {return _fmin;}
+    unsigned int fmax(void) const {return _fmax;}
 	
-    //int acceleration(void) {/* TODO */}
-    //int velocity(void) {/* TODO */}
-
 	unsigned int curveIndexToClockTicks(const unsigned int index) {return _curveInt[index];}
 	unsigned int timeToSteps(const unsigned int t);
 	unsigned int stepsToTime(const unsigned int steps);
@@ -125,14 +119,14 @@ public:
 		return _currentClockTicks;
 	}
 	
-	unsigned int clockTicksToCurveIndex(unsigned int ct) {
+	unsigned int clockTicksToCurveIndex(const unsigned int ct) const {
 	    return microSecToCurveIndex(clockTicksToMicroSec(ct));
 	}
-	unsigned int clockTicksToCurveIndexReverse(unsigned int ct) {
+	unsigned int clockTicksToCurveIndexReverse(const unsigned int ct) const {
 	    return microSecToCurveIndexReverse(clockTicksToMicroSec(ct));
 	}
 
-	bool freqCloseToStop(unsigned int f) {
+	bool freqCloseToStop(const unsigned int f) const {
 		if (f <= _fStop) {
 			return true;
 		}
@@ -140,16 +134,12 @@ public:
 	}
 	
 	// Given clock ticks, return frequency
-	unsigned int freqFromClockTicks(unsigned int ct) {
-		if (clockTicksToMicroSec(ct) == 0) {
-			// Avoid divide-by-zero
-			return INT_MAX;
-		}
-		return MICROSEC_PER_SEC / clockTicksToMicroSec(ct);
+	unsigned int freqFromClockTicks(const unsigned int ct) const {
+        return freqFromTime(clockTicksToMicroSec(ct));
 	}
 
 	// Given time, return frequency
-	unsigned int freqFromTime(unsigned int microsec) {
+	unsigned int freqFromTime(const unsigned int microsec) const {
 		if (microsec == 0) {
 			// Avoid divide-by-zero
 			return INT_MAX;
@@ -158,7 +148,7 @@ public:
 	}
 
     // Given microsec, return acceleration curve index to get speed
-	unsigned int microSecToCurveIndex(const unsigned int us) {
+	unsigned int microSecToCurveIndex(const unsigned int us) const {
 		if (us > accelTime()) {
 			return _maxAccelIndex;
 		}
@@ -170,7 +160,7 @@ public:
 	}
 	// Same as microSecToCurveIndex(), except returns curve index in reverse order. 
 	//  Used for deceleration.
-	unsigned int microSecToCurveIndexReverse(const unsigned int us) {
+	unsigned int microSecToCurveIndexReverse(const unsigned int us) const {
 		if (us > accelTime()) {
 			return 0;
 		}
@@ -178,11 +168,11 @@ public:
 	}
 
 	// Given clock ticks, return equivalent microsec.
-    unsigned int clockTicksToMicroSec(const unsigned int ct) {
-		return (unsigned int)((ct / _clockMHz));
+    unsigned int clockTicksToMicroSec(const unsigned int ct) const {
+		return (unsigned int)(ct / _clockMHz);
 	}
 	
-    void degreesPerMicrostepx10k(unsigned int dpus) {_degreesPerMicrostepx10k = dpus;}
+    void degreesPerMicrostepx10k(const unsigned int dpus) {_degreesPerMicrostepx10k = dpus;}
     unsigned int degreesPerMicrostepx10k(void) const  {return _degreesPerMicrostepx10k;}
     
 #if CYGWIN    
@@ -193,17 +183,12 @@ public:
 	void test(void);
     
 private:
-    void _initUnitCurve(int sharpness = ACCEL_SHARPNESS_DEFAULT);
+    void _initUnitCurve(const int sharpness = ACCEL_SHARPNESS_DEFAULT);
     void _scaleYAxisToFrequency(void);
-#if OPTIMIZE_CURVE_CALC	
 	void _scaleYAxisToClockTicks(void);
-#else /* not OPTIMIZE_CURVE_CALC */
-    void _scaleYAxisToMicroSec(void);
-    void _scaleYAxisToClockTicks(void);
-#endif /* OPTIMIZE_CURVE_CALC */	
     
     // Avoid using floats
-    unsigned int _RPMx10ktoFreq(unsigned int RPMx10k) {
+    unsigned int _RPMx10ktoFreq(const unsigned int RPMx10k) {
 #if REGRESS_1
         oss() << "_RPMx10ktoFreq rpmx10k:" << RPMx10k << " frequency:" << (RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC) / _degreesPerMicrostepx10k;
         dump();
@@ -225,21 +210,12 @@ private:
 #endif /* CYGWIN */    
     unsigned int _currentClockTicks;    // period of current timer interrupt. Inversely proportional to motor speed.
     unsigned int _accelTime;            // acceleration time in us
-    //unsigned int _decelTime;            // used when acceleration and deceleration times are different
-    //int _acceleration;          // 0 when constant velocity
-    //int _velocity;              // step/s
 	unsigned int _fmin, _fmax;	        // frequency min/max for acceleration
 
     const float _clockMHz;
 	const unsigned int _minTime;
 	const unsigned int _maxTime;
 	const unsigned int _fStop;	// Frequency that we can assume the motor is as good as stopped
-    // 0 microsteps = 1.8 deg/microstep -> 0.556 ustep/deg 
-    // 2 microsteps = 1.8/2 = 0.9       -> 1.111 ustep/deg
-    // 4 microsteps = .45               -> 2.222 ustep/deg
-    // 8 microsteps = .225              -> 4.444 ustep/deg
-    // 16 microsteps = .1125
-    // 32 microsteps = .05625
     unsigned int _degreesPerMicrostepx10k;
 };
 
