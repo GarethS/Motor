@@ -60,7 +60,7 @@ void accel::test(void) {
 	
 	oss() << "freqFromTime START" << endl;
 	for (int us = 0; us < 100; ++us) {
-		unsigned int f = freqFromTime(us);
+		unsigned int f = microSecToFreq(us);
 		oss() << "us=" << us << " freq=" << f << endl;
 	}
 	oss() << "freqFromTime END" << endl;
@@ -68,7 +68,7 @@ void accel::test(void) {
 	
 	oss() << "freqFromClockTicks START" << endl;
 	for (int ct = 0; ct < 100; ++ct) {
-		unsigned int f = freqFromClockTicks(ct);
+		unsigned int f = clockTicksToFreq(ct);
 		oss() << "ct=" << ct << " freq=" << f << endl;
 	}
 	oss() << "freqFromClockTicks END" << endl;
@@ -105,14 +105,14 @@ unsigned int accel::dryRunAccel(void) {
         _totalClockTicks += _currentClockTicks;
         unsigned int index = clockTicksToCurveIndex(_totalClockTicks);
 #if DUMP
-		//cout << "index=" << index << " step=" << step << " freqFromClockTicks=" << freqFromClockTicks(_currentClockTicks) << "time(us)=" << _clockTicksToMicroSec(_totalClockTicks) << endl;
-		//oss() << "index=" << index << " step=" << step << " freqFromClockTicks=" << freqFromClockTicks(_currentClockTicks) << " cummulative time(us)=" << _clockTicksToMicroSec(_totalClockTicks);
+		//cout << "index=" << index << " step=" << step << " freqFromClockTicks=" << clockTicksToFreq(_currentClockTicks) << "time(us)=" << _clockTicksToMicroSec(_totalClockTicks) << endl;
+		//oss() << "index=" << index << " step=" << step << " freqFromClockTicks=" << clockTicksToFreq(_currentClockTicks) << " cummulative time(us)=" << _clockTicksToMicroSec(_totalClockTicks);
         // This next line prints out 2 columns that can be plotted in a spreadsheet showing total time vs frequency
-		oss() << freqFromClockTicks(_currentClockTicks) << " " << clockTicksToMicroSec(_totalClockTicks);
+		oss() << clockTicksToFreq(_currentClockTicks) << " " << clockTicksToMicroSec(_totalClockTicks);
         dump();
 		//ostringstream oss;
-		//oss << freqFromClockTicks(_currentClockTicks);
-		//oss << " step= " << step << " freq= " << freqFromClockTicks(_currentClockTicks);
+		//oss << clockTicksToFreq(_currentClockTicks);
+		//oss << " step= " << step << " freq= " << clockTicksToFreq(_currentClockTicks);
 		//dump(oss.str(), false);
 		//cout << "index=" << index << " step=" << step << " _totalClockTicks=" << _totalClockTicks << endl;
 #endif /* DUMP */		

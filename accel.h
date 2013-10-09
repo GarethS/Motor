@@ -133,20 +133,30 @@ public:
 		return false;
 	}
 	
-	// Given clock ticks, return frequency
-	unsigned int freqFromClockTicks(const unsigned int ct) const {
-        return freqFromTime(clockTicksToMicroSec(ct));
+    // convert beween: frequency <-> clockTicks
+    unsigned int freqToClockTicks(const unsigned int f) const {
+        return microSecToClockTicks(freqToMicroSec(f));
+    }
+	unsigned int clockTicksToFreq(const unsigned int ct) const {
+        return microSecToFreq(clockTicksToMicroSec(ct));
 	}
 
-	// Given time, return frequency
-	unsigned int freqFromTime(const unsigned int microsec) const {
-		if (microsec == 0) {
-			// Avoid divide-by-zero
-			return INT_MAX;
-		}
-		return MICROSEC_PER_SEC / microsec;
+    // convert beween: microseconds <-> frequency
+	unsigned int microSecToFreq(const unsigned int us) const {
+		if (us == 0) {/* Avoid divide-by-zero */return INT_MAX;} return MICROSEC_PER_SEC / us;
 	}
+    unsigned int freqToMicroSec(const unsigned int f) const {
+        return microSecToFreq(f);   // This may look wrong, but it's correct. Frequency is the inverse of period (i.e. microseconds) and vice versa.
+    }
 
+    // convert beween: clockTicks <-> microseconds
+    unsigned int clockTicksToMicroSec(const unsigned int ct) const {
+		return (unsigned int)(ct / _clockMHz);
+	}
+    unsigned int microSecToClockTicks(const unsigned int us) const {
+        return (unsigned int)(us * _clockMHz);
+    }
+	
     // Given microsec, return acceleration curve index to get speed
 	unsigned int microSecToCurveIndex(const unsigned int us) const {
 		if (us > accelTime()) {
@@ -167,11 +177,6 @@ public:
 		return _maxAccelIndex - (us * _maxAccelEntries / accelTime());
 	}
 
-	// Given clock ticks, return equivalent microsec.
-    unsigned int clockTicksToMicroSec(const unsigned int ct) const {
-		return (unsigned int)(ct / _clockMHz);
-	}
-	
     void degreesPerMicrostepx10k(const unsigned int dpus) {_degreesPerMicrostepx10k = dpus;}
     unsigned int degreesPerMicrostepx10k(void) const  {return _degreesPerMicrostepx10k;}
     

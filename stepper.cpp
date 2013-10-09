@@ -118,18 +118,18 @@ int stepper::velocity(const int f) {
             //  reverse direction.
             return ILLEGAL_VELOCITY;
         }
-		int fdiff = f - a.freqFromClockTicks(_timerPeriod);
+		int fdiff = f - a.clockTicksToFreq(_timerPeriod);
 		if (fdiff == 0) {
 			// nothing to do
 			assert(_subState == VELOCITY_MOVE_CONSTANT_VELOCITY);
 			return SUCCESS;
 		} else if (fdiff > 0) {
 			_subState = VELOCITY_MOVE_ACCELERATE;
-			a.frequency(a.freqFromClockTicks(_timerPeriod), f);
+			a.frequency(a.clockTicksToFreq(_timerPeriod), f);
 		} else {
 			// fdiff < 0
 			_subState = VELOCITY_MOVE_DECELERATE;
-			a.frequency(f, a.freqFromClockTicks(_timerPeriod));
+			a.frequency(f, a.clockTicksToFreq(_timerPeriod));
 		}
 		_updateConstantVelocityStart();
 	}
@@ -211,7 +211,7 @@ void stepper::moveAbsolute(int positionNew) {
         unsigned int us = a.clockTicksToMicroSec(ct);
 		_fminOld = a.fmin();
 		_fmaxOld = a.fmax();
-		unsigned int fmax = a.freqFromTime(us);
+		unsigned int fmax = a.microSecToFreq(us);
 #if REGRESS_2 && !CYGWIN
         //char isrBuf[32];
         //sprintf(isrBuf, "tNewAccel=%d", tNewAccel);
@@ -340,7 +340,7 @@ void stepper::isr(void) {
 				// accelerating
 				_timer(a.updateClockPeriod());
 			} else if (_positionCurrent == _positionConstantVelocityStart) {
-				if (a.freqCloseToStop(a.freqFromClockTicks(_timer()))) {
+				if (a.freqCloseToStop(a.clockTicksToFreq(_timer()))) {
 					// end of movement
 					_timerStart(false);
 				} else {
@@ -354,7 +354,7 @@ void stepper::isr(void) {
 				// accelerating
 				_timer(a.updateClockPeriod());
 			} else if (_positionCurrent == _positionConstantVelocityStart) {
-				if (a.freqCloseToStop(a.freqFromClockTicks(_timer()))) {
+				if (a.freqCloseToStop(a.clockTicksToFreq(_timer()))) {
 					// end of movement
 					_timerStart(false);
 				} else {
@@ -439,7 +439,7 @@ void stepper::isr(void) {
     }
     oss() << " position=" << _positionCurrent << " timer=" << _timer();
     // This line prints total elapsed time vs frequency (speed)
-    oss() << "  us vs. frequency: " << a.clockTicksToMicroSec(a.cumulativeClockTicks()) << " " << a.freqFromClockTicks(a.currentClockTicks());
+    oss() << "  us vs. frequency: " << a.clockTicksToMicroSec(a.cumulativeClockTicks()) << " " << a.clockTicksToFreq(a.currentClockTicks());
     dump();
 #else /* not CYGWIN */
     if (_subState != _subStateLast) {

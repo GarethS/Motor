@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR ELF Linker V6.40.1.53790/W32 for ARM              08/Oct/2013  09:22:46 #
+# IAR ELF Linker V6.40.1.53790/W32 for ARM              09/Oct/2013  11:26:13 #
 # Copyright 2007-2012 IAR Systems AB.                                         #
 #                                                                             #
 #    Output file  =  C:\dev\docs\scottdesign\motor\Debug\Exe\motorTiva.out    #
@@ -799,6 +799,8 @@ accel::clockTicksToCurveIndex(unsigned int) const
                         0x00003a81    0x18  Code  Gb  stepper.o [1]
 accel::clockTicksToCurveIndexReverse(unsigned int) const
                         0x00003f99    0x18  Code  Gb  stepper.o [1]
+accel::clockTicksToFreq(unsigned int) const
+                        0x00002a2b    0x18  Code  Gb  stepper.o [1]
 accel::clockTicksToMicroSec(unsigned int) const
                         0x0000292d    0x1a  Code  Gb  stepper.o [1]
 accel::curveIndexToClockTicks(unsigned int)
@@ -809,10 +811,6 @@ accel::fmax() const     0x0000294d     0x6  Code  Gb  stepper.o [1]
 accel::fmin() const     0x00002947     0x6  Code  Gb  stepper.o [1]
 accel::freqCloseToStop(unsigned int) const
                         0x00002a43    0x12  Code  Gb  stepper.o [1]
-accel::freqFromClockTicks(unsigned int) const
-                        0x00002a2b    0x18  Code  Gb  stepper.o [1]
-accel::freqFromTime(unsigned int) const
-                        0x00002955    0x18  Code  Gb  stepper.o [1]
 accel::frequency(unsigned int, unsigned int)
                         0x00002871    0x34  Code  Gb  accel.o [1]
 accel::initAccelTime(unsigned int)
@@ -821,6 +819,8 @@ accel::microSecToCurveIndex(unsigned int) const
                         0x000028fd    0x26  Code  Gb  stepper.o [1]
 accel::microSecToCurveIndexReverse(unsigned int) const
                         0x00004619    0x2a  Code  Gb  stepper.o [1]
+accel::microSecToFreq(unsigned int) const
+                        0x00002955    0x18  Code  Gb  stepper.o [1]
 accel::stepsToTime(unsigned int)
                         0x000026d7    0x5e  Code  Gb  accel.o [1]
 accel::timeToSteps(unsigned int)
