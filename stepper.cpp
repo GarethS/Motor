@@ -51,7 +51,7 @@ extern "C" void stepper_init(void) {
 #if CYGWIN
 void stepper::testMoveAbsolute(int positionNew) {
 	oss() << "moveAbsolute START" << endl;
-    //a.accelTime(500000);
+    //a.accelMicroSec(500000);
 	moveAbsolute(positionNew);
 	oss() << "_positionCurrent=" << _positionCurrent <<
 			" _positionConstantVelocityStart=" << _positionConstantVelocityStart <<
@@ -107,7 +107,7 @@ int stepper::velocity(const int f) {
         }
 		_updateConstantVelocityStart();
         _superState = VELOCITY_MOVE;
-		a.initAccelTime(a.accelTime());
+		a.initAccelMicroSec(a.accelMicroSec());
 	} else if (_superState == VELOCITY_MOVE_ACCELERATE || _superState == VELOCITY_MOVE_DECELERATE) {
 		// Can't do it right now. Try again when we're done accelerating.
 	} else {
@@ -138,7 +138,7 @@ int stepper::velocity(const int f) {
 }
 
 void stepper::_updateConstantVelocityStart(void) {
-	unsigned int accelStep = a.timeToSteps(a.accelTime());
+	unsigned int accelStep = a.microSecToSteps(a.accelMicroSec());
 	if (_directionPositive) {
 		_positionConstantVelocityStart = _positionCurrent + accelStep;;
 	} else {
@@ -147,7 +147,7 @@ void stepper::_updateConstantVelocityStart(void) {
 	_subState = VELOCITY_MOVE_ACCELERATE;
 }
 
-void stepper::moveAbsolute(int positionNew) {
+void stepper::moveAbsolute(const int positionNew) {
 #if CYGWIN
     oss() << "moveAbsolute:" << positionNew << endl;
     dump();
@@ -177,7 +177,7 @@ void stepper::moveAbsolute(int positionNew) {
 	// 5. Stop timer.
 	
 	// 1. Set acceleration time (e.g. 0.5s)
-	unsigned int accelStep = a.timeToSteps(a.accelTime());
+	unsigned int accelStep = a.microSecToSteps(a.accelMicroSec());
 #if REGRESS_1
 	oss() << "moveAbsolute() accelStep=" << accelStep << " positionDelta=" << positionDelta << endl;
 #endif /* REGRESS_1 */
@@ -191,7 +191,7 @@ void stepper::moveAbsolute(int positionNew) {
 			_positionConstantVelocityEnd = _positionTarget + accelStep;
 		}
 		_superState = MOVE_FULL;
-		a.initAccelTime(a.accelTime());
+		a.initAccelMicroSec(a.accelMicroSec());
 	} else {
 		// Acceleration curve needs to be truncated. Not enough steps to reach max speed.
 #if REGRESS_1
@@ -204,7 +204,7 @@ void stepper::moveAbsolute(int positionNew) {
         //sprintf(isrBuf, "fo=%d max=%d", _fmaxOld, fmax);
         UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
 #endif /* REGRESS_2 and not CYGWIN */        
-		unsigned int tNewAccel = a.stepsToTime(positionDelta / 2);
+		unsigned int tNewAccel = a.stepsToMicroSec(positionDelta / 2);
 		// Set fMAX and then calculate time required for acceleration.
 		unsigned int curveIndex = a.microSecToCurveIndex(tNewAccel);
         unsigned int ct = a.curveIndexToClockTicks(curveIndex);
@@ -222,7 +222,7 @@ void stepper::moveAbsolute(int positionNew) {
 #endif /* REGRESS_2 and not CYGWIN */        
 		a.frequency(_fminOld, fmax);	// Rebuilds acceleration tables. Put them back when this move is finished.
 		// Set truncated acceleration time.
-		a.initAccelTime(tNewAccel);
+		a.initAccelMicroSec(tNewAccel);
 		// Remember to rebuild accel tables when move is over. Set trigger to do this in isr().
 		if (_directionPositive) {
 			_positionConstantVelocityStart = _positionConstantVelocityEnd = _positionCurrent + positionDelta / 2;
@@ -299,7 +299,7 @@ void stepper::isr(void) {
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
-				a.initAccelTime(a.accelTime());
+				a.initAccelMicroSec(a.accelMicroSec());
 				_timer(a.updateClockPeriodReverse());
 			} else if (_positionCurrent < _positionTarget) {
 				// decelerating
@@ -323,7 +323,7 @@ void stepper::isr(void) {
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
-				a.initAccelTime(a.accelTime());
+				a.initAccelMicroSec(a.accelMicroSec());
 				_timer(a.updateClockPeriodReverse());
 			} else if (_positionCurrent > _positionTarget) {
 				// decelerating

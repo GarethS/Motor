@@ -94,8 +94,8 @@ public:
     //bool directionPositive(void) {return _directionPositive;}
       
 	// Only allow one of these, moveAbsolute() or velocity(), to be active at any one time.  
-    void moveAbsolute(int positionNew);
-    void moveRelative(int positionRelative) {moveAbsolute(_positionCurrent + positionRelative);}
+    void moveAbsolute(const int positionNew);
+    void moveRelative(const int positionRelative) {moveAbsolute(_positionCurrent + positionRelative);}
     
     void moveAbsoluteDegreex10k(unsigned int positionNewDegreex10k) {moveAbsolute(positionNewDegreex10k / degreesPerMicrostepx10k());}
     void moveRelativeDegreex10k(unsigned int positionRelativeDegreex10k) {moveRelative(positionRelativeDegreex10k / degreesPerMicrostepx10k());}
@@ -109,15 +109,13 @@ public:
     void isr(void);
     void disable(void) {GPIOPinWrite(GPIO_DIR_PORT, PIN_ENABLE, PIN_ENABLE);}
     void enable(void) {GPIOPinWrite(GPIO_DIR_PORT, PIN_ENABLE | PIN_SLEEP, PIN_SLEEP);}
-    //int acceleration(void) {/* TODO */}
-    //int velocity(void) {/* TODO */}
     int positionSteps(void) const {return _positionCurrent;} // Need to return both degrees and scaled position.
-    void positionSteps(int p) {_positionCurrent = p;}   // set
+    void positionSteps(const int p) {_positionCurrent = p;}   // set
     unsigned int positionDegreesx10k(void) const {return positionSteps() * degreesPerMicrostepx10k();} // get
-    void positionDegreesx10k(unsigned int d) {_positionCurrent = d / degreesPerMicrostepx10k();} // set
+    void positionDegreesx10k(const unsigned int d) {_positionCurrent = d / degreesPerMicrostepx10k();} // set
     unsigned int state(void) const {return _superState;}
-    void accelerationTimeMicrosecs(unsigned int us) {a.accelTime(us);}   // Set acceleration time
-    void frequency(unsigned int flow, unsigned int fhi) {a.frequency(flow, fhi);}  // Set high/low step frequency
+    void accelerationTimeMicrosecs(const unsigned int us) {a.accelMicroSec(us);}   // Set acceleration time
+    void frequency(const unsigned int flow, const unsigned int fhi) {a.frequency(flow, fhi);}  // Set high/low step frequency
     // Use RPMx10k when you want finer precision over speed than RPM can give you. e.g. RPM = 23.456 -> RPMx10k = 234560
     void RPMx10k(const unsigned int RPMx10kmin = 10000, const unsigned int RPMx10kmax = 1000000) {a.RPMx10k(RPMx10kmin, RPMx10kmax);}
     void RPM(const unsigned int RPMmin = 1, const unsigned int RPMmax = 100) {RPMx10k(RPMmin * 10000, RPMmax * 10000);}
@@ -155,7 +153,7 @@ private:
     
 private:
 	void _timerStart(bool start = true);
-	void _timer(unsigned long newClockPeriod) {
+	void _timer(const unsigned long newClockPeriod) {
 		_timerPeriod = newClockPeriod;
 		TimerLoadSet(TIMER0_BASE, TIMER_A, _timerPeriod);
 	}
@@ -176,7 +174,7 @@ private:
 	int _positionConstantVelocityEnd;
 	int _positionTarget;
 	
-    bool _directionPositive;    // false -> direction is negative
+    bool _directionPositive;            // false -> direction is negative
 	bool _timerRunning;
 	unsigned long _timerPeriod;
 	unsigned int _fminOld, _fmaxOld;	// save frequency min/max for acceleration. Used when acceleration is truncated.

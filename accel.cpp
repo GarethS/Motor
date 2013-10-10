@@ -13,9 +13,9 @@ accel::accel() :
 #if CYGWIN 
 					logc(std::string("ACCEL")),
 #endif /* CYGWIN */					
-					_accelTime(1000000),
+					_accelMicroSec(1000000),
 					_clockMHz(configCPU_CLOCK_HZ / MHZ),
-					_minTime(1000), _maxTime(4000000), _fStop(200), _degreesPerMicrostepx10k(DEGREES_PER_MICROSTEP_NOMINAL * 10000) {
+					_minMicroSec(1000), _maxMicroSec(4000000), _fStop(200), _degreesPerMicrostepx10k(DEGREES_PER_MICROSTEP_NOMINAL * 10000) {
 	//_initUnitCurve();
 	frequency();	// set default min/max frequency (speed) curve
 }
@@ -24,7 +24,7 @@ accel::accel(const accel& a) :
 #if CYGWIN
     logc(a),
 #endif /* CYGWIN */
-    _clockMHz(a._clockMHz), _minTime(a._minTime), _maxTime(a._maxTime), _fStop(a._fStop),
+    _clockMHz(a._clockMHz), _minMicroSec(a._minMicroSec), _maxMicroSec(a._maxMicroSec), _fStop(a._fStop),
     _degreesPerMicrostepx10k(DEGREES_PER_MICROSTEP_NOMINAL * 10000) {
 	assign(a);
 }
@@ -42,7 +42,7 @@ void accel::assign(const accel& a) {
 	//_positionCurrent = a._positionCurrent;
 	_totalClockTicks = a._totalClockTicks;
 	_currentClockTicks = a._currentClockTicks;
-	_accelTime = a._accelTime;
+	_accelMicroSec = a._accelMicroSec;
 	_fmin = a.fmin();
 	_fmax = a.fmax();
 	_degreesPerMicrostepx10k = a._degreesPerMicrostepx10k;
@@ -74,7 +74,7 @@ void accel::test(void) {
 	oss() << "freqFromClockTicks END" << endl;
 	dump();
 	
-	oss() << "_accelTime=" << accelTime() << endl;
+	oss() << "_accelTime=" << accelMicroSec() << endl;
 	oss() << "clockTicksToCurveIndex START" << endl;
 	for (int ct = 0; ct < 8000000; ct += 0x8000) {
 		unsigned int ci = clockTicksToCurveIndex(ct);
@@ -83,7 +83,7 @@ void accel::test(void) {
 	oss() << "clockTicksToCurveIndex END" << endl;
 	dump();
 	
-	oss() << "_accelTime=" << accelTime() << endl;
+	oss() << "_accelTime=" << accelMicroSec() << endl;
 	oss() << "clockTicksToCurveIndexReverse START" << endl;
 	for (int ct = 0; ct < 8000000; ct += 0x8000) {
 		unsigned int ci = clockTicksToCurveIndexReverse(ct);
@@ -95,7 +95,7 @@ void accel::test(void) {
 }
 
 unsigned int accel::dryRunAccel(void) {
-    initAccelTime(accelTime());
+    initAccelMicroSec(accelMicroSec());
     unsigned int step = 0;
 #if DUMP
 	oss() << "start: dryRunAccel" << endl;
@@ -129,8 +129,8 @@ unsigned int accel::dryRunAccel(void) {
 }
 
 // Very similar to dryRunAccel() above but without debug output. Given an acceleration time, how many steps are taken.
-unsigned int accel::timeToSteps(const unsigned int t) {
-    initAccelTime(t);
+unsigned int accel::microSecToSteps(const unsigned int us) {
+    initAccelMicroSec(us);
     unsigned int step = 0;
     for (; step < MAX_DRY_RUN_CYCLES; ++step) {
 		// Each step through is equivalent to an isr call from the timer.
@@ -145,38 +145,38 @@ unsigned int accel::timeToSteps(const unsigned int t) {
 }
 
 // Returns acceleration time given steps required. Uses a bisection algorithm to home in on solution.
-unsigned int accel::stepsToTime(const unsigned int steps) {
-	unsigned int maxAccelTime = _maxTime;
-	unsigned int minAccelTime = _minTime;
-	unsigned int currentAccelTime = (maxAccelTime + minAccelTime) / 2;
+unsigned int accel::stepsToMicroSec(const unsigned int steps) {
+	unsigned int maxAccelTime = _maxMicroSec;
+	unsigned int minAccelTime = _minMicroSec;
+	unsigned int currentAccelMicroSec = (maxAccelTime + minAccelTime) / 2;
 	unsigned int actualSteps;
-	unsigned int originalTime = accelTime();
+	unsigned int originalMicroSec = accelMicroSec();
 	
 #if REGRESS_1
 	oss() << "START" << endl;
 #endif /* REGRESS_1 */
 	for (int i = 0; i < _maxBisectionTrys; ++i) {
-		actualSteps = timeToSteps(currentAccelTime);
+		actualSteps = microSecToSteps(currentAccelMicroSec);
 #if REGRESS_1
-		oss() << "currentAccelTime= " << currentAccelTime << " actualSteps= " << actualSteps << endl;
+		oss() << "currentAccelTime= " << currentAccelMicroSec << " actualSteps= " << actualSteps << endl;
 #endif /* REGRESS_1 */
 		if (actualSteps > steps) {
 			// reduce currentAccelTime
-			maxAccelTime = currentAccelTime;
+			maxAccelTime = currentAccelMicroSec;
 		} else if (actualSteps < steps) {
 			// increase currentAccelTime
-			minAccelTime = currentAccelTime;
+			minAccelTime = currentAccelMicroSec;
 		} else {
 			break;
 		}
-		currentAccelTime = (maxAccelTime + minAccelTime) / 2;
+		currentAccelMicroSec = (maxAccelTime + minAccelTime) / 2;
 	}
 #if REGRESS_1
-	oss() << "END currentAccelTime= " << currentAccelTime << " actualSteps= " << actualSteps;
+	oss() << "END currentAccelTime= " << currentAccelMicroSec << " actualSteps= " << actualSteps;
 	dump();
 #endif /* REGRESS_1 */
-	accelTime(originalTime);
-	return currentAccelTime;
+	accelMicroSec(originalMicroSec);
+	return currentAccelMicroSec;
 }
 
 #if REGRESS_1

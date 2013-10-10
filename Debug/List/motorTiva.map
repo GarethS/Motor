@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR ELF Linker V6.40.1.53790/W32 for ARM              09/Oct/2013  11:26:13 #
+# IAR ELF Linker V6.40.1.53790/W32 for ARM              09/Oct/2013  18:23:51 #
 # Copyright 2007-2012 IAR Systems AB.                                         #
 #                                                                             #
 #    Output file  =  C:\dev\docs\scottdesign\motor\Debug\Exe\motorTiva.out    #
@@ -791,9 +791,9 @@ accel::_scaleYAxisToClockTicks()
 accel::_scaleYAxisToFrequency()
                         0x000027b3    0x72  Code  Gb  accel.o [1]
 accel::accel()          0x00002651    0x3c  Code  Gb  accel.o [1]
-accel::accelTime() const
+accel::accelMicroSec() const
                         0x000028d5     0x6  Code  Gb  stepper.o [1]
-accel::accelTime(unsigned int)
+accel::accelMicroSec(unsigned int)
                         0x00003a99     0x6  Code  Gb  stepper.o [1]
 accel::clockTicksToCurveIndex(unsigned int) const
                         0x00003a81    0x18  Code  Gb  stepper.o [1]
@@ -813,7 +813,7 @@ accel::freqCloseToStop(unsigned int) const
                         0x00002a43    0x12  Code  Gb  stepper.o [1]
 accel::frequency(unsigned int, unsigned int)
                         0x00002871    0x34  Code  Gb  accel.o [1]
-accel::initAccelTime(unsigned int)
+accel::initAccelMicroSec(unsigned int)
                         0x000028db    0x22  Code  Gb  stepper.o [1]
 accel::microSecToCurveIndex(unsigned int) const
                         0x000028fd    0x26  Code  Gb  stepper.o [1]
@@ -821,10 +821,10 @@ accel::microSecToCurveIndexReverse(unsigned int) const
                         0x00004619    0x2a  Code  Gb  stepper.o [1]
 accel::microSecToFreq(unsigned int) const
                         0x00002955    0x18  Code  Gb  stepper.o [1]
-accel::stepsToTime(unsigned int)
-                        0x000026d7    0x5e  Code  Gb  accel.o [1]
-accel::timeToSteps(unsigned int)
+accel::microSecToSteps(unsigned int)
                         0x0000268d    0x4a  Code  Gb  accel.o [1]
+accel::stepsToMicroSec(unsigned int)
+                        0x000026d7    0x5e  Code  Gb  accel.o [1]
 accel::updateClockPeriod()
                         0x000029a9    0x30  Code  Gb  stepper.o [1]
 accel::updateClockPeriodReverse()

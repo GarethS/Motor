@@ -56,12 +56,12 @@ public:
 	accel& operator=(const accel& a);
 	void assign(const accel& a);
 	  
-    void initAccelTime(const unsigned int t) {
+    void initAccelMicroSec(const unsigned int us) {
 	    _totalClockTicks = 0;
 #if CYGWIN
         //_cumulativeClockTicks = 0;
 #endif /* CYGWIN */        
-		accelTime(t);
+		accelMicroSec(us);
 		_currentClockTicks = curveIndexToClockTicks(0);
 	}
     
@@ -70,8 +70,8 @@ public:
 #endif /* CYGWIN */
     
 	// set/get acceleration time
-    void accelTime(const unsigned int us) {_accelTime = us;}
-    unsigned int accelTime(void) const {return _accelTime;}
+    void accelMicroSec(const unsigned int us) {_accelMicroSec = us;}
+    unsigned int accelMicroSec(void) const {return _accelMicroSec;}
 	
     unsigned int dryRunAccel(void);
 	void frequency(const unsigned int fmin = 200, const unsigned int fmax = 3200);
@@ -81,9 +81,10 @@ public:
     unsigned int fmax(void) const {return _fmax;}
 	
 	unsigned int curveIndexToClockTicks(const unsigned int index) {return _curveInt[index];}
-	unsigned int timeToSteps(const unsigned int t);
-	unsigned int stepsToTime(const unsigned int steps);
+	unsigned int microSecToSteps(const unsigned int us);
+	unsigned int stepsToMicroSec(const unsigned int steps);
 	
+    // Called from timer interrupt service routine
 	unsigned int updateClockPeriod(void) {
 		_totalClockTicks += _currentClockTicks;
 #if CYGWIN
@@ -157,24 +158,24 @@ public:
         return (unsigned int)(us * _clockMHz);
     }
 	
-    // Given microsec, return acceleration curve index to get speed
+    // Given microsec, return acceleration curve index which contains speed information
 	unsigned int microSecToCurveIndex(const unsigned int us) const {
-		if (us > accelTime()) {
+		if (us > accelMicroSec()) {
 			return _maxAccelIndex;
 		}
 #if 0
-		unsigned int index = us * _maxAccelEntries / accelTime();
+		unsigned int index = us * _maxAccelEntries / accelMicroSec();
 		cout << "microSecToCurveIndex: index=" << index << endl;
 #endif /* DUMP */
-		return us * _maxAccelIndex / accelTime();
+		return us * _maxAccelIndex / accelMicroSec();
 	}
 	// Same as microSecToCurveIndex(), except returns curve index in reverse order. 
 	//  Used for deceleration.
 	unsigned int microSecToCurveIndexReverse(const unsigned int us) const {
-		if (us > accelTime()) {
+		if (us > accelMicroSec()) {
 			return 0;
 		}
-		return _maxAccelIndex - (us * _maxAccelEntries / accelTime());
+		return _maxAccelIndex - (us * _maxAccelEntries / accelMicroSec());
 	}
 
     void degreesPerMicrostepx10k(const unsigned int dpus) {_degreesPerMicrostepx10k = dpus;}
@@ -214,13 +215,13 @@ private:
     unsigned int _cumulativeClockTicks; // accumulated time in the entire velocity profile
 #endif /* CYGWIN */    
     unsigned int _currentClockTicks;    // period of current timer interrupt. Inversely proportional to motor speed.
-    unsigned int _accelTime;            // acceleration time in us
+    unsigned int _accelMicroSec;        // acceleration time in us
 	unsigned int _fmin, _fmax;	        // frequency min/max for acceleration
 
     const float _clockMHz;
-	const unsigned int _minTime;
-	const unsigned int _maxTime;
-	const unsigned int _fStop;	// Frequency that we can assume the motor is as good as stopped
+	const unsigned int _minMicroSec;
+	const unsigned int _maxMicroSec;
+	const unsigned int _fStop;	        // frequency where we assume motor is as good as stopped
     unsigned int _degreesPerMicrostepx10k;
 };
 
