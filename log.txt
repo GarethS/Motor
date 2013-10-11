@@ -1163,7 +1163,9 @@ ct=7995392 curveIndex=0
 clockTicksToCurveIndexReverse END
 
 STEPPER moveAbsolute START
-moveAbsolute() accelStep=694 positionDelta=2000
+moveAbsolute:2000
+
+STEPPER moveAbsolute() accelStep=694 positionDelta=2000
 _positionCurrent=0 _positionConstantVelocityStart=694 _positionConstantVelocityEnd=1306 _positionTarget=2000
 moveAbsolute END
 STEPPER MOVE_FULL MOVE_ACCELERATE  position=1 timer=40000  us vs. frequency: 5000 200
@@ -3167,7 +3169,9 @@ STEPPER MOVE_FULL MOVE_DECELERATE  position=1998 timer=39988  us vs. frequency: 
 STEPPER MOVE_FULL MOVE_DECELERATE  position=1999 timer=40000  us vs. frequency: 2499528 200
 STEPPER IDLE MOVE_DECELERATE  position=2000 timer=40000  us vs. frequency: 2499528 200
 STEPPER moveAbsolute START
-moveAbsolute() accelStep=694 positionDelta=2000
+moveAbsolute:0
+
+STEPPER moveAbsolute() accelStep=694 positionDelta=2000
 _positionCurrent=2000 _positionConstantVelocityStart=1306 _positionConstantVelocityEnd=694 _positionTarget=0
 moveAbsolute END
 STEPPER MOVE_FULL MOVE_ACCELERATE  position=1999 timer=40000  us vs. frequency: 5000 200
@@ -7484,7 +7488,9 @@ STEPPER VELOCITY_MOVE VELOCITY_MOVE_CONSTANT_VELOCITY  position=2000 timer=10000
 STEPPER 
 testMoveAbsoluteDegree START
 moveAbsolute START
-moveAbsolute() accelStep=496 positionDelta=1600
+moveAbsolute:1600
+
+STEPPER moveAbsolute() accelStep=496 positionDelta=1600
 _positionCurrent=0 _positionConstantVelocityStart=496 _positionConstantVelocityEnd=1104 _positionTarget=1600
 moveAbsolute END
 STEPPER MOVE_FULL MOVE_ACCELERATE  position=1 timer=40000  us vs. frequency: 5000 200
@@ -9087,8 +9093,8 @@ STEPPER MOVE_FULL MOVE_DECELERATE  position=1597 timer=39992  us vs. frequency: 
 STEPPER MOVE_FULL MOVE_DECELERATE  position=1598 timer=39992  us vs. frequency: 2745135 200
 STEPPER MOVE_FULL MOVE_DECELERATE  position=1599 timer=40000  us vs. frequency: 2750134 200
 STEPPER IDLE MOVE_DECELERATE  position=1600 timer=40000  us vs. frequency: 2750134 200
-ACCEL _RPMtoFreq rpm:120 frequency:3200
-ACCEL _RPMtoFreq rpm:8 frequency:213
+ACCEL _RPMx10ktoFreq rpmx10k:1200000 frequency:3200
+ACCEL _RPMx10ktoFreq rpmx10k:80000 frequency:213
 ACCEL sharpness=8.16162 step=0.161616
 unit curve
 0 0.00033535
@@ -9395,6 +9401,8 @@ ACCEL _scaleYAxisToClockTicks
 97 2500
 98 2500
 99 2500
+
+STEPPER moveAbsolute:1600
 
 ACCEL moveAbsolute() accelStep=844 positionDelta=1600
 moveAbsolute() MOVE_TRUNCATED steps=844 positionDelta=1600

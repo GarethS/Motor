@@ -15,9 +15,7 @@
 #include <vector>
 #if CYGWIN
 using namespace std;
-#endif /* CYGWIN */
 
-#if CYGWIN
 int main(void) {
 #else /* not CYGWIN */
 stepper* sp = NULL;
@@ -57,10 +55,10 @@ int mainA(void) {
 #endif    
 	//cout << "acceleration steps= " << s._accelGetStepCount() << endl;
 #if REGRESS_1	
-	s.a.stepsToTime(1000);
-	s.a.stepsToTime(500);
-	s.a.stepsToTime(999);
-	s.a.stepsToTime(10);
+	s.a.stepsToMicroSec(1000);
+	s.a.stepsToMicroSec(500);
+	s.a.stepsToMicroSec(999);
+	s.a.stepsToMicroSec(10);
 	s.a.test();
 	
 	s.test();
@@ -70,16 +68,16 @@ int mainA(void) {
 	//s.a.frequency(200, 406);    // 1 rev/sec for x2 usteps
 	//s.a.frequency(200, 1624);   // 1 rev/sec for x8 usteps
     
-    s.degreesPerMicrostep(MICROSTEPS_8_STD);
+    s.microstepSet(MICROSTEPS_8);
     //s.RPMx10k(8 * 10000, 120 * 10000);  // 8 rpm start and 120 rpm top speed
     s.RPM(8.0, 120.0);
 	//s.frequency(200, 6600);   // Fastest for x8 usteps
     s.accelerationTimeMicrosecs(500000);
     s.positionSteps(0);
-	s.moveAbsoluteDegree(360);
+	s.moveAbsoluteDegreex10k(360 * 10000);
 	//s.moveAbsolute(16000);
     //s.runVirtualMotor();
-
+    
 #if !CYGWIN
     int direction = -1;
     int counter = 0;

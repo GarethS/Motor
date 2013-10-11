@@ -13,10 +13,8 @@ accel::accel() :
 #if CYGWIN 
 					logc(std::string("ACCEL")),
 #endif /* CYGWIN */					
-					_accelMicroSec(1000000),
-					_clockMHz(configCPU_CLOCK_HZ / MHZ),
-					_minMicroSec(1000), _maxMicroSec(4000000), _fStop(200), _degreesPerMicrostepx10k(DEGREES_PER_MICROSTEP_NOMINAL * 10000) {
-	//_initUnitCurve();
+					_accelMicroSec(1000000), _clockMHz(configCPU_CLOCK_HZ / MHZ),
+					_fStop(200), _degreesPerMicrostepx10k(DEGREES_PER_MICROSTEP_NOMINAL * 10000) {
 	frequency();	// set default min/max frequency (speed) curve
 }
 
@@ -24,7 +22,7 @@ accel::accel(const accel& a) :
 #if CYGWIN
     logc(a),
 #endif /* CYGWIN */
-    _clockMHz(a._clockMHz), _minMicroSec(a._minMicroSec), _maxMicroSec(a._maxMicroSec), _fStop(a._fStop),
+    _clockMHz(a._clockMHz), _fStop(a._fStop),
     _degreesPerMicrostepx10k(DEGREES_PER_MICROSTEP_NOMINAL * 10000) {
 	assign(a);
 }
@@ -37,8 +35,8 @@ accel& accel::operator=(const accel& a) {
 }
 
 void accel::assign(const accel& a) {
-	*(struct passFloatArray*)_curveFloat = *(struct passFloatArray*)a._curveFloat;	// Beats copying each individual element
-	*(struct passIntArray*)_curveInt = *(struct passIntArray*)a._curveInt;
+	*(struct passFloatArray*)_curveFreq = *(struct passFloatArray*)a._curveFreq;	// Beats copying each individual element
+	*(struct passIntArray*)_curveClockTicks = *(struct passIntArray*)a._curveClockTicks;
 	//_positionCurrent = a._positionCurrent;
 	_totalClockTicks = a._totalClockTicks;
 	_currentClockTicks = a._currentClockTicks;
@@ -146,9 +144,9 @@ unsigned int accel::microSecToSteps(const unsigned int us) {
 
 // Returns acceleration time given steps required. Uses a bisection algorithm to home in on solution.
 unsigned int accel::stepsToMicroSec(const unsigned int steps) {
-	unsigned int maxAccelTime = _maxMicroSec;
-	unsigned int minAccelTime = _minMicroSec;
-	unsigned int currentAccelMicroSec = (maxAccelTime + minAccelTime) / 2;
+	unsigned int maxAccelTime = ACCEL_MAX_MICROSEC;
+	unsigned int minAccelTime = ACCEL_MIN_MICROSEC;
+	unsigned int currentAccelMicroSec = (ACCEL_MAX_MICROSEC + ACCEL_MIN_MICROSEC) / 2;
 	unsigned int actualSteps;
 	unsigned int originalMicroSec = accelMicroSec();
 	
@@ -180,19 +178,28 @@ unsigned int accel::stepsToMicroSec(const unsigned int steps) {
 }
 
 #if REGRESS_1
-void accel::_dumpCurveFloat(void) {
+void accel::_dumpCurveFreq(void) {
     for (int i = 0; i < _maxAccelEntries; ++i) {
-		oss() << i << " " << _curveFloat[i] << endl;
+		oss() << i << " " << _curveFreq[i] << endl;
     }
 	dump();
 }
 
-void accel::_dumpCurveInt(void) {
+void accel::_dumpCurveClockTicks(void) {
     for (int i = 0; i < _maxAccelEntries; ++i) {
-		oss() << i << " " << _curveInt[i] << endl;
+		oss() << i << " " << _curveClockTicks[i] << endl;
     }
 	dump();
 }
+
+#if ACCEL_LINEAR_FIT
+void accel::_dumpLinearInterpolate(void) {
+    for (int i = 0; i < _maxAccelEntries; ++i) {
+		oss() << i << " " << _linearInterpolate[i] << endl;
+    }
+	dump();
+}
+#endif // ACCEL_LINEAR_FIT
 #endif /* REGRESS_1 */
 
 // Acceleration curve is plotted on x-axis between -sharp and sharp (e.g. -8 to 8)
@@ -209,12 +216,12 @@ void accel::_initUnitCurve(int sharpness /* = ACCEL_SHARPNESS_DEFAULT */) {
     float step = sharpness * 2.0 / _maxAccelIndex;
     float x = -sharpness;
     for (int i = 0; i < _maxAccelEntries; ++i, x += step) {
-        _curveFloat[i] = 1 / (1 + exp(-x));
+        _curveFreq[i] = 1 / (1 + exp(-x));
     }
 #if REGRESS_1
     oss() << "sharpness=" << x << " step=" << step << endl;
 	oss() << "unit curve" << endl;
-	_dumpCurveFloat();
+	_dumpCurveFreq();
 #endif /* REGRESS_1 */
 }
 
@@ -226,25 +233,31 @@ void accel::_initUnitCurve(int sharpness /* = ACCEL_SHARPNESS_DEFAULT */) {
 //  TODO: Actually, as sharpness decreases in _initUnitCurve(), the acceleration is not from 0-1, but inside that range.
 //   Need to find min/max values and adjust accordingly.
 void accel::_scaleYAxisToFrequency(void) {
-    float m = (fmax() - fmin()) / (_curveFloat[_maxAccelIndex] - _curveFloat[0]); 
-    float b = fmin() - (m * _curveFloat[0]);
+    float m = (fmax() - fmin()) / (_curveFreq[_maxAccelIndex] - _curveFreq[0]); 
+    float b = fmin() - (m * _curveFreq[0]);
     for (int i = 0; i < _maxAccelEntries; ++i) {
-        _curveFloat[i] = (_curveFloat[i] * m) + b;
+        _curveFreq[i] = (_curveFreq[i] * m) + b;
     }
+#if ACCEL_LINEAR_FIT    
+    unsigned int microSecStep = _accelMicroSecStep();
+    for (int i = 0; i < _maxAccelEntries - 1; ++i) {
+        _linearInterpolate[i] = (_curveFreq[i+1] - _curveFreq[i]) / microSecStep;
+    }
+#endif // ACCEL_LINEAR_FIT    
 #if REGRESS_1
 	oss() << "_scaleYAxisToFrequency" << endl;
-	_dumpCurveFloat();
+	_dumpCurveFreq();
 #endif /* REGRESS_1 */
 }
 
 void accel::_scaleYAxisToClockTicks(void) {
 	unsigned int clockFrequency = (unsigned int)(_clockMHz * MICROSEC_PER_SEC);
     for (int i = 0; i < _maxAccelEntries; ++i) {
-        _curveInt[i] = (unsigned int)(clockFrequency / _curveFloat[i]);
+        _curveClockTicks[i] = (unsigned int)(clockFrequency / _curveFreq[i]);
     }
 #if REGRESS_1
 	oss() << "_scaleYAxisToClockTicks" << endl;
-	_dumpCurveInt();
+	_dumpCurveClockTicks();
 #endif /* REGRESS_1 */
 } 
 

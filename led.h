@@ -13,7 +13,7 @@
 //#include "hw_types.h"
 //#include "gpio.h"
 //#include "lmi_timer.h"
-#include "compilerHelper.h" // Contains TRUE, FALSE definitions
+#include "../parser/compilerHelper.h" // Contains TRUE, FALSE definitions
 
 #if CYGWIN
 #include "log.h"
