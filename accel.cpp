@@ -37,7 +37,6 @@ accel& accel::operator=(const accel& a) {
 void accel::assign(const accel& a) {
 	*(struct passFloatArray*)_curveFreq = *(struct passFloatArray*)a._curveFreq;	// Beats copying each individual element
 	*(struct passIntArray*)_curveClockTicks = *(struct passIntArray*)a._curveClockTicks;
-	//_positionCurrent = a._positionCurrent;
 	_totalClockTicks = a._totalClockTicks;
 	_currentClockTicks = a._currentClockTicks;
 	_accelMicroSec = a._accelMicroSec;
@@ -82,18 +81,18 @@ void accel::test(void) {
 	dump();
 	
 	oss() << "_accelTime=" << accelMicroSec() << endl;
-	oss() << "clockTicksToCurveIndexReverse START" << endl;
+	oss() << "clockTicksToCurveIndexDecelerate START" << endl;
 	for (int ct = 0; ct < 8000000; ct += 0x8000) {
-		unsigned int ci = clockTicksToCurveIndexReverse(ct);
+		unsigned int ci = clockTicksToCurveIndexDecelerate(ct);
 		oss() << "ct=" << ct << " curveIndex=" << ci << endl;
 	}
-	oss() << "clockTicksToCurveIndexReverse END" << endl;
+	oss() << "clockTicksToCurveIndexDecelerate END" << endl;
 	dump();
 #endif /* CYGWIN */
 }
 
 unsigned int accel::dryRunAccel(void) {
-    initAccelMicroSec(accelMicroSec());
+    reset(accelMicroSec());
     unsigned int step = 0;
 #if DUMP
 	oss() << "start: dryRunAccel" << endl;
@@ -128,11 +127,15 @@ unsigned int accel::dryRunAccel(void) {
 
 // Very similar to dryRunAccel() above but without debug output. Given an acceleration time, how many steps are taken.
 unsigned int accel::microSecToSteps(const unsigned int us) {
-    initAccelMicroSec(us);
+    // Assert we're not in isr
+    reset(us);
     unsigned int step = 0;
     for (; step < MAX_DRY_RUN_CYCLES; ++step) {
 		// Each step through is equivalent to an isr call from the timer.
         _totalClockTicks += _currentClockTicks;
+        if (clockTicksToMicroSec(totalClockTicks()) > us) {
+            break;
+        }
         unsigned int index = clockTicksToCurveIndex(_totalClockTicks);
         if (index >= _maxAccelIndex) {
             break;
@@ -144,6 +147,7 @@ unsigned int accel::microSecToSteps(const unsigned int us) {
 
 // Returns acceleration time given steps required. Uses a bisection algorithm to home in on solution.
 unsigned int accel::stepsToMicroSec(const unsigned int steps) {
+    // Add assertion we're not in isr
 	unsigned int maxAccelTime = ACCEL_MAX_MICROSEC;
 	unsigned int minAccelTime = ACCEL_MIN_MICROSEC;
 	unsigned int currentAccelMicroSec = (ACCEL_MAX_MICROSEC + ACCEL_MIN_MICROSEC) / 2;
@@ -156,7 +160,7 @@ unsigned int accel::stepsToMicroSec(const unsigned int steps) {
 	for (int i = 0; i < _maxBisectionTrys; ++i) {
 		actualSteps = microSecToSteps(currentAccelMicroSec);
 #if REGRESS_1
-		oss() << "currentAccelTime= " << currentAccelMicroSec << " actualSteps= " << actualSteps << endl;
+		oss() << "currentAccelMicroSec: " << currentAccelMicroSec << " actualSteps: " << actualSteps << endl;
 #endif /* REGRESS_1 */
 		if (actualSteps > steps) {
 			// reduce currentAccelTime
@@ -170,7 +174,7 @@ unsigned int accel::stepsToMicroSec(const unsigned int steps) {
 		currentAccelMicroSec = (maxAccelTime + minAccelTime) / 2;
 	}
 #if REGRESS_1
-	oss() << "END currentAccelTime= " << currentAccelMicroSec << " actualSteps= " << actualSteps;
+	oss() << "END Final currentAccelMicroSec: " << currentAccelMicroSec << " actualSteps: " << actualSteps;
 	dump();
 #endif /* REGRESS_1 */
 	accelMicroSec(originalMicroSec);

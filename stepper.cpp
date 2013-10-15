@@ -107,7 +107,7 @@ int stepper::velocity(const int f) {
         }
 		_updateConstantVelocityStart();
         _superState = VELOCITY_MOVE;
-		a.initAccelMicroSec(a.accelMicroSec());
+		a.reset(a.accelMicroSec());
 	} else if (_superState == VELOCITY_MOVE_ACCELERATE || _superState == VELOCITY_MOVE_DECELERATE) {
 		// Can't do it right now. Try again when we're done accelerating.
 	} else {
@@ -176,10 +176,10 @@ void stepper::moveAbsolute(const int positionNew) {
 	// 4. Ramp down acceleration curve (run acceleration curve backwards)
 	// 5. Stop timer.
 	
-	// 1. Set acceleration time (e.g. 0.5s)
+	// 1. Set acceleration time
 	unsigned int accelStep = a.microSecToSteps(a.accelMicroSec());
 #if REGRESS_1
-	oss() << "moveAbsolute() accelStep=" << accelStep << " positionDelta=" << positionDelta << endl;
+	oss() << "moveAbsolute() accelStep:" << accelStep << " positionDelta:" << positionDelta << endl;
 #endif /* REGRESS_1 */
 	if (positionDelta > 2 * accelStep) {
 		// Enough room for full acceleration profile
@@ -191,11 +191,11 @@ void stepper::moveAbsolute(const int positionNew) {
 			_positionConstantVelocityEnd = _positionTarget + accelStep;
 		}
 		_superState = MOVE_FULL;
-		a.initAccelMicroSec(a.accelMicroSec());
+		a.reset(a.accelMicroSec());
 	} else {
 		// Acceleration curve needs to be truncated. Not enough steps to reach max speed.
 #if REGRESS_1
-        oss() << "moveAbsolute() MOVE_TRUNCATED steps=" << accelStep << " positionDelta=" << positionDelta << endl;
+        oss() << "moveAbsolute() MOVE_TRUNCATED steps:" << accelStep << " positionDelta:" << positionDelta << endl;
 #endif /* REGRESS_1 */
 #if REGRESS_2 && !CYGWIN
         char isrBuf[32];
@@ -222,7 +222,7 @@ void stepper::moveAbsolute(const int positionNew) {
 #endif /* REGRESS_2 and not CYGWIN */        
 		a.frequency(_fminOld, fmax);	// Rebuilds acceleration tables. Put them back when this move is finished.
 		// Set truncated acceleration time.
-		a.initAccelMicroSec(tNewAccel);
+		a.reset(tNewAccel);
 		// Remember to rebuild accel tables when move is over. Set trigger to do this in isr().
 		if (_directionPositive) {
 			_positionConstantVelocityStart = _positionConstantVelocityEnd = _positionCurrent + positionDelta / 2;
@@ -293,18 +293,19 @@ void stepper::isr(void) {
 			} else if (_positionCurrent < _positionConstantVelocityEnd) {
 				// constant velocity. Nothing to do.
 				_subState = MOVE_CONSTANT_VELOCITY;
+				_timer(a.updateClockPeriod());  // This moves us to the final velocity in the acceleration table
 #if CYGWIN
                 a.updateCumulativeTimeWithClockPeriod();
 #endif /* CYGWIN */                
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
-				a.initAccelMicroSec(a.accelMicroSec());
-				_timer(a.updateClockPeriodReverse());
+				a.reset(a.accelMicroSec());
+				_timer(a.updateClockPeriodDecelerate());
 			} else if (_positionCurrent < _positionTarget) {
 				// decelerating
 				_subState = MOVE_DECELERATE;
-				_timer(a.updateClockPeriodReverse());
+				_timer(a.updateClockPeriodDecelerate());
 			} else /* if (_positionCurrent >= _positionTarget) */ {
 				// end of movement
 				_timerStart(false);
@@ -323,12 +324,12 @@ void stepper::isr(void) {
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
 				// Start of deceleration.
 				_subState = MOVE_DECELERATE;
-				a.initAccelMicroSec(a.accelMicroSec());
-				_timer(a.updateClockPeriodReverse());
+				a.reset(a.accelMicroSec());
+				_timer(a.updateClockPeriodDecelerate());
 			} else if (_positionCurrent > _positionTarget) {
 				// decelerating
 				_subState = MOVE_DECELERATE;
-				_timer(a.updateClockPeriodReverse());
+				_timer(a.updateClockPeriodDecelerate());
 			} else /* if (_positionCurrent <= _positionTarget) */ {
 				// end of movement
 				_timerStart(false);
@@ -437,9 +438,9 @@ void stepper::isr(void) {
         oss() << "UNKNOWN SUBSTATE ";
         break;
     }
-    oss() << " position=" << _positionCurrent << " timer=" << _timer();
+    oss() << " position: " << _positionCurrent << " timer: " << _timer() << " cumulativeClockTicks: " << a.cumulativeClockTicks() << " currentClockTicks: " << a.currentClockTicks() << " index: " << a.clockTicksToCurveIndex(a.totalClockTicks()) << " indexReverse: " << a.clockTicksToCurveIndexDecelerate(a.totalClockTicks());
     // This line prints total elapsed time vs frequency (speed)
-    oss() << "  us vs. frequency: " << a.clockTicksToMicroSec(a.cumulativeClockTicks()) << " " << a.clockTicksToFreq(a.currentClockTicks());
+    oss() << "   microsec v freq: " << a.clockTicksToMicroSec(a.cumulativeClockTicks()) << " " << a.clockTicksToFreq(a.currentClockTicks());
     dump();
 #else /* not CYGWIN */
     if (_subState != _subStateLast) {

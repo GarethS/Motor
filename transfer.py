@@ -1,5 +1,6 @@
 # Copyright (c) 2013 Gareth Scott
 # transfer.py
+# Runs with Python 2.6.4
 
 # See: http://pyserial.sourceforge.net/pyserial_api.html#module-serial
 import serial

@@ -13,6 +13,7 @@
 #if CYGWIN
 #include "log.h"
 #include <sstream>
+#include <iomanip>
 
 using namespace std;
 #endif /* CYGWIN */
@@ -21,7 +22,6 @@ using namespace std;
 
 #define ACCEL_LINEAR_FIT        0   // Do linear acceleration between points on the acceleration S-curve
 
-#define SECONDS_PER_MINUTE      (60)
 #define MICROSEC_PER_SEC        (1000000)
 #define MHZ                     (MICROSEC_PER_SEC)
 #define DEGREES_PER_REV         (360)
@@ -36,7 +36,7 @@ using namespace std;
 #define MAX_DRY_RUN_CYCLES      (10000)
 
 // _maxAccelIndex = 199 gives very smooth acceleration
-enum {_maxAccelIndex = 99, _maxAccelEntries, _maxBisectionTrys = 20};
+enum {_maxAccelIndex = 15, _maxAccelEntries, _maxBisectionTrys = 20};
 
 struct passFloatArray {
     float curveFloat[_maxAccelEntries];
@@ -60,7 +60,7 @@ public:
 	accel& operator=(const accel& a);
 	void assign(const accel& a);
 	  
-    void initAccelMicroSec(const unsigned int us) {
+    void reset(const unsigned int us) {
 	    _totalClockTicks = 0;
 #if CYGWIN
         //_cumulativeClockTicks = 0;
@@ -78,7 +78,7 @@ public:
     unsigned int accelMicroSec(void) const {return _accelMicroSec;}
 	
     unsigned int dryRunAccel(void);
-	void frequency(const unsigned int fmin = 200, const unsigned int fmax = 1200);
+	void frequency(const unsigned int fmin = 200, const unsigned int fmax = 3200);
     // Convert RPM to frequency
     void RPMx10k(const unsigned int RPMx10kmin, const unsigned int RPMx10kmax) {frequency(_RPMx10ktoFreq(RPMx10kmin), _RPMx10ktoFreq(RPMx10kmax));}
     unsigned int fmin(void) const {return _fmin;}
@@ -99,6 +99,7 @@ public:
 #if ACCEL_LINEAR_FIT
         unsigned int moduloMicroSec = clockTicksToMicroSec(_totalClockTicks) % _accelMicroSecStep();
         float interpolateFreq = _linearInterpolate[index] * moduloMicroSec + _curveFreq[index];
+        // TODO: Add mechanism so _currentClockTicks never varies from prior value by too much
         _currentClockTicks = freqToClockTicks(interpolateFreq);
 #else // not ACCEL_LINEAR_FIT        
 		/* 
@@ -111,7 +112,17 @@ public:
 #endif // ACCEL_LINEAR_FIT        
 		return _currentClockTicks;
 	}
-
+	// Used during deceleration where curve is traversed backwards (i.e. right to left)
+	unsigned int updateClockPeriodDecelerate(void) {
+		_totalClockTicks += _currentClockTicks;
+#if CYGWIN
+        _cumulativeClockTicks += _currentClockTicks;
+#endif /* CYGWIN */        
+		unsigned int index = clockTicksToCurveIndexDecelerate(_totalClockTicks);
+		_currentClockTicks = curveIndexToClockTicks(index);
+		return _currentClockTicks;
+	}
+	
 #if CYGWIN	
     unsigned int updateCumulativeTimeWithClockPeriod(void) {
         _cumulativeClockTicks += _currentClockTicks;
@@ -119,22 +130,11 @@ public:
     }
 #endif /* CYGWIN */    
     
-	// Used for deceleration where the curve is traversed backwards (i.e. right to left)
-	unsigned int updateClockPeriodReverse(void) {
-		_totalClockTicks += _currentClockTicks;
-#if CYGWIN
-        _cumulativeClockTicks += _currentClockTicks;
-#endif /* CYGWIN */        
-		unsigned int index = clockTicksToCurveIndexReverse(_totalClockTicks);
-		_currentClockTicks = curveIndexToClockTicks(index);
-		return _currentClockTicks;
-	}
-	
 	unsigned int clockTicksToCurveIndex(const unsigned int ct) const {
 	    return microSecToCurveIndex(clockTicksToMicroSec(ct));
 	}
-	unsigned int clockTicksToCurveIndexReverse(const unsigned int ct) const {
-	    return microSecToCurveIndexReverse(clockTicksToMicroSec(ct));
+	unsigned int clockTicksToCurveIndexDecelerate(const unsigned int ct) const {
+	    return microSecToCurveIndexDecelerate(clockTicksToMicroSec(ct));
 	}
 
 	bool freqCloseToStop(const unsigned int f) const {
@@ -161,8 +161,17 @@ public:
     }
 
     // convert beween: clockTicks <-> microseconds
-    unsigned int clockTicksToMicroSec(const unsigned int ct) const {
+    unsigned int clockTicksToMicroSec(const unsigned int ct) const { 
+#if 1
+        // ((ct * 2) / _clockMHz) + 1 / 2   -> this is what's being done on the line below but using fast multiplication and division
+        return (unsigned int)(((ct << 1)/*multiply-by-2*/ / _clockMHz) + 1) >> 1/*divide-by-2*/;    // Done to correct for rounding loss in integer arithmetic, so 123.5 returns 124
+#else    
+        //float ctFloat = ((float)ct / _clockMHz) + 0.5;
+        //unsigned int ctFloatToInt = ctFloat;
+        //unsigned int ctDivide = (unsigned int)(((ct << 1)/*multiply-by-2*/ / _clockMHz) + 1) >> 1/*divide-by-2*/;
+        //cout << "clockTicksToMicroSec ct:" << ct << std::fixed << std::setprecision(2) << " us: " << (unsigned int)(ct / _clockMHz) << " usFloat: " << ctFloat << " usFloatToInt: " << ctFloatToInt << " ctDivide: " << ctDivide << endl;
 		return (unsigned int)(ct / _clockMHz);
+#endif        
 	}
     unsigned int microSecToClockTicks(const unsigned int us) const {
         return (unsigned int)(us * _clockMHz);
@@ -174,27 +183,27 @@ public:
 			return _maxAccelIndex;
 		}
 #if 0
-		unsigned int index = us * _maxAccelEntries / accelMicroSec();
-		cout << "microSecToCurveIndex: index=" << index << endl;
+		unsigned int index = us * _maxAccelIndex / accelMicroSec();
+        unsigned int accelus = accelMicroSec();
+		cout << "microSecToCurveIndex: us: " << us << " accelMicroSec: " << accelus << " index: " << index << endl;
 #endif /* DUMP */
 #if ACCEL_LINEAR_FIT
         return us / _accelMicroSecStep();
 #else // not ACCEL_LINEAR_FIT        
-		return us * _maxAccelIndex / accelMicroSec();
+		return (us * _maxAccelIndex) / accelMicroSec();
 #endif // ACCEL_LINEAR_FIT        
 	}
-	// Same as microSecToCurveIndex(), except returns curve index in reverse order. 
-	//  Used for deceleration.
-	unsigned int microSecToCurveIndexReverse(const unsigned int us) const {
+	unsigned int microSecToCurveIndexDecelerate(const unsigned int us) const {
 		if (us > accelMicroSec()) {
 			return 0;
 		}
-		return _maxAccelIndex - (us * _maxAccelEntries / accelMicroSec());
+		return _maxAccelIndex - ((us * _maxAccelIndex) / accelMicroSec()) - 1;
 	}
 
     void degreesPerMicrostepx10k(const unsigned int dpus) {_degreesPerMicrostepx10k = dpus;}
     unsigned int degreesPerMicrostepx10k(void) const  {return _degreesPerMicrostepx10k;}
     
+    unsigned int totalClockTicks(void) const {return _totalClockTicks;}
 #if CYGWIN    
     unsigned int currentClockTicks(void) const {return _currentClockTicks;}
     unsigned int cumulativeClockTicks(void) const {return _cumulativeClockTicks;}
@@ -210,7 +219,7 @@ private:
     // Avoid using floats
     unsigned int _RPMx10ktoFreq(const unsigned int RPMx10k) {
 #if REGRESS_1
-        oss() << "_RPMx10ktoFreq rpmx10k:" << RPMx10k << " frequency:" << (RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC) / _degreesPerMicrostepx10k;
+        oss() << "_RPMx10ktoFreq rpmx10k: " << RPMx10k << " frequency: " << (RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC) / _degreesPerMicrostepx10k;
         dump();
 #endif /* REGRESS_1 */    
         return (RPMx10k * DEGREES_PER_REV_TIMES_MINUTE_PER_SEC) / _degreesPerMicrostepx10k;

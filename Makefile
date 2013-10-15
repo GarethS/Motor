@@ -9,6 +9,7 @@ myDebug := 1
 
 #prefix = ../../../../DriverLib/boards/ek-lm3s3748/motor
 includeRTOS = ../../../../dev/docs/rtos/freertos/FreeRTOS/Demo/Common/drivers/LuminaryMicro/
+#includeRTOS = ../../../../dev/docs/scottdesign/FreeRTOS/Source/portable/IAR/ARM_CM4F/
 includeGPIO = ../../../../DriverLib/src
 
 ifeq ($(myDebug), 1)
@@ -20,7 +21,7 @@ DEBUG_FLAGS = -D CYGWIN=1
 endif 
 
 
-all: motor.exe
+all: motor.exe test2
 
 clean:
 	rm motor.exe motor.exe.stackdump

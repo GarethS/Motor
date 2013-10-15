@@ -1,8 +1,9 @@
 /*
-	Copyright (c) Gareth Scott 2011
+	Copyright (c) Gareth Scott 2011, 2012, 2013
 
 	motor.cpp
 
+    Note, not part of IAR build for Tiva board.
     Test platform for stepper.cpp (located in /DriverLib/boards/ek-lm3s3748/motor)	
 
 */
@@ -54,7 +55,7 @@ int mainA(void) {
     s.a.time(1000000);  // Set back to default acceleration time
 #endif    
 	//cout << "acceleration steps= " << s._accelGetStepCount() << endl;
-#if REGRESS_1	
+#if 0 //REGRESS_1	
 	s.a.stepsToMicroSec(1000);
 	s.a.stepsToMicroSec(500);
 	s.a.stepsToMicroSec(999);
@@ -70,13 +71,14 @@ int mainA(void) {
     
     s.microstepSet(MICROSTEPS_8);
     //s.RPMx10k(8 * 10000, 120 * 10000);  // 8 rpm start and 120 rpm top speed
-    s.RPM(8.0, 120.0);
-	//s.frequency(200, 6600);   // Fastest for x8 usteps
-    s.accelerationTimeMicrosecs(500000);
+    s.RPM(12, 220);
+    //s.accelerationTimeMicrosecs(500000);
+    s.accelerationTimeMicrosecs(1000000);
     s.positionSteps(0);
-	s.moveAbsoluteDegreex10k(360 * 10000);
+	s.moveAbsolute(8000);
+	//s.moveAbsoluteDegreex10k(360 * 10000);
 	//s.moveAbsolute(16000);
-    //s.runVirtualMotor();
+    s.runVirtualMotor();
     
 #if !CYGWIN
     int direction = -1;
