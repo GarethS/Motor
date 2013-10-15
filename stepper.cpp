@@ -108,7 +108,7 @@ int stepper::velocity(const int f) {
 		_updateConstantVelocityStart();
         _superState = VELOCITY_MOVE;
 		a.reset(a.accelMicroSec());
-	} else if (_superState == VELOCITY_MOVE_ACCELERATE || _superState == VELOCITY_MOVE_DECELERATE) {
+	} else if (_subState == VELOCITY_MOVE_ACCELERATE || _subState == VELOCITY_MOVE_DECELERATE) {
 		// Can't do it right now. Try again when we're done accelerating.
 	} else {
         // motor already running at a constant velocity
@@ -199,31 +199,29 @@ void stepper::moveAbsolute(const int positionNew) {
 #endif /* REGRESS_1 */
 #if REGRESS_2 && !CYGWIN
         char isrBuf[32];
-        //sprintf(isrBuf, "tNewAccel=%d", tNewAccel);
-        sprintf(isrBuf, " pt=%d", _positionTarget);
-        //sprintf(isrBuf, "fo=%d max=%d", _fmaxOld, fmax);
+        //sprintf(isrBuf, "truncatedAccelMicroSec: %d", truncatedAccelMicroSec);
+        sprintf(isrBuf, " pt: %d", _positionTarget);
+        //sprintf(isrBuf, "fo: %d max: %d", _fmaxOld, fMaxTruncated);
         UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
 #endif /* REGRESS_2 and not CYGWIN */        
-		unsigned int tNewAccel = a.stepsToMicroSec(positionDelta / 2);
+        _accelPrevious = a;
+		unsigned int truncatedAccelMicroSec = a.stepsToMicroSec(positionDelta / 2);
 		// Set fMAX and then calculate time required for acceleration.
-		unsigned int curveIndex = a.microSecToCurveIndex(tNewAccel);
+		unsigned int curveIndex = a.microSecToCurveIndex(truncatedAccelMicroSec);
         unsigned int ct = a.curveIndexToClockTicks(curveIndex);
         unsigned int us = a.clockTicksToMicroSec(ct);
-		_fminOld = a.fmin();
-		_fmaxOld = a.fmax();
-		unsigned int fmax = a.microSecToFreq(us);
+		unsigned int fMaxTruncated = a.microSecToFreq(us);
 #if REGRESS_2 && !CYGWIN
         //char isrBuf[32];
-        //sprintf(isrBuf, "tNewAccel=%d", tNewAccel);
-        //sprintf(isrBuf, "us=%d", us);
-        sprintf(isrBuf, "ci=%d ct=%d", curveIndex, ct);
-        //sprintf(isrBuf, "fo=%d fm=%d", _fmaxOld, fmax);
+        //sprintf(isrBuf, "truncatedAccelMicroSec: %d", truncatedAccelMicroSec);
+        //sprintf(isrBuf, "us: %d", us);
+        sprintf(isrBuf, "ci: %d ct: %d", curveIndex, ct);
+        //sprintf(isrBuf, "fo: %d fm: %d", _fmaxOld, fMaxTruncated);
         UARTSend((unsigned char *)isrBuf, strlen(isrBuf));
 #endif /* REGRESS_2 and not CYGWIN */        
-		a.frequency(_fminOld, fmax);	// Rebuilds acceleration tables. Put them back when this move is finished.
-		// Set truncated acceleration time.
-		a.reset(tNewAccel);
-		// Remember to rebuild accel tables when move is over. Set trigger to do this in isr().
+		a.frequency(a.fmin(), fMaxTruncated);	// Rebuild acceleration tables. Put them back when this move is finished.
+		a.reset(truncatedAccelMicroSec);
+		// Reset accel tables when move is over. Done in isr() using _accelPrevious.
 		if (_directionPositive) {
 			_positionConstantVelocityStart = _positionConstantVelocityEnd = _positionCurrent + positionDelta / 2;
 		} else {
@@ -322,7 +320,7 @@ void stepper::isr(void) {
                 a.updateCumulativeTimeWithClockPeriod();
 #endif /* CYGWIN */                
 			} else if (_positionCurrent == _positionConstantVelocityEnd) {
-				// Start of deceleration.
+				// start deceleration
 				_subState = MOVE_DECELERATE;
 				a.reset(a.accelMicroSec());
 				_timer(a.updateClockPeriodDecelerate());
@@ -490,8 +488,7 @@ void stepper::_timerStart(bool start /* = true */) {
 		_timerRunning = false;
 		TimerDisable(TIMER0_BASE, TIMER_A);
 		if (_superState == MOVE_TRUNCATED) {
-			// Reset acceleration tables
-			a.frequency(_fminOld, _fmaxOld);
+            a = _accelPrevious; // reset acceleration table 
 		}
 		_superState = IDLE;
 	}

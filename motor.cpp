@@ -75,6 +75,15 @@ int mainA(void) {
     //s.accelerationTimeMicrosecs(500000);
     s.accelerationTimeMicrosecs(1000000);
     s.positionSteps(0);
+    
+#if 0    
+	s.moveAbsolute(1000);
+    s.runVirtualMotor();
+    
+	s.moveAbsolute(0);
+    s.runVirtualMotor();
+#endif    
+    
 	s.moveAbsolute(8000);
 	//s.moveAbsoluteDegreex10k(360 * 10000);
 	//s.moveAbsolute(16000);
@@ -84,7 +93,7 @@ int mainA(void) {
     int direction = -1;
     int counter = 0;
     for (;;) {
-        if (s.state() == 0 /*IDLE*/) {
+        if (s.state() == IDLE) {
 #if 0         
             s.velocity(2800);
             //s.moveRelative(1600 * direction);

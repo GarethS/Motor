@@ -62,6 +62,14 @@ enum microsteps {MICROSTEPS_1, MICROSTEPS_2, MICROSTEPS_4, MICROSTEPS_8, MICROST
 #define GPIO_DIR_PORT   (GPIO_PORTA_BASE)
 #endif // PART_TM4C1233D5PM
 
+enum superstate {IDLE, MOVE_FULL, MOVE_TRUNCATED, VELOCITY_MOVE, SUPER_STATE_UNKNOWN};
+	
+enum substate {MOVE_START, MOVE_ACCELERATE, MOVE_CONSTANT_VELOCITY, MOVE_DECELERATE,
+                VELOCITY_MOVE_ACCELERATE, VELOCITY_MOVE_DECELERATE, VELOCITY_MOVE_CONSTANT_VELOCITY,
+                SUB_STATE_UNKNOWN};
+// return values
+enum {SUCCESS, ILLEGAL_MOVE, ILLEGAL_VELOCITY};                            
+            
 class stepper
 #if CYGWIN
 				: public logc
@@ -113,7 +121,7 @@ public:
     void positionSteps(const int p) {_positionCurrent = p;}   // set
     unsigned int positionDegreesx10k(void) const {return positionSteps() * degreesPerMicrostepx10k();} // get
     void positionDegreesx10k(const unsigned int d) {_positionCurrent = d / degreesPerMicrostepx10k();} // set
-    unsigned int state(void) const {return _superState;}
+    superstate state(void) const {return _superState;}
     void accelerationTimeMicrosecs(const unsigned int us) {a.accelMicroSec(us);}   // Set acceleration time
     void frequency(const unsigned int flow, const unsigned int fhi) {a.frequency(flow, fhi);}  // Set high/low step frequency
     // Use RPMx10k when you want finer precision over speed than RPM can give you. e.g. RPM = 23.456 -> RPMx10k = 234560
@@ -137,21 +145,7 @@ public:
 #endif /* CYGWIN */    
     
 private:
-	// _superState
-    enum {IDLE, MOVE_FULL, MOVE_TRUNCATED, VELOCITY_MOVE,
-            SUPER_STATE_UNKNOWN};
-	
-	// _subState
-	enum {MOVE_START, MOVE_ACCELERATE, MOVE_CONSTANT_VELOCITY, MOVE_DECELERATE,
-			VELOCITY_MOVE_ACCELERATE, VELOCITY_MOVE_DECELERATE, VELOCITY_MOVE_CONSTANT_VELOCITY,
-            SUB_STATE_UNKNOWN};
-
-    // return values
-    enum {SUCCESS, ILLEGAL_MOVE, ILLEGAL_VELOCITY};                            
-            
     void _init(void);
-    
-private:
 	void _timerStart(bool start = true);
 	void _timer(const unsigned long newClockPeriod) {
 		_timerPeriod = newClockPeriod;
@@ -177,9 +171,9 @@ private:
     bool _directionPositive;            // false -> direction is negative
 	bool _timerRunning;
 	unsigned long _timerPeriod;
-	unsigned int _fminOld, _fmaxOld;	// save frequency min/max for acceleration. Used when acceleration is truncated.
-	unsigned int _superState;
-	unsigned int _subState;
+    accel _accelPrevious;               // used after a truncated move to revert back to original acceleration
+	superstate _superState;
+	substate _subState;
 #if REGRESS_2 && !CYGWIN
 	unsigned int _superStateLast;
 	unsigned int _subStateLast;
