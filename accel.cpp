@@ -10,7 +10,10 @@
 #include <math.h>
 
 accel::accel() :
-#if CYGWIN 
+#if CYGWIN
+#undef  configCPU_CLOCK_HZ
+#define configCPU_CLOCK_HZ				( ( unsigned long ) 50000000 )  // Make it look like Tiva part for log file output
+
 					logc(std::string("ACCEL")),
 #endif /* CYGWIN */					
 					_accelMicroSec(1000000), _clockMHz(configCPU_CLOCK_HZ / MHZ),
@@ -35,14 +38,14 @@ accel& accel::operator=(const accel& a) {
 }
 
 void accel::assign(const accel& a) {
-	*(struct passFloatArray*)_curveFreq = *(struct passFloatArray*)a._curveFreq;	// Beats copying each individual element
+	*(struct passFloatArray*)_curveFreq     = *(struct passFloatArray*)a._curveFreq;	// Beats copying each individual element
 	*(struct passIntArray*)_curveClockTicks = *(struct passIntArray*)a._curveClockTicks;
-	_totalClockTicks = a._totalClockTicks;
-	_currentClockTicks = a._currentClockTicks;
-	_accelMicroSec = a._accelMicroSec;
-	_fmin = a.fmin();
-	_fmax = a.fmax();
-	_degreesPerMicrostepx10k = a._degreesPerMicrostepx10k;
+	_totalClockTicks                        = a._totalClockTicks;
+	_currentClockTicks                      = a._currentClockTicks;
+	_accelMicroSec                          = a._accelMicroSec;
+	_fmin                                   = a.fmin();
+	_fmax                                   = a.fmax();
+	_degreesPerMicrostepx10k                = a._degreesPerMicrostepx10k;
 }
 
 void accel::test(void) {

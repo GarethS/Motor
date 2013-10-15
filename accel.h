@@ -19,8 +19,9 @@ using namespace std;
 #endif /* CYGWIN */
 
 #include <limits.h>
+#include <assert.h>
 
-#define ACCEL_LINEAR_FIT        0   // Do linear acceleration between points on the acceleration S-curve
+#define ACCEL_LINEAR_FIT        0   // Do linear interpolated acceleration between points on the acceleration S-curve
 
 #define MICROSEC_PER_SEC        (1000000)
 #define MHZ                     (MICROSEC_PER_SEC)
@@ -74,7 +75,7 @@ public:
 #endif /* CYGWIN */
     
 	// set/get acceleration time
-    void accelMicroSec(const unsigned int us) {_accelMicroSec = us;}
+    void accelMicroSec(const unsigned int us) {if (us > ACCEL_MAX_MICROSEC) {_accelMicroSec = ACCEL_MAX_MICROSEC;} if (us < ACCEL_MIN_MICROSEC) {_accelMicroSec = ACCEL_MIN_MICROSEC;} _accelMicroSec = us;}
     unsigned int accelMicroSec(void) const {return _accelMicroSec;}
 	
     unsigned int dryRunAccel(void);
@@ -84,7 +85,7 @@ public:
     unsigned int fmin(void) const {return _fmin;}
     unsigned int fmax(void) const {return _fmax;}
 	
-	unsigned int curveIndexToClockTicks(const unsigned int index) {return _curveClockTicks[index];}
+	unsigned int curveIndexToClockTicks(const unsigned int index) {assert(index <= _maxAccelIndex); return _curveClockTicks[index];}
 	unsigned int microSecToSteps(const unsigned int us);
 	unsigned int stepsToMicroSec(const unsigned int steps);
 	
@@ -162,16 +163,9 @@ public:
 
     // convert beween: clockTicks <-> microseconds
     unsigned int clockTicksToMicroSec(const unsigned int ct) const { 
-#if 1
+		//return (unsigned int)(ct / _clockMHz);    // original code
         // ((ct * 2) / _clockMHz) + 1 / 2   -> this is what's being done on the line below but using fast multiplication and division
         return (unsigned int)(((ct << 1)/*multiply-by-2*/ / _clockMHz) + 1) >> 1/*divide-by-2*/;    // Done to correct for rounding loss in integer arithmetic, so 123.5 returns 124
-#else    
-        //float ctFloat = ((float)ct / _clockMHz) + 0.5;
-        //unsigned int ctFloatToInt = ctFloat;
-        //unsigned int ctDivide = (unsigned int)(((ct << 1)/*multiply-by-2*/ / _clockMHz) + 1) >> 1/*divide-by-2*/;
-        //cout << "clockTicksToMicroSec ct:" << ct << std::fixed << std::setprecision(2) << " us: " << (unsigned int)(ct / _clockMHz) << " usFloat: " << ctFloat << " usFloatToInt: " << ctFloatToInt << " ctDivide: " << ctDivide << endl;
-		return (unsigned int)(ct / _clockMHz);
-#endif        
 	}
     unsigned int microSecToClockTicks(const unsigned int us) const {
         return (unsigned int)(us * _clockMHz);
