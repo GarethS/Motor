@@ -76,13 +76,11 @@ int mainA(void) {
     s.accelerationTimeMicrosecs(1000000);
     s.positionSteps(0);
     
-#if 0    
 	s.moveAbsolute(1000);
     s.runVirtualMotor();
     
 	s.moveAbsolute(0);
     s.runVirtualMotor();
-#endif    
     
 	s.moveAbsolute(8000);
 	//s.moveAbsoluteDegreex10k(360 * 10000);

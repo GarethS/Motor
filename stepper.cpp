@@ -283,86 +283,38 @@ void stepper::moveAbsoluteModify(int positionNew) {
 void stepper::isr(void) {
 	step();
 	if (_superState == MOVE_FULL || _superState == MOVE_TRUNCATED) {
-		if (_directionPositive) {
-			if (_positionCurrent < _positionConstantVelocityStart) {
-				// accelerating
-				_subState = MOVE_ACCELERATE;
-				_timer(a.updateClockPeriod());
-			} else if (_positionCurrent < _positionConstantVelocityEnd) {
-				// constant velocity. Nothing to do.
-				_subState = MOVE_CONSTANT_VELOCITY;
-				_timer(a.updateClockPeriod());  // This moves us to the final velocity in the acceleration table
+        if (_isAccelerating()) {
+            _subState = MOVE_ACCELERATE;
+            _timer(a.updateClockPeriod());
+        } else if (_isConstantVelocity()) {
+            _subState = MOVE_CONSTANT_VELOCITY;
+            _timer(a.updateClockPeriod());  // This moves us to the final velocity in the acceleration table
 #if CYGWIN
-                a.updateCumulativeTimeWithClockPeriod();
+            a.updateCumulativeTimeWithClockPeriod();
 #endif /* CYGWIN */                
-			} else if (_positionCurrent == _positionConstantVelocityEnd) {
-				// Start of deceleration.
-				_subState = MOVE_DECELERATE;
-				a.reset(a.accelMicroSec());
-				_timer(a.updateClockPeriodDecelerate());
-			} else if (_positionCurrent < _positionTarget) {
-				// decelerating
-				_subState = MOVE_DECELERATE;
-				_timer(a.updateClockPeriodDecelerate());
-			} else /* if (_positionCurrent >= _positionTarget) */ {
-				// end of movement
-				_timerStart(false);
-			}
-		} else {
-			if (_positionCurrent > _positionConstantVelocityStart) {
-				// accelerating
-				_subState = MOVE_ACCELERATE;
-				_timer(a.updateClockPeriod());
-			} else if (_positionCurrent > _positionConstantVelocityEnd) {
-				// constant velocity. Nothing to do.
-				_subState = MOVE_CONSTANT_VELOCITY;
-#if CYGWIN
-                a.updateCumulativeTimeWithClockPeriod();
-#endif /* CYGWIN */                
-			} else if (_positionCurrent == _positionConstantVelocityEnd) {
-				// start deceleration
-				_subState = MOVE_DECELERATE;
-				a.reset(a.accelMicroSec());
-				_timer(a.updateClockPeriodDecelerate());
-			} else if (_positionCurrent > _positionTarget) {
-				// decelerating
-				_subState = MOVE_DECELERATE;
-				_timer(a.updateClockPeriodDecelerate());
-			} else /* if (_positionCurrent <= _positionTarget) */ {
-				// end of movement
-				_timerStart(false);
-			}
-		}
+        } else if (_isStartOfDeceleration()) {
+            _subState = MOVE_DECELERATE;
+            a.reset(a.accelMicroSec());
+            _timer(a.updateClockPeriodDecelerate());
+        } else if (_isDecelerating()) {
+            _timer(a.updateClockPeriodDecelerate());
+        } else /* if (_positionCurrent >= _positionTarget) */ {
+            // end of movement
+            _timerStart(false);
+        }
 	} else if (_superState == VELOCITY_MOVE) {
-		if (_directionPositive) {
-			if (_positionCurrent < _positionConstantVelocityStart) {
-				// accelerating
-				_timer(a.updateClockPeriod());
-			} else if (_positionCurrent == _positionConstantVelocityStart) {
-				if (a.freqCloseToStop(a.clockTicksToFreq(_timer()))) {
-					// end of movement
-					_timerStart(false);
-				} else {
-					_subState = VELOCITY_MOVE_CONSTANT_VELOCITY;
-				}
-			// } else if (_positionCurrent >= _positionConstantVelocityStart) { // compiler could optimize this line out, but we'll do it just to be explicit
-				// constant velocity. Nothing to do.
-			}
-		} else {
-			if (_positionCurrent > _positionConstantVelocityStart) {
-				// accelerating
-				_timer(a.updateClockPeriod());
-			} else if (_positionCurrent == _positionConstantVelocityStart) {
-				if (a.freqCloseToStop(a.clockTicksToFreq(_timer()))) {
-					// end of movement
-					_timerStart(false);
-				} else {
-					_subState = VELOCITY_MOVE_CONSTANT_VELOCITY;
-				}
-			// } else if (_positionCurrent <= _positionConstantVelocityStart) {
-				// constant velocity. Nothing to do.
-			}
-		}
+        if (_isAccelerating()) {
+            _timer(a.updateClockPeriod());
+        } else if (_isConstantVelocityStart()) {
+            if (a.freqCloseToStop(a.clockTicksToFreq(_timer()))) {
+                // end of movement
+                _timerStart(false);
+            } else {
+                _subState = VELOCITY_MOVE_CONSTANT_VELOCITY;
+            }
+        // } else if (_positionCurrent >= _positionConstantVelocityStart) { // compiler could optimize this line out, but we'll do it just to be explicit
+            // constant velocity. Nothing to do.
+        }
 	}
 
 #if REGRESS_2

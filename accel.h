@@ -131,13 +131,6 @@ public:
     }
 #endif /* CYGWIN */    
     
-	unsigned int clockTicksToCurveIndex(const unsigned int ct) const {
-	    return microSecToCurveIndex(clockTicksToMicroSec(ct));
-	}
-	unsigned int clockTicksToCurveIndexDecelerate(const unsigned int ct) const {
-	    return microSecToCurveIndexDecelerate(clockTicksToMicroSec(ct));
-	}
-
 	bool freqCloseToStop(const unsigned int f) const {
 		if (f <= _fStop) {
 			return true;
@@ -145,6 +138,13 @@ public:
 		return false;
 	}
 	
+	unsigned int clockTicksToCurveIndex(const unsigned int ct) const {
+	    return microSecToCurveIndex(clockTicksToMicroSec(ct));
+	}
+	unsigned int clockTicksToCurveIndexDecelerate(const unsigned int ct) const {
+	    return microSecToCurveIndexDecelerate(clockTicksToMicroSec(ct));
+	}
+
     // convert beween: frequency <-> clockTicks
     unsigned int freqToClockTicks(const unsigned int f) const {
         return microSecToClockTicks(freqToMicroSec(f));

@@ -153,6 +153,17 @@ private:
 	}
 	unsigned long _timer(void) const {return _timerPeriod;}
 	void _updateConstantVelocityStart(void);
+    
+    // These tests are not stand-alone. You have to call _isAccelerating() before _isConstantVelocity() which is called before _isStartOfDecelerating().
+    // See example of usage in stepper::isr()
+    bool _isAccelerating(void) const {if ((_directionPositive && _positionCurrent < _positionConstantVelocityStart) ||
+                                         (!_directionPositive && _positionCurrent > _positionConstantVelocityStart)) {return true;} return false;}
+    bool _isConstantVelocity(void) const {if ((_directionPositive && _positionCurrent < _positionConstantVelocityEnd) ||
+                                             (!_directionPositive && _positionCurrent > _positionConstantVelocityEnd)) {return true;} return false;}
+    bool _isStartOfDeceleration(void) const {if (_positionCurrent == _positionConstantVelocityEnd) {return true;} return false;}
+    bool _isDecelerating(void) const {if ((_directionPositive && _positionCurrent < _positionTarget) ||
+                                         (!_directionPositive && _positionCurrent > _positionTarget)) {return true;} return false;}
+    bool _isConstantVelocityStart(void) const {if (_positionCurrent == _positionConstantVelocityStart) {return true;} return false;}
 	
 	// These 4 points represent a typical movement profile.
 	//  Acceleration is from _positionCurrent to _positionConstantVelocityStart
