@@ -122,7 +122,7 @@ unsigned int accel::dryRunAccel(void) {
         if (index >= _maxAccelIndex) {
             break;
         }
-        _currentClockTicks = curveIndexToClockTicks(index);
+        totalClockTicksToCurrentClockTicks(index);
     }
 #if DUMP
 	oss() << "stop: dryRunAccel";
@@ -146,14 +146,7 @@ unsigned int accel::microSecToSteps(const unsigned int us) {
         if (index >= _maxAccelIndex) {
             break;
         }
-#if ACCEL_LINEAR_FIT        
-        float moduloMicroSec = clockTicksToMicroSec(_totalClockTicks) % _accelStepMicroSec();
-        float interpolateFreq = (_linearInterpolate[index] * moduloMicroSec + _curveFreq[index]) + 0.5;
-        //cout << " _totalClockTicks: " << _totalClockTicks << " us: " << clockTicksToMicroSec(_totalClockTicks) << " _accelStepMicroSec: " << _accelStepMicroSec() << " moduloMicroSec: " << moduloMicroSec << " index: " << index << "_linearInterpolate[index]: " << _linearInterpolate[index] << " interpolateFreq:" << interpolateFreq << endl;
-        _currentClockTicks = freqToClockTicks((unsigned int)interpolateFreq);
-#else // not ACCEL_LINEAR_FIT        
-		_currentClockTicks = curveIndexToClockTicks(index);
-#endif // ACCEL_LINEAR_FIT        
+        totalClockTicksToCurrentClockTicks(index);
     }
     return step;
 }

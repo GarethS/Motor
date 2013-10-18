@@ -97,6 +97,10 @@ public:
         _cumulativeClockTicks += _currentClockTicks;
 #endif /* CYGWIN */        
 		unsigned int index = clockTicksToCurveIndex(_totalClockTicks);
+        return totalClockTicksToCurrentClockTicks(index);
+	}
+    
+    unsigned int totalClockTicksToCurrentClockTicks(const unsigned int index) {
 #if ACCEL_LINEAR_FIT        
         float moduloMicroSec = clockTicksToMicroSec(_totalClockTicks) % _accelStepMicroSec();
         float interpolateFreq = (_linearInterpolate[index] * moduloMicroSec + _curveFreq[index]) + 0.5;
@@ -107,7 +111,7 @@ public:
 		_currentClockTicks = curveIndexToClockTicks(index);
 #endif // ACCEL_LINEAR_FIT        
 		return _currentClockTicks;
-	}
+    }
     
 	// Used during deceleration where curve is traversed backwards (i.e. right to left)
 	unsigned int updateClockPeriodDecelerate(void) {
@@ -116,11 +120,8 @@ public:
         _cumulativeClockTicks += _currentClockTicks;
 #endif /* CYGWIN */
 #if ACCEL_LINEAR_FIT
-        // Test implementing using code in: updateClockPeriod()
-        //unsigned int totalUs = clockTicksToMicroSec(_totalClockTicks);
         unsigned int shiftedClockTicks = microSecToClockTicks(accelMicroSec() - clockTicksToMicroSec(_totalClockTicks));
 		unsigned int index = clockTicksToCurveIndex(shiftedClockTicks);
-        assert(index <= _maxAccelIndex);
         float moduloMicroSec = _accelStepMicroSec() - clockTicksToMicroSec(shiftedClockTicks) % _accelStepMicroSec();
         float interpolateFreq = (_linearInterpolate[index] * moduloMicroSec + _curveFreq[index]) + 0.5;
         float reversedInterpolateFreq = _curveFreq[index] + _curveFreq[index+1] - interpolateFreq ;
