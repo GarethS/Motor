@@ -85,7 +85,7 @@ public:
     unsigned int fmin(void) const {return _fmin;}
     unsigned int fmax(void) const {return _fmax;}
 	
-	unsigned int curveIndexToClockTicks(const unsigned int index) {assert(index <= _maxAccelIndex); return _curveClockTicks[index];}
+	unsigned int curveIndexToClockTicks(const unsigned int index) const {assert(index <= _maxAccelIndex); return _curveClockTicks[index];}
 	unsigned int microSecToSteps(const unsigned int us);
 	unsigned int stepsToMicroSec(const unsigned int steps);
 	
@@ -97,30 +97,43 @@ public:
         _cumulativeClockTicks += _currentClockTicks;
 #endif /* CYGWIN */        
 		unsigned int index = clockTicksToCurveIndex(_totalClockTicks);
-#if ACCEL_LINEAR_FIT
-        unsigned int moduloMicroSec = clockTicksToMicroSec(_totalClockTicks) % _accelMicroSecStep();
-        float interpolateFreq = _linearInterpolate[index] * moduloMicroSec + _curveFreq[index];
+        assert(index <= _maxAccelIndex);
+#if ACCEL_LINEAR_FIT        
+        float moduloMicroSec = clockTicksToMicroSec(_totalClockTicks) % _accelStepMicroSec();
+        float interpolateFreq = (_linearInterpolate[index] * moduloMicroSec + _curveFreq[index]) + 0.5;
         // TODO: Add mechanism so _currentClockTicks never varies from prior value by too much
-        _currentClockTicks = freqToClockTicks(interpolateFreq);
+        _currentClockTicks = freqToClockTicks((unsigned int)interpolateFreq);
+        //oss() << " _totalClockTicks: " << _totalClockTicks << " us: " << clockTicksToMicroSec(_totalClockTicks) << " _accelStepMicroSec: " << _accelStepMicroSec() << " moduloMicroSec: " << moduloMicroSec << " index: " << index << "_linearInterpolate[index]: " << _linearInterpolate[index] << " interpolateFreq:" << interpolateFreq << " _currentClockTicks:" << _currentClockTicks << endl;
 #else // not ACCEL_LINEAR_FIT        
-		/* 
-		if (index >= _maxAccelEntries - 1) {
-			// Can't get here.
-			return 0xffffffff;
-		}
-		*/
 		_currentClockTicks = curveIndexToClockTicks(index);
 #endif // ACCEL_LINEAR_FIT        
 		return _currentClockTicks;
 	}
+    
 	// Used during deceleration where curve is traversed backwards (i.e. right to left)
 	unsigned int updateClockPeriodDecelerate(void) {
 		_totalClockTicks += _currentClockTicks;
 #if CYGWIN
         _cumulativeClockTicks += _currentClockTicks;
-#endif /* CYGWIN */        
+#endif /* CYGWIN */
+#if ACCEL_LINEAR_FIT
+        // Test implementing using code in: updateClockPeriod()
+        //unsigned int totalUs = clockTicksToMicroSec(_totalClockTicks);
+        unsigned int shiftedClockTicks = microSecToClockTicks(accelMicroSec() - clockTicksToMicroSec(_totalClockTicks));
+		unsigned int index = clockTicksToCurveIndex(shiftedClockTicks);
+        assert(index <= _maxAccelIndex);
+        float moduloMicroSec = _accelStepMicroSec() - clockTicksToMicroSec(shiftedClockTicks) % _accelStepMicroSec();
+        float interpolateFreq = (_linearInterpolate[index] * moduloMicroSec + _curveFreq[index]) + 0.5;
+        float reversedInterpolateFreq = _curveFreq[index] + _curveFreq[index+1] - interpolateFreq ;
+        if (reversedInterpolateFreq < _curveFreq[0]) {
+            reversedInterpolateFreq = _curveFreq[0];
+        }
+        _currentClockTicks = freqToClockTicks((unsigned int)reversedInterpolateFreq);
+#else   // ACCEL_LINEAR_FIT        
 		unsigned int index = clockTicksToCurveIndexDecelerate(_totalClockTicks);
+        assert(index <= _maxAccelIndex);
 		_currentClockTicks = curveIndexToClockTicks(index);
+#endif // ACCEL_LINEAR_FIT        
 		return _currentClockTicks;
 	}
 	
@@ -145,11 +158,33 @@ public:
 	    return microSecToCurveIndexDecelerate(clockTicksToMicroSec(ct));
 	}
 
+    // Given microsec, return acceleration curve index which contains speed information
+	unsigned int microSecToCurveIndex(const unsigned int us) const {
+		if (us > accelMicroSec()) {
+			return _maxAccelIndex;
+		}
+#if 0
+		unsigned int index = us * _maxAccelIndex / accelMicroSec();
+        unsigned int accelus = accelMicroSec();
+		cout << "microSecToCurveIndex: us: " << us << " accelMicroSec: " << accelus << " index: " << index << endl;
+#endif /* DUMP */
+		return us * _maxAccelIndex / accelMicroSec();
+	}
+	unsigned int microSecToCurveIndexDecelerate(const unsigned int us) const {
+		if (us > accelMicroSec()) {
+			return 0;
+		}
+        return microSecToCurveIndex(accelMicroSec() - us);
+	}
+
     // convert beween: frequency <-> clockTicks
     unsigned int freqToClockTicks(const unsigned int f) const {
-        return microSecToClockTicks(freqToMicroSec(f));
+		//if (f == 0) {/* Avoid divide-by-zero */return INT_MAX;} return ((((unsigned int)(MICROSEC_PER_SEC * _clockMHz) << 1) + 4) / f) >> 1;
+		if (f == 0) {/* Avoid divide-by-zero */return INT_MAX;} return (unsigned int)(MICROSEC_PER_SEC * _clockMHz) / f;
+        //return microSecToClockTicks(freqToMicroSec(f));
     }
 	unsigned int clockTicksToFreq(const unsigned int ct) const {
+        //return freqToClockTicks(ct);
         return microSecToFreq(clockTicksToMicroSec(ct));
 	}
 
@@ -171,29 +206,6 @@ public:
         return (unsigned int)(us * _clockMHz);
     }
 	
-    // Given microsec, return acceleration curve index which contains speed information
-	unsigned int microSecToCurveIndex(const unsigned int us) const {
-		if (us > accelMicroSec()) {
-			return _maxAccelIndex;
-		}
-#if 0
-		unsigned int index = us * _maxAccelIndex / accelMicroSec();
-        unsigned int accelus = accelMicroSec();
-		cout << "microSecToCurveIndex: us: " << us << " accelMicroSec: " << accelus << " index: " << index << endl;
-#endif /* DUMP */
-#if ACCEL_LINEAR_FIT
-        return us / _accelMicroSecStep();
-#else // not ACCEL_LINEAR_FIT        
-		return (us * _maxAccelIndex) / accelMicroSec();
-#endif // ACCEL_LINEAR_FIT        
-	}
-	unsigned int microSecToCurveIndexDecelerate(const unsigned int us) const {
-		if (us > accelMicroSec()) {
-			return 0;
-		}
-		return _maxAccelIndex - ((us * _maxAccelIndex) / accelMicroSec()) - 1;
-	}
-
     void degreesPerMicrostepx10k(const unsigned int dpus) {_degreesPerMicrostepx10k = dpus;}
     unsigned int degreesPerMicrostepx10k(void) const  {return _degreesPerMicrostepx10k;}
     
@@ -225,7 +237,11 @@ private:
 	void _dumpLinearInterpolate(void);
 #endif /* DUMP */
 #if ACCEL_LINEAR_FIT
-    unsigned int _accelMicroSecStep(void) const {return accelMicroSec() / _maxAccelIndex;} // Equidistant steps (in microseconds) between frequency changes
+    // Return equidistant steps (in microseconds) between frequency changes
+    unsigned int  _accelStepMicroSec(void) const {
+        return (((accelMicroSec() << 1) / _maxAccelIndex) + 1) >> 1;
+        //return accelMicroSec() / _maxAccelIndex;      // Original line modified above to correct for rounding errors
+    } 
 #endif // ACCEL_LINEAR_FIT    
 	
     float _curveFreq[_maxAccelEntries];

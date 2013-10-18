@@ -40,6 +40,9 @@ accel& accel::operator=(const accel& a) {
 void accel::assign(const accel& a) {
 	*(struct passFloatArray*)_curveFreq     = *(struct passFloatArray*)a._curveFreq;	// Beats copying each individual element
 	*(struct passIntArray*)_curveClockTicks = *(struct passIntArray*)a._curveClockTicks;
+#if ACCEL_LINEAR_FIT
+	*(struct passFloatArray*)_linearInterpolate = *(struct passFloatArray*)a._linearInterpolate;
+#endif // ACCEL_LINEAR_FIT    
 	_totalClockTicks                        = a._totalClockTicks;
 	_currentClockTicks                      = a._currentClockTicks;
 	_accelMicroSec                          = a._accelMicroSec;
@@ -143,12 +146,20 @@ unsigned int accel::microSecToSteps(const unsigned int us) {
         if (index >= _maxAccelIndex) {
             break;
         }
-        _currentClockTicks = curveIndexToClockTicks(index);
+#if ACCEL_LINEAR_FIT        
+        float moduloMicroSec = clockTicksToMicroSec(_totalClockTicks) % _accelStepMicroSec();
+        float interpolateFreq = (_linearInterpolate[index] * moduloMicroSec + _curveFreq[index]) + 0.5;
+        //cout << " _totalClockTicks: " << _totalClockTicks << " us: " << clockTicksToMicroSec(_totalClockTicks) << " _accelStepMicroSec: " << _accelStepMicroSec() << " moduloMicroSec: " << moduloMicroSec << " index: " << index << "_linearInterpolate[index]: " << _linearInterpolate[index] << " interpolateFreq:" << interpolateFreq << endl;
+        // TODO: Add mechanism so _currentClockTicks never varies from prior value by too much
+        _currentClockTicks = freqToClockTicks((unsigned int)interpolateFreq);
+#else // not ACCEL_LINEAR_FIT        
+		_currentClockTicks = curveIndexToClockTicks(index);
+#endif // ACCEL_LINEAR_FIT        
     }
     return step;
 }
 
-// Returns acceleration time given steps required. Uses a bisection algorithm to home in on solution.
+// Returns acceleration time given steps required. Use bisection algorithm to home in on solution.
 unsigned int accel::stepsToMicroSec(const unsigned int steps) {
     // Add assertion we're not in isr
 	unsigned int maxAccelTime = ACCEL_MAX_MICROSEC;
@@ -246,14 +257,21 @@ void accel::_scaleYAxisToFrequency(void) {
         _curveFreq[i] = (_curveFreq[i] * m) + b;
     }
 #if ACCEL_LINEAR_FIT    
-    unsigned int microSecStep = _accelMicroSecStep();
+    float stepMicroSec = _accelStepMicroSec();
+    // TODO: A little optimization can be made here because the entries are symetrical about the centre point
     for (int i = 0; i < _maxAccelEntries - 1; ++i) {
-        _linearInterpolate[i] = (_curveFreq[i+1] - _curveFreq[i]) / microSecStep;
+        _linearInterpolate[i] = (_curveFreq[i+1] - _curveFreq[i]) / stepMicroSec;
     }
 #endif // ACCEL_LINEAR_FIT    
 #if REGRESS_1
 	oss() << "_scaleYAxisToFrequency" << endl;
 	_dumpCurveFreq();
+#if ACCEL_LINEAR_FIT
+	oss() << "_linearInterpolate" << endl;
+    //_linearInterpolate[_maxAccelIndex] = stepMicroSec;  // Last table entry not used. Put microseconds step there for debugging
+    _linearInterpolate[_maxAccelIndex] = 0.0;
+	_dumpLinearInterpolate();
+#endif // ACCEL_LINEAR_FIT    
 #endif /* REGRESS_1 */
 }
 
