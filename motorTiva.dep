@@ -25,81 +25,28 @@
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\uartstdio.c</file>
       <file>$PROJ_DIR$\usb_dev_serial.c</file>
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\usb_serial_structs.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\portasm.o</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\ustdlib.c</file>
-      <file>$TOOLKIT_DIR$\inc\c\cstdlib</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_memmap.h</file>
       <file>$PROJ_DIR$\..\parser\compilerHelper.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\ustdlib.c</file>
       <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
-      <file>$TOOLKIT_DIR$\inc\c\DLib_Product_string.h</file>
       <file>$PROJ_DIR$\ewarm\Obj\queue.o</file>
       <file>$PROJ_DIR$\Debug\Obj\flashio.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Product_string.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_memmap.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\cstdlib</file>
+      <file>$PROJ_DIR$\Debug\Obj\portasm.o</file>
       <file>$PROJ_DIR$\ewarm\Obj\stepper.o</file>
-      <file>$TOOLKIT_DIR$\inc\c\cstdio</file>
       <file>$PROJ_DIR$\..\FreeRTOS\Source\include\projdefs.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\cstdio</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\usb.h</file>
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_uart.h</file>
       <file>$TOOLKIT_DIR$\lib\dlpp7M_tl_ne.a</file>
       <file>$PROJ_DIR$\..\parser\valve.tab.h</file>
       <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\debug.h</file>
       <file>$TOOLKIT_DIR$\inc\c\cerrno</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\usb.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\time.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\stepper.o</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\fpu.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
-      <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\device\usbdevicepriv.h</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\pin_map.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\xlocale_lconv.h</file>
-      <file>$PROJ_DIR$\ewarm\Obj\list.o</file>
-      <file>$TOOLKIT_DIR$\inc\c\ymath.h</file>
-      <file>$TOOLKIT_DIR$\inc\ecpp\xlocnum</file>
-      <file>$PROJ_DIR$\..\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h</file>
-      <file>$PROJ_DIR$\..\FreeRTOS\Source\include\mpu_wrappers.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\xlocale.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\uartstdio.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\c\errno.h</file>
-      <file>$TOOLKIT_DIR$\inc\ecpp\stdexcept</file>
-      <file>$PROJ_DIR$\Debug\Obj\uartstdio.o</file>
-      <file>$TOOLKIT_DIR$\inc\c\xencoding_limits.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\heap_2.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\heap_2.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\queue.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\list.o</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\flash.h</file>
-      <file>$PROJ_DIR$\..\parser\interpret.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\clocale</file>
-      <file>$PROJ_DIR$\Debug\Obj\tasks.o</file>
-      <file>$TOOLKIT_DIR$\inc\c\xlocale_c.h</file>
-      <file>$TOOLKIT_DIR$\inc\ecpp\streambuf</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\usb_serial_structs.h</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_sysctl.h</file>
-      <file>$PROJ_DIR$\inc\hw_nvic.h</file>
-      <file>$PROJ_DIR$\..\parser\parseTreeEntry.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\cstddef</file>
-      <file>$PROJ_DIR$\Debug\Obj\symbolTableEntry.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\c\locale.h</file>
-      <file>$TOOLKIT_DIR$\inc\ecpp\ios</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\ustdlib.h</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\rom_map.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\stepper.pbi</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\usbcdc.h</file>
-      <file>$PROJ_DIR$\stepper.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\queue.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\c\xtls.h</file>
-      <file>$PROJ_DIR$\..\parser\hw_types.h</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\rom.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\accel.pbi</file>
-      <file>$PROJ_DIR$\Debug\List\motorTiva.map</file>
-      <file>$PROJ_DIR$\flashio.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\port.o</file>
-      <file>$PROJ_DIR$\ewarm\Exe\motorTiva.out</file>
-      <file>$PROJ_DIR$\accel.h</file>
-      <file>$PROJ_DIR$\ewarm\Obj\heap_2.o</file>
       <file>$PROJ_DIR$\Debug\Obj\list.pbi</file>
       <file>$PROJ_DIR$\ewarm\Obj\tasks.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\motorTiva.pbd</file>
       <file>$PROJ_DIR$\..\FreeRTOS\Source\include\task.h</file>
       <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\usb-ids.h</file>
@@ -116,21 +63,21 @@
       <file>$PROJ_DIR$\ewarm\Obj\usb_dev_serial.o</file>
       <file>$TOOLKIT_DIR$\inc\c\string.h</file>
       <file>$PROJ_DIR$\..\parser\hw_ints.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\motorTiva.pbd</file>
       <file>$PROJ_DIR$\motorTiva.icf</file>
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\startup_ewarm.c</file>
       <file>$PROJ_DIR$\Debug\Obj\flashio.o</file>
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\uart.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\systick.h</file>
       <file>$TOOLKIT_DIR$\inc\c\ystdio.h</file>
       <file>$TOOLKIT_DIR$\inc\ecpp\xdebug</file>
       <file>$PROJ_DIR$\ewarm\Obj\portasm.o</file>
       <file>$PROJ_DIR$\..\FreeRTOS\Source\include\timers.h</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\systick.h</file>
       <file>$PROJ_DIR$\Debug\Obj\port.pbi</file>
+      <file>$PROJ_DIR$\ewarm\Obj\symbolTableEntry.o</file>
+      <file>$PROJ_DIR$\led.h</file>
       <file>$PROJ_DIR$\Debug\Obj\usb_serial_structs.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\parseTreeEntry.o</file>
-      <file>$PROJ_DIR$\led.h</file>
-      <file>$PROJ_DIR$\ewarm\Obj\symbolTableEntry.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\interpret.o</file>
       <file>$PROJ_DIR$\..\FreeRTOS\Source\include\semphr.h</file>
       <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
       <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
@@ -142,11 +89,11 @@
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\uartstdio.h</file>
       <file>$PROJ_DIR$\..\FreeRTOS\Source\include\StackMacros.h</file>
       <file>$TOOLKIT_DIR$\inc\c\cctype</file>
-      <file>$PROJ_DIR$\Debug\Obj\interpret.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\cstring</file>
       <file>$TOOLKIT_DIR$\inc\c\climits</file>
       <file>$PROJ_DIR$\Debug\Obj\tasks.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\parseTreeEntry.pbi</file>
       <file>$PROJ_DIR$\ewarm\Obj\uartstdio.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\parseTreeEntry.pbi</file>
       <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
       <file>$PROJ_DIR$\ewarm\Obj\port.o</file>
       <file>$TOOLKIT_DIR$\inc\c\math.h</file>
@@ -154,61 +101,114 @@
       <file>$PROJ_DIR$\ewarm\Obj\accel.o</file>
       <file>$PROJ_DIR$\..\FreeRTOS\Source\include\portable.h</file>
       <file>$TOOLKIT_DIR$\inc\c\xlocaleuse.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\cstring</file>
       <file>$PROJ_DIR$\ewarm\Obj\usb_serial_structs.o</file>
-      <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
       <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
-      <file>$PROJ_DIR$\ewarm\Obj\interpret.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
       <file>$TOOLKIT_DIR$\inc\ecpp\ostream</file>
-      <file>$PROJ_DIR$\ewarm\Obj\parseTreeEntry.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\startup_ewarm.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\ecpp\xstddef</file>
-      <file>$PROJ_DIR$\Debug\Obj\usb_dev_serial.o</file>
+      <file>$PROJ_DIR$\ewarm\Obj\interpret.o</file>
       <file>$PROJ_DIR$\FreeRTOSConfig.h</file>
+      <file>$PROJ_DIR$\ewarm\Obj\parseTreeEntry.o</file>
+      <file>$TOOLKIT_DIR$\inc\ecpp\xstddef</file>
+      <file>$PROJ_DIR$\Debug\Obj\startup_ewarm.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\interpret.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\usb_dev_serial.o</file>
       <file>$TOOLKIT_DIR$\inc\c\wchar.h</file>
       <file>$TOOLKIT_DIR$\inc\ecpp\xiosbase</file>
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\usblib.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\interpret.pbi</file>
       <file>$TOOLKIT_DIR$\inc\ecpp\sstream</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\device\usbdcdc.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\symbolTableEntry.o</file>
       <file>$TOOLKIT_DIR$\inc\c\stdio.h</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\timer.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\device\usbdcdc.h</file>
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\device\usbdevice.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\symbolTableEntry.o</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\timer.h</file>
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\gpio.h</file>
       <file>$TOOLKIT_DIR$\inc\ecpp\xstring</file>
       <file>$TOOLKIT_DIR$\inc\c\stddef.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\xmtx.h</file>
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\interrupt.h</file>
       <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_gpio.h</file>
       <file>$TOOLKIT_DIR$\inc\c\ctype.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\usb_dev_serial.pbi</file>
       <file>$TOOLKIT_DIR$\inc\c\limits.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\xmtx.h</file>
-      <file>$TOOLKIT_DIR$\inc\ecpp\iosfwd</file>
+      <file>$PROJ_DIR$\Debug\Obj\usb_dev_serial.pbi</file>
       <file>$PROJ_DIR$\ewarm\Obj\ustdlib.o</file>
+      <file>$TOOLKIT_DIR$\inc\ecpp\iosfwd</file>
       <file>$TOOLKIT_DIR$\inc\ecpp\exception</file>
       <file>$PROJ_DIR$\Debug\Obj\ustdlib.pbi</file>
       <file>$PROJ_DIR$\ewarm\Obj\startup_ewarm.o</file>
       <file>$PROJ_DIR$\Debug\Exe\motorTiva.out</file>
       <file>$PROJ_DIR$\Debug\Obj\startup_ewarm.o</file>
+      <file>$PROJ_DIR$\inc\hw_types.h</file>
       <file>$TOOLKIT_DIR$\inc\c\DLib_Threads.h</file>
       <file>$TOOLKIT_DIR$\inc\ecpp\string</file>
       <file>$PROJ_DIR$\Debug\Obj\main.o</file>
-      <file>$PROJ_DIR$\inc\hw_types.h</file>
       <file>$PROJ_DIR$\..\parser\hw_memmap.h</file>
       <file>$PROJ_DIR$\..\parser\tinyQueue.h</file>
       <file>$PROJ_DIR$\Debug\Obj\ustdlib.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\usb_serial_structs.o</file>
       <file>$PROJ_DIR$\Debug\Exe\motorTiva.bin</file>
-      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_types.h</file>
       <file>$PROJ_DIR$\..\FreeRTOS\Source\include\queue.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\usb_serial_structs.o</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_types.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\time.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\stepper.o</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\fpu.h</file>
+      <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
+      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\device\usbdevicepriv.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\pin_map.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\heap_2.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\xlocale_lconv.h</file>
+      <file>$PROJ_DIR$\ewarm\Obj\list.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\ymath.h</file>
+      <file>$TOOLKIT_DIR$\inc\ecpp\xlocnum</file>
+      <file>$PROJ_DIR$\..\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h</file>
+      <file>$PROJ_DIR$\..\FreeRTOS\Source\include\mpu_wrappers.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\xlocale.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\uartstdio.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\errno.h</file>
+      <file>$TOOLKIT_DIR$\inc\ecpp\stdexcept</file>
+      <file>$PROJ_DIR$\Debug\Obj\uartstdio.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\heap_2.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\queue.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\list.o</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\flash.h</file>
+      <file>$PROJ_DIR$\..\parser\interpret.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\inc\hw_sysctl.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\clocale</file>
+      <file>$PROJ_DIR$\Debug\Obj\tasks.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\xlocale_c.h</file>
+      <file>$TOOLKIT_DIR$\inc\ecpp\streambuf</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\usb_serial_structs.h</file>
+      <file>$PROJ_DIR$\inc\hw_nvic.h</file>
+      <file>$PROJ_DIR$\..\parser\parseTreeEntry.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\locale.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\cstddef</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\rom_map.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\symbolTableEntry.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\ecpp\ios</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\ustdlib.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\stepper.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\usblib\usbcdc.h</file>
+      <file>$PROJ_DIR$\stepper.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\driverlib\rom.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\queue.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\xtls.h</file>
+      <file>$PROJ_DIR$\..\parser\hw_types.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\accel.pbi</file>
+      <file>$PROJ_DIR$\Debug\List\motorTiva.map</file>
+      <file>$PROJ_DIR$\flashio.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\port.o</file>
+      <file>$PROJ_DIR$\ewarm\Exe\motorTiva.out</file>
+      <file>$PROJ_DIR$\accel.h</file>
+      <file>$PROJ_DIR$\ewarm\Obj\heap_2.o</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
       <outputs>
         <tool>
           <name>ILINK</name>
-          <file> 183 86</file>
+          <file> 129 190</file>
         </tool>
       </outputs>
     </file>
@@ -217,17 +217,21 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 101</file>
+          <file> 48</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 85</file>
+          <file> 189</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 90 176 80 126 106 34 141 56 185 100 158 143 47 104</file>
+          <file> 194 122 185 73 53 35 88 161 132 47 100 90 152 51</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 194 122 185 73 53 35 88 161 132 47 100 90 152 51</file>
         </tool>
       </inputs>
     </file>
@@ -236,21 +240,21 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 113</file>
+          <file> 59</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 27</file>
+          <file> 23</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 151 102 80 126 106 34 141 56 185 99 22 194 84 61 87</file>
+          <file> 96 49 185 73 53 35 88 161 132 46 25 141 184 165 191</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 151 102 80 126 106 34 141 56 185 99 22 194 84 61 87</file>
+          <file> 96 49 185 73 53 35 88 161 132 46 25 141 184 165 191</file>
         </tool>
       </inputs>
     </file>
@@ -259,30 +263,7 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 58</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 57</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 150 80 126 106 34 141 56 185 132 128 171 30 158 146 49 50 94 129</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 150 80 126 106 34 141 56 185 132 128 171 30 158 146 49 50 94 129</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\parser\interpret.cpp</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 136</file>
+          <file> 149</file>
         </tool>
         <tool>
           <name>BICOMP</name>
@@ -292,7 +273,30 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 151 102 80 126 106 34 141 56 185 62 70 23 131 33 79 109 189 83 169 167 90 176 100 190 123 87 163 186 144 153 74 48 36 53 137 63 73 45 29 166 132 115 21 150 66 160 135 174 51 82 177 147 65 159 54 180 156 71 171 170 178 148 108 25 116 128 30 158 146 49 50</file>
+          <file> 97 185 73 53 35 88 161 132 79 75 117 29 100 93 154 155 41 76</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 97 185 73 53 35 88 161 132 79 75 117 29 100 93 154 155 41 76</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\parser\interpret.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 71</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 104</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 96 49 185 73 53 35 88 161 132 166 174 19 78 34 183 56 135 188 115 114 194 122 47 136 68 191 109 133 91 98 179 153 37 158 84 168 175 150 30 110 79 62 26 97 171 107 82 121 156 187 118 94 170 106 159 126 102 176 117 116 125 83 55 24 63 75 29 100 93 154 155</file>
         </tool>
       </inputs>
     </file>
@@ -301,21 +305,21 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 60</file>
+          <file> 164</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 92</file>
+          <file> 38</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 150 80 126 106 34 141 56 185 132 128 171 30 158 146 49 50 129</file>
+          <file> 97 185 73 53 35 88 161 132 79 75 117 29 100 93 154 155 76</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 150 80 126 106 34 141 56 185 132 128 171 30 158 146 49 50 129</file>
+          <file> 97 185 73 53 35 88 161 132 79 75 117 29 100 93 154 155 76</file>
         </tool>
       </inputs>
     </file>
@@ -324,21 +328,21 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 187</file>
+          <file> 134</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 127</file>
+          <file> 74</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 151 102 80 126 106 34 141 56 185 99 22 194 35 169 172 98 114 84 167 161 128 171 132 30 158 146 49 50 94 129 195 125 100</file>
+          <file> 96 49 185 73 53 35 88 161 132 46 25 141 36 115 119 45 60 184 114 108 75 117 79 29 100 93 154 155 41 76 139 72 47</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 151 102 80 126 106 34 141 56 185 99 22 194 35 169 172 98 114 84 167 161 128 171 132 30 158 146 49 50 94 129 195 125 100</file>
+          <file> 96 49 185 73 53 35 88 161 132 46 25 141 36 115 119 45 60 184 114 108 75 117 79 29 100 93 154 155 41 76 139 72 47</file>
         </tool>
       </inputs>
     </file>
@@ -347,21 +351,21 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 122</file>
+          <file> 70</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 139</file>
+          <file> 87</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 70 23 100 80 126 106 34 141 56 185</file>
+          <file> 174 19 47 185 73 53 35 88 161 132</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 70 23 100 80 126 106 34 141 56 185</file>
+          <file> 174 19 47 185 73 53 35 88 161 132</file>
         </tool>
       </inputs>
     </file>
@@ -370,21 +374,21 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 88</file>
+          <file> 192</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 120</file>
+          <file> 66</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 41 80 128 171 126 106 34 141 56 185 132 30 158 146 49 50 94 129</file>
+          <file> 146 185 75 117 73 53 35 88 161 132 79 29 100 93 154 155 41 76</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 41 80 128 171 126 106 34 141 56 185 132 30 158 146 49 50 94 129</file>
+          <file> 146 185 75 117 73 53 35 88 161 132 79 29 100 93 154 155 41 76</file>
         </tool>
       </inputs>
     </file>
@@ -393,13 +397,13 @@
       <outputs>
         <tool>
           <name>AARM</name>
-          <file> 19</file>
+          <file> 27</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>AARM</name>
-          <file> 158</file>
+          <file> 100</file>
         </tool>
       </inputs>
     </file>
@@ -408,21 +412,21 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 59</file>
+          <file> 163</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 81</file>
+          <file> 186</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 150 80 126 106 34 141 56 185 132 108 25 128 171 30 158 146 49 50 94 129 195</file>
+          <file> 97 185 73 53 35 88 161 132 79 55 24 75 117 29 100 93 154 155 41 76 139</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 150 80 126 106 34 141 56 185 132 108 25 128 171 30 158 146 49 50 94 129 195</file>
+          <file> 97 185 73 53 35 88 161 132 79 55 24 75 117 29 100 93 154 155 41 76 139</file>
         </tool>
       </inputs>
     </file>
@@ -431,21 +435,21 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 184</file>
+          <file> 130</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 155</file>
+          <file> 103</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 102 80 126 106 34 141 56 185 69 188</file>
+          <file> 49 185 73 53 35 88 161 132 173 131</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 102 80 126 106 34 141 56 185 69 188</file>
+          <file> 49 185 73 53 35 88 161 132 173 131</file>
         </tool>
       </inputs>
     </file>
@@ -454,141 +458,7 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 39</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 77</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 79 151 102 80 126 106 34 141 56 185 99 22 194 169 167 90 176 100 143 47 104 166 132 115 108 25 98 84</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\FreeRTOS\Source\tasks.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 64</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 138</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 150 80 126 106 34 141 56 185 132 108 25 128 171 30 158 146 49 50 94 129 118 134</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 150 80 126 106 34 141 56 185 132 108 25 128 171 30 158 146 49 50 94 129 118 134</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\parser\symbolTableEntry.cpp</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 165</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 72</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 131 23 100 80 126 106 34 141 56 185</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 131 23 100 80 126 106 34 141 56 185</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\uartstdio.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 55</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 52</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 151 102 80 126 106 34 141 56 185 97 99 22 188 31 35 172 84 76 98 114 133</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 151 102 80 126 106 34 141 56 185 97 99 22 188 31 35 172 84 76 98 114 133</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\usb_dev_serial.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 157</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 175</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 151 102 80 126 106 34 141 56 185 99 22 188 173 31 68 35 40 169 44 172 98 119 167 114 37 84 161 78 96 168 43 164 75 97 38 132 67 133</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 151 102 80 126 106 34 141 56 185 99 22 188 173 31 68 35 40 169 44 172 98 119 167 114 37 84 161 78 96 168 43 164 75 97 38 132 67 133</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\usb_serial_structs.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 192</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 121</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 102 80 126 106 34 141 56 185 151 188 37 161 78 96 168 43 164 67</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 102 80 126 106 34 141 56 185 151 188 37 161 78 96 168 43 164 67</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\ustdlib.c</name>
-      <outputs>
-        <tool>
-          <name>ICCARM</name>
-          <file> 191</file>
+          <file> 143</file>
         </tool>
         <tool>
           <name>BICOMP</name>
@@ -598,20 +468,145 @@
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 102 80 126 106 34 141 56 185 35 75 97 38 132</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 102 80 126 106 34 141 56 185 35 75 97 38 132</file>
+          <file> 183 96 49 185 73 53 35 88 161 132 46 25 141 115 114 194 122 47 90 152 51 110 79 62 55 24 45 184</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\ewarm\Exe\motorTiva.out</name>
+      <name>$PROJ_DIR$\..\FreeRTOS\Source\tasks.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 169</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 85</file>
+        </tool>
+      </outputs>
       <inputs>
         <tool>
-          <name>ILINK</name>
-          <file> 111 145 105 91 152 46 103 154 142 117 26 182 28 124 93 140 107 149 179 0 1 24 42 32 130 95</file>
+          <name>ICCARM</name>
+          <file> 97 185 73 53 35 88 161 132 79 55 24 75 117 29 100 93 154 155 41 76 65 81</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 97 185 73 53 35 88 161 132 79 55 24 75 117 29 100 93 154 155 41 76 65 81</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\parser\symbolTableEntry.cpp</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 113</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 178</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 78 19 47 185 73 53 35 88 161 132</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 78 19 47 185 73 53 35 88 161 132</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\uartstdio.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 160</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 157</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 96 49 185 73 53 35 88 161 132 44 46 25 131 32 36 119 184 177 45 60 80</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 96 49 185 73 53 35 88 161 132 44 46 25 131 32 36 119 184 177 45 60 80</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\usb_dev_serial.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 105</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 123</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 96 49 185 73 53 35 88 161 132 46 25 131 120 32 167 36 144 115 148 119 45 61 114 60 31 184 108 182 43 112 147 111 180 44 142 79 172 80</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 96 49 185 73 53 35 88 161 132 46 25 131 120 32 167 36 144 115 148 119 45 61 114 60 31 184 108 182 43 112 147 111 180 44 142 79 172 80</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial\usb_serial_structs.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 140</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 69</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49 185 73 53 35 88 161 132 96 131 31 108 182 43 112 147 111 172</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 49 185 73 53 35 88 161 132 96 131 31 108 182 43 112 147 111 172</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\ti\TivaWare_C_Series-1.0\utils\ustdlib.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 137</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 127</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49 185 73 53 35 88 161 132 36 180 44 142 79</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 49 185 73 53 35 88 161 132 36 180 44 142 79</file>
         </tool>
       </inputs>
     </file>
@@ -620,21 +615,21 @@
       <outputs>
         <tool>
           <name>ICCARM</name>
-          <file> 184</file>
+          <file> 130</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 155</file>
+          <file> 103</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCARM</name>
-          <file> 102 80 126 106 34 141 56 185 69 188</file>
+          <file> 49 185 73 53 35 88 161 132 173 131</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 102 80 126 106 34 141 56 185 69 188</file>
+          <file> 49 185 73 53 35 88 161 132 173 131</file>
         </tool>
       </inputs>
     </file>
@@ -643,17 +638,26 @@
       <outputs>
         <tool>
           <name>ILINK</name>
-          <file> 86</file>
+          <file> 190</file>
         </tool>
         <tool>
           <name>OBJCOPY</name>
-          <file> 193</file>
+          <file> 138</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ILINK</name>
-          <file> 111 101 113 58 136 60 187 122 88 19 59 184 39 165 64 55 157 192 191 0 1 24 42 32 130 95</file>
+          <file> 57 48 59 149 71 164 134 70 192 27 163 130 143 113 169 160 105 140 137 0 1 21 145 33 77 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\ewarm\Exe\motorTiva.out</name>
+      <inputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 57 92 52 195 99 151 50 101 89 64 22 128 28 67 39 86 54 95 124 0 1 21 145 33 77 42</file>
         </tool>
       </inputs>
     </file>

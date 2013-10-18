@@ -21,7 +21,7 @@ using namespace std;
 #include <limits.h>
 #include <assert.h>
 
-#define ACCEL_LINEAR_FIT        0   // Do linear interpolated acceleration between points on the acceleration S-curve
+#define ACCEL_LINEAR_FIT        1   // Do linear interpolated acceleration between points on the acceleration S-curve
 
 #define MICROSEC_PER_SEC        (1000000)
 #define MHZ                     (MICROSEC_PER_SEC)
@@ -97,7 +97,6 @@ public:
         _cumulativeClockTicks += _currentClockTicks;
 #endif /* CYGWIN */        
 		unsigned int index = clockTicksToCurveIndex(_totalClockTicks);
-        assert(index <= _maxAccelIndex);
 #if ACCEL_LINEAR_FIT        
         float moduloMicroSec = clockTicksToMicroSec(_totalClockTicks) % _accelStepMicroSec();
         float interpolateFreq = (_linearInterpolate[index] * moduloMicroSec + _curveFreq[index]) + 0.5;
@@ -131,7 +130,6 @@ public:
         _currentClockTicks = freqToClockTicks((unsigned int)reversedInterpolateFreq);
 #else   // ACCEL_LINEAR_FIT        
 		unsigned int index = clockTicksToCurveIndexDecelerate(_totalClockTicks);
-        assert(index <= _maxAccelIndex);
 		_currentClockTicks = curveIndexToClockTicks(index);
 #endif // ACCEL_LINEAR_FIT        
 		return _currentClockTicks;

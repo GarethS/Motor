@@ -150,7 +150,6 @@ unsigned int accel::microSecToSteps(const unsigned int us) {
         float moduloMicroSec = clockTicksToMicroSec(_totalClockTicks) % _accelStepMicroSec();
         float interpolateFreq = (_linearInterpolate[index] * moduloMicroSec + _curveFreq[index]) + 0.5;
         //cout << " _totalClockTicks: " << _totalClockTicks << " us: " << clockTicksToMicroSec(_totalClockTicks) << " _accelStepMicroSec: " << _accelStepMicroSec() << " moduloMicroSec: " << moduloMicroSec << " index: " << index << "_linearInterpolate[index]: " << _linearInterpolate[index] << " interpolateFreq:" << interpolateFreq << endl;
-        // TODO: Add mechanism so _currentClockTicks never varies from prior value by too much
         _currentClockTicks = freqToClockTicks((unsigned int)interpolateFreq);
 #else // not ACCEL_LINEAR_FIT        
 		_currentClockTicks = curveIndexToClockTicks(index);
