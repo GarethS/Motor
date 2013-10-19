@@ -237,7 +237,7 @@ void vSetupHighFrequencyTimer( void )
 	/* Timer zero is used to generate the interrupts, and timer 1 is used
 	to measure the jitter. */
 	SysCtlPeripheralEnable( SYSCTL_PERIPH_TIMER0 );
-    SysCtlPeripheralEnable( SYSCTL_PERIPH_TIMER1 );
+    //SysCtlPeripheralEnable( SYSCTL_PERIPH_TIMER1 );
     TimerConfigure( TIMER0_BASE, TIMER_CFG_PERIODIC );
     //TimerConfigure( TIMER1_BASE, TIMER_CFG_PERIODIC );
 	
@@ -257,7 +257,7 @@ void vSetupHighFrequencyTimer( void )
     TimerIntEnable( TIMER0_BASE, TIMER_TIMA_TIMEOUT );
 
 	/* Enable both timers. */	
-    TimerEnable( TIMER0_BASE, TIMER_A );
+    //TimerEnable( TIMER0_BASE, TIMER_A );
     //TimerEnable( TIMER1_BASE, TIMER_A );
 }
 #endif // PART_TM4C1233D5PM
