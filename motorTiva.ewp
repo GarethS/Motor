@@ -956,6 +956,9 @@
       <name>$PROJ_DIR$\..\parser\interpret.cpp</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\io.cpp</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\FreeRTOS\Source\list.c</name>
     </file>
     <file>

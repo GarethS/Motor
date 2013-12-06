@@ -36,6 +36,7 @@ stepper::stepper() :
 					_positionCurrent(0), _directionPositive(true), _timerRunning(false), _superState(IDLE) {
 }
 
+// TODO - Should be part of the stepper::_init() which could be a static function
 extern "C" void stepper_init(void) {
 #ifdef PART_TM4C1233D5PM
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
