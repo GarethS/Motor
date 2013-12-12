@@ -105,8 +105,8 @@ public:
     void moveAbsolute(const int positionNew);
     void moveRelative(const int positionRelative) {moveAbsolute(_positionCurrent + positionRelative);}
     
-    void moveAbsoluteDegreex10k(unsigned int positionNewDegreex10k) {moveAbsolute(positionNewDegreex10k / degreesPerMicrostepx10k());}
-    void moveRelativeDegreex10k(unsigned int positionRelativeDegreex10k) {moveRelative(positionRelativeDegreex10k / degreesPerMicrostepx10k());}
+    void moveAbsoluteDegreex10k(int positionNewDegreex10k) {moveAbsolute(positionNewDegreex10k / (int)degreesPerMicrostepx10k());}
+    void moveRelativeDegreex10k(int positionRelativeDegreex10k) {moveRelative(positionRelativeDegreex10k / (int)degreesPerMicrostepx10k());}
     // Used to modify moveAbsolute() that is currently running. Useful to extend or shorten
     //  the move as long as it's still in the same direction and doesn't interfere with
     //  a deceleration.
@@ -119,8 +119,8 @@ public:
     void enable(void) {GPIOPinWrite(GPIO_DIR_PORT, PIN_ENABLE | PIN_SLEEP, PIN_SLEEP);}
     int positionSteps(void) const {return _positionCurrent;} // Need to return both degrees and scaled position.
     void positionSteps(const int p) {_positionCurrent = p;}   // set
-    unsigned int positionDegreesx10k(void) const {return positionSteps() * degreesPerMicrostepx10k();} // get
-    void positionDegreesx10k(const unsigned int d) {_positionCurrent = d / degreesPerMicrostepx10k();} // set
+    unsigned int positionDegreesx10k(void) const {return positionSteps() * (int)degreesPerMicrostepx10k();} // get
+    void positionDegreesx10k(const unsigned int d) {_positionCurrent = d / (int)degreesPerMicrostepx10k();} // set
     superstate state(void) const {return _superState;}
     void accelerationTimeMicrosecs(const unsigned int us) {a.accelMicroSec(us);}   // Set acceleration time
     void frequency(const unsigned int flow, const unsigned int fhi) {a.frequency(flow, fhi);}  // Set high/low step frequency

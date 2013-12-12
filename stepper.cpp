@@ -65,7 +65,7 @@ void stepper::testMoveAbsolute(int positionNew) {
 
 void stepper::testMoveAbsoluteDegree(int positionNewDegree) {
     oss() << endl << "testMoveAbsoluteDegree START" << endl;
-    testMoveAbsolute((int)(positionNewDegree * 10000 / degreesPerMicrostepx10k()));
+    testMoveAbsolute((int)(positionNewDegree * 10000 / (int)degreesPerMicrostepx10k()));
 }
 
 void stepper::testVelocityMove(int v) {
