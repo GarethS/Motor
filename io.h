@@ -21,6 +21,7 @@
 #include "driverlib/gpio.h"
 #include "driverlib/timer.h"
 #include "driverlib/adc.h"
+#include "driverlib/sysctl.h"
 #else // not PART_TM4C1233D5PM
 #include "gpio.h"
 #include "timer.h"
@@ -93,6 +94,11 @@ public:
     void setOutput(unsigned int out);
     unsigned int getADC(unsigned int adcIndex);
     int getTemperature(void);
+    void reset(void) {
+#if !CYGWIN        
+        SysCtlReset();
+#endif // not CYGWIN        
+    }
     
 private:
     void _init(void);
