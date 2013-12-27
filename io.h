@@ -99,9 +99,9 @@ public:
         SysCtlReset();
 #endif // not CYGWIN        
     }
+    void init(void);
     
 private:
-    void _init(void);
     uint32_t _adcValue[ADC_COUNT];
     uint32_t _temperatureValue[1];
 

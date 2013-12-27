@@ -25,7 +25,7 @@ io::io()
 				 {
 }
 
-void io::_init(void) {
+void io::init(void) {
 #if !CYGWIN
     // Inputs
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
@@ -36,7 +36,7 @@ void io::_init(void) {
     ROM_GPIOPinTypeGPIOOutput(GPIO_OUT_PORT, PIN_OUT_ALL);
     
     // ADCs
-    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);    // Needed since done above for outputs?
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);    // N.B. GPIOB is enabled just a few lines above
     ROM_GPIOPinTypeADC(GPIO_PORTB_BASE, PIN_ADC_0 | PIN_ADC_1);
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
     ROM_GPIOPinTypeADC(GPIO_PORTD_BASE, PIN_ADC_2 | PIN_ADC_3 | PIN_ADC_4);
@@ -122,6 +122,10 @@ int io::getTemperature(void) {
     // From 13.3.6 pg. 780 of reference manual:
     // Vtsens = 2.7 - ((Temp + 55) / 75);
     // Temp = -(((Vtsens - 2.7) * 75) + 55);
+    // From pg. 781: Temp = 147.5 - ((75 * (Vrefp - Vrefn) * ADC) / 4096)
+    //  Where Vrefp = VDDA = 3.3v and Vrefn = GND
+    //  Temp = 147.5 - (75 * 3.3 * ADC) / 4096
+    //       = 147.5 - (247.5 * ADC) / 4096
 #if CYGWIN
     return 21;  // room temperature
 #else // not CYGWIN
@@ -129,6 +133,7 @@ int io::getTemperature(void) {
     while(!ROM_ADCIntStatus(ADC0_BASE, ADC_SEQUENCE_3, false)) {}   // TODO: Bail out if nothing in several seconds
     ROM_ADCIntClear(ADC0_BASE, ADC_SEQUENCE_3);
     ROM_ADCSequenceDataGet(ADC0_BASE, ADC_SEQUENCE_3, _temperatureValue);
-    return (int)(-_temperatureValue[0] * 75 + 147.5);    // TODO: Check this
+    //return (int)(-_temperatureValue[0] * 75 + 147.5);    // TODO: Check this
+    return (int)(147.5 - (247.5 * _temperatureValue[0]) / 4096);
 #endif // CYGWIN
 }

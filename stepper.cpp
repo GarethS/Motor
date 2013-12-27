@@ -429,6 +429,18 @@ void stepper::isr(void) {
 #endif /* REGRESS_2 */				
 }
 
+void stepper::_init(void) {
+#ifdef PART_TM4C1233D5PM
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
+    ROM_GPIOPinTypeGPIOOutput(GPIO_PORTC_BASE, PIN_ENABLE | PIN_SLEEP | PIN_DIR);
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
+    ROM_GPIOPinTypeGPIOOutput(GPIO_PORTD_BASE, PIN_STEP);
+#else // not PART_TM4C1233D5PM    
+    GPIODirModeSet(GPIO_PORTA_BASE, PIN_ALL, GPIO_DIR_MODE_OUT);
+    GPIOPadConfigSet(GPIO_PORTA_BASE, PIN_ALL, GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_STD);
+#endif // PART_TM4C1233D5PM    
+}
+
 void stepper::_timerStart(bool start /* = true */) {
 	if (start) {
 #if CYGWIN    
