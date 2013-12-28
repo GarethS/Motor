@@ -167,6 +167,19 @@ class Transfer():
             else:
                 break
             
+    def echoInput(self):
+        if self.__haveSerialPort:        
+            waitingCount = self.__ser.inWaiting()
+            #waitingCount = 1
+            if waitingCount == 0:
+                return
+            x = self.__ser.read(waitingCount)
+            self.parseStr += x
+        else:
+            self.parseStr = ' <OK> '
+        print self.parseStr
+        self.parseStr = ''
+            
 if __name__ == "__main__":
     startTime = time.time()
     t = Transfer("/dev/docs/scottdesign/parser/tree.txt")
@@ -177,4 +190,7 @@ if __name__ == "__main__":
     t.send()
     #t = Transfer("..\parser\symbolTable.txt")
     print 'Done in {0:.2f} sec'.format(time.time() - startTime)
+    t = Transfer("Dummy name just to get serial port opened")
+    while 1:
+        t.echoInput()
     
