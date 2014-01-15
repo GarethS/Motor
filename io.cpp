@@ -15,6 +15,15 @@
 #ifdef PART_TM4C1233D5PM
 #include "driverlib/sysctl.h"   // SYSCTL_PERIPH_GPIOC
 #include "driverlib/rom.h"
+
+#include "hw_nvic.h"
+#include "driverlib/usb.h"
+
+// The following 4 lines needed for: USBDCDCTerm()
+#include "usblib/usblib.h"
+#include "usblib/usbcdc.h"
+#include "usblib/device/usbdevice.h"
+#include "usblib/device/usbdcdc.h"
 #endif // PART_TM4C1233D5PM
 #endif /* not CYGWIN */
 
@@ -27,6 +36,42 @@ io::io()
 
 void io::init(void) {
 #if !CYGWIN
+#define BOOTLOADER_TEST 0
+#if BOOTLOADER_TEST
+    //ROM_UpdateUART();
+    // May need to do the following here:
+    //  0. See if this will cause bootloader to start
+    //ROM_FlashErase(0); 
+    //ROM_UpdateUSB(0);
+    
+    //USBDCDTerm(0);
+    
+    // Disable all interrupts
+    ROM_IntMasterDisable();
+    ROM_SysTickIntDisable();
+    ROM_SysTickDisable();
+    HWREG(NVIC_DIS0) = 0xffffffff;
+    HWREG(NVIC_DIS1) = 0xffffffff;
+    
+    //  1. Enable USB PLL
+    //ROM_SysCtlUSBPLLEnable();
+    //  2. Enable USB controller
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_USB0);
+    ROM_SysCtlPeripheralReset(SYSCTL_PERIPH_USB0);
+    //USBClockEnable(USB0_BASE, 8, USB_CLOCK_INTERNAL);
+    //HWREG(USB0_BASE + USB_O_CC) = (8 - 1) | USB_CLOCK_INTERNAL;
+
+    ROM_SysCtlUSBPLLEnable();
+    
+    //  3. Enable USB D+ D- pins
+
+    //  4. Activate USB DFU
+    ROM_SysCtlDelay(100000 /*ui32SysClock*/ / 3);
+    ROM_IntMasterEnable();  // Re-enable interrupts at NVIC level
+    ROM_UpdateUSB(0);
+    //  5. Should never get here since update is in progress
+#endif // BOOTLOADER_TEST
+    
     // Inputs
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
     ROM_GPIOPinTypeGPIOInput(GPIO_IN_PORT, PIN_IN_ALL);

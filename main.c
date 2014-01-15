@@ -336,7 +336,7 @@ main(void) {
     stepper_init();
 
 #ifdef PART_TM4C1233D5PM    
-    vStartIdleTask(tskIDLE_PRIORITY);
+    vStartIdleTask(mainLED_TASK_PRIORITY);
 #endif // PART_TM4C1233D5PM    
     vStartInterpretTask(mainLED_TASK_PRIORITY);
     //vStartUARTTasks(mainLED_TASK_PRIORITY);

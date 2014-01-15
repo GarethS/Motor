@@ -1077,6 +1077,7 @@ main(void)
     //
     // Set the clocking to run from the PLL at 50MHz
     //
+#if 1
     ROM_SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN |
                        SYSCTL_XTAL_16MHZ);
 
@@ -1085,6 +1086,99 @@ main(void)
     //
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
     ROM_GPIOPinTypeUSBAnalog(GPIO_PORTD_BASE, GPIO_PIN_5 | GPIO_PIN_4);
+       //ROM_SysTickPeriodSet(ROM_SysCtlClockGet() / 100);
+
+    /* This code taken from: http://e2e.ti.com/support/microcontrollers/tiva_arm/f/908/t/311237.aspx
+    */
+#else       
+#include "hw_nvic.h"
+       FlashErase(0x00000000);
+       ROM_IntMasterDisable();
+       ROM_SysTickIntDisable();
+       ROM_SysTickDisable();
+       uint32_t ui32SysClock;
+       ROM_SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
+       ui32SysClock = ROM_SysCtlClockGet();
+       ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
+       ROM_GPIOPinTypeUSBAnalog(GPIO_PORTD_BASE, GPIO_PIN_4 | GPIO_PIN_5);
+       ROM_SysTickPeriodSet(ROM_SysCtlClockGet() / 100);
+       HWREG(NVIC_DIS0) = 0xffffffff;
+       HWREG(NVIC_DIS1) = 0xffffffff;
+       HWREG(NVIC_DIS2) = 0xffffffff;
+       HWREG(NVIC_DIS3) = 0xffffffff;
+       HWREG(NVIC_DIS4) = 0xffffffff;
+       int ui32Addr;
+       for(ui32Addr = NVIC_PRI0; ui32Addr <= NVIC_PRI34; ui32Addr+=4)
+       {
+          HWREG(ui32Addr) = 0;
+       }
+       HWREG(NVIC_SYS_PRI1) = 0;
+       HWREG(NVIC_SYS_PRI2) = 0;
+       HWREG(NVIC_SYS_PRI3) = 0;
+       ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_USB0);
+       ROM_SysCtlPeripheralReset(SYSCTL_PERIPH_USB0);
+       ROM_SysCtlUSBPLLEnable();
+       ROM_SysCtlDelay(ui32SysClock*2 / 3);
+       ROM_IntMasterEnable();
+       ROM_UpdateUSB(0);
+       while(1)
+           {
+           }
+#endif
+#define BOOTLOADER_TEST 0
+#if BOOTLOADER_TEST
+#include "hw_nvic.h"
+    
+    //ROM_UpdateUART();
+    // May need to do the following here:
+    //  0. See if this will cause bootloader to start
+    //ROM_FlashErase(0); 
+    //ROM_UpdateUSB(0);
+    
+#define SYSTICKS_PER_SECOND 100
+    uint32_t ui32SysClock = ROM_SysCtlClockGet();
+    ROM_SysTickPeriodSet(ROM_SysCtlClockGet() / SYSTICKS_PER_SECOND);
+    ROM_SysTickIntEnable();
+    ROM_SysTickEnable();
+    
+    //USBDCDTerm(0);
+    
+    // Disable all interrupts
+    ROM_IntMasterDisable();
+    ROM_SysTickIntDisable();
+    ROM_SysTickDisable();
+    HWREG(NVIC_DIS0) = 0xffffffff;
+    HWREG(NVIC_DIS1) = 0xffffffff;
+    HWREG(NVIC_DIS2) = 0xffffffff;
+    HWREG(NVIC_DIS3) = 0xffffffff;
+    HWREG(NVIC_DIS4) = 0xffffffff;
+       int ui32Addr;
+       for(ui32Addr = NVIC_PRI0; ui32Addr <= NVIC_PRI34; ui32Addr+=4)
+       {
+          HWREG(ui32Addr) = 0;
+       }
+       HWREG(NVIC_SYS_PRI1) = 0;
+       HWREG(NVIC_SYS_PRI2) = 0;
+       HWREG(NVIC_SYS_PRI3) = 0;
+    
+    //  1. Enable USB PLL
+    //ROM_SysCtlUSBPLLEnable();
+    //  2. Enable USB controller
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_USB0);
+    ROM_SysCtlPeripheralReset(SYSCTL_PERIPH_USB0);
+    //USBClockEnable(USB0_BASE, 8, USB_CLOCK_INTERNAL);
+    //HWREG(USB0_BASE + USB_O_CC) = (8 - 1) | USB_CLOCK_INTERNAL;
+
+    ROM_SysCtlUSBPLLEnable();
+    
+    //  3. Enable USB D+ D- pins
+
+    //  4. Activate USB DFU
+    ROM_SysCtlDelay(ui32SysClock * 2 / 3);
+    ROM_IntMasterEnable();  // Re-enable interrupts at NVIC level
+    ROM_UpdateUSB(0);
+    //  5. Should never get here since update is in progress
+#endif // BOOTLOADER_TEST
 
     //
     // Enable the GPIO port that is used for the on-board LED.

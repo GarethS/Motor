@@ -299,8 +299,8 @@
           <state>$PROJ_DIR$</state>
           <state>$PROJ_DIR$\..</state>
           <state>$PROJ_DIR$\..\..\..\..</state>
-          <state>C:\ti\TivaWare_C_Series-1.0</state>
-          <state>C:\ti\TivaWare_C_Series-1.0\inc</state>
+          <state>C:\ti\TivaWare_C_Series-2.0.1.11577</state>
+          <state>C:\ti\TivaWare_C_Series-2.0.1.11577\inc</state>
           <state>C:\ti\TivaWare_C_Series-1.0\examples\boards\ek-tm4c123gxl\usb_dev_serial</state>
           <state>$PROJ_DIR$\..\FreeRTOS\Source\portable\IAR\ARM_CM4F</state>
           <state>$PROJ_DIR$\..\FreeRTOS</state>
@@ -329,7 +329,7 @@
         <option>
           <name>CCOptStrategy</name>
           <version>0</version>
-          <state>1</state>
+          <state>2</state>
         </option>
         <option>
           <name>CCOptLevelSlave</name>
@@ -883,7 +883,7 @@
         </option>
         <option>
           <name>IlinkStackAnalysisEnable</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>IlinkStackControlFile</name>
@@ -891,7 +891,7 @@
         </option>
         <option>
           <name>IlinkStackCallGraphFile</name>
-          <state></state>
+          <state>C:\dev\docs\scottdesign\motor\Debug\List\motorTivaCallGraph.xml</state>
         </option>
         <option>
           <name>CrcAlgorithm</name>

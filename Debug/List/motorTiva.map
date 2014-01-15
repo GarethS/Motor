@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR ELF Linker V6.40.1.53790/W32 for ARM              26/Dec/2013  10:52:51 #
+# IAR ELF Linker V6.40.1.53790/W32 for ARM              14/Jan/2014  17:25:25 #
 # Copyright 2007-2012 IAR Systems AB.                                         #
 #                                                                             #
 #    Output file  =  C:\dev\docs\scottdesign\motor\Debug\Exe\motorTiva.out    #
@@ -32,9 +32,26 @@
 #                    Debug\List\motorTiva.map --config                        #
 #                    C:\dev\docs\scottdesign\motor\motorTiva.icf              #
 #                    --semihosting --entry __iar_program_start --vfe          #
+#                    --enable_stack_usage --call_graph                        #
+#                    C:\dev\docs\scottdesign\motor\Debug\List\motorTivaCallGr #
+#                    aph.xml                                                  #
 #                                                                             #
 #                                                                             #
 ###############################################################################
+
+*******************************************************************************
+*** MESSAGES
+***
+
+Warning[Lo011]: [stack usage analysis] the function "__iar_program_start" is a
+          call graph root, but there are calls to it
+Warning[Lo007]: [stack usage analysis] at least one function does not have
+          stack usage information. Example: "xPortPendSVHandler". A complete
+          list of such functions is in the map file.
+Warning[Lo009]: [stack usage analysis] the program contains at least one
+          indirect call. Example: from "main". A complete list of such
+          functions is in the map file.
+
 
 *******************************************************************************
 *** RUNTIME MODEL ATTRIBUTES
@@ -425,6 +442,666 @@ Copy (__iar_copy_init3)
 
 Extra (__iar_cstart_call_ctors)
 
+
+*******************************************************************************
+*** STACK USAGE
+***
+
+  Call Graph Root Category  Max Use  Total Use
+  ------------------------  -------  ---------
+  Program entry                 328        328
+  Uncalled function             384      3 600
+
+
+Program entry
+  "__iar_program_start": 0x00007c47
+
+  Maximum call chain                            *?* 328 bytes
+    (** call graph contains indirect calls (example: "main")
+                            functions with no stack usage info (example: "ulPortSetInterruptMask") **)
+
+    "__iar_program_start"                             0
+    "__cmain"                                         0
+    "main"                                           16
+    "mainA"                                           0
+    "vStartIdleTask"                                 24
+    "xTaskGenericCreate"                             48
+    "prvAllocateTCBAndStack" in tasks.o [1]          16
+    "pvPortMalloc"                                   24
+    "xTaskResumeAll"                                 24
+    "xTaskIncrementTick"                             24
+    "localAssert"                                     8
+    "__aeabi_assert"                                 32
+    "__iar_ReportAssert"                             24
+    "out" in xreportassert.o [3]                      8
+    "putchar"                                        16
+    "__write"                                         8
+    "__dwrite"                                        8
+    "__iar_sh_stdout"                                24
+    "__iar_get_ttio"                                 24
+    "__iar_lookup_ttioh"                              0
+
+Uncalled function
+  "vIdleTask" in main.o [1]: 0x0000220d
+
+  Maximum call chain                            *?* 224 bytes
+    (** call graph contains functions with no stack usage info (example: "ulPortSetInterruptMask") **)
+
+    "vIdleTask" in main.o [1]                         0
+    "vTaskDelay"                                     24
+    "xTaskResumeAll"                                 24
+    "xTaskIncrementTick"                             24
+    "localAssert"                                     8
+    "__aeabi_assert"                                 32
+    "__iar_ReportAssert"                             24
+    "out" in xreportassert.o [3]                      8
+    "putchar"                                        16
+    "__write"                                         8
+    "__dwrite"                                        8
+    "__iar_sh_stdout"                                24
+    "__iar_get_ttio"                                 24
+    "__iar_lookup_ttioh"                              0
+
+Uncalled function
+  "vInterpretTask" in main.o [1]: 0x00002285
+
+  Maximum call chain                            *?* 384 bytes
+    (** call graph contains indirect calls (example: "ScheduleNextTransmission" in usbbuffer.o [9])
+                            functions with no stack usage info (example: "ulPortSetInterruptMask") **)
+
+    "vInterpretTask" in main.o [1]                    0
+    "interpretRun"                                    0
+    "interpret::run()"                               72
+    "stepper::moveRelativeDegreex10k(int)"           16
+    "stepper::moveRelative(int)"                     16
+    "stepper::moveAbsolute(int)"                     40
+    "accel::stepsToMicroSec(unsigned int)"           40
+    "accel::microSecToSteps(unsigned int)"           24
+    "accel::reset(unsigned int)"                     16
+    "accel::curveIndexToClockTicks(unsigned int) const"
+                                                     16
+    "__aeabi_assert"                                 32
+    "__iar_ReportAssert"                             24
+    "out" in xreportassert.o [3]                      8
+    "putchar"                                        16
+    "__write"                                         8
+    "__dwrite"                                        8
+    "__iar_sh_stdout"                                24
+    "__iar_get_ttio"                                 24
+    "__iar_lookup_ttioh"                              0
+
+Uncalled function
+  "xPortSysTickHandler": 0x000032fb
+
+  Maximum call chain                            *?* 184 bytes
+    (** call graph contains functions with no stack usage info (example: "ulPortSetInterruptMask") **)
+
+    "xPortSysTickHandler"                             8
+    "xTaskIncrementTick"                             24
+    "localAssert"                                     8
+    "__aeabi_assert"                                 32
+    "__iar_ReportAssert"                             24
+    "out" in xreportassert.o [3]                      8
+    "putchar"                                        16
+    "__write"                                         8
+    "__dwrite"                                        8
+    "__iar_sh_stdout"                                24
+    "__iar_get_ttio"                                 24
+    "__iar_lookup_ttioh"                              0
+
+Uncalled function
+  "??FaultISR_0" in startup_ewarm.o [1]: 0x00007c43
+
+  Maximum call chain                                 0 bytes
+
+    "??FaultISR_0" in startup_ewarm.o [1]            0
+
+Uncalled function
+  "??IntDefaultHandler_0" in startup_ewarm.o [1]: 0x00007c45
+
+  Maximum call chain                                 0 bytes
+
+    "??IntDefaultHandler_0" in startup_ewarm.o [1]
+                                                     0
+
+Uncalled function
+  "??NmiSR_0" in startup_ewarm.o [1]: 0x00007c41
+
+  Maximum call chain                                 0 bytes
+
+    "??NmiSR_0" in startup_ewarm.o [1]               0
+
+Uncalled function
+  "ResetISR": 0x00007c29
+
+  Maximum call chain                            *?* 336 bytes
+    (** call graph contains indirect calls (example: "main")
+                            functions with no stack usage info (example: "ulPortSetInterruptMask") **)
+
+    "ResetISR"                                        8
+    "__iar_program_start"                             0
+    "__cmain"                                         0
+    "main"                                           16
+    "mainA"                                           0
+    "vStartIdleTask"                                 24
+    "xTaskGenericCreate"                             48
+    "prvAllocateTCBAndStack" in tasks.o [1]          16
+    "pvPortMalloc"                                   24
+    "xTaskResumeAll"                                 24
+    "xTaskIncrementTick"                             24
+    "localAssert"                                     8
+    "__aeabi_assert"                                 32
+    "__iar_ReportAssert"                             24
+    "out" in xreportassert.o [3]                      8
+    "putchar"                                        16
+    "__write"                                         8
+    "__dwrite"                                        8
+    "__iar_sh_stdout"                                24
+    "__iar_get_ttio"                                 24
+    "__iar_lookup_ttioh"                              0
+
+Uncalled function
+  "stepperISR": 0x0000151d
+
+  Maximum call chain                            *?* 192 bytes
+    (** call graph contains indirect calls (example: "stepperISR") **)
+
+    "stepperISR"                                      8
+    "stepper::isr()"                                  8
+    "accel::reset(unsigned int)"                     16
+    "accel::curveIndexToClockTicks(unsigned int) const"
+                                                     16
+    "__aeabi_assert"                                 32
+    "__iar_ReportAssert"                             24
+    "out" in xreportassert.o [3]                      8
+    "putchar"                                        16
+    "__write"                                         8
+    "__dwrite"                                        8
+    "__iar_sh_stdout"                                24
+    "__iar_get_ttio"                                 24
+    "__iar_lookup_ttioh"                              0
+
+Uncalled function
+  "prvIdleTask" in tasks.o [1]: 0x00001e91
+
+  Maximum call chain                            *?* 248 bytes
+    (** call graph contains functions with no stack usage info (example: "ulPortSetInterruptMask") **)
+
+    "prvIdleTask" in tasks.o [1]                      0
+    "prvCheckTasksWaitingTermination" in tasks.o [1]
+                                                     16
+    "prvDeleteTCB" in tasks.o [1]                     8
+    "vPortFree"                                      24
+    "xTaskResumeAll"                                 24
+    "xTaskIncrementTick"                             24
+    "localAssert"                                     8
+    "__aeabi_assert"                                 32
+    "__iar_ReportAssert"                             24
+    "out" in xreportassert.o [3]                      8
+    "putchar"                                        16
+    "__write"                                         8
+    "__dwrite"                                        8
+    "__iar_sh_stdout"                                24
+    "__iar_get_ttio"                                 24
+    "__iar_lookup_ttioh"                              0
+
+Uncalled function
+  "vTaskSwitchContext": 0x00001dc9
+
+  Maximum call chain                               160 bytes
+
+    "vTaskSwitchContext"                             8
+    "localAssert"                                    8
+    "__aeabi_assert"                                32
+    "__iar_ReportAssert"                            24
+    "out" in xreportassert.o [3]                     8
+    "putchar"                                       16
+    "__write"                                        8
+    "__dwrite"                                       8
+    "__iar_sh_stdout"                               24
+    "__iar_get_ttio"                                24
+    "__iar_lookup_ttioh"                             0
+
+Uncalled function
+  "ControlHandler": 0x000075c9
+
+  Maximum call chain                            *?* 48 bytes
+    (** call graph contains indirect calls (example: "ControlHandler") **)
+
+    "ControlHandler"                                24
+    "SetLineCoding" in usb_dev_serial.o [1]         24
+
+Uncalled function
+  "RxHandler": 0x000076af
+
+  Maximum call chain                            *?* 120 bytes
+    (** call graph contains indirect calls (example: "RxHandler") **)
+
+    "RxHandler"                                      24
+    "USBUARTPrimeTransmit" in usb_dev_serial.o [1]
+                                                     16
+    "USBBufferRead"                                  24
+    "USBRingBufRead"                                 24
+    "USBRingBufReadOne"                               8
+    "UpdateIndexAtomic" in usbringbuf.o [9]          16
+    "IntMasterDisable"                                8
+    "CPUcpsid"                                        0
+
+Uncalled function
+  "TxHandler": 0x000076a1
+
+  Maximum call chain                                 4 bytes
+
+    "TxHandler"                                      4
+
+Uncalled function
+  "USBUARTIntHandler": 0x000073e3
+
+  Maximum call chain                            *?* 344 bytes
+    (** call graph contains indirect calls (example: "USBUARTIntHandler") **)
+
+    "USBUARTIntHandler"                              16
+    "ReadUARTData" in usb_dev_serial.o [1]           24
+    "bufferInput"                                    64
+    "sscanf"                                         24
+    "_ScanfSmall"                                    64
+    "_GetintSmall" in xscanfsmall.o [3]              64
+    "__iar_Stolx"                                    32
+    "__iar_Stoulx"                                   56
+    "__aeabi_errno_addr"                              0
+    "__iar_dlib_perthread_access"                     0
+
+Uncalled function
+  "USBBufferEventCallback": 0x0000381b
+
+  Maximum call chain                            *?* 72 bytes
+    (** call graph contains indirect calls (example: "USBBufferEventCallback") **)
+
+    "USBBufferEventCallback"                         0
+    "HandleRxAvailable" in usbbuffer.o [9]          24
+    "USBRingBufWrite"                               24
+    "USBRingBufWriteOne"                             0
+    "UpdateIndexAtomic" in usbringbuf.o [9]         16
+    "IntMasterDisable"                               8
+    "CPUcpsid"                                       0
+
+Uncalled function
+  "USB0DeviceIntHandler": 0x00007ced
+
+  Maximum call chain                            *?* 108 bytes
+    (** call graph contains indirect calls (example: "USBDeviceIntHandlerInternal") **)
+
+    "USB0DeviceIntHandler"                            0
+    "USBDeviceIntHandlerInternal"                    24
+    "USBDeviceEnumHandler"                           24
+    "USBDEP0StateTxConfig" in usbdenum.o [9]         48
+    "USBEndpointDataPut"                             12
+
+Uncalled function
+  "CDCTickHandler" in usbdcdc.o [9]: 0x00007005
+
+  Maximum call chain                            *?* 32 bytes
+    (** call graph contains indirect calls (example: "DeviceConsumedAllData" in usbdcdc.o [9]) **)
+
+    "CDCTickHandler" in usbdcdc.o [9]               16
+    "SendBreak" in usbdcdc.o [9]                    16
+
+Uncalled function
+  "HandleConfigChange" in usbdcdc.o [9]: 0x00006e19
+
+  Maximum call chain                            *?* 16 bytes
+    (** call graph contains indirect calls (example: "HandleConfigChange" in usbdcdc.o [9]) **)
+
+    "HandleConfigChange" in usbdcdc.o [9]           16
+
+Uncalled function
+  "HandleDevice" in usbdcdc.o [9]: 0x00006e93
+
+  Maximum call chain                                 8 bytes
+
+    "HandleDevice" in usbdcdc.o [9]                  8
+
+Uncalled function
+  "HandleDisconnect" in usbdcdc.o [9]: 0x00006fbf
+
+  Maximum call chain                            *?* 16 bytes
+    (** call graph contains indirect calls (example: "HandleDisconnect" in usbdcdc.o [9]) **)
+
+    "HandleDisconnect" in usbdcdc.o [9]             16
+
+Uncalled function
+  "HandleEP0Data" in usbdcdc.o [9]: 0x00006e45
+
+  Maximum call chain                            *?* 32 bytes
+    (** call graph contains indirect calls (example: "DeviceConsumedAllData" in usbdcdc.o [9]) **)
+
+    "HandleEP0Data" in usbdcdc.o [9]                16
+    "SendLineCodingChange" in usbdcdc.o [9]         16
+
+Uncalled function
+  "HandleEndpoints" in usbdcdc.o [9]: 0x00006dc7
+
+  Maximum call chain                            *?* 76 bytes
+    (** call graph contains indirect calls (example: "ProcessDataFromHost") **)
+
+    "HandleEndpoints" in usbdcdc.o [9]              24
+    "ProcessNotificationToHost"                     16
+    "SendSerialState" in usbdcdc.o [9]              24
+    "USBEndpointDataPut"                            12
+
+Uncalled function
+  "HandleRequests" in usbdcdc.o [9]: 0x00006ef5
+
+  Maximum call chain                            *?* 52 bytes
+    (** call graph contains indirect calls (example: "HandleRequests" in usbdcdc.o [9]) **)
+
+    "HandleRequests" in usbdcdc.o [9]               24
+    "USBDCDSendDataEP0"                              0
+    "USBDEP0StateTx" in usbdenum.o [9]              16
+    "USBEndpointDataPut"                            12
+
+Uncalled function
+  "HandleResume" in usbdcdc.o [9]: 0x00006fed
+
+  Maximum call chain                             *?* 8 bytes
+    (** call graph contains indirect calls (example: "HandleResume" in usbdcdc.o [9]) **)
+
+    "HandleResume" in usbdcdc.o [9]                  8
+
+Uncalled function
+  "HandleSuspend" in usbdcdc.o [9]: 0x00006fe1
+
+  Maximum call chain                             *?* 8 bytes
+    (** call graph contains indirect calls (example: "HandleSuspend" in usbdcdc.o [9]) **)
+
+    "HandleSuspend" in usbdcdc.o [9]                 8
+
+Uncalled function
+  "USBDCDCPacketRead": 0x000071c1
+
+  Maximum call chain                                44 bytes
+
+    "USBDCDCPacketRead"                             32
+    "USBEndpointDataGet"                            12
+
+Uncalled function
+  "USBDCDCPacketWrite": 0x00007175
+
+  Maximum call chain                                28 bytes
+
+    "USBDCDCPacketWrite"                            16
+    "USBEndpointDataPut"                            12
+
+Uncalled function
+  "USBDCDCRxPacketAvailable": 0x0000724f
+
+  Maximum call chain                                 8 bytes
+
+    "USBDCDCRxPacketAvailable"                       8
+    "USBEndpointStatus"                              0
+
+Uncalled function
+  "USBDCDCTxPacketAvailable": 0x0000723f
+
+  Maximum call chain                                 0 bytes
+
+    "USBDCDCTxPacketAvailable"                       0
+
+Uncalled function
+  "USBDClearFeature" in usbdenum.o [9]: 0x00005773
+
+  Maximum call chain                                16 bytes
+
+    "USBDClearFeature" in usbdenum.o [9]            16
+
+Uncalled function
+  "USBDGetConfiguration" in usbdenum.o [9]: 0x00005997
+
+  Maximum call chain                            *?* 44 bytes
+    (** call graph contains indirect calls (example: "USBDEP0StateTx" in usbdenum.o [9]) **)
+
+    "USBDGetConfiguration" in usbdenum.o [9]        16
+    "USBDEP0StateTx" in usbdenum.o [9]              16
+    "USBEndpointDataPut"                            12
+
+Uncalled function
+  "USBDGetDescriptor" in usbdenum.o [9]: 0x00005869
+
+  Maximum call chain                            *?* 60 bytes
+    (** call graph contains indirect calls (example: "USBDEP0StateTx" in usbdenum.o [9]) **)
+
+    "USBDGetDescriptor" in usbdenum.o [9]            0
+    "USBDEP0StateTxConfig" in usbdenum.o [9]        48
+    "USBEndpointDataPut"                            12
+
+Uncalled function
+  "USBDGetInterface" in usbdenum.o [9]: 0x00005a4f
+
+  Maximum call chain                            *?* 44 bytes
+    (** call graph contains indirect calls (example: "USBDEP0StateTx" in usbdenum.o [9]) **)
+
+    "USBDGetInterface" in usbdenum.o [9]            16
+    "USBDEP0StateTx" in usbdenum.o [9]              16
+    "USBEndpointDataPut"                            12
+
+Uncalled function
+  "USBDGetStatus" in usbdenum.o [9]: 0x00005723
+
+  Maximum call chain                            *?* 44 bytes
+    (** call graph contains indirect calls (example: "USBDEP0StateTx" in usbdenum.o [9]) **)
+
+    "USBDGetStatus" in usbdenum.o [9]               16
+    "USBDEP0StateTx" in usbdenum.o [9]              16
+    "USBEndpointDataPut"                            12
+
+Uncalled function
+  "USBDSetAddress" in usbdenum.o [9]: 0x0000584f
+
+  Maximum call chain                                16 bytes
+
+    "USBDSetAddress" in usbdenum.o [9]              16
+
+Uncalled function
+  "USBDSetConfiguration" in usbdenum.o [9]: 0x000059c9
+
+  Maximum call chain                            *?* 240 bytes
+    (** call graph contains indirect calls (example: "USBDSetConfiguration" in usbdenum.o [9]) **)
+
+    "USBDSetConfiguration" in usbdenum.o [9]         24
+    "USBDeviceConfig"                               112
+    "USBDCDConfigGetInterfaceEndpoint"               24
+    "USBDCDConfigGetInterface"                       32
+    "USBDCDConfigDescGet"                            32
+    "USBDescGetNum"                                  16
+
+Uncalled function
+  "USBDSetDescriptor" in usbdenum.o [9]: 0x00005991
+
+  Maximum call chain                                 8 bytes
+
+    "USBDSetDescriptor" in usbdenum.o [9]            8
+
+Uncalled function
+  "USBDSetFeature" in usbdenum.o [9]: 0x000057ef
+
+  Maximum call chain                                16 bytes
+
+    "USBDSetFeature" in usbdenum.o [9]              16
+
+Uncalled function
+  "USBDSetInterface" in usbdenum.o [9]: 0x00005a8b
+
+  Maximum call chain                            *?* 192 bytes
+    (** call graph contains indirect calls (example: "USBDSetInterface" in usbdenum.o [9]) **)
+
+    "USBDSetInterface" in usbdenum.o [9]             40
+    "USBDeviceConfigAlternate"                       48
+    "USBDCDConfigGetInterfaceEndpoint"               24
+    "USBDCDConfigGetInterface"                       32
+    "USBDCDConfigDescGet"                            32
+    "USBDescGetNum"                                  16
+
+Uncalled function
+  "USBDSyncFrame" in usbdenum.o [9]: 0x00005b13
+
+  Maximum call chain                                 8 bytes
+
+    "USBDSyncFrame" in usbdenum.o [9]                8
+    "USBDevEndpointDataAck"                          0
+
+Uncalled function
+  "DMAUSBIntHandler" in usbdma.o [9]: 0x00006231
+
+  Maximum call chain                                12 bytes
+
+    "DMAUSBIntHandler" in usbdma.o [9]              12
+
+Uncalled function
+  "DMAUSBIntStatusClear" in usbdma.o [9]: 0x00006223
+
+  Maximum call chain                                 0 bytes
+
+    "DMAUSBIntStatusClear" in usbdma.o [9]           0
+
+Uncalled function
+  "DMAUSBStatus" in usbdma.o [9]: 0x0000657d
+
+  Maximum call chain                                 0 bytes
+
+    "DMAUSBStatus" in usbdma.o [9]                   0
+
+Uncalled function
+  "uDMAUSBArbSizeSet" in usbdma.o [9]: 0x00006515
+
+  Maximum call chain                                 0 bytes
+
+    "uDMAUSBArbSizeSet" in usbdma.o [9]              0
+
+Uncalled function
+  "uDMAUSBChannelAllocate" in usbdma.o [9]: 0x000063cb
+
+  Maximum call chain                                32 bytes
+
+    "uDMAUSBChannelAllocate" in usbdma.o [9]        24
+    "USBEndpointDMAChannel"                          8
+
+Uncalled function
+  "uDMAUSBChannelDisable" in usbdma.o [9]: 0x000062b3
+
+  Maximum call chain                                16 bytes
+
+    "uDMAUSBChannelDisable" in usbdma.o [9]         16
+    "USBEndpointDMADisable"                          0
+
+Uncalled function
+  "uDMAUSBChannelIntDisable" in usbdma.o [9]: 0x00006307
+
+  Maximum call chain                                 0 bytes
+
+    "uDMAUSBChannelIntDisable" in usbdma.o [9]       0
+
+Uncalled function
+  "uDMAUSBChannelIntEnable" in usbdma.o [9]: 0x00006305
+
+  Maximum call chain                                 0 bytes
+
+    "uDMAUSBChannelIntEnable" in usbdma.o [9]        0
+
+Uncalled function
+  "uDMAUSBChannelRelease" in usbdma.o [9]: 0x00006471
+
+  Maximum call chain                                24 bytes
+
+    "uDMAUSBChannelRelease" in usbdma.o [9]         24
+    "USBEndpointDMADisable"                          0
+
+Uncalled function
+  "uDMAUSBChannelStatus" in usbdma.o [9]: 0x000061d5
+
+  Maximum call chain                                 0 bytes
+
+    "uDMAUSBChannelStatus" in usbdma.o [9]           0
+
+Uncalled function
+  "uDMAUSBIntStatus" in usbdma.o [9]: 0x000061f9
+
+  Maximum call chain                                16 bytes
+
+    "uDMAUSBIntStatus" in usbdma.o [9]              16
+    "uDMAChannelModeGet"                             0
+
+Uncalled function
+  "uDMAUSBTransfer" in usbdma.o [9]: 0x00006309
+
+  Maximum call chain                                60 bytes
+
+    "uDMAUSBTransfer" in usbdma.o [9]               40
+    "uDMAChannelTransferSet"                        20
+
+Uncalled function
+  "uDMAUSBUnitSizeSet" in usbdma.o [9]: 0x000064cb
+
+  Maximum call chain                                 0 bytes
+
+    "uDMAUSBUnitSizeSet" in usbdma.o [9]             0
+
+The following functions appear not to be called and have no stack
+usage information:
+
+  "vPortSVCHandler": 0x00003453
+  "xPortPendSVHandler": 0x000033f5
+
+The following functions appear to be called, but have no stack
+usage information:
+
+  "ulPortSetInterruptMask": 0x0000343f
+  "vPortClearInterruptMask": 0x0000344d
+  "vPortEnableVFP": 0x00003479
+  "vPortStartFirstTask": 0x0000346b
+
+The following functions perform unknown indirect calls:
+
+  "CDCTickHandler" in usbdcdc.o [9]: 0x00007005
+  "ControlHandler": 0x000075c9
+  "DeviceConsumedAllData" in usbdcdc.o [9]: 0x00006bb9
+  "GetLineCoding" in usb_dev_serial.o [1]: 0x000074f3
+  "HandleConfigChange" in usbdcdc.o [9]: 0x00006e19
+  "HandleDisconnect" in usbdcdc.o [9]: 0x00006fbf
+  "HandleRequests" in usbdcdc.o [9]: 0x00006ef5
+  "HandleResume" in usbdcdc.o [9]: 0x00006fed
+  "HandleRxAvailable" in usbbuffer.o [9]: 0x000036e9
+  "HandleSuspend" in usbdcdc.o [9]: 0x00006fe1
+  "InternalUSBStartOfFrameTick": 0x0000668d
+  "ProcessDataFromHost": 0x00006ccb
+  "ProcessDataToHost": 0x00006d6d
+  "ReadUARTData" in usb_dev_serial.o [1]: 0x0000732b
+  "RxHandler": 0x000076af
+  "ScheduleNextTransmission" in usbbuffer.o [9]: 0x0000365b
+  "SendBreak" in usb_dev_serial.o [1]: 0x00007597
+  "SendBreak" in usbdcdc.o [9]: 0x00006bd1
+  "SendLineCodingChange" in usbdcdc.o [9]: 0x00006c0b
+  "SendLineStateChange" in usbdcdc.o [9]: 0x00006c29
+  "SetLineCoding" in usb_dev_serial.o [1]: 0x00007449
+  "USBBufferEventCallback": 0x0000381b
+  "USBDEP0StateTx" in usbdenum.o [9]: 0x00005b23
+  "USBDEP0StateTxConfig" in usbdenum.o [9]: 0x00005b89
+  "USBDGetDescriptor" in usbdenum.o [9]: 0x00005869
+  "USBDReadAndDispatchRequest" in usbdenum.o [9]: 0x000055c3
+  "USBDSetConfiguration" in usbdenum.o [9]: 0x000059c9
+  "USBDSetInterface" in usbdenum.o [9]: 0x00005a8b
+  "USBDeviceEnumHandler": 0x0000561d
+  "USBDeviceEnumResetHandler": 0x000056e7
+  "USBDeviceIntHandlerInternal": 0x00005cc7
+  "USBDeviceResumeTickHandler": 0x00005579
+  "USBStackModeSet": 0x0000785d
+  "USBUARTIntHandler": 0x000073e3
+  "USBUARTPrimeTransmit" in usb_dev_serial.o [1]: 0x0000738f
+  "io::getADC(unsigned int)": 0x0000261f
+  "io::getTemperature()": 0x0000266b
+  "io::init()": 0x00002493
+  "main": 0x000076f7
+  "stepperISR": 0x0000151d
+  "stepper_init": 0x00001573
 
 
 *******************************************************************************
@@ -1344,4 +2021,4 @@ xYieldPending           0x2000498c     0x4  Data  Lc  tasks.o [1]
   20 334 bytes of readwrite data memory
 
 Errors: none
-Warnings: none
+Warnings: 3

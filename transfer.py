@@ -106,7 +106,7 @@ class Transfer():
         
     def sendLine(self, line):
         line = line.rstrip('\r\n')
-        print '{0}: [{1}]'.format(self.__lineCount, line)
+        print '{0}: {1}'.format(self.__lineCount, line)
         self.__lineCount = self.__lineCount + 1
         if self.__haveSerialPort:
             line = line + self.EOT 
@@ -177,7 +177,7 @@ class Transfer():
             self.parseStr += x
         else:
             self.parseStr = ' <OK> '
-        print self.parseStr
+        print self.parseStr,    # , = don't print CR after each string
         self.parseStr = ''
             
 if __name__ == "__main__":
