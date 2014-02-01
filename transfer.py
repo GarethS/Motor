@@ -1,6 +1,6 @@
-# Copyright (c) 2013 Gareth Scott
-# transfer.py
-# Runs with Python 2.6.4
+# Copyright (c) 2013, 2014 Gareth Scott
+# transfer.py Copyright (c) Gareth Scott 2013 2014
+# Tested with Python 2.6.4
 
 # See: http://pyserial.sourceforge.net/pyserial_api.html#module-serial
 import serial
@@ -14,7 +14,7 @@ import time
 # Globals
 currentToken        = 0
 OK                  = 0
-ERR                 = 1
+ER                  = 1
 # 4 = COM5 on Toshiba laptop. Look under Device Manager to determine com port
 # 2 = COM3 on
 # 21 = COM22 (Virtual COM port over USB often comes up as this value on Windows 7)
@@ -27,14 +27,14 @@ tokens = (
     'TOKEN_START',
     'TOKEN_END',
     'OK',
-    'ERR',
+    'ER',
 )
 
 # Regular expression rules for simple tokens
 t_TOKEN_START       = r'<'
 t_TOKEN_END         = r'>'
 t_OK                = r'OK'
-t_ERR               = r'ERR'
+t_ER                = r'ER'
 
 def t_NUMBER(t):
     r'\d+'
@@ -57,10 +57,10 @@ def p_OK(t):
     global currentToken
     currentToken = OK
 
-def p_ERR(t):
-    'expression : TOKEN_START ERR TOKEN_END'
+def p_ER(t):
+    'expression : TOKEN_START ER TOKEN_END'
     global currentToken
-    currentToken = ERR
+    currentToken = ER
 
 def p_error(t):
     print "Syntax error at:'%s'" % t.value
@@ -90,8 +90,8 @@ class Transfer():
             print "Serial port:", self.__ser.isOpen()
             print self.__ser
         
-        self.cmdOK =    "<OK>"
-        self.cmdErr =   "<ERR>"
+        #self.cmdOK =    "<OK>"
+        #self.cmdErr =   "<ERR>"
         self.EOT =      '$'     # End-of-transmission
         
         self.parseStr = ""
@@ -124,11 +124,11 @@ class Transfer():
         deltaTime = 0.0
         #self.parseInput()
         #return True
-        currentToken = ERR
+        currentToken = ER
         while deltaTime < 2.0: 
             # 2. Call parseInput
             self.parseInput()
-            # 3. Got OK return True; got ERR, return False
+            # 3. Got OK return True; got ER, return False
             if currentToken == OK:
                 #print 'OK'
                 return True
@@ -181,16 +181,45 @@ class Transfer():
         self.parseStr = ''
             
 if __name__ == "__main__":
-    startTime = time.time()
-    t = Transfer("/dev/docs/scottdesign/parser/tree.txt")
-    t.send()
-    t = Transfer("/dev/docs/scottdesign/parser/symbolTable.txt")
-    t.send()
-    t = Transfer("/dev/docs/scottdesign/parser/prun.txt")
-    t.send()
-    #t = Transfer("..\parser\symbolTable.txt")
-    print 'Done in {0:.2f} sec'.format(time.time() - startTime)
-    t = Transfer("Dummy name just to get serial port opened")
-    while 1:
-        t.echoInput()
+    downloadProgram = 1
+    downloadRun = 1
+    downloadStop = 0
+    downloadContinue = 0
+    downloadFlash = 0
+    monitorComPort = 0
+
+    if (downloadProgram):
+        startTime = time.time()
+        t = Transfer("/dev/docs/scottdesign/parser/tree.txt")
+        t.send()
+    
+        t = Transfer("/dev/docs/scottdesign/parser/symbolTable.txt")
+        t.send()
+    
+        print 'Done in {0:.2f} sec'.format(time.time() - startTime)
+
+    if (downloadRun):
+        t = Transfer("/dev/docs/scottdesign/parser/prun.txt")
+        t.send()
+    
+    if (downloadStop):
+        #sleep(5);
+        t = Transfer("/dev/docs/scottdesign/parser/stop.txt")
+        t.send()
+
+    if (downloadContinue):
+        #sleep(5);
+        t = Transfer("/dev/docs/scottdesign/parser/continue.txt")
+        t.send()
+
+    if (downloadFlash):
+        #sleep(5);
+        t = Transfer("/dev/docs/scottdesign/parser/flash.txt")
+        t.send()
+
+    if (monitorComPort):
+        # Hangs virtual COM port. Need to unplug cable after program exits to reset.
+        t = Transfer("Dummy name just to get serial port opened")
+        while 1:
+            t.echoInput()
     
