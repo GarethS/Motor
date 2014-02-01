@@ -34,7 +34,8 @@ bool flashio::saveData(uint32_t* pDataSource, uint32_t flashDestination, unsigne
         }
         if (remainingByteCount >= FLASH_PAGE_SIZE) {
             ROM_FlashProgram(remainingDataPointer, flashAddress, FLASH_PAGE_SIZE);
-            remainingDataPointer += FLASH_PAGE_SIZE;
+            remainingDataPointer += FLASH_PAGE_SIZE_INT;    // Note that remainingDataPointer is a pointer to 'unsigned int' so it increments by 4, not 1
+            //remainingDataPointer += FLASH_PAGE_SIZE / 4;
             remainingByteCount -= FLASH_PAGE_SIZE;
         } else {
             ROM_FlashProgram(remainingDataPointer, flashAddress, remainingByteCount);
@@ -47,10 +48,20 @@ bool flashio::saveData(uint32_t* pDataSource, uint32_t flashDestination, unsigne
 
 // Move data from Flash into sRAM
 void flashio::retrieveData(uint32_t* pDataDestination, uint32_t flashSource, unsigned long intCount) {
+    // similar to memcpy()
+#if 0
+    uint8_t* pFlashAddress = (uint8_t*)flashSource;
+    uint8_t* pDestination = (uint8_t*)pDataDestination;
+    uint32_t counter = intCount * 4;
+    for (uint32_t i = 0; i < counter; ++i) {
+        pDestination[i] = pFlashAddress[i];
+    }
+#else
     uint32_t* pFlashAddress = (uint32_t*)flashSource;
     for (uint32_t i = 0; i < intCount; ++i) {
         pDataDestination[i] = pFlashAddress[i];
     }
+#endif
 }
 
 // Return false if flash block is all 0xff (i.e. erased) or data to be programmed matches data in flash block; true otherwise

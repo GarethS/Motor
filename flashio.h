@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2013
+	Copyright (c) Gareth Scott 2013, 2014
 
 	flashio.h 
 
@@ -12,11 +12,12 @@
 
 enum flashRegion {FLASH_PROGRAM, FLASH_SYMBOL_TABLE};
 
-#define FLASH_PAGE_SIZE                     (0x400) // 1024
-// Note: 0xff00 - 0xf000 = 0xf00 (3840) 32-bit spaces for program
-//       0xffff - 0xff00 = 0xff (256) 32-bit spaces for symbol table.
+#define FLASH_PAGE_SIZE                     (0x400) // 1024 bytes
+#define FLASH_PAGE_SIZE_INT                 (FLASH_PAGE_SIZE / 4)
+// Note: 0xfc00 - 0xf000 = 0xc00 bytes, 768 32-bit words for program. See: MAX_PROGRAM_ENTRY (currently 200)
+//       0xffff - 0xfc00 = 0x3ff bytes, 256 32-bit words for symbol table. See: MAX_SYMBOL_TABLE_ENTRY (currently 60)
 #define FLASH_START_ADDRESS_PROGRAM         (0xF000)    // Current code is located in flash at ~0x7200
-#define FLASH_START_ADDRESS_SYMBOL_TABLE    (0xFF00)
+#define FLASH_START_ADDRESS_SYMBOL_TABLE    (0xFC00)
 #define FLASH_ERASED_VALUE                  (0xFFFFFFFF)
 
 class flashio {

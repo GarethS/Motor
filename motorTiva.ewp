@@ -720,7 +720,7 @@
         </option>
         <option>
           <name>IlinkTreatAsRem</name>
-          <state></state>
+          <state>Lo011, Lo007, Lo009</state>
         </option>
         <option>
           <name>IlinkTreatAsWarn</name>

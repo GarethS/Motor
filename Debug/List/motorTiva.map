@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR ELF Linker V6.40.1.53790/W32 for ARM              14/Jan/2014  18:44:15 #
+# IAR ELF Linker V6.40.1.53790/W32 for ARM              31/Jan/2014  18:04:32 #
 # Copyright 2007-2012 IAR Systems AB.                                         #
 #                                                                             #
 #    Output file  =  C:\dev\docs\scottdesign\motor\Debug\Exe\motorTiva.out    #
@@ -31,27 +31,13 @@
 #                    g\Exe\motorTiva.out --map C:\dev\docs\scottdesign\motor\ #
 #                    Debug\List\motorTiva.map --config                        #
 #                    C:\dev\docs\scottdesign\motor\motorTiva.icf              #
-#                    --semihosting --entry __iar_program_start --vfe          #
-#                    --enable_stack_usage --call_graph                        #
-#                    C:\dev\docs\scottdesign\motor\Debug\List\motorTivaCallGr #
-#                    aph.xml                                                  #
+#                    --diag_remark Lo011,Lo007,Lo009 --semihosting --entry    #
+#                    __iar_program_start --vfe --enable_stack_usage           #
+#                    --call_graph C:\dev\docs\scottdesign\motor\Debug\List\mo #
+#                    torTivaCallGraph.xml                                     #
 #                                                                             #
 #                                                                             #
 ###############################################################################
-
-*******************************************************************************
-*** MESSAGES
-***
-
-Warning[Lo011]: [stack usage analysis] the function "__iar_program_start" is a
-          call graph root, but there are calls to it
-Warning[Lo007]: [stack usage analysis] at least one function does not have
-          stack usage information. Example: "xPortPendSVHandler". A complete
-          list of such functions is in the map file.
-Warning[Lo009]: [stack usage analysis] the program contains at least one
-          indirect call. Example: from "main". A complete list of such
-          functions is in the map file.
-
 
 *******************************************************************************
 *** RUNTIME MODEL ATTRIBUTES
@@ -78,265 +64,270 @@ __dlib_dynamic_initialization = normal
   .intvec             const    0x00000000   0x26c  startup_ewarm.o [1]
                              - 0x0000026c   0x26c
 
-"P1":                                      0x7cec
-  .text               ro code  0x0000026c  0x122c  interpret.o [1]
-  .text               ro code  0x00001498    0x50  cxxabi.o [4]
-  .text               ro code  0x000014e8     0x6  interpret.o [1]
-  .text               ro code  0x000014ee    0x2e  copy_init3.o [7]
-  .text               ro code  0x0000151c   0x3ac  stepper.o [1]
-  .text               ro code  0x000018c8    0x10  interpret.o [1]
-  .text               ro code  0x000018d8    0x20  interpret.o [1]
-  .text               ro code  0x000018f8     0xc  interpret.o [1]
-  .text               ro code  0x00001904   0x7c8  tasks.o [1]
-  .text               ro code  0x000020cc    0x36  strlen.o [7]
-  .text               ro code  0x00002102    0x22  zero_init3.o [7]
-  .text               ro code  0x00002124   0x17e  main.o [1]
-  .text               ro code  0x000022a2    0x1e  xsscin.o [3]
-  .text               ro code  0x000022c0    0x42  strcmp.o [7]
-  .text               ro code  0x00002302     0xa  interpret.o [1]
-  .text               ro code  0x0000230c    0x30  interpret.o [1]
-  .text               ro code  0x0000233c    0x2a  interpret.o [1]
-  .text               ro code  0x00002366     0xc  interpret.o [1]
-  .text               ro code  0x00002372     0x2  interpret.o [1]
-  .text               ro code  0x00002374    0x10  interpret.o [1]
-  .text               ro code  0x00002384    0x24  sscanf.o [3]
-  .text               ro code  0x000023a8    0x58  parseTreeEntry.o [1]
-  .text               ro code  0x00002400     0x4  parseTreeEntry.o [1]
-  .text               ro code  0x00002404     0x4  parseTreeEntry.o [1]
-  .text               ro code  0x00002408     0x4  parseTreeEntry.o [1]
-  .text               ro code  0x0000240c     0x4  parseTreeEntry.o [1]
-  .text               ro code  0x00002410     0x2  interpret.o [1]
-  .text               ro code  0x00002412    0x54  symbolTableEntry.o [1]
-  .text               ro code  0x00002466     0x4  symbolTableEntry.o [1]
-  .text               ro code  0x0000246a     0x4  symbolTableEntry.o [1]
-  .text               ro code  0x0000246e     0x4  symbolTableEntry.o [1]
-  .text               ro code  0x00002472     0x2  interpret.o [1]
-  .text               ro code  0x00002474     0xc  interpret.o [1]
-  .text               ro code  0x00002480     0x2  flashio.o [1]
-  .text               ro code  0x00002482     0xe  interpret.o [1]
-  .text               ro code  0x00002490   0x274  io.o [1]
-  .text               ro code  0x00002704    0x1e  interpret.o [1]
-  .text               ro code  0x00002722    0x16  interpret.o [1]
-  .text               ro code  0x00002738    0x4c  xassert.o [3]
-  .text               ro code  0x00002784     0x4  parseTreeEntry.o [1]
-  .text               ro code  0x00002788    0x16  interpret.o [1]
-  .text               ro code  0x0000279e    0x16  interpret.o [1]
-  .text               ro code  0x000027b4    0x34  interpret.o [1]
-  .text               ro code  0x000027e8     0x6  interpret.o [1]
-  .text               ro code  0x000027ee     0x4  symbolTableEntry.o [1]
-  .text               ro code  0x000027f2     0x6  interpret.o [1]
-  .text               ro code  0x000027f8     0xa  interpret.o [1]
-  .text               ro code  0x00002802     0xa  xsprout.o [3]
-  .text               ro code  0x0000280c    0x3c  interpret.o [1]
-  .text               ro code  0x00002848    0x26  interpret.o [1]
-  .text               ro code  0x0000286e     0x6  interpret.o [1]
-  .text               ro code  0x00002874     0x4  symbolTableEntry.o [1]
-  .text               ro code  0x00002878    0x14  interpret.o [1]
-  .text               ro code  0x0000288c    0x1a  interpret.o [1]
-  .text               ro code  0x000028a6    0x14  interpret.o [1]
-  .text               ro code  0x000028ba    0x18  interpret.o [1]
-  .text               ro code  0x000028d2    0x18  interpret.o [1]
-  .text               ro code  0x000028ea     0x6  interpret.o [1]
-  .text               ro code  0x000028f0    0x34  sprintf.o [3]
-  .text               ro code  0x00002924     0x6  interpret.o [1]
-  .text               ro code  0x0000292a     0xa  interpret.o [1]
-  .text               ro code  0x00002934     0xa  interpret.o [1]
-  .text               ro code  0x0000293e    0x16  interpret.o [1]
-  .text               ro code  0x00002954     0xe  interpret.o [1]
-  .text               ro code  0x00002962    0x28  interpret.o [1]
-  .text               ro code  0x0000298a    0x16  interpret.o [1]
-  .text               ro code  0x000029a0     0x4  symbolTableEntry.o [1]
-  .text               ro code  0x000029a4    0x14  interpret.o [1]
-  .text               ro code  0x000029b8     0x4  parseTreeEntry.o [1]
-  .text               ro code  0x000029bc     0x4  parseTreeEntry.o [1]
-  .text               ro code  0x000029c0    0x1c  interpret.o [1]
-  .text               ro code  0x000029dc     0x6  interpret.o [1]
-  .rodata             const    0x000029e2     0x2  heap_2.o [1]
-  .text               ro code  0x000029e4    0x76  ABImemcpy.o [7]
-  .text               ro code  0x00002a5a     0x2  interpret.o [1]
-  .text               ro code  0x00002a5c    0x98  cppinit.o [3]
-  .text               ro code  0x00002af4   0x304  accel.o [1]
-  .text               ro code  0x00002df8    0x30  stepper.o [1]
-  .text               ro code  0x00002e28     0x6  stepper.o [1]
-  .text               ro code  0x00002e2e    0x22  stepper.o [1]
-  .text               ro code  0x00002e50    0x26  stepper.o [1]
-  .text               ro code  0x00002e78    0x28  stepper.o [1]
-  .text               ro code  0x00002ea0    0x26  stepper.o [1]
-  .text               ro code  0x00002ec8    0x18  stepper.o [1]
-  .text               ro code  0x00002ee0     0x6  stepper.o [1]
-  .text               ro code  0x00002ee8    0x3c  stepper.o [1]
-  .text               ro code  0x00002f24    0x32  stepper.o [1]
-  .text               ro code  0x00002f56    0x28  stepper.o [1]
-  .text               ro code  0x00002f80    0x1c  stepper.o [1]
-  .text               ro code  0x00002f9c    0x32  stepper.o [1]
-  .text               ro code  0x00002fce    0x16  stepper.o [1]
-  .text               ro code  0x00002fe4    0xe8  stepper.o [1]
-  .text               ro code  0x000030cc    0x32  stepper.o [1]
-  .text               ro code  0x000030fe    0x16  stepper.o [1]
-  .text               ro code  0x00003114     0x6  stepper.o [1]
-  .text               ro code  0x0000311a    0x18  stepper.o [1]
-  .text               ro code  0x00003132    0x12  stepper.o [1]
-  .text               ro code  0x00003144    0x14  stepper.o [1]
-  .text               ro code  0x00003158    0x66  timer.o [5]
-  .text               ro code  0x000031be    0x10  stepper.o [1]
-  .text               ro code  0x000031d0    0x28  stepper.o [1]
-  .text               ro code  0x000031f8   0x158  port.o [1]
-  .text               ro code  0x00003350    0xa4  list.o [1]
-  CODE                ro code  0x000033f4    0xa0  portasm.o [1]
-  .text               ro code  0x00003494    0x62  memcmp.o [7]
-  .text               ro code  0x000034f8   0x14c  heap_2.o [1]
-  .text               ro code  0x00003644    0x16  tasks.o [1]
-  .text               ro code  0x0000365a   0x24c  usbbuffer.o [9]
-  .text               ro code  0x000038a8     0xc  gpio.o [5]
-  .text               ro code  0x000038b4    0x84  sysctl.o [5]
-  .text               ro code  0x00003938   0x214  interrupt.o [5]
-  .text               ro code  0x00003b4c    0x2c  strstr.o [3]
-  .text               ro code  0x00003b78   0x504  xscanfsmall.o [3]
-  .text               ro code  0x0000407c     0x4  parseTreeEntry.o [1]
-  .text               ro code  0x00004080    0x30  I32ToDbl.o [6]
-  .text               ro code  0x000040b0   0x1a2  DblMul.o [6]
-  .text               ro code  0x00004254   0x246  DblDiv.o [6]
-  .text               ro code  0x0000449c   0x180  DblSub.o [6]
-  .text               ro code  0x0000461c    0x4c  DblToI32.o [6]
-  .text               ro code  0x00004668    0x1c  interpret.o [1]
-  .text               ro code  0x00004684    0x1c  interpret.o [1]
-  .text               ro code  0x000046a0    0x10  interpret.o [1]
-  .text               ro code  0x000046b0    0xa0  xreportassert.o [3]
-  .text               ro code  0x00004750     0x6  abort.o [3]
-  .text               ro code  0x00004756    0x2a  interpret.o [1]
-  .text               ro code  0x00004780    0x26  interpret.o [1]
-  .text               ro code  0x000047a6     0xc  interpret.o [1]
-  .text               ro code  0x000047b2   0x11a  xprintftiny.o [3]
-  .text               ro code  0x000048cc     0x6  accel.o [1]
-  .text               ro code  0x000048d2     0x6  accel.o [1]
-  .text               ro code  0x000048d8    0x18  stepper.o [1]
-  .text               ro code  0x000048f0    0x78  stepper.o [1]
-  .text               ro code  0x00004968    0x90  DblToFlt.o [6]
-  .text               ro code  0x000049f8    0x50  expf.o [6]
-  .text               ro code  0x00004a48    0x18  stepper.o [1]
-  .text               ro code  0x00004a60    0x1a  stepper.o [1]
-  .text               ro code  0x00004a7c    0x4e  FltToDbl.o [6]
-  .text               ro code  0x00004acc    0xe8  DblAdd.o [6]
-  .text               ro code  0x00004bb4    0x2c  stepper.o [1]
-  .text               ro code  0x00004be0     0x6  stepper.o [1]
-  .text               ro code  0x00004be8    0x66  ABImemset.o [7]
-  .text               ro code  0x00004c4e   0x152  usbringbuf.o [9]
-  .text               ro code  0x00004da0    0x10  cpu.o [5]
-  .text               ro code  0x00004db0    0x16  strchr.o [7]
-  .text               ro code  0x00004dc6    0x86  xstol.o [3]
-  .text               ro code  0x00004e4c   0x174  xstoul.o [3]
-  .text               ro code  0x00004fc0     0xc  interpret.o [1]
-  .text               ro code  0x00004fcc    0x28  putchar.o [3]
-  .text               ro code  0x00004ff4    0x14  exit.o [8]
-  .text               ro code  0x00005008     0xe  interpret.o [1]
-  .text               ro code  0x00005016     0x6  interpret.o [1]
-  .text               ro code  0x0000501c   0x21c  xfexp.o [6]
-  .text               ro code  0x00005238     0xc  errno.o [3]
-  .text               ro code  0x00005244    0x58  memchr.o [7]
-  .text               ro code  0x0000529c    0x10  write.o [8]
-  .text               ro code  0x000052ac    0x6c  iarttio.o [8]
-  .text               ro code  0x00005318    0xc8  xfdscale.o [6]
-  .text               ro code  0x000053e0     0x2  xtls.o [3]
-  .text               ro code  0x000053e2    0x1e  dwrite.o [8]
-  .text               ro code  0x00005400     0x8  XShttio.o [3]
-  .text               ro code  0x00005408    0x26  xfdnorm.o [6]
-  .text               ro code  0x0000542e    0x20  iarwstd.o [8]
-  .text               ro code  0x0000544e    0x22  iarwrite.o [8]
-  .text               ro code  0x00005470   0x96c  usbdenum.o [9]
-  .text               ro code  0x00005ddc   0x3f6  usb.o [5]
-  .text               ro code  0x000061d4   0x478  usbdma.o [9]
-  .text               ro code  0x0000664c    0x6c  usbtick.o [9]
-  .text               ro code  0x000066b8   0x150  usbdcdesc.o [9]
-  .text               ro code  0x00006808   0x228  usbdconfig.o [9]
-  .text               ro code  0x00006a30   0x11c  udma.o [5]
-  .text               ro code  0x00006b4c    0x54  usbdesc.o [9]
-  .text               ro code  0x00006ba0   0x750  usbdcdc.o [9]
-  .text               ro code  0x000072f0   0x56c  usb_dev_serial.o [1]
-  .text               ro code  0x0000785c    0x1c  usbmode.o [9]
-  .rodata             const    0x00007878    0x6c  usbdcdc.o [9]
-  .text               ro code  0x000078e4    0x54  interpret.o [1]
-  .text               ro code  0x00007938     0xe  interpret.o [1]
-  .text               ro code  0x00007946     0x2  interpret.o [1]
-  .text               ro code  0x00007948    0x16  interpret.o [1]
-  .text               ro code  0x0000795e     0x2  interpret.o [1]
-  .text               ro code  0x00007960     0x2  interpret.o [1]
-  .text               ro code  0x00007962     0x2  interpret.o [1]
-  .rodata             const    0x00007964    0x48  interpret.o [1]
-  .rodata             const    0x000079ac    0x38  usb_serial_structs.o [1]
-  .rodata             const    0x000079e4    0x30  interpret.o [1]
-  .rodata             const    0x00007a14    0x2c  interpret.o [1]
-  .rodata             const    0x00007a40    0x2c  interpret.o [1]
-  .rodata             const    0x00007a6c    0x2c  usb_serial_structs.o [1]
-  .rodata             const    0x00007a98    0x28  main.o [1]
-  .rodata             const    0x00007ac0    0x28  stepper.o [1]
-  .text               ro code  0x00007ae8    0x28  data_init3.o [7]
-  .rodata             const    0x00007b10    0x24  usb_serial_structs.o [1]
-  .rodata             const    0x00007b34    0x24  usb_serial_structs.o [1]
-  .rodata             const    0x00007b58    0x24  usb_serial_structs.o [1]
-  .rodata             const    0x00007b7c    0x24  usb_serial_structs.o [1]
-  .iar.init_table     const    0x00007ba0    0x28  - Linker created -
-  .rodata             const    0x00007bc8    0x20  interpret.o [1]
-  .rodata             const    0x00007be8    0x20  interpret.o [1]
-  .text               ro code  0x00007c08    0x20  cmain_call_ctors.o [7]
-  .text               ro code  0x00007c28    0x1e  startup_ewarm.o [1]
-  .text               ro code  0x00007c46     0xc  cstartup_M.o [7]
-  .text               ro code  0x00007c54    0x1a  fpinit_M.o [6]
-  .text               ro code  0x00007c70    0x16  cmain.o [7]
-  .text               ro code  0x00007c86     0x4  low_level_init.o [3]
-  .text               ro code  0x00007c8a     0x4  exit.o [3]
-  .text               ro code  0x00007c90     0xe  cexit.o [7]
-  .rodata             const    0x00007ca0    0x1c  interpret.o [1]
-  .rodata             const    0x00007cbc    0x18  stepper.o [1]
-  .rodata             const    0x00007cd4    0x18  usb_serial_structs.o [1]
-  .text               ro code  0x00007cec    0x18  usbdhandler.o [9]
-  .rodata             const    0x00007d04    0x14  tasks.o [1]
-  .rodata             const    0x00007d18    0x14  usb_serial_structs.o [1]
-  .rodata             const    0x00007d2c    0x10  interpret.o [1]
-  .rodata             const    0x00007d3c    0x10  interpret.o [1]
-  .rodata             const    0x00007d4c    0x10  usb_dev_serial.o [1]
-  .rodata             const    0x00007d5c     0xc  interpret.o [1]
-  .rodata             const    0x00007d68     0xc  interpret.o [1]
-  .rodata             const    0x00007d74     0xc  interpret.o [1]
-  .rodata             const    0x00007d80     0xc  interpret.o [1]
-  .rodata             const    0x00007d8c     0xc  interpret.o [1]
-  .rodata             const    0x00007d98     0xc  interpret.o [1]
-  .rodata             const    0x00007da4     0xc  interpret.o [1]
-  .rodata             const    0x00007db0     0xc  interpret.o [1]
-  .rodata             const    0x00007dbc     0xc  interpret.o [1]
-  .rodata             const    0x00007dc8     0xc  main.o [1]
-  .rodata             const    0x00007dd4     0xc  usb_dev_serial.o [1]
-  .rodata             const    0x00007de0     0x8  interpret.o [1]
-  .rodata             const    0x00007de8     0x8  interpret.o [1]
-  .rodata             const    0x00007df0     0x8  interpret.o [1]
-  .rodata             const    0x00007df8     0x8  interpret.o [1]
-  .rodata             const    0x00007e00     0x8  interpret.o [1]
-  .rodata             const    0x00007e08     0x8  interpret.o [1]
-  .rodata             const    0x00007e10     0x8  interpret.o [1]
-  .rodata             const    0x00007e18     0x8  interpret.o [1]
-  .rodata             const    0x00007e20     0x8  interpret.o [1]
-  .rodata             const    0x00007e28     0x8  interpret.o [1]
-  .rodata             const    0x00007e30     0x8  interpret.o [1]
-  .rodata             const    0x00007e38     0x8  interpret.o [1]
-  .rodata             const    0x00007e40     0x8  interpret.o [1]
-  .rodata             const    0x00007e48     0x8  interpret.o [1]
-  .rodata             const    0x00007e50     0x8  interpret.o [1]
-  .rodata             const    0x00007e58     0x8  interpret.o [1]
-  .rodata             const    0x00007e60     0x8  interpret.o [1]
-  .rodata             const    0x00007e68     0x8  main.o [1]
-  .rodata             const    0x00007e70     0x8  main.o [1]
-  .rodata             const    0x00007e78     0x8  tasks.o [1]
-  .rodata             const    0x00007e80     0x4  usb_serial_structs.o [1]
-  SHT$$PREINIT_ARRAY           0x00007e84     0x0  <Block>
-  SHT$$INIT_ARRAY              0x00007e84     0x4  <Block>
-    .init_array       const    0x00007e84     0x4  interpret.o [1]
-  .text               ro code  0x00007e88     0x0  cstart_call_dtors.o [7]
-  .rodata             const    0x00007e88     0x0  zero_init3.o [7]
-  .rodata             const    0x00007e88     0x0  copy_init3.o [7]
-  Initializer bytes   ro data  0x00007e88    0xd0  <for P2 s0>
-                             - 0x00007f58  0x7cec
+"P1":                                      0x8064
+  .text               ro code  0x0000026c  0x1476  interpret.o [1]
+  .text               ro code  0x000016e2    0x50  cxxabi.o [4]
+  .text               ro code  0x00001732     0x6  interpret.o [1]
+  .text               ro code  0x00001738   0x3ac  stepper.o [1]
+  .text               ro code  0x00001ae4    0x10  interpret.o [1]
+  .text               ro code  0x00001af4    0x20  interpret.o [1]
+  .text               ro code  0x00001b14     0xc  interpret.o [1]
+  .text               ro code  0x00001b20   0x7c8  tasks.o [1]
+  .text               ro code  0x000022e8    0x4c  xassert.o [3]
+  .text               ro code  0x00002334    0x36  strlen.o [7]
+  .text               ro code  0x0000236a    0x2e  copy_init3.o [7]
+  .text               ro code  0x00002398   0x17e  main.o [1]
+  .text               ro code  0x00002516    0x22  zero_init3.o [7]
+  .text               ro code  0x00002538    0x42  strcmp.o [7]
+  .text               ro code  0x0000257a     0xa  interpret.o [1]
+  .text               ro code  0x00002584    0x30  interpret.o [1]
+  .text               ro code  0x000025b4    0x2a  interpret.o [1]
+  .text               ro code  0x000025de     0xc  interpret.o [1]
+  .text               ro code  0x000025ea     0x2  interpret.o [1]
+  .text               ro code  0x000025ec    0x10  interpret.o [1]
+  .text               ro code  0x000025fc    0x24  sscanf.o [3]
+  .text               ro code  0x00002620    0x58  parseTreeEntry.o [1]
+  .text               ro code  0x00002678     0x4  parseTreeEntry.o [1]
+  .text               ro code  0x0000267c     0x4  parseTreeEntry.o [1]
+  .text               ro code  0x00002680     0x4  parseTreeEntry.o [1]
+  .text               ro code  0x00002684     0x4  parseTreeEntry.o [1]
+  .text               ro code  0x00002688     0x2  interpret.o [1]
+  .text               ro code  0x0000268a    0x54  symbolTableEntry.o [1]
+  .text               ro code  0x000026de     0x4  symbolTableEntry.o [1]
+  .text               ro code  0x000026e2     0x4  symbolTableEntry.o [1]
+  .text               ro code  0x000026e6     0x4  symbolTableEntry.o [1]
+  .text               ro code  0x000026ea     0x2  interpret.o [1]
+  .text               ro code  0x000026ec     0xc  interpret.o [1]
+  .text               ro code  0x000026f8   0x108  flashio.o [1]
+  .text               ro code  0x00002800     0xe  interpret.o [1]
+  .text               ro code  0x0000280e    0x1e  xsscin.o [3]
+  .text               ro code  0x0000282c   0x274  io.o [1]
+  .text               ro code  0x00002aa0    0x1e  interpret.o [1]
+  .text               ro code  0x00002abe     0xc  interpret.o [1]
+  .text               ro code  0x00002aca     0x4  parseTreeEntry.o [1]
+  .text               ro code  0x00002ace    0x16  interpret.o [1]
+  .text               ro code  0x00002ae4    0x16  interpret.o [1]
+  .text               ro code  0x00002afa    0x34  interpret.o [1]
+  .text               ro code  0x00002b2e     0x6  interpret.o [1]
+  .text               ro code  0x00002b34     0x4  symbolTableEntry.o [1]
+  .text               ro code  0x00002b38     0x6  interpret.o [1]
+  .text               ro code  0x00002b3e     0xa  interpret.o [1]
+  .text               ro code  0x00002b48    0x3c  interpret.o [1]
+  .text               ro code  0x00002b84    0x26  interpret.o [1]
+  .text               ro code  0x00002baa     0x6  interpret.o [1]
+  .text               ro code  0x00002bb0     0x4  symbolTableEntry.o [1]
+  .text               ro code  0x00002bb4    0x14  interpret.o [1]
+  .text               ro code  0x00002bc8    0x1a  interpret.o [1]
+  .text               ro code  0x00002be2    0x14  interpret.o [1]
+  .text               ro code  0x00002bf6    0x18  interpret.o [1]
+  .text               ro code  0x00002c0e    0x18  interpret.o [1]
+  .text               ro code  0x00002c26     0x6  interpret.o [1]
+  .text               ro code  0x00002c2c    0x34  sprintf.o [3]
+  .text               ro code  0x00002c60     0x6  interpret.o [1]
+  .text               ro code  0x00002c66     0xa  interpret.o [1]
+  .text               ro code  0x00002c70     0xa  interpret.o [1]
+  .text               ro code  0x00002c7a    0x16  interpret.o [1]
+  .text               ro code  0x00002c90     0xe  interpret.o [1]
+  .text               ro code  0x00002c9e    0x28  interpret.o [1]
+  .text               ro code  0x00002cc6    0x16  interpret.o [1]
+  .text               ro code  0x00002cdc     0x4  symbolTableEntry.o [1]
+  .text               ro code  0x00002ce0    0x14  interpret.o [1]
+  .text               ro code  0x00002cf4     0x4  parseTreeEntry.o [1]
+  .text               ro code  0x00002cf8     0x4  parseTreeEntry.o [1]
+  .text               ro code  0x00002cfc    0x1c  interpret.o [1]
+  .text               ro code  0x00002d18     0x6  interpret.o [1]
+  .text               ro code  0x00002d1e     0xa  xsprout.o [3]
+  .text               ro code  0x00002d28    0x98  cppinit.o [3]
+  .text               ro code  0x00002dc0   0x304  accel.o [1]
+  .text               ro code  0x000030c4    0x30  stepper.o [1]
+  .text               ro code  0x000030f4     0x6  stepper.o [1]
+  .text               ro code  0x000030fa    0x22  stepper.o [1]
+  .text               ro code  0x0000311c    0x26  stepper.o [1]
+  .rodata             const    0x00003142     0x2  heap_2.o [1]
+  .text               ro code  0x00003144    0x28  stepper.o [1]
+  .text               ro code  0x0000316c    0x26  stepper.o [1]
+  .text               ro code  0x00003192     0x2  interpret.o [1]
+  .text               ro code  0x00003194    0x18  stepper.o [1]
+  .text               ro code  0x000031ac     0x6  stepper.o [1]
+  .text               ro code  0x000031b4    0x3c  stepper.o [1]
+  .text               ro code  0x000031f0    0x32  stepper.o [1]
+  .text               ro code  0x00003222    0x28  stepper.o [1]
+  .text               ro code  0x0000324c    0x1c  stepper.o [1]
+  .text               ro code  0x00003268    0x32  stepper.o [1]
+  .text               ro code  0x0000329a    0x16  stepper.o [1]
+  .text               ro code  0x000032b0    0xe8  stepper.o [1]
+  .text               ro code  0x00003398    0x32  stepper.o [1]
+  .text               ro code  0x000033ca    0x16  stepper.o [1]
+  .text               ro code  0x000033e0     0x6  stepper.o [1]
+  .text               ro code  0x000033e6    0x18  stepper.o [1]
+  .text               ro code  0x000033fe    0x12  stepper.o [1]
+  .text               ro code  0x00003410    0x14  stepper.o [1]
+  .text               ro code  0x00003424    0x66  timer.o [5]
+  .text               ro code  0x0000348a    0x10  stepper.o [1]
+  .text               ro code  0x0000349c    0x28  stepper.o [1]
+  .text               ro code  0x000034c4   0x158  port.o [1]
+  .text               ro code  0x0000361c    0xa4  list.o [1]
+  CODE                ro code  0x000036c0    0xa0  portasm.o [1]
+  .text               ro code  0x00003760    0x62  memcmp.o [7]
+  .text               ro code  0x000037c4   0x14c  heap_2.o [1]
+  .text               ro code  0x00003910    0x16  tasks.o [1]
+  .text               ro code  0x00003928    0xa0  xreportassert.o [3]
+  .text               ro code  0x000039c8     0x6  abort.o [3]
+  .text               ro code  0x000039ce   0x24c  usbbuffer.o [9]
+  .text               ro code  0x00003c1c     0xc  gpio.o [5]
+  .text               ro code  0x00003c28    0x84  sysctl.o [5]
+  .text               ro code  0x00003cac   0x214  interrupt.o [5]
+  .text               ro code  0x00003ec0    0x2c  strstr.o [3]
+  .text               ro code  0x00003eec   0x504  xscanfsmall.o [3]
+  .text               ro code  0x000043f0     0x4  parseTreeEntry.o [1]
+  .text               ro code  0x000043f4    0x30  I32ToDbl.o [6]
+  .text               ro code  0x00004424   0x1a2  DblMul.o [6]
+  .text               ro code  0x000045c8   0x246  DblDiv.o [6]
+  .text               ro code  0x00004810   0x180  DblSub.o [6]
+  .text               ro code  0x00004990    0x4c  DblToI32.o [6]
+  .text               ro code  0x000049dc    0x1c  interpret.o [1]
+  .text               ro code  0x000049f8    0x1c  interpret.o [1]
+  .text               ro code  0x00004a14    0x2a  interpret.o [1]
+  .text               ro code  0x00004a3e    0x10  interpret.o [1]
+  .text               ro code  0x00004a4e    0x26  interpret.o [1]
+  .text               ro code  0x00004a74     0xc  interpret.o [1]
+  .text               ro code  0x00004a80   0x11a  xprintftiny.o [3]
+  .text               ro code  0x00004b9a    0x16  interpret.o [1]
+  .text               ro code  0x00004bb0    0x76  ABImemcpy.o [7]
+  .text               ro code  0x00004c26     0x6  accel.o [1]
+  .text               ro code  0x00004c2c     0x6  accel.o [1]
+  .text               ro code  0x00004c32    0x18  stepper.o [1]
+  .text               ro code  0x00004c4c    0x78  stepper.o [1]
+  .text               ro code  0x00004cc4    0x90  DblToFlt.o [6]
+  .text               ro code  0x00004d54    0x50  expf.o [6]
+  .text               ro code  0x00004da4    0x18  stepper.o [1]
+  .text               ro code  0x00004dbc    0x1a  stepper.o [1]
+  .text               ro code  0x00004dd8    0x4e  FltToDbl.o [6]
+  .text               ro code  0x00004e28    0xe8  DblAdd.o [6]
+  .text               ro code  0x00004f10    0x2c  stepper.o [1]
+  .text               ro code  0x00004f3c     0x6  stepper.o [1]
+  .text               ro code  0x00004f44    0x66  ABImemset.o [7]
+  .text               ro code  0x00004faa    0x28  putchar.o [3]
+  .text               ro code  0x00004fd4    0x14  exit.o [8]
+  .text               ro code  0x00004fe8   0x152  usbringbuf.o [9]
+  .text               ro code  0x0000513c    0x10  cpu.o [5]
+  .text               ro code  0x0000514c    0x16  strchr.o [7]
+  .text               ro code  0x00005162    0x86  xstol.o [3]
+  .text               ro code  0x000051e8   0x174  xstoul.o [3]
+  .text               ro code  0x0000535c     0xc  interpret.o [1]
+  .text               ro code  0x00005368     0xe  interpret.o [1]
+  .text               ro code  0x00005376     0x6  interpret.o [1]
+  .text               ro code  0x0000537c   0x21c  xfexp.o [6]
+  .text               ro code  0x00005598    0x10  write.o [8]
+  .text               ro code  0x000055a8    0x6c  iarttio.o [8]
+  .text               ro code  0x00005614     0xc  errno.o [3]
+  .text               ro code  0x00005620    0x58  memchr.o [7]
+  .text               ro code  0x00005678    0xc8  xfdscale.o [6]
+  .text               ro code  0x00005740    0x1e  dwrite.o [8]
+  .text               ro code  0x00005760     0x8  XShttio.o [3]
+  .text               ro code  0x00005768     0x2  xtls.o [3]
+  .text               ro code  0x0000576a    0x26  xfdnorm.o [6]
+  .text               ro code  0x00005790    0x20  iarwstd.o [8]
+  .text               ro code  0x000057b0    0x22  iarwrite.o [8]
+  .text               ro code  0x000057d4   0x96c  usbdenum.o [9]
+  .text               ro code  0x00006140   0x3f6  usb.o [5]
+  .text               ro code  0x00006538   0x478  usbdma.o [9]
+  .text               ro code  0x000069b0    0x6c  usbtick.o [9]
+  .text               ro code  0x00006a1c   0x150  usbdcdesc.o [9]
+  .text               ro code  0x00006b6c   0x228  usbdconfig.o [9]
+  .text               ro code  0x00006d94   0x11c  udma.o [5]
+  .text               ro code  0x00006eb0    0x54  usbdesc.o [9]
+  .text               ro code  0x00006f04   0x750  usbdcdc.o [9]
+  .text               ro code  0x00007654   0x56c  usb_dev_serial.o [1]
+  .text               ro code  0x00007bc0    0x1c  usbmode.o [9]
+  .rodata             const    0x00007bdc    0x6c  usbdcdc.o [9]
+  .text               ro code  0x00007c48    0x54  interpret.o [1]
+  .text               ro code  0x00007c9c     0xe  interpret.o [1]
+  .text               ro code  0x00007caa     0x2  interpret.o [1]
+  .text               ro code  0x00007cac    0x16  interpret.o [1]
+  .text               ro code  0x00007cc2     0x2  interpret.o [1]
+  .text               ro code  0x00007cc4     0x2  interpret.o [1]
+  .text               ro code  0x00007cc6     0x2  interpret.o [1]
+  .rodata             const    0x00007cc8    0x48  interpret.o [1]
+  .rodata             const    0x00007d10    0x38  usb_serial_structs.o [1]
+  .rodata             const    0x00007d48    0x30  interpret.o [1]
+  .rodata             const    0x00007d78    0x2c  interpret.o [1]
+  .rodata             const    0x00007da4    0x2c  interpret.o [1]
+  .rodata             const    0x00007dd0    0x2c  usb_serial_structs.o [1]
+  .rodata             const    0x00007dfc    0x28  main.o [1]
+  .rodata             const    0x00007e24    0x28  stepper.o [1]
+  .text               ro code  0x00007e4c    0x28  data_init3.o [7]
+  .rodata             const    0x00007e74    0x24  usb_serial_structs.o [1]
+  .rodata             const    0x00007e98    0x24  usb_serial_structs.o [1]
+  .rodata             const    0x00007ebc    0x24  usb_serial_structs.o [1]
+  .rodata             const    0x00007ee0    0x24  usb_serial_structs.o [1]
+  .iar.init_table     const    0x00007f04    0x28  - Linker created -
+  .rodata             const    0x00007f2c    0x20  interpret.o [1]
+  .rodata             const    0x00007f4c    0x20  interpret.o [1]
+  .text               ro code  0x00007f6c    0x20  cmain_call_ctors.o [7]
+  .text               ro code  0x00007f8c    0x1e  startup_ewarm.o [1]
+  .text               ro code  0x00007faa     0xc  cstartup_M.o [7]
+  .text               ro code  0x00007fb8    0x1a  fpinit_M.o [6]
+  .text               ro code  0x00007fd4    0x16  cmain.o [7]
+  .text               ro code  0x00007fea     0x4  low_level_init.o [3]
+  .text               ro code  0x00007fee     0x4  exit.o [3]
+  .text               ro code  0x00007ff4     0xe  cexit.o [7]
+  .rodata             const    0x00008004    0x18  stepper.o [1]
+  .rodata             const    0x0000801c    0x18  usb_serial_structs.o [1]
+  .text               ro code  0x00008034    0x18  usbdhandler.o [9]
+  .rodata             const    0x0000804c    0x14  tasks.o [1]
+  .rodata             const    0x00008060    0x14  usb_serial_structs.o [1]
+  .rodata             const    0x00008074    0x10  interpret.o [1]
+  .rodata             const    0x00008084    0x10  interpret.o [1]
+  .rodata             const    0x00008094    0x10  usb_dev_serial.o [1]
+  .rodata             const    0x000080a4     0xc  interpret.o [1]
+  .rodata             const    0x000080b0     0xc  interpret.o [1]
+  .rodata             const    0x000080bc     0xc  interpret.o [1]
+  .rodata             const    0x000080c8     0xc  interpret.o [1]
+  .rodata             const    0x000080d4     0xc  interpret.o [1]
+  .rodata             const    0x000080e0     0xc  interpret.o [1]
+  .rodata             const    0x000080ec     0xc  interpret.o [1]
+  .rodata             const    0x000080f8     0xc  interpret.o [1]
+  .rodata             const    0x00008104     0xc  interpret.o [1]
+  .rodata             const    0x00008110     0xc  interpret.o [1]
+  .rodata             const    0x0000811c     0xc  main.o [1]
+  .rodata             const    0x00008128     0xc  usb_dev_serial.o [1]
+  .rodata             const    0x00008134     0x8  interpret.o [1]
+  .rodata             const    0x0000813c     0x8  interpret.o [1]
+  .rodata             const    0x00008144     0x8  interpret.o [1]
+  .rodata             const    0x0000814c     0x8  interpret.o [1]
+  .rodata             const    0x00008154     0x8  interpret.o [1]
+  .rodata             const    0x0000815c     0x8  interpret.o [1]
+  .rodata             const    0x00008164     0x8  interpret.o [1]
+  .rodata             const    0x0000816c     0x8  interpret.o [1]
+  .rodata             const    0x00008174     0x8  interpret.o [1]
+  .rodata             const    0x0000817c     0x8  interpret.o [1]
+  .rodata             const    0x00008184     0x8  interpret.o [1]
+  .rodata             const    0x0000818c     0x8  interpret.o [1]
+  .rodata             const    0x00008194     0x8  interpret.o [1]
+  .rodata             const    0x0000819c     0x8  interpret.o [1]
+  .rodata             const    0x000081a4     0x8  interpret.o [1]
+  .rodata             const    0x000081ac     0x8  interpret.o [1]
+  .rodata             const    0x000081b4     0x8  interpret.o [1]
+  .rodata             const    0x000081bc     0x8  interpret.o [1]
+  .rodata             const    0x000081c4     0x8  interpret.o [1]
+  .rodata             const    0x000081cc     0x8  interpret.o [1]
+  .rodata             const    0x000081d4     0x8  interpret.o [1]
+  .rodata             const    0x000081dc     0x8  main.o [1]
+  .rodata             const    0x000081e4     0x8  main.o [1]
+  .rodata             const    0x000081ec     0x8  tasks.o [1]
+  .rodata             const    0x000081f4     0x4  usb_serial_structs.o [1]
+  SHT$$PREINIT_ARRAY           0x000081f8     0x0  <Block>
+  SHT$$INIT_ARRAY              0x000081f8     0x4  <Block>
+    .init_array       const    0x000081f8     0x4  interpret.o [1]
+  .text               ro code  0x000081fc     0x0  cstart_call_dtors.o [7]
+  .rodata             const    0x000081fc     0x0  zero_init3.o [7]
+  .rodata             const    0x000081fc     0x0  copy_init3.o [7]
+  Initializer bytes   ro data  0x000081fc    0xd4  <for P2 s0>
+                             - 0x000082d0  0x8064
 
-"P2", part 1 of 3:                           0xd0
-  P2 s0                        0x20000000    0xd0  <Init block>
+"P2", part 1 of 3:                           0xd4
+  P2 s0                        0x20000000    0xd4  <Init block>
     .data             inited   0x20000000    0x60  usb_serial_structs.o [1]
     .data             inited   0x20000060    0x20  usbdcdc.o [9]
     .data             inited   0x20000080    0x10  usbdcdc.o [9]
@@ -349,50 +340,47 @@ __dlib_dynamic_initialization = normal
     .data             inited   0x200000c4     0x4  interpret.o [1]
     .data             inited   0x200000c8     0x4  port.o [1]
     .data             inited   0x200000cc     0x4  tasks.o [1]
-                             - 0x200000d0    0xd0
+    .data             inited   0x200000d0     0x1  interpret.o [1]
+                             - 0x200000d4    0xd4
 
-"P2", part 2 of 3:                         0x48f0
-  .bss                zero     0x200000d0  0x2ee0  heap_2.o [1]
-  .bss                zero     0x20002fb0  0x1338  interpret.o [1]
-  .bss                zero     0x200042e8   0x110  usbdma.o [9]
-  .bss                zero     0x200043f8   0x108  interpret.o [1]
-  .bss                zero     0x20004500   0x100  usb_serial_structs.o [1]
-  .bss                zero     0x20004600   0x100  usb_serial_structs.o [1]
-  .bss                zero     0x20004700    0x64  tasks.o [1]
-  .bss                zero     0x20004764    0x50  usbdenum.o [9]
-  .bss                zero     0x200047b4    0x40  usbdenum.o [9]
-  .bss                zero     0x200047f4    0x38  usbtick.o [9]
-  .bss                zero     0x2000482c    0x20  interpret.o [1]
-  .bss                zero     0x2000484c    0x20  interpret.o [1]
-  .bss                zero     0x2000486c    0x20  interpret.o [1]
-  .bss                zero     0x2000488c    0x18  usb_serial_structs.o [1]
-  .bss                zero     0x200048a4    0x18  usb_serial_structs.o [1]
-  .bss                zero     0x200048bc    0x14  tasks.o [1]
-  .bss                zero     0x200048d0    0x14  tasks.o [1]
-  .bss                zero     0x200048e4    0x14  tasks.o [1]
-  .bss                zero     0x200048f8    0x14  tasks.o [1]
-  .bss                zero     0x2000490c    0x14  tasks.o [1]
-  .bss                zero     0x20004920     0x8  heap_2.o [1]
-  .bss                zero     0x20004928     0x8  heap_2.o [1]
-  .bss                zero     0x20004930     0x4  heap_2.o [1]
-  .bss                zero     0x20004934     0x4  interpret.o [1]
-  .bss                zero     0x20004938     0x4  interpret.o [1]
-  .bss                zero     0x2000493c     0x4  interpret.o [1]
-  .bss                zero     0x20004940     0x4  interpret.o [1]
-  .bss                zero     0x20004944     0x4  interpret.o [1]
+"P2", part 2 of 3:                         0x4904
+  .bss                zero     0x200000d4  0x2ee0  heap_2.o [1]
+  .bss                zero     0x20002fb4  0x1338  interpret.o [1]
+  .bss                zero     0x200042ec   0x110  usbdma.o [9]
+  .bss                zero     0x200043fc   0x108  interpret.o [1]
+  .bss                zero     0x20004504   0x100  usb_serial_structs.o [1]
+  .bss                zero     0x20004604   0x100  usb_serial_structs.o [1]
+  .bss                zero     0x20004704    0x64  tasks.o [1]
+  .bss                zero     0x20004768    0x50  usbdenum.o [9]
+  .bss                zero     0x200047b8    0x40  usbdenum.o [9]
+  .bss                zero     0x200047f8    0x38  usbtick.o [9]
+  .bss                zero     0x20004830    0x20  interpret.o [1]
+  .bss                zero     0x20004850    0x20  interpret.o [1]
+  .bss                zero     0x20004870    0x20  interpret.o [1]
+  .bss                zero     0x20004890    0x18  usb_serial_structs.o [1]
+  .bss                zero     0x200048a8    0x18  usb_serial_structs.o [1]
+  .bss                zero     0x200048c0    0x14  tasks.o [1]
+  .bss                zero     0x200048d4    0x14  tasks.o [1]
+  .bss                zero     0x200048e8    0x14  tasks.o [1]
+  .bss                zero     0x200048fc    0x14  tasks.o [1]
+  .bss                zero     0x20004910    0x14  tasks.o [1]
+  .bss                zero     0x20004924    0x10  interpret.o [1]
+  .bss                zero     0x20004934     0x8  heap_2.o [1]
+  .bss                zero     0x2000493c     0x8  heap_2.o [1]
+  .bss                zero     0x20004944     0x4  heap_2.o [1]
   .bss                zero     0x20004948     0x4  interpret.o [1]
   .bss                zero     0x2000494c     0x4  interpret.o [1]
   .bss                zero     0x20004950     0x4  interpret.o [1]
   .bss                zero     0x20004954     0x4  interpret.o [1]
   .bss                zero     0x20004958     0x4  interpret.o [1]
-  .bss                zero     0x2000495c     0x4  port.o [1]
-  .bss                zero     0x20004960     0x4  stepper.o [1]
-  .bss                zero     0x20004964     0x4  tasks.o [1]
-  .bss                zero     0x20004968     0x4  tasks.o [1]
-  .bss                zero     0x2000496c     0x4  tasks.o [1]
-  .bss                zero     0x20004970     0x4  tasks.o [1]
-  .bss                zero     0x20004974     0x4  tasks.o [1]
-  .bss                zero     0x20004978     0x4  tasks.o [1]
+  .bss                zero     0x2000495c     0x4  interpret.o [1]
+  .bss                zero     0x20004960     0x4  interpret.o [1]
+  .bss                zero     0x20004964     0x4  interpret.o [1]
+  .bss                zero     0x20004968     0x4  interpret.o [1]
+  .bss                zero     0x2000496c     0x4  interpret.o [1]
+  .bss                zero     0x20004970     0x4  interpret.o [1]
+  .bss                zero     0x20004974     0x4  port.o [1]
+  .bss                zero     0x20004978     0x4  stepper.o [1]
   .bss                zero     0x2000497c     0x4  tasks.o [1]
   .bss                zero     0x20004980     0x4  tasks.o [1]
   .bss                zero     0x20004984     0x4  tasks.o [1]
@@ -400,28 +388,34 @@ __dlib_dynamic_initialization = normal
   .bss                zero     0x2000498c     0x4  tasks.o [1]
   .bss                zero     0x20004990     0x4  tasks.o [1]
   .bss                zero     0x20004994     0x4  tasks.o [1]
-  .bss                zero     0x20004998     0x4  usb_dev_serial.o [1]
-  .bss                zero     0x2000499c     0x4  usb_dev_serial.o [1]
-  .bss                zero     0x200049a0     0x4  usb_dev_serial.o [1]
-  .bss                zero     0x200049a4     0x4  usb_dev_serial.o [1]
-  .bss                zero     0x200049a8     0x4  usbtick.o [9]
-  .bss                zero     0x200049ac     0x4  cppinit.o [3]
-  .bss                zero     0x200049b0     0x4  cppinit.o [3]
-  __DLIB_PERTHREAD    zero     0x200049b4     0x4  errno.o [3]
-  .bss                zero     0x200049b8     0x1  interpret.o [1]
-  .bss                zero     0x200049b9     0x1  interpret.o [1]
-  .bss                zero     0x200049ba     0x1  interpret.o [1]
-  .bss                zero     0x200049bb     0x1  port.o [1]
-  .bss                zero     0x200049bc     0x1  usb_dev_serial.o [1]
-  .bss                zero     0x200049bd     0x1  usb_dev_serial.o [1]
-                             - 0x200049be  0x48ee
+  .bss                zero     0x20004998     0x4  tasks.o [1]
+  .bss                zero     0x2000499c     0x4  tasks.o [1]
+  .bss                zero     0x200049a0     0x4  tasks.o [1]
+  .bss                zero     0x200049a4     0x4  tasks.o [1]
+  .bss                zero     0x200049a8     0x4  tasks.o [1]
+  .bss                zero     0x200049ac     0x4  tasks.o [1]
+  .bss                zero     0x200049b0     0x4  usb_dev_serial.o [1]
+  .bss                zero     0x200049b4     0x4  usb_dev_serial.o [1]
+  .bss                zero     0x200049b8     0x4  usb_dev_serial.o [1]
+  .bss                zero     0x200049bc     0x4  usb_dev_serial.o [1]
+  .bss                zero     0x200049c0     0x4  usbtick.o [9]
+  .bss                zero     0x200049c4     0x4  cppinit.o [3]
+  .bss                zero     0x200049c8     0x4  cppinit.o [3]
+  __DLIB_PERTHREAD    zero     0x200049cc     0x4  errno.o [3]
+  .bss                zero     0x200049d0     0x1  interpret.o [1]
+  .bss                zero     0x200049d1     0x1  interpret.o [1]
+  .bss                zero     0x200049d2     0x1  interpret.o [1]
+  .bss                zero     0x200049d3     0x1  port.o [1]
+  .bss                zero     0x200049d4     0x1  usb_dev_serial.o [1]
+  .bss                zero     0x200049d5     0x1  usb_dev_serial.o [1]
+                             - 0x200049d6  0x4902
 
-"P2", part 3 of 3:                          0x5b0
-  .noinit             uninit   0x200049c0   0x400  startup_ewarm.o [1]
-  .iar.dynexit                 0x20004dc0   0x1b0  <Block>
-    .iar.dynexit      uninit   0x20004dc0     0xc  cppinit.o [3]
-    .iar.dynexit      uninit   0x20004dcc   0x1a4  <Block tail>
-                             - 0x20004f70   0x5b0
+"P2", part 3 of 3:                          0x5bc
+  .noinit             uninit   0x200049d8   0x400  startup_ewarm.o [1]
+  .iar.dynexit                 0x20004dd8   0x1bc  <Block>
+    .iar.dynexit      uninit   0x20004dd8     0xc  cppinit.o [3]
+    .iar.dynexit      uninit   0x20004de4   0x1b0  <Block tail>
+                             - 0x20004f94   0x5bc
 
 
 *******************************************************************************
@@ -431,14 +425,14 @@ __dlib_dynamic_initialization = normal
           Address     Size
           -------     ----
 Zero (__iar_zero_init3)
-    1 destination range, total size 0x48ee:
-          0x200000d0  0x48ee
+    1 destination range, total size 0x4902:
+          0x200000d4  0x4902
 
 Copy (__iar_copy_init3)
-    1 source range, total size 0xd0:
-          0x00007e88    0xd0
-    1 destination range, total size 0xd0:
-          0x20000000    0xd0
+    1 source range, total size 0xd4 (101% of destination):
+          0x000081fc    0xd4
+    1 destination range, total size 0xd1:
+          0x20000000    0xd1
 
 Extra (__iar_cstart_call_ctors)
 
@@ -450,11 +444,11 @@ Extra (__iar_cstart_call_ctors)
   Call Graph Root Category  Max Use  Total Use
   ------------------------  -------  ---------
   Program entry                 328        328
-  Uncalled function             384      3 600
+  Uncalled function             392      3 608
 
 
 Program entry
-  "__iar_program_start": 0x00007c47
+  "__iar_program_start": 0x00007fab
 
   Maximum call chain                            *?* 328 bytes
     (** call graph contains indirect calls (example: "main")
@@ -482,7 +476,7 @@ Program entry
     "__iar_lookup_ttioh"                              0
 
 Uncalled function
-  "vIdleTask" in main.o [1]: 0x0000220d
+  "vIdleTask" in main.o [1]: 0x00002481
 
   Maximum call chain                            *?* 224 bytes
     (** call graph contains functions with no stack usage info (example: "ulPortSetInterruptMask") **)
@@ -503,15 +497,15 @@ Uncalled function
     "__iar_lookup_ttioh"                              0
 
 Uncalled function
-  "vInterpretTask" in main.o [1]: 0x00002285
+  "vInterpretTask" in main.o [1]: 0x000024f9
 
-  Maximum call chain                            *?* 384 bytes
+  Maximum call chain                            *?* 392 bytes
     (** call graph contains indirect calls (example: "ScheduleNextTransmission" in usbbuffer.o [9])
                             functions with no stack usage info (example: "ulPortSetInterruptMask") **)
 
     "vInterpretTask" in main.o [1]                    0
-    "interpretRun"                                    0
-    "interpret::run()"                               72
+    "interpretState"                                  0
+    "interpret::run(int)"                            80
     "stepper::moveRelativeDegreex10k(int)"           16
     "stepper::moveRelative(int)"                     16
     "stepper::moveAbsolute(int)"                     40
@@ -531,7 +525,7 @@ Uncalled function
     "__iar_lookup_ttioh"                              0
 
 Uncalled function
-  "xPortSysTickHandler": 0x000032fb
+  "xPortSysTickHandler": 0x000035c7
 
   Maximum call chain                            *?* 184 bytes
     (** call graph contains functions with no stack usage info (example: "ulPortSetInterruptMask") **)
@@ -550,14 +544,14 @@ Uncalled function
     "__iar_lookup_ttioh"                              0
 
 Uncalled function
-  "??FaultISR_0" in startup_ewarm.o [1]: 0x00007c43
+  "??FaultISR_0" in startup_ewarm.o [1]: 0x00007fa7
 
   Maximum call chain                                 0 bytes
 
     "??FaultISR_0" in startup_ewarm.o [1]            0
 
 Uncalled function
-  "??IntDefaultHandler_0" in startup_ewarm.o [1]: 0x00007c45
+  "??IntDefaultHandler_0" in startup_ewarm.o [1]: 0x00007fa9
 
   Maximum call chain                                 0 bytes
 
@@ -565,14 +559,14 @@ Uncalled function
                                                      0
 
 Uncalled function
-  "??NmiSR_0" in startup_ewarm.o [1]: 0x00007c41
+  "??NmiSR_0" in startup_ewarm.o [1]: 0x00007fa5
 
   Maximum call chain                                 0 bytes
 
     "??NmiSR_0" in startup_ewarm.o [1]               0
 
 Uncalled function
-  "ResetISR": 0x00007c29
+  "ResetISR": 0x00007f8d
 
   Maximum call chain                            *?* 336 bytes
     (** call graph contains indirect calls (example: "main")
@@ -601,7 +595,7 @@ Uncalled function
     "__iar_lookup_ttioh"                              0
 
 Uncalled function
-  "stepperISR": 0x0000151d
+  "stepperISR": 0x00001739
 
   Maximum call chain                            *?* 192 bytes
     (** call graph contains indirect calls (example: "stepperISR") **)
@@ -622,7 +616,7 @@ Uncalled function
     "__iar_lookup_ttioh"                              0
 
 Uncalled function
-  "prvIdleTask" in tasks.o [1]: 0x00001e91
+  "prvIdleTask" in tasks.o [1]: 0x000020ad
 
   Maximum call chain                            *?* 248 bytes
     (** call graph contains functions with no stack usage info (example: "ulPortSetInterruptMask") **)
@@ -646,7 +640,7 @@ Uncalled function
     "__iar_lookup_ttioh"                              0
 
 Uncalled function
-  "vTaskSwitchContext": 0x00001dc9
+  "vTaskSwitchContext": 0x00001fe5
 
   Maximum call chain                               160 bytes
 
@@ -663,7 +657,7 @@ Uncalled function
     "__iar_lookup_ttioh"                             0
 
 Uncalled function
-  "ControlHandler": 0x000075c9
+  "ControlHandler": 0x0000792d
 
   Maximum call chain                            *?* 48 bytes
     (** call graph contains indirect calls (example: "ControlHandler") **)
@@ -672,7 +666,7 @@ Uncalled function
     "SetLineCoding" in usb_dev_serial.o [1]         24
 
 Uncalled function
-  "RxHandler": 0x000076af
+  "RxHandler": 0x00007a13
 
   Maximum call chain                            *?* 120 bytes
     (** call graph contains indirect calls (example: "RxHandler") **)
@@ -688,14 +682,14 @@ Uncalled function
     "CPUcpsid"                                        0
 
 Uncalled function
-  "TxHandler": 0x000076a1
+  "TxHandler": 0x00007a05
 
   Maximum call chain                                 4 bytes
 
     "TxHandler"                                      4
 
 Uncalled function
-  "USBUARTIntHandler": 0x000073e3
+  "USBUARTIntHandler": 0x00007747
 
   Maximum call chain                            *?* 344 bytes
     (** call graph contains indirect calls (example: "USBUARTIntHandler") **)
@@ -712,7 +706,7 @@ Uncalled function
     "__iar_dlib_perthread_access"                     0
 
 Uncalled function
-  "USBBufferEventCallback": 0x0000381b
+  "USBBufferEventCallback": 0x00003b8f
 
   Maximum call chain                            *?* 72 bytes
     (** call graph contains indirect calls (example: "USBBufferEventCallback") **)
@@ -726,7 +720,7 @@ Uncalled function
     "CPUcpsid"                                       0
 
 Uncalled function
-  "USB0DeviceIntHandler": 0x00007ced
+  "USB0DeviceIntHandler": 0x00008035
 
   Maximum call chain                            *?* 108 bytes
     (** call graph contains indirect calls (example: "USBDeviceIntHandlerInternal") **)
@@ -738,7 +732,7 @@ Uncalled function
     "USBEndpointDataPut"                             12
 
 Uncalled function
-  "CDCTickHandler" in usbdcdc.o [9]: 0x00007005
+  "CDCTickHandler" in usbdcdc.o [9]: 0x00007369
 
   Maximum call chain                            *?* 32 bytes
     (** call graph contains indirect calls (example: "DeviceConsumedAllData" in usbdcdc.o [9]) **)
@@ -747,7 +741,7 @@ Uncalled function
     "SendBreak" in usbdcdc.o [9]                    16
 
 Uncalled function
-  "HandleConfigChange" in usbdcdc.o [9]: 0x00006e19
+  "HandleConfigChange" in usbdcdc.o [9]: 0x0000717d
 
   Maximum call chain                            *?* 16 bytes
     (** call graph contains indirect calls (example: "HandleConfigChange" in usbdcdc.o [9]) **)
@@ -755,14 +749,14 @@ Uncalled function
     "HandleConfigChange" in usbdcdc.o [9]           16
 
 Uncalled function
-  "HandleDevice" in usbdcdc.o [9]: 0x00006e93
+  "HandleDevice" in usbdcdc.o [9]: 0x000071f7
 
   Maximum call chain                                 8 bytes
 
     "HandleDevice" in usbdcdc.o [9]                  8
 
 Uncalled function
-  "HandleDisconnect" in usbdcdc.o [9]: 0x00006fbf
+  "HandleDisconnect" in usbdcdc.o [9]: 0x00007323
 
   Maximum call chain                            *?* 16 bytes
     (** call graph contains indirect calls (example: "HandleDisconnect" in usbdcdc.o [9]) **)
@@ -770,7 +764,7 @@ Uncalled function
     "HandleDisconnect" in usbdcdc.o [9]             16
 
 Uncalled function
-  "HandleEP0Data" in usbdcdc.o [9]: 0x00006e45
+  "HandleEP0Data" in usbdcdc.o [9]: 0x000071a9
 
   Maximum call chain                            *?* 32 bytes
     (** call graph contains indirect calls (example: "DeviceConsumedAllData" in usbdcdc.o [9]) **)
@@ -779,7 +773,7 @@ Uncalled function
     "SendLineCodingChange" in usbdcdc.o [9]         16
 
 Uncalled function
-  "HandleEndpoints" in usbdcdc.o [9]: 0x00006dc7
+  "HandleEndpoints" in usbdcdc.o [9]: 0x0000712b
 
   Maximum call chain                            *?* 76 bytes
     (** call graph contains indirect calls (example: "ProcessDataFromHost") **)
@@ -790,7 +784,7 @@ Uncalled function
     "USBEndpointDataPut"                            12
 
 Uncalled function
-  "HandleRequests" in usbdcdc.o [9]: 0x00006ef5
+  "HandleRequests" in usbdcdc.o [9]: 0x00007259
 
   Maximum call chain                            *?* 52 bytes
     (** call graph contains indirect calls (example: "HandleRequests" in usbdcdc.o [9]) **)
@@ -801,7 +795,7 @@ Uncalled function
     "USBEndpointDataPut"                            12
 
 Uncalled function
-  "HandleResume" in usbdcdc.o [9]: 0x00006fed
+  "HandleResume" in usbdcdc.o [9]: 0x00007351
 
   Maximum call chain                             *?* 8 bytes
     (** call graph contains indirect calls (example: "HandleResume" in usbdcdc.o [9]) **)
@@ -809,7 +803,7 @@ Uncalled function
     "HandleResume" in usbdcdc.o [9]                  8
 
 Uncalled function
-  "HandleSuspend" in usbdcdc.o [9]: 0x00006fe1
+  "HandleSuspend" in usbdcdc.o [9]: 0x00007345
 
   Maximum call chain                             *?* 8 bytes
     (** call graph contains indirect calls (example: "HandleSuspend" in usbdcdc.o [9]) **)
@@ -817,7 +811,7 @@ Uncalled function
     "HandleSuspend" in usbdcdc.o [9]                 8
 
 Uncalled function
-  "USBDCDCPacketRead": 0x000071c1
+  "USBDCDCPacketRead": 0x00007525
 
   Maximum call chain                                44 bytes
 
@@ -825,7 +819,7 @@ Uncalled function
     "USBEndpointDataGet"                            12
 
 Uncalled function
-  "USBDCDCPacketWrite": 0x00007175
+  "USBDCDCPacketWrite": 0x000074d9
 
   Maximum call chain                                28 bytes
 
@@ -833,7 +827,7 @@ Uncalled function
     "USBEndpointDataPut"                            12
 
 Uncalled function
-  "USBDCDCRxPacketAvailable": 0x0000724f
+  "USBDCDCRxPacketAvailable": 0x000075b3
 
   Maximum call chain                                 8 bytes
 
@@ -841,21 +835,21 @@ Uncalled function
     "USBEndpointStatus"                              0
 
 Uncalled function
-  "USBDCDCTxPacketAvailable": 0x0000723f
+  "USBDCDCTxPacketAvailable": 0x000075a3
 
   Maximum call chain                                 0 bytes
 
     "USBDCDCTxPacketAvailable"                       0
 
 Uncalled function
-  "USBDClearFeature" in usbdenum.o [9]: 0x00005773
+  "USBDClearFeature" in usbdenum.o [9]: 0x00005ad7
 
   Maximum call chain                                16 bytes
 
     "USBDClearFeature" in usbdenum.o [9]            16
 
 Uncalled function
-  "USBDGetConfiguration" in usbdenum.o [9]: 0x00005997
+  "USBDGetConfiguration" in usbdenum.o [9]: 0x00005cfb
 
   Maximum call chain                            *?* 44 bytes
     (** call graph contains indirect calls (example: "USBDEP0StateTx" in usbdenum.o [9]) **)
@@ -865,7 +859,7 @@ Uncalled function
     "USBEndpointDataPut"                            12
 
 Uncalled function
-  "USBDGetDescriptor" in usbdenum.o [9]: 0x00005869
+  "USBDGetDescriptor" in usbdenum.o [9]: 0x00005bcd
 
   Maximum call chain                            *?* 60 bytes
     (** call graph contains indirect calls (example: "USBDEP0StateTx" in usbdenum.o [9]) **)
@@ -875,7 +869,7 @@ Uncalled function
     "USBEndpointDataPut"                            12
 
 Uncalled function
-  "USBDGetInterface" in usbdenum.o [9]: 0x00005a4f
+  "USBDGetInterface" in usbdenum.o [9]: 0x00005db3
 
   Maximum call chain                            *?* 44 bytes
     (** call graph contains indirect calls (example: "USBDEP0StateTx" in usbdenum.o [9]) **)
@@ -885,7 +879,7 @@ Uncalled function
     "USBEndpointDataPut"                            12
 
 Uncalled function
-  "USBDGetStatus" in usbdenum.o [9]: 0x00005723
+  "USBDGetStatus" in usbdenum.o [9]: 0x00005a87
 
   Maximum call chain                            *?* 44 bytes
     (** call graph contains indirect calls (example: "USBDEP0StateTx" in usbdenum.o [9]) **)
@@ -895,14 +889,14 @@ Uncalled function
     "USBEndpointDataPut"                            12
 
 Uncalled function
-  "USBDSetAddress" in usbdenum.o [9]: 0x0000584f
+  "USBDSetAddress" in usbdenum.o [9]: 0x00005bb3
 
   Maximum call chain                                16 bytes
 
     "USBDSetAddress" in usbdenum.o [9]              16
 
 Uncalled function
-  "USBDSetConfiguration" in usbdenum.o [9]: 0x000059c9
+  "USBDSetConfiguration" in usbdenum.o [9]: 0x00005d2d
 
   Maximum call chain                            *?* 240 bytes
     (** call graph contains indirect calls (example: "USBDSetConfiguration" in usbdenum.o [9]) **)
@@ -915,21 +909,21 @@ Uncalled function
     "USBDescGetNum"                                  16
 
 Uncalled function
-  "USBDSetDescriptor" in usbdenum.o [9]: 0x00005991
+  "USBDSetDescriptor" in usbdenum.o [9]: 0x00005cf5
 
   Maximum call chain                                 8 bytes
 
     "USBDSetDescriptor" in usbdenum.o [9]            8
 
 Uncalled function
-  "USBDSetFeature" in usbdenum.o [9]: 0x000057ef
+  "USBDSetFeature" in usbdenum.o [9]: 0x00005b53
 
   Maximum call chain                                16 bytes
 
     "USBDSetFeature" in usbdenum.o [9]              16
 
 Uncalled function
-  "USBDSetInterface" in usbdenum.o [9]: 0x00005a8b
+  "USBDSetInterface" in usbdenum.o [9]: 0x00005def
 
   Maximum call chain                            *?* 192 bytes
     (** call graph contains indirect calls (example: "USBDSetInterface" in usbdenum.o [9]) **)
@@ -942,7 +936,7 @@ Uncalled function
     "USBDescGetNum"                                  16
 
 Uncalled function
-  "USBDSyncFrame" in usbdenum.o [9]: 0x00005b13
+  "USBDSyncFrame" in usbdenum.o [9]: 0x00005e77
 
   Maximum call chain                                 8 bytes
 
@@ -950,35 +944,35 @@ Uncalled function
     "USBDevEndpointDataAck"                          0
 
 Uncalled function
-  "DMAUSBIntHandler" in usbdma.o [9]: 0x00006231
+  "DMAUSBIntHandler" in usbdma.o [9]: 0x00006595
 
   Maximum call chain                                12 bytes
 
     "DMAUSBIntHandler" in usbdma.o [9]              12
 
 Uncalled function
-  "DMAUSBIntStatusClear" in usbdma.o [9]: 0x00006223
+  "DMAUSBIntStatusClear" in usbdma.o [9]: 0x00006587
 
   Maximum call chain                                 0 bytes
 
     "DMAUSBIntStatusClear" in usbdma.o [9]           0
 
 Uncalled function
-  "DMAUSBStatus" in usbdma.o [9]: 0x0000657d
+  "DMAUSBStatus" in usbdma.o [9]: 0x000068e1
 
   Maximum call chain                                 0 bytes
 
     "DMAUSBStatus" in usbdma.o [9]                   0
 
 Uncalled function
-  "uDMAUSBArbSizeSet" in usbdma.o [9]: 0x00006515
+  "uDMAUSBArbSizeSet" in usbdma.o [9]: 0x00006879
 
   Maximum call chain                                 0 bytes
 
     "uDMAUSBArbSizeSet" in usbdma.o [9]              0
 
 Uncalled function
-  "uDMAUSBChannelAllocate" in usbdma.o [9]: 0x000063cb
+  "uDMAUSBChannelAllocate" in usbdma.o [9]: 0x0000672f
 
   Maximum call chain                                32 bytes
 
@@ -986,7 +980,7 @@ Uncalled function
     "USBEndpointDMAChannel"                          8
 
 Uncalled function
-  "uDMAUSBChannelDisable" in usbdma.o [9]: 0x000062b3
+  "uDMAUSBChannelDisable" in usbdma.o [9]: 0x00006617
 
   Maximum call chain                                16 bytes
 
@@ -994,21 +988,21 @@ Uncalled function
     "USBEndpointDMADisable"                          0
 
 Uncalled function
-  "uDMAUSBChannelIntDisable" in usbdma.o [9]: 0x00006307
+  "uDMAUSBChannelIntDisable" in usbdma.o [9]: 0x0000666b
 
   Maximum call chain                                 0 bytes
 
     "uDMAUSBChannelIntDisable" in usbdma.o [9]       0
 
 Uncalled function
-  "uDMAUSBChannelIntEnable" in usbdma.o [9]: 0x00006305
+  "uDMAUSBChannelIntEnable" in usbdma.o [9]: 0x00006669
 
   Maximum call chain                                 0 bytes
 
     "uDMAUSBChannelIntEnable" in usbdma.o [9]        0
 
 Uncalled function
-  "uDMAUSBChannelRelease" in usbdma.o [9]: 0x00006471
+  "uDMAUSBChannelRelease" in usbdma.o [9]: 0x000067d5
 
   Maximum call chain                                24 bytes
 
@@ -1016,14 +1010,14 @@ Uncalled function
     "USBEndpointDMADisable"                          0
 
 Uncalled function
-  "uDMAUSBChannelStatus" in usbdma.o [9]: 0x000061d5
+  "uDMAUSBChannelStatus" in usbdma.o [9]: 0x00006539
 
   Maximum call chain                                 0 bytes
 
     "uDMAUSBChannelStatus" in usbdma.o [9]           0
 
 Uncalled function
-  "uDMAUSBIntStatus" in usbdma.o [9]: 0x000061f9
+  "uDMAUSBIntStatus" in usbdma.o [9]: 0x0000655d
 
   Maximum call chain                                16 bytes
 
@@ -1031,7 +1025,7 @@ Uncalled function
     "uDMAChannelModeGet"                             0
 
 Uncalled function
-  "uDMAUSBTransfer" in usbdma.o [9]: 0x00006309
+  "uDMAUSBTransfer" in usbdma.o [9]: 0x0000666d
 
   Maximum call chain                                60 bytes
 
@@ -1039,7 +1033,7 @@ Uncalled function
     "uDMAChannelTransferSet"                        20
 
 Uncalled function
-  "uDMAUSBUnitSizeSet" in usbdma.o [9]: 0x000064cb
+  "uDMAUSBUnitSizeSet" in usbdma.o [9]: 0x0000682f
 
   Maximum call chain                                 0 bytes
 
@@ -1048,60 +1042,61 @@ Uncalled function
 The following functions appear not to be called and have no stack
 usage information:
 
-  "vPortSVCHandler": 0x00003453
-  "xPortPendSVHandler": 0x000033f5
+  "vPortSVCHandler": 0x0000371f
+  "xPortPendSVHandler": 0x000036c1
 
 The following functions appear to be called, but have no stack
 usage information:
 
-  "ulPortSetInterruptMask": 0x0000343f
-  "vPortClearInterruptMask": 0x0000344d
-  "vPortEnableVFP": 0x00003479
-  "vPortStartFirstTask": 0x0000346b
+  "ulPortSetInterruptMask": 0x0000370b
+  "vPortClearInterruptMask": 0x00003719
+  "vPortEnableVFP": 0x00003745
+  "vPortStartFirstTask": 0x00003737
 
 The following functions perform unknown indirect calls:
 
-  "CDCTickHandler" in usbdcdc.o [9]: 0x00007005
-  "ControlHandler": 0x000075c9
-  "DeviceConsumedAllData" in usbdcdc.o [9]: 0x00006bb9
-  "GetLineCoding" in usb_dev_serial.o [1]: 0x000074f3
-  "HandleConfigChange" in usbdcdc.o [9]: 0x00006e19
-  "HandleDisconnect" in usbdcdc.o [9]: 0x00006fbf
-  "HandleRequests" in usbdcdc.o [9]: 0x00006ef5
-  "HandleResume" in usbdcdc.o [9]: 0x00006fed
-  "HandleRxAvailable" in usbbuffer.o [9]: 0x000036e9
-  "HandleSuspend" in usbdcdc.o [9]: 0x00006fe1
-  "InternalUSBStartOfFrameTick": 0x0000668d
-  "ProcessDataFromHost": 0x00006ccb
-  "ProcessDataToHost": 0x00006d6d
-  "ReadUARTData" in usb_dev_serial.o [1]: 0x0000732b
-  "RxHandler": 0x000076af
-  "ScheduleNextTransmission" in usbbuffer.o [9]: 0x0000365b
-  "SendBreak" in usb_dev_serial.o [1]: 0x00007597
-  "SendBreak" in usbdcdc.o [9]: 0x00006bd1
-  "SendLineCodingChange" in usbdcdc.o [9]: 0x00006c0b
-  "SendLineStateChange" in usbdcdc.o [9]: 0x00006c29
-  "SetLineCoding" in usb_dev_serial.o [1]: 0x00007449
-  "USBBufferEventCallback": 0x0000381b
-  "USBDEP0StateTx" in usbdenum.o [9]: 0x00005b23
-  "USBDEP0StateTxConfig" in usbdenum.o [9]: 0x00005b89
-  "USBDGetDescriptor" in usbdenum.o [9]: 0x00005869
-  "USBDReadAndDispatchRequest" in usbdenum.o [9]: 0x000055c3
-  "USBDSetConfiguration" in usbdenum.o [9]: 0x000059c9
-  "USBDSetInterface" in usbdenum.o [9]: 0x00005a8b
-  "USBDeviceEnumHandler": 0x0000561d
-  "USBDeviceEnumResetHandler": 0x000056e7
-  "USBDeviceIntHandlerInternal": 0x00005cc7
-  "USBDeviceResumeTickHandler": 0x00005579
-  "USBStackModeSet": 0x0000785d
-  "USBUARTIntHandler": 0x000073e3
-  "USBUARTPrimeTransmit" in usb_dev_serial.o [1]: 0x0000738f
-  "io::getADC(unsigned int)": 0x0000261f
-  "io::getTemperature()": 0x0000266b
-  "io::init()": 0x00002493
-  "main": 0x000076f7
-  "stepperISR": 0x0000151d
-  "stepper_init": 0x00001573
+  "CDCTickHandler" in usbdcdc.o [9]: 0x00007369
+  "ControlHandler": 0x0000792d
+  "DeviceConsumedAllData" in usbdcdc.o [9]: 0x00006f1d
+  "GetLineCoding" in usb_dev_serial.o [1]: 0x00007857
+  "HandleConfigChange" in usbdcdc.o [9]: 0x0000717d
+  "HandleDisconnect" in usbdcdc.o [9]: 0x00007323
+  "HandleRequests" in usbdcdc.o [9]: 0x00007259
+  "HandleResume" in usbdcdc.o [9]: 0x00007351
+  "HandleRxAvailable" in usbbuffer.o [9]: 0x00003a5d
+  "HandleSuspend" in usbdcdc.o [9]: 0x00007345
+  "InternalUSBStartOfFrameTick": 0x000069f1
+  "ProcessDataFromHost": 0x0000702f
+  "ProcessDataToHost": 0x000070d1
+  "ReadUARTData" in usb_dev_serial.o [1]: 0x0000768f
+  "RxHandler": 0x00007a13
+  "ScheduleNextTransmission" in usbbuffer.o [9]: 0x000039cf
+  "SendBreak" in usb_dev_serial.o [1]: 0x000078fb
+  "SendBreak" in usbdcdc.o [9]: 0x00006f35
+  "SendLineCodingChange" in usbdcdc.o [9]: 0x00006f6f
+  "SendLineStateChange" in usbdcdc.o [9]: 0x00006f8d
+  "SetLineCoding" in usb_dev_serial.o [1]: 0x000077ad
+  "USBBufferEventCallback": 0x00003b8f
+  "USBDEP0StateTx" in usbdenum.o [9]: 0x00005e87
+  "USBDEP0StateTxConfig" in usbdenum.o [9]: 0x00005eed
+  "USBDGetDescriptor" in usbdenum.o [9]: 0x00005bcd
+  "USBDReadAndDispatchRequest" in usbdenum.o [9]: 0x00005927
+  "USBDSetConfiguration" in usbdenum.o [9]: 0x00005d2d
+  "USBDSetInterface" in usbdenum.o [9]: 0x00005def
+  "USBDeviceEnumHandler": 0x00005981
+  "USBDeviceEnumResetHandler": 0x00005a4b
+  "USBDeviceIntHandlerInternal": 0x0000602b
+  "USBDeviceResumeTickHandler": 0x000058dd
+  "USBStackModeSet": 0x00007bc1
+  "USBUARTIntHandler": 0x00007747
+  "USBUARTPrimeTransmit" in usb_dev_serial.o [1]: 0x000076f3
+  "flashio::saveData(unsigned int *, unsigned int, unsigned long)": 0x000026fb
+  "io::getADC(unsigned int)": 0x000029bb
+  "io::getTemperature()": 0x00002a07
+  "io::init()": 0x0000282f
+  "main": 0x00007a5b
+  "stepperISR": 0x00001739
+  "stepper_init": 0x0000178f
 
 
 *******************************************************************************
@@ -1112,9 +1107,9 @@ The following functions perform unknown indirect calls:
     ------                -------  -------  -------
 C:\dev\docs\scottdesign\motor\Debug\Obj: [1]
     accel.o                   784
-    flashio.o                   2
+    flashio.o                 264
     heap_2.o                  332        6   12 024
-    interpret.o             5 776      588    5 331
+    interpret.o             6 374      605    5 352
     io.o                      628
     list.o                    164
     main.o                    382       68
@@ -1128,7 +1123,7 @@ C:\dev\docs\scottdesign\motor\Debug\Obj: [1]
     usb_dev_serial.o        1 388       28       18
     usb_serial_structs.o               388      656
     -----------------------------------------------
-    Total:                 14 328    1 798   19 322
+    Total:                 15 188    1 815   19 343
 
 command line: [2]
     -----------------------------------------------
@@ -1234,10 +1229,10 @@ usblib.a: [9]
     -----------------------------------------------
     Total:                  7 486      192      560
 
-    Gaps                       32        2
-    Linker created                      40      420
+    Gaps                       40        2
+    Linker created                      43      432
 ---------------------------------------------------
-    Grand Total:           30 560    2 040   20 334
+    Grand Total:           31 428    2 060   20 367
 
 
 *******************************************************************************
@@ -1246,764 +1241,780 @@ usblib.a: [9]
 
 Entry                      Address    Size  Type      Object
 -----                      -------    ----  ----      ------
-.iar.dynexit$$Base      0x20004dc0           --   Gb  - Linker created -
-.iar.dynexit$$Limit     0x20004f70           --   Gb  - Linker created -
-?main                   0x00007c71          Code  Gb  cmain.o [7]
-CDCTickHandler          0x00007005    0x7a  Code  Lc  usbdcdc.o [9]
-CPUcpsid                0x00004da1     0x8  Code  Gb  cpu.o [5]
-CPUcpsie                0x00004da9     0x8  Code  Gb  cpu.o [5]
+.iar.dynexit$$Base      0x20004dd8           --   Gb  - Linker created -
+.iar.dynexit$$Limit     0x20004f94           --   Gb  - Linker created -
+?main                   0x00007fd5          Code  Gb  cmain.o [7]
+CDCTickHandler          0x00007369    0x7a  Code  Lc  usbdcdc.o [9]
+CPUcpsid                0x0000513d     0x8  Code  Gb  cpu.o [5]
+CPUcpsie                0x00005145     0x8  Code  Gb  cpu.o [5]
 CheckForSerialStateChange
-                        0x000072f1    0x3a  Code  Lc  usb_dev_serial.o [1]
-ControlHandler          0x000075c9    0xd8  Code  Gb  usb_dev_serial.o [1]
-DMAUSBIntHandler        0x00006231    0x30  Code  Lc  usbdma.o [9]
-DMAUSBIntStatusClear    0x00006223     0xe  Code  Lc  usbdma.o [9]
-DMAUSBStatus            0x0000657d     0x4  Code  Lc  usbdma.o [9]
-DeviceConsumedAllData   0x00006bb9    0x18  Code  Lc  usbdcdc.o [9]
-DtorRecArray            0x20004dc0     0xc  Data  Lc  cppinit.o [3]
-FaultISR                0x00007c43     0x2  Code  Lc  startup_ewarm.o [1]
-GPIOPinRead             0x000038a9     0x6  Code  Gb  gpio.o [5]
-GPIOPinWrite            0x000038af     0x6  Code  Gb  gpio.o [5]
-GetEPDescriptorType     0x00006825    0x46  Code  Lc  usbdconfig.o [9]
-GetEndpointFIFOSize     0x00006809    0x1c  Code  Lc  usbdconfig.o [9]
-GetLineCoding           0x000074f3    0xa4  Code  Lc  usb_dev_serial.o [1]
-HandleConfigChange      0x00006e19    0x2c  Code  Lc  usbdcdc.o [9]
-HandleDevice            0x00006e93    0x62  Code  Lc  usbdcdc.o [9]
-HandleDisconnect        0x00006fbf    0x22  Code  Lc  usbdcdc.o [9]
-HandleEP0Data           0x00006e45    0x46  Code  Lc  usbdcdc.o [9]
-HandleEndpoints         0x00006dc7    0x52  Code  Lc  usbdcdc.o [9]
-HandleRequests          0x00006ef5    0xb8  Code  Lc  usbdcdc.o [9]
-HandleResume            0x00006fed     0xc  Code  Lc  usbdcdc.o [9]
-HandleRxAvailable       0x000036e9    0xb2  Code  Lc  usbbuffer.o [9]
-HandleSuspend           0x00006fe1     0xc  Code  Lc  usbdcdc.o [9]
-IntDefaultHandler       0x00007c45     0x2  Code  Lc  startup_ewarm.o [1]
-IntDisable              0x000039cb    0x58  Code  Gb  interrupt.o [5]
-IntEnable               0x00003973    0x58  Code  Gb  interrupt.o [5]
-IntIsEnabled            0x00003a23    0x5c  Code  Gb  interrupt.o [5]
-IntMasterDisable        0x00003941     0x6  Code  Gb  interrupt.o [5]
-IntMasterEnable         0x00003939     0x8  Code  Gb  interrupt.o [5]
-IntPrioritySet          0x0000394f    0x24  Code  Gb  interrupt.o [5]
+                        0x00007655    0x3a  Code  Lc  usb_dev_serial.o [1]
+ControlHandler          0x0000792d    0xd8  Code  Gb  usb_dev_serial.o [1]
+DMAUSBIntHandler        0x00006595    0x30  Code  Lc  usbdma.o [9]
+DMAUSBIntStatusClear    0x00006587     0xe  Code  Lc  usbdma.o [9]
+DMAUSBStatus            0x000068e1     0x4  Code  Lc  usbdma.o [9]
+DeviceConsumedAllData   0x00006f1d    0x18  Code  Lc  usbdcdc.o [9]
+DtorRecArray            0x20004dd8     0xc  Data  Lc  cppinit.o [3]
+FaultISR                0x00007fa7     0x2  Code  Lc  startup_ewarm.o [1]
+GPIOPinRead             0x00003c1d     0x6  Code  Gb  gpio.o [5]
+GPIOPinWrite            0x00003c23     0x6  Code  Gb  gpio.o [5]
+GetEPDescriptorType     0x00006b89    0x46  Code  Lc  usbdconfig.o [9]
+GetEndpointFIFOSize     0x00006b6d    0x1c  Code  Lc  usbdconfig.o [9]
+GetLineCoding           0x00007857    0xa4  Code  Lc  usb_dev_serial.o [1]
+HandleConfigChange      0x0000717d    0x2c  Code  Lc  usbdcdc.o [9]
+HandleDevice            0x000071f7    0x62  Code  Lc  usbdcdc.o [9]
+HandleDisconnect        0x00007323    0x22  Code  Lc  usbdcdc.o [9]
+HandleEP0Data           0x000071a9    0x46  Code  Lc  usbdcdc.o [9]
+HandleEndpoints         0x0000712b    0x52  Code  Lc  usbdcdc.o [9]
+HandleRequests          0x00007259    0xb8  Code  Lc  usbdcdc.o [9]
+HandleResume            0x00007351     0xc  Code  Lc  usbdcdc.o [9]
+HandleRxAvailable       0x00003a5d    0xb2  Code  Lc  usbbuffer.o [9]
+HandleSuspend           0x00007345     0xc  Code  Lc  usbdcdc.o [9]
+IntDefaultHandler       0x00007fa9     0x2  Code  Lc  startup_ewarm.o [1]
+IntDisable              0x00003d3f    0x58  Code  Gb  interrupt.o [5]
+IntEnable               0x00003ce7    0x58  Code  Gb  interrupt.o [5]
+IntIsEnabled            0x00003d97    0x5c  Code  Gb  interrupt.o [5]
+IntMasterDisable        0x00003cb5     0x6  Code  Gb  interrupt.o [5]
+IntMasterEnable         0x00003cad     0x8  Code  Gb  interrupt.o [5]
+IntPrioritySet          0x00003cc3    0x24  Code  Gb  interrupt.o [5]
 InternalUSBRegisterTickHandler
-                        0x00006669    0x24  Code  Gb  usbtick.o [9]
+                        0x000069cd    0x24  Code  Gb  usbtick.o [9]
 InternalUSBStartOfFrameTick
-                        0x0000668d    0x26  Code  Gb  usbtick.o [9]
-InternalUSBTickInit     0x0000664d    0x1c  Code  Gb  usbtick.o [9]
-NextConfigDescGet       0x000066b9    0x2e  Code  Lc  usbdcdesc.o [9]
-NmiSR                   0x00007c41     0x2  Code  Lc  startup_ewarm.o [1]
-ProcessDataFromHost     0x00006ccb    0x5e  Code  Gb  usbdcdc.o [9]
-ProcessDataToHost       0x00006d6d    0x52  Code  Gb  usbdcdc.o [9]
+                        0x000069f1    0x26  Code  Gb  usbtick.o [9]
+InternalUSBTickInit     0x000069b1    0x1c  Code  Gb  usbtick.o [9]
+NextConfigDescGet       0x00006a1d    0x2e  Code  Lc  usbdcdesc.o [9]
+NmiSR                   0x00007fa5     0x2  Code  Lc  startup_ewarm.o [1]
+ProcessDataFromHost     0x0000702f    0x5e  Code  Gb  usbdcdc.o [9]
+ProcessDataToHost       0x000070d1    0x52  Code  Gb  usbdcdc.o [9]
 ProcessNotificationToHost
-                        0x00006d37    0x36  Code  Gb  usbdcdc.o [9]
-ReadUARTData            0x0000732b    0x64  Code  Lc  usb_dev_serial.o [1]
-Region$$Table$$Base     0x00007ba0           --   Gb  - Linker created -
-Region$$Table$$Limit    0x00007bc8           --   Gb  - Linker created -
-ResetISR                0x00007c29    0x14  Code  Gb  startup_ewarm.o [1]
-RxHandler               0x000076af    0x48  Code  Gb  usb_dev_serial.o [1]
-SHT$$INIT_ARRAY$$Base   0x00007e84           --   Gb  - Linker created -
-SHT$$INIT_ARRAY$$Limit  0x00007e88           --   Gb  - Linker created -
+                        0x0000709b    0x36  Code  Gb  usbdcdc.o [9]
+ReadUARTData            0x0000768f    0x64  Code  Lc  usb_dev_serial.o [1]
+Region$$Table$$Base     0x00007f04           --   Gb  - Linker created -
+Region$$Table$$Limit    0x00007f2c           --   Gb  - Linker created -
+ResetISR                0x00007f8d    0x14  Code  Gb  startup_ewarm.o [1]
+RxHandler               0x00007a13    0x48  Code  Gb  usb_dev_serial.o [1]
+SHT$$INIT_ARRAY$$Base   0x000081f8           --   Gb  - Linker created -
+SHT$$INIT_ARRAY$$Limit  0x000081fc           --   Gb  - Linker created -
 SHT$$PREINIT_ARRAY$$Base
-                        0x00007e84           --   Gb  - Linker created -
+                        0x000081f8           --   Gb  - Linker created -
 SHT$$PREINIT_ARRAY$$Limit
-                        0x00007e84           --   Gb  - Linker created -
+                        0x000081f8           --   Gb  - Linker created -
 ScheduleNextTransmission
-                        0x0000365b    0x8e  Code  Lc  usbbuffer.o [9]
-SendBreak               0x00007597    0x32  Code  Lc  usb_dev_serial.o [1]
-SendBreak               0x00006bd1    0x3a  Code  Lc  usbdcdc.o [9]
-SendLineCodingChange    0x00006c0b    0x1e  Code  Lc  usbdcdc.o [9]
-SendLineStateChange     0x00006c29    0x1e  Code  Lc  usbdcdc.o [9]
-SendSerialState         0x00006c47    0x84  Code  Lc  usbdcdc.o [9]
-SetControlLineState     0x00007447     0x2  Code  Lc  usb_dev_serial.o [1]
-SetDeferredOpFlag       0x00006ba1    0x18  Code  Lc  usbdcdc.o [9]
-SetLineCoding           0x00007449    0xaa  Code  Lc  usb_dev_serial.o [1]
-SysCtlPeripheralEnable  0x000038f5     0x8  Code  Gb  sysctl.o [5]
-SysCtlPeripheralReset   0x000038b5    0x40  Code  Gb  sysctl.o [5]
-SysCtlReset             0x00003911     0x8  Code  Gb  sysctl.o [5]
-SysCtlUSBPLLEnable      0x00003919     0xc  Code  Gb  sysctl.o [5]
-TimerConfigure          0x00003171    0x26  Code  Gb  timer.o [5]
-TimerDisable            0x00003165     0xc  Code  Gb  timer.o [5]
-TimerEnable             0x00003159     0xc  Code  Gb  timer.o [5]
-TimerIntEnable          0x000031ad     0x4  Code  Gb  timer.o [5]
-TimerLoadSet            0x0000319d    0x10  Code  Gb  timer.o [5]
-TxHandler               0x000076a1     0xe  Code  Gb  usb_dev_serial.o [1]
-UARTSend                0x00002137    0x12  Code  Gb  main.o [1]
-USB0DeviceIntHandler    0x00007ced    0x18  Code  Gb  usbdhandler.o [9]
-USBBufferDataAvailable  0x0000380f     0x6  Code  Gb  usbbuffer.o [9]
-USBBufferEventCallback  0x0000381b    0x8c  Code  Gb  usbbuffer.o [9]
-USBBufferFlush          0x000037e3     0x6  Code  Gb  usbbuffer.o [9]
-USBBufferInit           0x0000379b    0x16  Code  Gb  usbbuffer.o [9]
-USBBufferRead           0x000037e9    0x26  Code  Gb  usbbuffer.o [9]
+                        0x000039cf    0x8e  Code  Lc  usbbuffer.o [9]
+SendBreak               0x000078fb    0x32  Code  Lc  usb_dev_serial.o [1]
+SendBreak               0x00006f35    0x3a  Code  Lc  usbdcdc.o [9]
+SendLineCodingChange    0x00006f6f    0x1e  Code  Lc  usbdcdc.o [9]
+SendLineStateChange     0x00006f8d    0x1e  Code  Lc  usbdcdc.o [9]
+SendSerialState         0x00006fab    0x84  Code  Lc  usbdcdc.o [9]
+SetControlLineState     0x000077ab     0x2  Code  Lc  usb_dev_serial.o [1]
+SetDeferredOpFlag       0x00006f05    0x18  Code  Lc  usbdcdc.o [9]
+SetLineCoding           0x000077ad    0xaa  Code  Lc  usb_dev_serial.o [1]
+SysCtlPeripheralEnable  0x00003c69     0x8  Code  Gb  sysctl.o [5]
+SysCtlPeripheralReset   0x00003c29    0x40  Code  Gb  sysctl.o [5]
+SysCtlReset             0x00003c85     0x8  Code  Gb  sysctl.o [5]
+SysCtlUSBPLLEnable      0x00003c8d     0xc  Code  Gb  sysctl.o [5]
+TimerConfigure          0x0000343d    0x26  Code  Gb  timer.o [5]
+TimerDisable            0x00003431     0xc  Code  Gb  timer.o [5]
+TimerEnable             0x00003425     0xc  Code  Gb  timer.o [5]
+TimerIntEnable          0x00003479     0x4  Code  Gb  timer.o [5]
+TimerLoadSet            0x00003469    0x10  Code  Gb  timer.o [5]
+TxHandler               0x00007a05     0xe  Code  Gb  usb_dev_serial.o [1]
+UARTSend                0x000023ab    0x12  Code  Gb  main.o [1]
+USB0DeviceIntHandler    0x00008035    0x18  Code  Gb  usbdhandler.o [9]
+USBBufferDataAvailable  0x00003b83     0x6  Code  Gb  usbbuffer.o [9]
+USBBufferEventCallback  0x00003b8f    0x8c  Code  Gb  usbbuffer.o [9]
+USBBufferFlush          0x00003b57     0x6  Code  Gb  usbbuffer.o [9]
+USBBufferInit           0x00003b0f    0x16  Code  Gb  usbbuffer.o [9]
+USBBufferRead           0x00003b5d    0x26  Code  Gb  usbbuffer.o [9]
 USBBufferSpaceAvailable
-                        0x00003815     0x6  Code  Gb  usbbuffer.o [9]
-USBBufferWrite          0x000037b1    0x32  Code  Gb  usbbuffer.o [9]
-USBDCDCCompositeInit    0x00007095    0x8e  Code  Gb  usbdcdc.o [9]
-USBDCDCInit             0x00007123    0x42  Code  Gb  usbdcdc.o [9]
-USBDCDCPacketRead       0x000071c1    0x7e  Code  Gb  usbdcdc.o [9]
-USBDCDCPacketWrite      0x00007175    0x4c  Code  Gb  usbdcdc.o [9]
+                        0x00003b89     0x6  Code  Gb  usbbuffer.o [9]
+USBBufferWrite          0x00003b25    0x32  Code  Gb  usbbuffer.o [9]
+USBDCDCCompositeInit    0x000073f9    0x8e  Code  Gb  usbdcdc.o [9]
+USBDCDCInit             0x00007487    0x42  Code  Gb  usbdcdc.o [9]
+USBDCDCPacketRead       0x00007525    0x7e  Code  Gb  usbdcdc.o [9]
+USBDCDCPacketWrite      0x000074d9    0x4c  Code  Gb  usbdcdc.o [9]
 USBDCDCRxPacketAvailable
-                        0x0000724f    0x32  Code  Gb  usbdcdc.o [9]
+                        0x000075b3    0x32  Code  Gb  usbdcdc.o [9]
 USBDCDCSerialStateChange
-                        0x00007289    0x2e  Code  Gb  usbdcdc.o [9]
+                        0x000075ed    0x2e  Code  Gb  usbdcdc.o [9]
 USBDCDCTxPacketAvailable
-                        0x0000723f    0x10  Code  Gb  usbdcdc.o [9]
-USBDCDConfigDescGet     0x0000672f    0x54  Code  Gb  usbdcdesc.o [9]
-USBDCDConfigDescGetNum  0x00006705    0x2a  Code  Gb  usbdcdesc.o [9]
+                        0x000075a3    0x10  Code  Gb  usbdcdc.o [9]
+USBDCDConfigDescGet     0x00006a93    0x54  Code  Gb  usbdcdesc.o [9]
+USBDCDConfigDescGetNum  0x00006a69    0x2a  Code  Gb  usbdcdesc.o [9]
 USBDCDConfigDescGetSize
-                        0x000066e7    0x1e  Code  Gb  usbdcdesc.o [9]
+                        0x00006a4b    0x1e  Code  Gb  usbdcdesc.o [9]
 USBDCDConfigGetInterface
-                        0x00006783    0x4c  Code  Gb  usbdcdesc.o [9]
+                        0x00006ae7    0x4c  Code  Gb  usbdcdesc.o [9]
 USBDCDConfigGetInterfaceEndpoint
-                        0x000067d7    0x32  Code  Gb  usbdcdesc.o [9]
-USBDCDDeviceInfoInit    0x00005471    0x1a  Code  Gb  usbdenum.o [9]
-USBDCDInit              0x0000548b    0xb8  Code  Gb  usbdenum.o [9]
-USBDCDRequestDataEP0    0x00005543    0x10  Code  Gb  usbdenum.o [9]
-USBDCDSendDataEP0       0x00005553     0xa  Code  Gb  usbdenum.o [9]
-USBDCDStallEP0          0x00005561    0x18  Code  Gb  usbdenum.o [9]
-USBDClearFeature        0x00005773    0x72  Code  Lc  usbdenum.o [9]
-USBDEP0StateTx          0x00005b23    0x66  Code  Lc  usbdenum.o [9]
-USBDEP0StateTxConfig    0x00005b89   0x13e  Code  Lc  usbdenum.o [9]
-USBDGetConfiguration    0x00005997    0x22  Code  Lc  usbdenum.o [9]
-USBDGetDescriptor       0x00005869   0x128  Code  Lc  usbdenum.o [9]
-USBDGetInterface        0x00005a4f    0x24  Code  Lc  usbdenum.o [9]
-USBDGetStatus           0x00005723    0x50  Code  Lc  usbdenum.o [9]
+                        0x00006b3b    0x32  Code  Gb  usbdcdesc.o [9]
+USBDCDDeviceInfoInit    0x000057d5    0x1a  Code  Gb  usbdenum.o [9]
+USBDCDInit              0x000057ef    0xb8  Code  Gb  usbdenum.o [9]
+USBDCDRequestDataEP0    0x000058a7    0x10  Code  Gb  usbdenum.o [9]
+USBDCDSendDataEP0       0x000058b7     0xa  Code  Gb  usbdenum.o [9]
+USBDCDStallEP0          0x000058c5    0x18  Code  Gb  usbdenum.o [9]
+USBDClearFeature        0x00005ad7    0x72  Code  Lc  usbdenum.o [9]
+USBDEP0StateTx          0x00005e87    0x66  Code  Lc  usbdenum.o [9]
+USBDEP0StateTxConfig    0x00005eed   0x13e  Code  Lc  usbdenum.o [9]
+USBDGetConfiguration    0x00005cfb    0x22  Code  Lc  usbdenum.o [9]
+USBDGetDescriptor       0x00005bcd   0x128  Code  Lc  usbdenum.o [9]
+USBDGetInterface        0x00005db3    0x24  Code  Lc  usbdenum.o [9]
+USBDGetStatus           0x00005a87    0x50  Code  Lc  usbdenum.o [9]
 USBDReadAndDispatchRequest
-                        0x000055c3    0x56  Code  Lc  usbdenum.o [9]
-USBDSetAddress          0x0000584f    0x1a  Code  Lc  usbdenum.o [9]
-USBDSetConfiguration    0x000059c9    0x7e  Code  Lc  usbdenum.o [9]
-USBDSetDescriptor       0x00005991     0x6  Code  Lc  usbdenum.o [9]
-USBDSetFeature          0x000057ef    0x60  Code  Lc  usbdenum.o [9]
-USBDSetInterface        0x00005a8b    0x88  Code  Lc  usbdenum.o [9]
-USBDSyncFrame           0x00005b13     0x4  Code  Lc  usbdenum.o [9]
-USBDescGet              0x00006b73    0x2e  Code  Gb  usbdesc.o [9]
-USBDescGetNum           0x00006b4d    0x26  Code  Gb  usbdesc.o [9]
-USBDevAddrSet           0x00005f73     0x4  Code  Gb  usb.o [5]
-USBDevConnect           0x00005f5b     0xc  Code  Gb  usb.o [5]
-USBDevDisconnect        0x00005f67     0xc  Code  Gb  usb.o [5]
+                        0x00005927    0x56  Code  Lc  usbdenum.o [9]
+USBDSetAddress          0x00005bb3    0x1a  Code  Lc  usbdenum.o [9]
+USBDSetConfiguration    0x00005d2d    0x7e  Code  Lc  usbdenum.o [9]
+USBDSetDescriptor       0x00005cf5     0x6  Code  Lc  usbdenum.o [9]
+USBDSetFeature          0x00005b53    0x60  Code  Lc  usbdenum.o [9]
+USBDSetInterface        0x00005def    0x88  Code  Lc  usbdenum.o [9]
+USBDSyncFrame           0x00005e77     0x4  Code  Lc  usbdenum.o [9]
+USBDescGet              0x00006ed7    0x2e  Code  Gb  usbdesc.o [9]
+USBDescGetNum           0x00006eb1    0x26  Code  Gb  usbdesc.o [9]
+USBDevAddrSet           0x000062d7     0x4  Code  Gb  usb.o [5]
+USBDevConnect           0x000062bf     0xc  Code  Gb  usb.o [5]
+USBDevDisconnect        0x000062cb     0xc  Code  Gb  usb.o [5]
 USBDevEndpointConfigSet
-                        0x00005f77    0x74  Code  Gb  usb.o [5]
-USBDevEndpointDataAck   0x00006119    0x20  Code  Gb  usb.o [5]
-USBDevEndpointStall     0x00005eeb    0x30  Code  Gb  usb.o [5]
+                        0x000062db    0x74  Code  Gb  usb.o [5]
+USBDevEndpointDataAck   0x0000647d    0x20  Code  Gb  usb.o [5]
+USBDevEndpointStall     0x0000624f    0x30  Code  Gb  usb.o [5]
 USBDevEndpointStallClear
-                        0x00005f1b    0x40  Code  Gb  usb.o [5]
+                        0x0000627f    0x40  Code  Gb  usb.o [5]
 USBDevEndpointStatusClear
-                        0x00005e9d    0x4e  Code  Gb  usb.o [5]
-USBDevMode              0x000061bd     0x2  Code  Gb  usb.o [5]
-USBDeviceConfig         0x0000686b   0x136  Code  Gb  usbdconfig.o [9]
+                        0x00006201    0x4e  Code  Gb  usb.o [5]
+USBDevMode              0x00006521     0x2  Code  Gb  usb.o [5]
+USBDeviceConfig         0x00006bcf   0x136  Code  Gb  usbdconfig.o [9]
 USBDeviceConfigAlternate
-                        0x000069ad    0x7e  Code  Gb  usbdconfig.o [9]
-USBDeviceEnumHandler    0x0000561d    0xca  Code  Gb  usbdenum.o [9]
+                        0x00006d11    0x7e  Code  Gb  usbdconfig.o [9]
+USBDeviceEnumHandler    0x00005981    0xca  Code  Gb  usbdenum.o [9]
 USBDeviceEnumResetHandler
-                        0x000056e7    0x3c  Code  Gb  usbdenum.o [9]
+                        0x00005a4b    0x3c  Code  Gb  usbdenum.o [9]
 USBDeviceIntHandlerInternal
-                        0x00005cc7    0xc8  Code  Gb  usbdenum.o [9]
+                        0x0000602b    0xc8  Code  Gb  usbdenum.o [9]
 USBDeviceResumeTickHandler
-                        0x00005579    0x4a  Code  Gb  usbdenum.o [9]
-USBEndpointDMAChannel   0x000061a3    0x1a  Code  Gb  usb.o [5]
+                        0x000058dd    0x4a  Code  Gb  usbdenum.o [9]
+USBEndpointDMAChannel   0x00006507    0x1a  Code  Gb  usb.o [5]
 USBEndpointDMAConfigSet
-                        0x0000602d    0x48  Code  Gb  usb.o [5]
-USBEndpointDMADisable   0x00006095    0x20  Code  Gb  usb.o [5]
-USBEndpointDMAEnable    0x00006075    0x20  Code  Gb  usb.o [5]
-USBEndpointDataAvail    0x000060b5    0x20  Code  Gb  usb.o [5]
-USBEndpointDataGet      0x000060d5    0x44  Code  Gb  usb.o [5]
-USBEndpointDataPut      0x00006139    0x30  Code  Gb  usb.o [5]
-USBEndpointDataSend     0x0000616f    0x2c  Code  Gb  usb.o [5]
+                        0x00006391    0x48  Code  Gb  usb.o [5]
+USBEndpointDMADisable   0x000063f9    0x20  Code  Gb  usb.o [5]
+USBEndpointDMAEnable    0x000063d9    0x20  Code  Gb  usb.o [5]
+USBEndpointDataAvail    0x00006419    0x20  Code  Gb  usb.o [5]
+USBEndpointDataGet      0x00006439    0x44  Code  Gb  usb.o [5]
+USBEndpointDataPut      0x0000649d    0x30  Code  Gb  usb.o [5]
+USBEndpointDataSend     0x000064d3    0x2c  Code  Gb  usb.o [5]
 USBEndpointPacketCountSet
-                        0x000061c5     0xe  Code  Gb  usb.o [5]
-USBEndpointStatus       0x00005e89     0xe  Code  Gb  usb.o [5]
-USBFIFOAddrGet          0x0000619b     0x8  Code  Gb  usb.o [5]
-USBFIFOConfigSet        0x00005feb    0x3c  Code  Gb  usb.o [5]
-USBHostResume           0x00005df7    0x14  Code  Gb  usb.o [5]
-USBIndexWrite           0x00005ddd    0x1a  Code  Lc  usb.o [5]
-USBIntEnableControl     0x00005e0b    0x26  Code  Gb  usb.o [5]
-USBIntEnableEndpoint    0x00005e61    0x1a  Code  Gb  usb.o [5]
-USBIntStatusControl     0x00005e31    0x30  Code  Gb  usb.o [5]
-USBIntStatusEndpoint    0x00005e7b     0x6  Code  Gb  usb.o [5]
-USBLibDMAInit           0x00006581    0x84  Code  Gb  usbdma.o [9]
-USBRingBufAdvanceRead   0x00004d17    0x1e  Code  Gb  usbringbuf.o [9]
-USBRingBufAdvanceWrite  0x00004d35    0x36  Code  Gb  usbringbuf.o [9]
-USBRingBufContigFree    0x00004cc9    0x1c  Code  Gb  usbringbuf.o [9]
-USBRingBufContigUsed    0x00004cb7    0x12  Code  Gb  usbringbuf.o [9]
-USBRingBufFlush         0x00004c7b    0x1a  Code  Gb  usbringbuf.o [9]
-USBRingBufFree          0x00004ca9     0xe  Code  Gb  usbringbuf.o [9]
-USBRingBufInit          0x00004d95     0xc  Code  Gb  usbringbuf.o [9]
-USBRingBufRead          0x00004cfb    0x1c  Code  Gb  usbringbuf.o [9]
-USBRingBufReadOne       0x00004ce5    0x16  Code  Gb  usbringbuf.o [9]
-USBRingBufUsed          0x00004c95    0x14  Code  Gb  usbringbuf.o [9]
-USBRingBufWrite         0x00004d79    0x1c  Code  Gb  usbringbuf.o [9]
-USBRingBufWriteOne      0x00004d6b     0xe  Code  Gb  usbringbuf.o [9]
-USBStackModeSet         0x0000785d    0x18  Code  Gb  usbmode.o [9]
-USBUARTIntHandler       0x000073e3    0x64  Code  Gb  usb_dev_serial.o [1]
-USBUARTPrimeTransmit    0x0000738f    0x54  Code  Lc  usb_dev_serial.o [1]
-UpdateIndexAtomic       0x00004c4f    0x2c  Code  Lc  usbringbuf.o [9]
-_GetintSmall            0x00003e35   0x230  Code  Lc  xscanfsmall.o [3]
-_GetstrSmall            0x00003d75    0xc0  Code  Lc  xscanfsmall.o [3]
-_PrintfTiny             0x000047b3   0x11a  Code  Gb  xprintftiny.o [3]
-_SProut                 0x00002803     0xa  Code  Gb  xsprout.o [3]
-_SScin                  0x000022a3    0x1e  Code  Gb  xsscin.o [3]
-_ScanfSmall             0x00003b79   0x1f6  Code  Gb  xscanfsmall.o [3]
-__aeabi_assert          0x0000273b    0x4a  Code  Gb  xassert.o [3]
-__aeabi_atexit          0x000014d9     0xa  Code  Gb  cxxabi.o [4]
-__aeabi_d2f             0x00004969          Code  Gb  DblToFlt.o [6]
-__aeabi_d2iz            0x0000461d          Code  Gb  DblToI32.o [6]
-__aeabi_dadd            0x00004acd          Code  Gb  DblAdd.o [6]
-__aeabi_ddiv            0x00004255          Code  Gb  DblDiv.o [6]
-__aeabi_dmul            0x000040b1          Code  Gb  DblMul.o [6]
-__aeabi_dsub            0x0000449d          Code  Gb  DblSub.o [6]
-__aeabi_errno_addr      0x00005239     0x6  Code  Gb  errno.o [3]
-__aeabi_f2d             0x00004a7d          Code  Gb  FltToDbl.o [6]
-__aeabi_i2d             0x00004081          Code  Gb  I32ToDbl.o [6]
-__aeabi_memcpy          0x000029e5          Code  Gb  ABImemcpy.o [7]
-__aeabi_memcpy4         0x00002a05          Code  Gb  ABImemcpy.o [7]
-__aeabi_memcpy8         0x00002a05          Code  Gb  ABImemcpy.o [7]
-__aeabi_memset          0x00004be9          Code  Gb  ABImemset.o [7]
-__aeabi_ui2d            0x00004095          Code  Gb  I32ToDbl.o [6]
+                        0x00006529     0xe  Code  Gb  usb.o [5]
+USBEndpointStatus       0x000061ed     0xe  Code  Gb  usb.o [5]
+USBFIFOAddrGet          0x000064ff     0x8  Code  Gb  usb.o [5]
+USBFIFOConfigSet        0x0000634f    0x3c  Code  Gb  usb.o [5]
+USBHostResume           0x0000615b    0x14  Code  Gb  usb.o [5]
+USBIndexWrite           0x00006141    0x1a  Code  Lc  usb.o [5]
+USBIntEnableControl     0x0000616f    0x26  Code  Gb  usb.o [5]
+USBIntEnableEndpoint    0x000061c5    0x1a  Code  Gb  usb.o [5]
+USBIntStatusControl     0x00006195    0x30  Code  Gb  usb.o [5]
+USBIntStatusEndpoint    0x000061df     0x6  Code  Gb  usb.o [5]
+USBLibDMAInit           0x000068e5    0x84  Code  Gb  usbdma.o [9]
+USBRingBufAdvanceRead   0x000050b1    0x1e  Code  Gb  usbringbuf.o [9]
+USBRingBufAdvanceWrite  0x000050cf    0x36  Code  Gb  usbringbuf.o [9]
+USBRingBufContigFree    0x00005063    0x1c  Code  Gb  usbringbuf.o [9]
+USBRingBufContigUsed    0x00005051    0x12  Code  Gb  usbringbuf.o [9]
+USBRingBufFlush         0x00005015    0x1a  Code  Gb  usbringbuf.o [9]
+USBRingBufFree          0x00005043     0xe  Code  Gb  usbringbuf.o [9]
+USBRingBufInit          0x0000512f     0xc  Code  Gb  usbringbuf.o [9]
+USBRingBufRead          0x00005095    0x1c  Code  Gb  usbringbuf.o [9]
+USBRingBufReadOne       0x0000507f    0x16  Code  Gb  usbringbuf.o [9]
+USBRingBufUsed          0x0000502f    0x14  Code  Gb  usbringbuf.o [9]
+USBRingBufWrite         0x00005113    0x1c  Code  Gb  usbringbuf.o [9]
+USBRingBufWriteOne      0x00005105     0xe  Code  Gb  usbringbuf.o [9]
+USBStackModeSet         0x00007bc1    0x18  Code  Gb  usbmode.o [9]
+USBUARTIntHandler       0x00007747    0x64  Code  Gb  usb_dev_serial.o [1]
+USBUARTPrimeTransmit    0x000076f3    0x54  Code  Lc  usb_dev_serial.o [1]
+UpdateIndexAtomic       0x00004fe9    0x2c  Code  Lc  usbringbuf.o [9]
+_GetintSmall            0x000041a9   0x230  Code  Lc  xscanfsmall.o [3]
+_GetstrSmall            0x000040e9    0xc0  Code  Lc  xscanfsmall.o [3]
+_PrintfTiny             0x00004a81   0x11a  Code  Gb  xprintftiny.o [3]
+_SProut                 0x00002d1f     0xa  Code  Gb  xsprout.o [3]
+_SScin                  0x0000280f    0x1e  Code  Gb  xsscin.o [3]
+_ScanfSmall             0x00003eed   0x1f6  Code  Gb  xscanfsmall.o [3]
+__aeabi_assert          0x000022eb    0x4a  Code  Gb  xassert.o [3]
+__aeabi_atexit          0x00001723     0xa  Code  Gb  cxxabi.o [4]
+__aeabi_d2f             0x00004cc5          Code  Gb  DblToFlt.o [6]
+__aeabi_d2iz            0x00004991          Code  Gb  DblToI32.o [6]
+__aeabi_dadd            0x00004e29          Code  Gb  DblAdd.o [6]
+__aeabi_ddiv            0x000045c9          Code  Gb  DblDiv.o [6]
+__aeabi_dmul            0x00004425          Code  Gb  DblMul.o [6]
+__aeabi_dsub            0x00004811          Code  Gb  DblSub.o [6]
+__aeabi_errno_addr      0x00005615     0x6  Code  Gb  errno.o [3]
+__aeabi_f2d             0x00004dd9          Code  Gb  FltToDbl.o [6]
+__aeabi_i2d             0x000043f5          Code  Gb  I32ToDbl.o [6]
+__aeabi_memcpy          0x00004bb1          Code  Gb  ABImemcpy.o [7]
+__aeabi_memcpy4         0x00004bd1          Code  Gb  ABImemcpy.o [7]
+__aeabi_memcpy8         0x00004bd1          Code  Gb  ABImemcpy.o [7]
+__aeabi_memset          0x00004f45          Code  Gb  ABImemset.o [7]
+__aeabi_ui2d            0x00004409          Code  Gb  I32ToDbl.o [6]
 __aeabi_vec_ctor_nocookie_nodtor
-                        0x00001499    0x22  Code  Gb  cxxabi.o [4]
-__aeabi_vec_dtor        0x000014bb    0x1e  Code  Gb  cxxabi.o [4]
-__call_ctors            0x00002a5d    0x18  Code  Gb  cppinit.o [3]
-__call_dtors            0x00002aaf     0x2  Code  Gb  cppinit.o [3]
-__cexit_call_dtors      0x00007c93          Code  Gb  cexit.o [7]
-__cmain                 0x00007c71          Code  Gb  cmain.o [7]
-__cstart_call_dtors     0x00007e88          Data  Gb  cstart_call_dtors.o [7]
-__cxa_atexit            0x00002a75    0x3a  Code  Gb  cppinit.o [3]
-__cxa_finalize          0x00002ab1    0x38  Code  Gb  cppinit.o [3]
-__dso_handle            0x200049b0     0x4  Data  Gb  cppinit.o [3]
-__dwrite                0x000053e3    0x1e  Code  Gb  dwrite.o [8]
-__exit                  0x00004ff5    0x14  Code  Gb  exit.o [8]
-__iar_EmptyStepPoint    0x00002739     0x2  Code  Gb  xassert.o [3]
-__iar_Errno             0x200049b4     0x4  Data  Gb  errno.o [3]
-__iar_FDnorm            0x00005409    0x26  Code  Gb  xfdnorm.o [6]
-__iar_FDscale           0x00005319    0xc8  Code  Gb  xfdscale.o [6]
-__iar_FExp              0x0000501d   0x1ea  Code  Gb  xfexp.o [6]
-__iar_Memchr            0x00005245          Code  Gb  memchr.o [7]
-__iar_Memset            0x00004be9          Code  Gb  ABImemset.o [7]
-__iar_Memset_word       0x00004bf1          Code  Gb  ABImemset.o [7]
-__iar_ReportAssert      0x000046c7    0x50  Code  Gb  xreportassert.o [3]
-__iar_Stolx             0x00004dc7    0x86  Code  Gb  xstol.o [3]
-__iar_Stoul             0x00004f6b     0x4  Code  Gb  xstoul.o [3]
-__iar_Stoulx            0x00004e4d   0x118  Code  Gb  xstoul.o [3]
-__iar_Strchr            0x00004db1          Code  Gb  strchr.o [7]
-__iar_Strstr            0x00003b4d    0x2c  Code  Gb  strstr.o [3]
-__iar_close_ttio        0x000052ad    0x2e  Code  Gb  iarttio.o [8]
-__iar_copy_init3        0x000014ef    0x2e  Code  Gb  copy_init3.o [7]
+                        0x000016e3    0x22  Code  Gb  cxxabi.o [4]
+__aeabi_vec_dtor        0x00001705    0x1e  Code  Gb  cxxabi.o [4]
+__call_ctors            0x00002d29    0x18  Code  Gb  cppinit.o [3]
+__call_dtors            0x00002d7b     0x2  Code  Gb  cppinit.o [3]
+__cexit_call_dtors      0x00007ff7          Code  Gb  cexit.o [7]
+__cmain                 0x00007fd5          Code  Gb  cmain.o [7]
+__cstart_call_dtors     0x000081fc          Data  Gb  cstart_call_dtors.o [7]
+__cxa_atexit            0x00002d41    0x3a  Code  Gb  cppinit.o [3]
+__cxa_finalize          0x00002d7d    0x38  Code  Gb  cppinit.o [3]
+__dso_handle            0x200049c8     0x4  Data  Gb  cppinit.o [3]
+__dwrite                0x00005741    0x1e  Code  Gb  dwrite.o [8]
+__exit                  0x00004fd5    0x14  Code  Gb  exit.o [8]
+__iar_EmptyStepPoint    0x000022e9     0x2  Code  Gb  xassert.o [3]
+__iar_Errno             0x200049cc     0x4  Data  Gb  errno.o [3]
+__iar_FDnorm            0x0000576b    0x26  Code  Gb  xfdnorm.o [6]
+__iar_FDscale           0x00005679    0xc8  Code  Gb  xfdscale.o [6]
+__iar_FExp              0x0000537d   0x1ea  Code  Gb  xfexp.o [6]
+__iar_Memchr            0x00005621          Code  Gb  memchr.o [7]
+__iar_Memset            0x00004f45          Code  Gb  ABImemset.o [7]
+__iar_Memset_word       0x00004f4d          Code  Gb  ABImemset.o [7]
+__iar_ReportAssert      0x0000393f    0x50  Code  Gb  xreportassert.o [3]
+__iar_Stolx             0x00005163    0x86  Code  Gb  xstol.o [3]
+__iar_Stoul             0x00005307     0x4  Code  Gb  xstoul.o [3]
+__iar_Stoulx            0x000051e9   0x118  Code  Gb  xstoul.o [3]
+__iar_Strchr            0x0000514d          Code  Gb  strchr.o [7]
+__iar_Strstr            0x00003ec1    0x2c  Code  Gb  strstr.o [3]
+__iar_close_ttio        0x000055a9    0x2e  Code  Gb  iarttio.o [8]
+__iar_copy_init3        0x0000236b    0x2e  Code  Gb  copy_init3.o [7]
 __iar_cstart_call_ctors
-                        0x00007c09    0x20  Code  Gb  cmain_call_ctors.o [7]
-__iar_d2uiz             0x00004649          Code  Gb  DblToI32.o [6]
-__iar_dadd              0x00004ae1          Code  Gb  DblAdd.o [6]
-__iar_data_init3        0x00007ae9    0x28  Code  Gb  data_init3.o [7]
+                        0x00007f6d    0x20  Code  Gb  cmain_call_ctors.o [7]
+__iar_d2uiz             0x000049bd          Code  Gb  DblToI32.o [6]
+__iar_dadd              0x00004e3d          Code  Gb  DblAdd.o [6]
+__iar_data_init3        0x00007e4d    0x28  Code  Gb  data_init3.o [7]
 __iar_dlib_perthread_access
-                        0x000053e1     0x2  Code  Gb  xtls.o [3]
-__iar_dsub              0x000044b1          Code  Gb  DblSub.o [6]
-__iar_dsubStart         0x000044c3          Code  Gb  DblSub.o [6]
-__iar_get_ttio          0x000052dd    0x38  Code  Gb  iarttio.o [8]
-__iar_init_vfp          0x00007c55          Code  Gb  fpinit_M.o [6]
-__iar_lookup_ttioh      0x00005401     0x8  Code  Gb  XShttio.o [3]
-__iar_program_start     0x00007c47          Code  Gb  cstartup_M.o [7]
-__iar_sh_stdout         0x0000542f    0x20  Code  Gb  iarwstd.o [8]
-__iar_sh_write          0x0000544f    0x22  Code  Gb  iarwrite.o [8]
-__iar_strcmp            0x000022c1          Code  Gb  strcmp.o [7]
+                        0x00005769     0x2  Code  Gb  xtls.o [3]
+__iar_dsub              0x00004825          Code  Gb  DblSub.o [6]
+__iar_dsubStart         0x00004837          Code  Gb  DblSub.o [6]
+__iar_get_ttio          0x000055d9    0x38  Code  Gb  iarttio.o [8]
+__iar_init_vfp          0x00007fb9          Code  Gb  fpinit_M.o [6]
+__iar_lookup_ttioh      0x00005761     0x8  Code  Gb  XShttio.o [3]
+__iar_program_start     0x00007fab          Code  Gb  cstartup_M.o [7]
+__iar_sh_stdout         0x00005791    0x20  Code  Gb  iarwstd.o [8]
+__iar_sh_write          0x000057b1    0x22  Code  Gb  iarwrite.o [8]
+__iar_strcmp            0x00002539          Code  Gb  strcmp.o [7]
 __iar_ttio_handles      0x200000b4     0x8  Data  Lc  XShttio.o [3]
-__iar_ui2d              0x00004099          Code  Gb  I32ToDbl.o [6]
-__iar_zero_init3        0x00002103    0x22  Code  Gb  zero_init3.o [7]
-__low_level_init        0x00007c87     0x4  Code  Gb  low_level_init.o [3]
+__iar_ui2d              0x0000440d          Code  Gb  I32ToDbl.o [6]
+__iar_zero_init3        0x00002517    0x22  Code  Gb  zero_init3.o [7]
+__low_level_init        0x00007feb     0x4  Code  Gb  low_level_init.o [3]
 __sti__routine          0x0000026d    0x18  Code  Lc  interpret.o [1]
 __vector_table          0x00000000   0x26c  Data  Gb  startup_ewarm.o [1]
-__write                 0x0000529d    0x10  Code  Gb  write.o [8]
-_call_main              0x00007c7d          Code  Gb  cmain.o [7]
-_exit                   0x00007c91          Code  Gb  cexit.o [7]
-_main                   0x00007c83          Code  Gb  cmain.o [7]
-abort                   0x00004751     0x6  Code  Gb  abort.o [3]
+__write                 0x00005599    0x10  Code  Gb  write.o [8]
+_call_main              0x00007fe1          Code  Gb  cmain.o [7]
+_exit                   0x00007ff5          Code  Gb  cexit.o [7]
+_main                   0x00007fe7          Code  Gb  cmain.o [7]
+abort                   0x000039c9     0x6  Code  Gb  abort.o [3]
 accel::RPMx10k(unsigned int, unsigned int)
-                        0x00004781    0x26  Code  Gb  interpret.o [1]
+                        0x00004a4f    0x26  Code  Gb  interpret.o [1]
 accel::_RPMx10ktoFreq(unsigned int)
-                        0x00005009     0xe  Code  Gb  interpret.o [1]
+                        0x00005369     0xe  Code  Gb  interpret.o [1]
 accel::_accelStepMicroSec() const
-                        0x00004a49    0x18  Code  Gb  stepper.o [1]
+                        0x00004da5    0x18  Code  Gb  stepper.o [1]
 accel::_initUnitCurve(int)
-                        0x00002c4b    0x7e  Code  Gb  accel.o [1]
+                        0x00002f17    0x7e  Code  Gb  accel.o [1]
 accel::_scaleYAxisToClockTicks()
-                        0x00002d75    0x38  Code  Gb  accel.o [1]
+                        0x00003041    0x38  Code  Gb  accel.o [1]
 accel::_scaleYAxisToFrequency()
-                        0x00002cc9    0xaa  Code  Gb  accel.o [1]
-accel::accel()          0x00002af5    0x2e  Code  Gb  accel.o [1]
+                        0x00002f95    0xaa  Code  Gb  accel.o [1]
+accel::accel()          0x00002dc1    0x2e  Code  Gb  accel.o [1]
 accel::accelMicroSec() const
-                        0x00002e29     0x6  Code  Gb  stepper.o [1]
+                        0x000030f5     0x6  Code  Gb  stepper.o [1]
 accel::accelMicroSec(unsigned int)
-                        0x000031d1    0x28  Code  Gb  stepper.o [1]
+                        0x0000349d    0x28  Code  Gb  stepper.o [1]
 accel::assign(const accel&)
-                        0x00002b39    0x62  Code  Gb  accel.o [1]
+                        0x00002e05    0x62  Code  Gb  accel.o [1]
 accel::clockTicksToCurveIndex(unsigned int) const
-                        0x000048d9    0x18  Code  Gb  stepper.o [1]
+                        0x00004c33    0x18  Code  Gb  stepper.o [1]
 accel::clockTicksToFreq(unsigned int) const
-                        0x0000311b    0x18  Code  Gb  stepper.o [1]
+                        0x000033e7    0x18  Code  Gb  stepper.o [1]
 accel::clockTicksToMicroSec(unsigned int) const
-                        0x00002ea1    0x26  Code  Gb  stepper.o [1]
+                        0x0000316d    0x26  Code  Gb  stepper.o [1]
 accel::curveIndexToClockTicks(unsigned int) const
-                        0x00002e79    0x28  Code  Gb  stepper.o [1]
+                        0x00003145    0x28  Code  Gb  stepper.o [1]
 accel::curveIndexToClockTicks(unsigned int) const::string
-                        0x00007cbc    0x18  Data  Gb  stepper.o [1]
+                        0x00008004    0x18  Data  Gb  stepper.o [1]
 accel::curveIndexToClockTicks(unsigned int) const::string (instance 2)
-                        0x00007ac0    0x28  Data  Gb  stepper.o [1]
+                        0x00007e24    0x28  Data  Gb  stepper.o [1]
 accel::degreesPerMicrostepx10k() const
-                        0x00005017     0x6  Code  Gb  interpret.o [1]
+                        0x00005377     0x6  Code  Gb  interpret.o [1]
 accel::degreesPerMicrostepx10k(unsigned int)
-                        0x00004be1     0x6  Code  Gb  stepper.o [1]
-accel::fmax() const     0x000048cd     0x6  Code  Gb  accel.o [1]
-accel::fmin() const     0x00002ee1     0x6  Code  Gb  stepper.o [1]
+                        0x00004f3d     0x6  Code  Gb  stepper.o [1]
+accel::fmax() const     0x00004c27     0x6  Code  Gb  accel.o [1]
+accel::fmin() const     0x000031ad     0x6  Code  Gb  stepper.o [1]
 accel::freqCloseToStop(unsigned int) const
-                        0x00003133    0x12  Code  Gb  stepper.o [1]
+                        0x000033ff    0x12  Code  Gb  stepper.o [1]
 accel::freqToClockTicks(unsigned int) const
-                        0x00004bb5    0x2c  Code  Gb  stepper.o [1]
+                        0x00004f11    0x2c  Code  Gb  stepper.o [1]
 accel::frequency(unsigned int, unsigned int)
-                        0x00002dc5    0x34  Code  Gb  accel.o [1]
+                        0x00003091    0x34  Code  Gb  accel.o [1]
 accel::microSecToClockTicks(unsigned int) const
-                        0x00004a61    0x1a  Code  Gb  stepper.o [1]
+                        0x00004dbd    0x1a  Code  Gb  stepper.o [1]
 accel::microSecToCurveIndex(unsigned int) const
-                        0x00002e51    0x26  Code  Gb  stepper.o [1]
+                        0x0000311d    0x26  Code  Gb  stepper.o [1]
 accel::microSecToFreq(unsigned int) const
-                        0x00002ec9    0x18  Code  Gb  stepper.o [1]
+                        0x00003195    0x18  Code  Gb  stepper.o [1]
 accel::microSecToSteps(unsigned int)
-                        0x00002b9b    0x58  Code  Gb  accel.o [1]
+                        0x00002e67    0x58  Code  Gb  accel.o [1]
 accel::operator =(const accel&)
-                        0x00002b23    0x16  Code  Gb  accel.o [1]
+                        0x00002def    0x16  Code  Gb  accel.o [1]
 accel::reset(unsigned int)
-                        0x00002e2f    0x22  Code  Gb  stepper.o [1]
+                        0x000030fb    0x22  Code  Gb  stepper.o [1]
 accel::stepsToMicroSec(unsigned int)
-                        0x00002bf3    0x58  Code  Gb  accel.o [1]
+                        0x00002ebf    0x58  Code  Gb  accel.o [1]
 accel::totalClockTicks() const
-                        0x000048d3     0x6  Code  Gb  accel.o [1]
+                        0x00004c2d     0x6  Code  Gb  accel.o [1]
 accel::totalClockTicksToCurrentClockTicks(unsigned int)
-                        0x000048f1    0x78  Code  Gb  stepper.o [1]
+                        0x00004c4d    0x78  Code  Gb  stepper.o [1]
 accel::updateClockPeriod()
-                        0x00002f57    0x28  Code  Gb  stepper.o [1]
+                        0x00003223    0x28  Code  Gb  stepper.o [1]
 accel::updateClockPeriodDecelerate()
-                        0x00002fe5    0xe8  Code  Gb  stepper.o [1]
-accel::~accel()         0x00007963     0x2  Code  Gb  interpret.o [1]
-bufferInput             0x000004d7   0x20a  Code  Gb  interpret.o [1]
-delay                   0x00002149    0x1c  Code  Gb  main.o [1]
-digits                  0x00004f70    0x28  Data  Lc  xstoul.o [3]
-enable                  0x00002165     0xe  Code  Gb  main.o [1]
-errMsg()                0x000002ff    0x1a  Code  Gb  interpret.o [1]
-exit                    0x00007c8b     0x4  Code  Gb  exit.o [3]
-expf                    0x000049f9    0x4c  Code  Gb  expf.o [6]
-flashLED                0x00002193     0x2  Code  Gb  main.o [1]
-flashio::flashio()      0x00002481     0x2  Code  Gb  flashio.o [1]
-flashio::~flashio()     0x00007961     0x2  Code  Gb  interpret.o [1]
-g_bSendingBreak         0x200049bc     0x1  Data  Lc  usb_dev_serial.o [1]
-g_bUSBConfigured        0x200049bd     0x1  Data  Lc  usb_dev_serial.o [1]
-g_bUSBTimerInitialized  0x200047f4     0x1  Data  Gb  usbtick.o [9]
+                        0x000032b1    0xe8  Code  Gb  stepper.o [1]
+accel::~accel()         0x00007cc7     0x2  Code  Gb  interpret.o [1]
+bufferInput             0x00000553   0x2aa  Code  Gb  interpret.o [1]
+delay                   0x000023bd    0x1c  Code  Gb  main.o [1]
+digits                  0x0000530c    0x28  Data  Lc  xstoul.o [3]
+enable                  0x000023d9     0xe  Code  Gb  main.o [1]
+errMsg()                0x0000037d    0x1a  Code  Gb  interpret.o [1]
+exit                    0x00007fef     0x4  Code  Gb  exit.o [3]
+expf                    0x00004d55    0x4c  Code  Gb  expf.o [6]
+flashLED                0x00002407     0x2  Code  Gb  main.o [1]
+flashio::_eraseBlockRequired(unsigned int, unsigned int *, unsigned long)
+                        0x0000279f    0x3a  Code  Gb  flashio.o [1]
+flashio::_flashErased(unsigned int)
+                        0x000027d9    0x28  Code  Gb  flashio.o [1]
+flashio::flashio()      0x000026f9     0x2  Code  Gb  flashio.o [1]
+flashio::retrieveData(unsigned int *, unsigned int, unsigned long)
+                        0x00002785    0x1a  Code  Gb  flashio.o [1]
+flashio::saveData(unsigned int *, unsigned int, unsigned long)
+                        0x000026fb    0x86  Code  Gb  flashio.o [1]
+flashio::~flashio()     0x00007cc5     0x2  Code  Gb  interpret.o [1]
+g_bSendingBreak         0x200049d4     0x1  Data  Lc  usb_dev_serial.o [1]
+g_bUSBConfigured        0x200049d5     0x1  Data  Lc  usb_dev_serial.o [1]
+g_bUSBTimerInitialized  0x200047f8     0x1  Data  Gb  usbtick.o [9]
 g_eOTGModeState         0x20000091     0x1  Data  Gb  usbmode.o [9]
 g_iDualMode             0x20000092     0x1  Data  Lc  usbmode.o [9]
 g_iUSBMode              0x20000090     0x1  Data  Gb  usbmode.o [9]
 g_pCDCCompSerConfigDescriptors
-                        0x000072bc     0x4  Data  Gb  usbdcdc.o [9]
-g_pcStatus              0x200049a4     0x4  Data  Gb  usb_dev_serial.o [1]
-g_pfnTickHandlers       0x200047f8    0x18  Data  Gb  usbtick.o [9]
+                        0x00007620     0x4  Data  Gb  usbdcdc.o [9]
+g_pcStatus              0x200049bc     0x4  Data  Gb  usb_dev_serial.o [1]
+g_pfnTickHandlers       0x200047fc    0x18  Data  Gb  usbtick.o [9]
 g_pfnUSBModeCallback    0x2000009c     0x4  Data  Lc  usbmode.o [9]
 g_ppCDCSerConfigDescriptors
-                        0x000072b8     0x4  Data  Gb  usbdcdc.o [9]
-g_ppsDevInfo            0x200047ac     0x4  Data  Gb  usbdenum.o [9]
+                        0x0000761c     0x4  Data  Gb  usbdcdc.o [9]
+g_ppsDevInfo            0x200047b0     0x4  Data  Gb  usbdenum.o [9]
 g_ppui8StringDescriptors
-                        0x00007cd4    0x18  Data  Gb  usb_serial_structs.o [1]
+                        0x0000801c    0x18  Data  Gb  usb_serial_structs.o [1]
 g_psCDCCompSerSections  0x20000080    0x10  Data  Gb  usbdcdc.o [9]
 g_psCDCSerSections      0x200000a0     0xc  Data  Gb  usbdcdc.o [9]
-g_psDCDInst             0x20004764    0x48  Data  Gb  usbdenum.o [9]
-g_psUSBDMAInst          0x200042e8   0x110  Data  Lc  usbdma.o [9]
-g_psUSBDStdRequests     0x00005da8    0x34  Data  Lc  usbdenum.o [9]
-g_pui32Dii16Regs        0x00003b38    0x14  Data  Lc  interrupt.o [5]
-g_pui32EnRegs           0x00003b24    0x14  Data  Lc  interrupt.o [5]
-g_pui32Regs             0x00003a88    0x9c  Data  Lc  interrupt.o [5]
+g_psDCDInst             0x20004768    0x48  Data  Gb  usbdenum.o [9]
+g_psUSBDMAInst          0x200042ec   0x110  Data  Lc  usbdma.o [9]
+g_psUSBDStdRequests     0x0000610c    0x34  Data  Lc  usbdenum.o [9]
+g_pui32Dii16Regs        0x00003eac    0x14  Data  Lc  interrupt.o [5]
+g_pui32EnRegs           0x00003e98    0x14  Data  Lc  interrupt.o [5]
+g_pui32Regs             0x00003dfc    0x9c  Data  Lc  interrupt.o [5]
 g_pui8CDCSerCommInterface
-                        0x00007888    0x24  Data  Gb  usbdcdc.o [9]
+                        0x00007bec    0x24  Data  Gb  usbdcdc.o [9]
 g_pui8CDCSerDataInterface
-                        0x000078b4    0x18  Data  Gb  usbdcdc.o [9]
+                        0x00007c18    0x18  Data  Gb  usbdcdc.o [9]
 g_pui8CDCSerDescriptor  0x20000060     0xc  Data  Gb  usbdcdc.o [9]
 g_pui8CDCSerDeviceDescriptor
                         0x2000006c    0x14  Data  Gb  usbdcdc.o [9]
-g_pui8ConfigString      0x000079ac    0x38  Data  Gb  usb_serial_structs.o [1]
+g_pui8ConfigString      0x00007d10    0x38  Data  Gb  usb_serial_structs.o [1]
 g_pui8ControlInterfaceString
-                        0x00007a6c    0x2c  Data  Gb  usb_serial_structs.o [1]
-g_pui8DataBufferIn      0x200047b4    0x40  Data  Lc  usbdenum.o [9]
+                        0x00007dd0    0x2c  Data  Gb  usb_serial_structs.o [1]
+g_pui8DataBufferIn      0x200047b8    0x40  Data  Lc  usbdenum.o [9]
 g_pui8IADSerDescriptor  0x200000ac     0x8  Data  Gb  usbdcdc.o [9]
-g_pui8LangDescriptor    0x00007e80     0x4  Data  Gb  usb_serial_structs.o [1]
+g_pui8LangDescriptor    0x000081f4     0x4  Data  Gb  usb_serial_structs.o [1]
 g_pui8ManufacturerString
-                        0x00007b10    0x24  Data  Gb  usb_serial_structs.o [1]
-g_pui8ProductString     0x00007b34    0x24  Data  Gb  usb_serial_structs.o [1]
+                        0x00007e74    0x24  Data  Gb  usb_serial_structs.o [1]
+g_pui8ProductString     0x00007e98    0x24  Data  Gb  usb_serial_structs.o [1]
 g_pui8RxBufferWorkspace
-                        0x2000488c    0x18  Data  Gb  usb_serial_structs.o [1]
+                        0x20004890    0x18  Data  Gb  usb_serial_structs.o [1]
 g_pui8SerialNumberString
-                        0x00007d18    0x14  Data  Gb  usb_serial_structs.o [1]
+                        0x00008060    0x14  Data  Gb  usb_serial_structs.o [1]
 g_pui8TxBufferWorkspace
-                        0x200048a4    0x18  Data  Gb  usb_serial_structs.o [1]
-g_pui8USBRxBuffer       0x20004500   0x100  Data  Gb  usb_serial_structs.o [1]
-g_pui8USBTxBuffer       0x20004600   0x100  Data  Gb  usb_serial_structs.o [1]
-g_pvTickInstance        0x20004810    0x18  Data  Gb  usbtick.o [9]
+                        0x200048a8    0x18  Data  Gb  usb_serial_structs.o [1]
+g_pui8USBRxBuffer       0x20004504   0x100  Data  Gb  usb_serial_structs.o [1]
+g_pui8USBTxBuffer       0x20004604   0x100  Data  Gb  usb_serial_structs.o [1]
+g_pvTickInstance        0x20004814    0x18  Data  Gb  usbtick.o [9]
 g_sCDCCompSerConfigHeader
-                        0x000078dc     0x8  Data  Gb  usbdcdc.o [9]
+                        0x00007c40     0x8  Data  Gb  usbdcdc.o [9]
 g_sCDCDevice            0x20000000    0x60  Data  Gb  usb_serial_structs.o [1]
-g_sCDCHandlers          0x000072c0    0x30  Data  Gb  usbdcdc.o [9]
+g_sCDCHandlers          0x00007624    0x30  Data  Gb  usbdcdc.o [9]
 g_sCDCSerCommInterfaceSection
-                        0x000078ac     0x8  Data  Gb  usbdcdc.o [9]
-g_sCDCSerConfigHeader   0x000078d4     0x8  Data  Gb  usbdcdc.o [9]
-g_sCDCSerConfigSection  0x00007878     0x8  Data  Gb  usbdcdc.o [9]
+                        0x00007c10     0x8  Data  Gb  usbdcdc.o [9]
+g_sCDCSerConfigHeader   0x00007c38     0x8  Data  Gb  usbdcdc.o [9]
+g_sCDCSerConfigSection  0x00007bdc     0x8  Data  Gb  usbdcdc.o [9]
 g_sCDCSerDataInterfaceSection
-                        0x000078cc     0x8  Data  Gb  usbdcdc.o [9]
-g_sIADSerConfigSection  0x00007880     0x8  Data  Gb  usbdcdc.o [9]
-g_sRxBuffer             0x00007b58    0x24  Data  Gb  usb_serial_structs.o [1]
-g_sTxBuffer             0x00007b7c    0x24  Data  Gb  usb_serial_structs.o [1]
-g_ui32CurrentUSBTick    0x20004828     0x4  Data  Gb  usbtick.o [9]
-g_ui32Flags             0x200049a0     0x4  Data  Gb  usb_dev_serial.o [1]
+                        0x00007c30     0x8  Data  Gb  usbdcdc.o [9]
+g_sIADSerConfigSection  0x00007be4     0x8  Data  Gb  usbdcdc.o [9]
+g_sRxBuffer             0x00007ebc    0x24  Data  Gb  usb_serial_structs.o [1]
+g_sTxBuffer             0x00007ee0    0x24  Data  Gb  usb_serial_structs.o [1]
+g_ui32CurrentUSBTick    0x2000482c     0x4  Data  Gb  usbtick.o [9]
+g_ui32Flags             0x200049b8     0x4  Data  Gb  usb_dev_serial.o [1]
 g_ui32PollRate          0x20000094     0x4  Data  Gb  usbmode.o [9]
-g_ui32UARTRxCount       0x2000499c     0x4  Data  Gb  usb_dev_serial.o [1]
-g_ui32UARTTxCount       0x20004998     0x4  Data  Gb  usb_dev_serial.o [1]
-g_ui32USBSOFCount       0x200049a8     0x4  Data  Gb  usbtick.o [9]
+g_ui32UARTRxCount       0x200049b4     0x4  Data  Gb  usb_dev_serial.o [1]
+g_ui32UARTTxCount       0x200049b0     0x4  Data  Gb  usb_dev_serial.o [1]
+g_ui32USBSOFCount       0x200049c0     0x4  Data  Gb  usbtick.o [9]
 g_ui32WaitTicks         0x20000098     0x4  Data  Gb  usbmode.o [9]
-heapSTRUCT_SIZE         0x000029e2     0x2  Data  Lc  heap_2.o [1]
-intToNodeType(int)      0x00000475    0x62  Code  Gb  interpret.o [1]
+globalInterpretState    0x200000d0     0x1  Data  Lc  interpret.o [1]
+heapSTRUCT_SIZE         0x00003142     0x2  Data  Lc  heap_2.o [1]
+intToNodeType(int)      0x000004f1    0x62  Code  Gb  interpret.o [1]
 interpret::_cleanUpEvaluationStack(unsigned int)
-                        0x00000e35    0x34  Code  Gb  interpret.o [1]
+                        0x00000f99    0x34  Code  Gb  interpret.o [1]
 interpret::_cleanUpSymbolTable()
-                        0x00000e69    0x28  Code  Gb  interpret.o [1]
+                        0x00000fcd    0x28  Code  Gb  interpret.o [1]
 interpret::_currentProgramNodeLevel() const
-                        0x0000293f    0x16  Code  Gb  interpret.o [1]
+                        0x00002c7b    0x16  Code  Gb  interpret.o [1]
 interpret::_currentProgramNodeType() const
-                        0x00002789    0x16  Code  Gb  interpret.o [1]
+                        0x00002acf    0x16  Code  Gb  interpret.o [1]
 interpret::_currentProgramNodeValue() const
-                        0x0000279f    0x16  Code  Gb  interpret.o [1]
+                        0x00002ae5    0x16  Code  Gb  interpret.o [1]
 interpret::_evalValue()
-                        0x0000280d    0x3c  Code  Gb  interpret.o [1]
+                        0x00002b49    0x3c  Code  Gb  interpret.o [1]
 interpret::_evalValue()::string
-                        0x00007bc8    0x20  Data  Gb  interpret.o [1]
+                        0x00007f2c    0x20  Data  Gb  interpret.o [1]
 interpret::_evalValue()::string (instance 2)
-                        0x00007a14    0x2c  Data  Gb  interpret.o [1]
+                        0x00007d78    0x2c  Data  Gb  interpret.o [1]
 interpret::_evalValuePeek() const
-                        0x00002955     0xe  Code  Gb  interpret.o [1]
+                        0x00002c91     0xe  Code  Gb  interpret.o [1]
 interpret::_findFirstAvailableNodeInSymbolTable()
-                        0x000013d9    0x7e  Code  Gb  interpret.o [1]
+                        0x00001531    0x64  Code  Gb  interpret.o [1]
 interpret::_findFirstParseTreeEntry(parseTreeEntry const &, unsigned int)
-                        0x00000e91    0x74  Code  Gb  interpret.o [1]
+                        0x00000ff5    0x74  Code  Gb  interpret.o [1]
+interpret::_getIntSize(flashRegion)
+                        0x000016b9    0x2a  Code  Gb  interpret.o [1]
 interpret::_getLastSymbolTableIndex()
-                        0x0000298b    0x16  Code  Gb  interpret.o [1]
+                        0x00002cc7    0x16  Code  Gb  interpret.o [1]
 interpret::_programNodeType(unsigned int) const
-                        0x000029a5    0x14  Code  Gb  interpret.o [1]
+                        0x00002ce1    0x14  Code  Gb  interpret.o [1]
 interpret::_pushTemporarySymbolOnEvaluationStack(unsigned int)
-                        0x00001351    0x82  Code  Gb  interpret.o [1]
+                        0x00001495    0x94  Code  Gb  interpret.o [1]
 interpret::_resetSymbolTableTemporaryBoundary()
-                        0x00002935     0xa  Code  Gb  interpret.o [1]
+                        0x00002c71     0xa  Code  Gb  interpret.o [1]
 interpret::_returnSymbolToAvailablePool(unsigned int)
-                        0x00002849    0x26  Code  Gb  interpret.o [1]
+                        0x00002b85    0x26  Code  Gb  interpret.o [1]
 interpret::_updateProgramIndex(nodeType, int)
-                        0x00000dc3    0x5e  Code  Gb  interpret.o [1]
+                        0x00000f05    0x5c  Code  Gb  interpret.o [1]
 interpret::appendToProgram(parseTreeEntry const &)
-                        0x00000751    0x2e  Code  Gb  interpret.o [1]
+                        0x00000875    0x46  Code  Gb  interpret.o [1]
 interpret::appendToSymbolTable(symbolTableEntry const &)
-                        0x0000077f    0x2e  Code  Gb  interpret.o [1]
+                        0x000008bb    0x2e  Code  Gb  interpret.o [1]
 interpret::evaluateOperator(unsigned int)
-                        0x00000ff1   0x348  Code  Gb  interpret.o [1]
+                        0x00001141   0x348  Code  Gb  interpret.o [1]
 interpret::getLowWaterMarkForTemporarySymbolSearch() const
-                        0x000029dd     0x6  Code  Gb  interpret.o [1]
+                        0x00002d19     0x6  Code  Gb  interpret.o [1]
 interpret::getStepper()
-                        0x000014e9     0x6  Code  Gb  interpret.o [1]
-interpret::interpret()  0x000006e1    0x70  Code  Gb  interpret.o [1]
-interpret::run()        0x000007ad   0x616  Code  Gb  interpret.o [1]
+                        0x00001733     0x6  Code  Gb  interpret.o [1]
+interpret::interpret()  0x000007fd    0x6e  Code  Gb  interpret.o [1]
+interpret::restoreFromFlash(flashRegion)
+                        0x00001603    0x70  Code  Gb  interpret.o [1]
+interpret::run(int)     0x000008e9   0x60e  Code  Gb  interpret.o [1]
+interpret::saveToFlash(flashRegion)
+                        0x0000159d    0x66  Code  Gb  interpret.o [1]
 interpret::setLowWaterMarkForTemporarySymbolSearch()
-                        0x00002475     0xc  Code  Gb  interpret.o [1]
+                        0x000026ed     0xc  Code  Gb  interpret.o [1]
 interpret::symbolFromIndex(int)
-                        0x000029c1    0x1c  Code  Gb  interpret.o [1]
+                        0x00002cfd    0x1c  Code  Gb  interpret.o [1]
 interpret::symbolTableIndexMorph(int)
-                        0x00000f05    0x70  Code  Gb  interpret.o [1]
+                        0x00001069    0x70  Code  Gb  interpret.o [1]
 interpret::~interpret()
-                        0x000078e5    0x54  Code  Gb  interpret.o [1]
-interpretRun            0x00000285    0x60  Code  Gb  interpret.o [1]
-interpreter             0x20002fb0  0x1338  Data  Gb  interpret.o [1]
-interpreterRunBool      0x200049b9     0x1  Data  Lc  interpret.o [1]
+                        0x00007c49    0x54  Code  Gb  interpret.o [1]
+interpretState          0x00000285    0xde  Code  Gb  interpret.o [1]
+interpreter             0x20002fb4  0x1338  Data  Gb  interpret.o [1]
 io::getADC(unsigned int)
-                        0x0000261f    0x4c  Code  Gb  io.o [1]
-io::getInput() const    0x000025e1    0x3e  Code  Gb  io.o [1]
-io::getTemperature()    0x0000266b    0x66  Code  Gb  io.o [1]
-io::init()              0x00002493   0x110  Code  Gb  io.o [1]
-io::io()                0x00002491     0x2  Code  Gb  io.o [1]
-io::reset()             0x0000292b     0xa  Code  Gb  interpret.o [1]
+                        0x000029bb    0x4c  Code  Gb  io.o [1]
+io::getInput() const    0x0000297d    0x3e  Code  Gb  io.o [1]
+io::getTemperature()    0x00002a07    0x66  Code  Gb  io.o [1]
+io::init()              0x0000282f   0x110  Code  Gb  io.o [1]
+io::io()                0x0000282d     0x2  Code  Gb  io.o [1]
+io::reset()             0x00002c67     0xa  Code  Gb  interpret.o [1]
 io::setOutput(unsigned int)
-                        0x000025a3    0x3e  Code  Gb  io.o [1]
-io::~io()               0x00007947     0x2  Code  Gb  interpret.o [1]
-led::Off()              0x00004685    0x1c  Code  Gb  interpret.o [1]
-led::On()               0x00004669    0x1c  Code  Gb  interpret.o [1]
-led::_enable            0x200049b8     0x1  Data  Gb  interpret.o [1]
-led::enable()           0x00004fc1     0xc  Code  Gb  interpret.o [1]
-led::enable(bool)       0x000018f9     0xc  Code  Gb  interpret.o [1]
-led::led(bool)          0x00002705    0x1e  Code  Gb  interpret.o [1]
-led::set(unsigned int)  0x0000288d    0x1a  Code  Gb  interpret.o [1]
-led::~led()             0x00007939     0xe  Code  Gb  interpret.o [1]
-localAssert             0x00002125    0x12  Code  Gb  main.o [1]
-main                    0x000076f7   0x106  Code  Gb  usb_dev_serial.o [1]
-mainA                   0x000021cd    0x1a  Code  Gb  main.o [1]
-memchr                  0x00005245          Code  Gb  memchr.o [7]
-memcmp                  0x00003495          Code  Gb  memcmp.o [7]
-memset                  0x00003645    0x16  Code  Gb  tasks.o [1]
-motorStep               0x00002173    0x20  Code  Gb  main.o [1]
-ndigs                   0x00004f98    0x28  Data  Lc  xstoul.o [3]
-next_abi_dtor_rec       0x200049ac     0x4  Data  Lc  cppinit.o [3]
-out                     0x000046b1    0x16  Code  Lc  xreportassert.o [3]
+                        0x0000293f    0x3e  Code  Gb  io.o [1]
+io::~io()               0x00007cab     0x2  Code  Gb  interpret.o [1]
+led::Off()              0x000049f9    0x1c  Code  Gb  interpret.o [1]
+led::On()               0x000049dd    0x1c  Code  Gb  interpret.o [1]
+led::_enable            0x200049d0     0x1  Data  Gb  interpret.o [1]
+led::enable()           0x0000535d     0xc  Code  Gb  interpret.o [1]
+led::enable(bool)       0x00001b15     0xc  Code  Gb  interpret.o [1]
+led::led(bool)          0x00002aa1    0x1e  Code  Gb  interpret.o [1]
+led::set(unsigned int)  0x00002bc9    0x1a  Code  Gb  interpret.o [1]
+led::~led()             0x00007c9d     0xe  Code  Gb  interpret.o [1]
+localAssert             0x00002399    0x12  Code  Gb  main.o [1]
+main                    0x00007a5b   0x106  Code  Gb  usb_dev_serial.o [1]
+mainA                   0x00002441    0x1a  Code  Gb  main.o [1]
+memchr                  0x00005621          Code  Gb  memchr.o [7]
+memcmp                  0x00003761          Code  Gb  memcmp.o [7]
+memset                  0x00003911    0x16  Code  Gb  tasks.o [1]
+motorStep               0x000023e7    0x20  Code  Gb  main.o [1]
+ndigs                   0x00005334    0x28  Data  Lc  xstoul.o [3]
+next_abi_dtor_rec       0x200049c4     0x4  Data  Lc  cppinit.o [3]
+out                     0x00003929    0x16  Code  Lc  xreportassert.o [3]
+pStepper                0x20004978     0x4  Data  Gb  stepper.o [1]
 parseTreeEntry::level() const
-                        0x000029b9     0x4  Code  Gb  parseTreeEntry.o [1]
+                        0x00002cf5     0x4  Code  Gb  parseTreeEntry.o [1]
 parseTreeEntry::level(unsigned int)
-                        0x00002401     0x4  Code  Gb  parseTreeEntry.o [1]
+                        0x00002679     0x4  Code  Gb  parseTreeEntry.o [1]
 parseTreeEntry::operator =(const parseTreeEntry&)
-                        0x000023b7    0x4a  Code  Gb  parseTreeEntry.o [1]
+                        0x0000262f    0x4a  Code  Gb  parseTreeEntry.o [1]
 parseTreeEntry::parseTreeEntry()
-                        0x000023a9     0x6  Code  Gb  parseTreeEntry.o [1]
+                        0x00002621     0x6  Code  Gb  parseTreeEntry.o [1]
 parseTreeEntry::parseTreeEntry(nodeType, int, unsigned int)
-                        0x000023af     0x8  Code  Gb  parseTreeEntry.o [1]
+                        0x00002627     0x8  Code  Gb  parseTreeEntry.o [1]
 parseTreeEntry::position() const
-                        0x0000407d     0x4  Code  Gb  parseTreeEntry.o [1]
+                        0x000043f1     0x4  Code  Gb  parseTreeEntry.o [1]
 parseTreeEntry::position(nodePosition)
-                        0x00002405     0x4  Code  Gb  parseTreeEntry.o [1]
+                        0x0000267d     0x4  Code  Gb  parseTreeEntry.o [1]
 parseTreeEntry::type() const
-                        0x00002785     0x4  Code  Gb  parseTreeEntry.o [1]
+                        0x00002acb     0x4  Code  Gb  parseTreeEntry.o [1]
 parseTreeEntry::type(nodeType)
-                        0x0000240d     0x4  Code  Gb  parseTreeEntry.o [1]
+                        0x00002685     0x4  Code  Gb  parseTreeEntry.o [1]
 parseTreeEntry::value() const
-                        0x000029bd     0x4  Code  Gb  parseTreeEntry.o [1]
+                        0x00002cf9     0x4  Code  Gb  parseTreeEntry.o [1]
 parseTreeEntry::value(int)
-                        0x00002409     0x4  Code  Gb  parseTreeEntry.o [1]
+                        0x00002681     0x4  Code  Gb  parseTreeEntry.o [1]
 parseTreeEntry::~parseTreeEntry()
-                        0x00002411     0x2  Code  Gb  interpret.o [1]
-postMsg(bool)           0x00000319    0x16  Code  Gb  interpret.o [1]
+                        0x00002689     0x2  Code  Gb  interpret.o [1]
+postMsg(bool)           0x00000397    0x16  Code  Gb  interpret.o [1]
 prvAddCurrentTaskToDelayedList
-                        0x00001fad    0x3e  Code  Lc  tasks.o [1]
-prvAllocateTCBAndStack  0x00001ff9    0x46  Code  Lc  tasks.o [1]
+                        0x000021c9    0x3e  Code  Lc  tasks.o [1]
+prvAllocateTCBAndStack  0x00002215    0x46  Code  Lc  tasks.o [1]
 prvCheckTasksWaitingTermination
-                        0x00001f45    0x5c  Code  Lc  tasks.o [1]
-prvDeleteTCB            0x00002077    0x12  Code  Lc  tasks.o [1]
-prvHeapInit             0x000035ff    0x2e  Code  Lc  heap_2.o [1]
-prvIdleTask             0x00001e91     0x8  Code  Lc  tasks.o [1]
+                        0x00002161    0x5c  Code  Lc  tasks.o [1]
+prvDeleteTCB            0x00002293    0x12  Code  Lc  tasks.o [1]
+prvHeapInit             0x000038cb    0x2e  Code  Lc  heap_2.o [1]
+prvIdleTask             0x000020ad     0x8  Code  Lc  tasks.o [1]
 prvInitialiseTCBVariables
-                        0x00001e99    0x60  Code  Lc  tasks.o [1]
-prvInitialiseTaskLists  0x00001ef9    0x46  Code  Lc  tasks.o [1]
+                        0x000020b5    0x60  Code  Lc  tasks.o [1]
+prvInitialiseTaskLists  0x00002115    0x46  Code  Lc  tasks.o [1]
 prvTaskCheckFreeStackSpace
-                        0x0000203f    0x18  Code  Lc  tasks.o [1]
-pui32Stack              0x200049c0   0x400  Data  Lc  startup_ewarm.o [1]
-putchar                 0x00004fcd    0x28  Code  Gb  putchar.o [3]
-pvPortMalloc            0x000034f9    0xc2  Code  Gb  heap_2.o [1]
-pxCurrentTCB            0x20004964     0x4  Data  Gb  tasks.o [1]
-pxDelayedTaskList       0x20004968     0x4  Data  Lc  tasks.o [1]
+                        0x0000225b    0x18  Code  Lc  tasks.o [1]
+pui32Stack              0x200049d8   0x400  Data  Lc  startup_ewarm.o [1]
+putchar                 0x00004fab    0x28  Code  Gb  putchar.o [3]
+pvPortMalloc            0x000037c5    0xc2  Code  Gb  heap_2.o [1]
+pxCurrentTCB            0x2000497c     0x4  Data  Gb  tasks.o [1]
+pxDelayedTaskList       0x20004980     0x4  Data  Lc  tasks.o [1]
 pxOverflowDelayedTaskList
-                        0x2000496c     0x4  Data  Lc  tasks.o [1]
-pxPortInitialiseStack   0x000031f9    0x22  Code  Gb  port.o [1]
-pxReadyTasksLists       0x20004700    0x64  Data  Lc  tasks.o [1]
-sp                      0x20004960     0x4  Data  Gb  stepper.o [1]
-sprintf                 0x000028f1    0x34  Code  Gb  sprintf.o [3]
-sscanf                  0x00002385    0x24  Code  Gb  sscanf.o [3]
+                        0x20004984     0x4  Data  Lc  tasks.o [1]
+pxPortInitialiseStack   0x000034c5    0x22  Code  Gb  port.o [1]
+pxReadyTasksLists       0x20004704    0x64  Data  Lc  tasks.o [1]
+sprintf                 0x00002c2d    0x34  Code  Gb  sprintf.o [3]
+sscanf                  0x000025fd    0x24  Code  Gb  sscanf.o [3]
 stepper::RPM(unsigned int, unsigned int)
-                        0x000018d9    0x20  Code  Gb  interpret.o [1]
+                        0x00001af5    0x20  Code  Gb  interpret.o [1]
 stepper::RPMx10k(unsigned int, unsigned int)
-                        0x000028a7    0x14  Code  Gb  interpret.o [1]
+                        0x00002be3    0x14  Code  Gb  interpret.o [1]
 stepper::_isAccelerating() const
-                        0x00002f25    0x32  Code  Gb  stepper.o [1]
+                        0x000031f1    0x32  Code  Gb  stepper.o [1]
 stepper::_isConstantVelocity() const
-                        0x00002f9d    0x32  Code  Gb  stepper.o [1]
+                        0x00003269    0x32  Code  Gb  stepper.o [1]
 stepper::_isConstantVelocityStart() const
-                        0x000030ff    0x16  Code  Gb  stepper.o [1]
+                        0x000033cb    0x16  Code  Gb  stepper.o [1]
 stepper::_isDecelerating() const
-                        0x000030cd    0x32  Code  Gb  stepper.o [1]
+                        0x00003399    0x32  Code  Gb  stepper.o [1]
 stepper::_isStartOfDeceleration() const
-                        0x00002fcf    0x16  Code  Gb  stepper.o [1]
+                        0x0000329b    0x16  Code  Gb  stepper.o [1]
 stepper::_timer() const
-                        0x00003115     0x6  Code  Gb  stepper.o [1]
+                        0x000033e1     0x6  Code  Gb  stepper.o [1]
 stepper::_timer(unsigned long)
-                        0x00002f81    0x1c  Code  Gb  stepper.o [1]
+                        0x0000324d    0x1c  Code  Gb  stepper.o [1]
 stepper::_timerStart(bool)
-                        0x00001807    0x4a  Code  Gb  stepper.o [1]
+                        0x00001a23    0x4a  Code  Gb  stepper.o [1]
 stepper::accelerationTimeMicrosecs(unsigned int)
-                        0x000018c9    0x10  Code  Gb  interpret.o [1]
+                        0x00001ae5    0x10  Code  Gb  interpret.o [1]
 stepper::degreesPerMicrostepx10k() const
-                        0x000047a7     0xc  Code  Gb  interpret.o [1]
+                        0x00004a75     0xc  Code  Gb  interpret.o [1]
 stepper::degreesPerMicrostepx10k(unsigned int)
-                        0x000031bf    0x10  Code  Gb  stepper.o [1]
+                        0x0000348b    0x10  Code  Gb  stepper.o [1]
 stepper::directionPositive(bool)
-                        0x00002df9    0x30  Code  Gb  stepper.o [1]
-stepper::enable()       0x00003145    0x14  Code  Gb  stepper.o [1]
-stepper::isr()          0x00001703   0x104  Code  Gb  stepper.o [1]
+                        0x000030c5    0x30  Code  Gb  stepper.o [1]
+stepper::enable()       0x00003411    0x14  Code  Gb  stepper.o [1]
+stepper::isr()          0x0000191f   0x104  Code  Gb  stepper.o [1]
 stepper::microstepSet(microsteps)
-                        0x00001875    0x54  Code  Gb  stepper.o [1]
+                        0x00001a91    0x54  Code  Gb  stepper.o [1]
 stepper::moveAbsolute(int)
-                        0x000015b3   0x150  Code  Gb  stepper.o [1]
+                        0x000017cf   0x150  Code  Gb  stepper.o [1]
 stepper::moveAbsoluteDegreex10k(int)
-                        0x000028bb    0x18  Code  Gb  interpret.o [1]
+                        0x00002bf7    0x18  Code  Gb  interpret.o [1]
 stepper::moveRelative(int)
-                        0x00002879    0x14  Code  Gb  interpret.o [1]
+                        0x00002bb5    0x14  Code  Gb  interpret.o [1]
 stepper::moveRelativeDegreex10k(int)
-                        0x000028d3    0x18  Code  Gb  interpret.o [1]
+                        0x00002c0f    0x18  Code  Gb  interpret.o [1]
 stepper::positionSteps() const
-                        0x00002925     0x6  Code  Gb  interpret.o [1]
-stepper::state() const  0x000028eb     0x6  Code  Gb  interpret.o [1]
-stepper::step()         0x00002ee9    0x3c  Code  Gb  stepper.o [1]
-stepper::stepper()      0x00001545    0x2e  Code  Gb  stepper.o [1]
-stepper::~stepper()     0x00007949    0x16  Code  Gb  interpret.o [1]
-stepperISR              0x0000151d    0x28  Code  Gb  stepper.o [1]
-stepper_init            0x00001573    0x40  Code  Gb  stepper.o [1]
-stmtNestingLevel        0x20004944     0x4  Data  Lc  interpret.o [1]
-stmtPosition            0x2000482c    0x20  Data  Lc  interpret.o [1]
-stmtType                0x2000484c    0x20  Data  Lc  interpret.o [1]
-stmtValue               0x20004948     0x4  Data  Lc  interpret.o [1]
-strchr                  0x00004db1          Code  Gb  strchr.o [7]
-strcmp                  0x000022c1          Code  Gb  strcmp.o [7]
+                        0x00002c61     0x6  Code  Gb  interpret.o [1]
+stepper::state() const  0x00002c27     0x6  Code  Gb  interpret.o [1]
+stepper::step()         0x000031b5    0x3c  Code  Gb  stepper.o [1]
+stepper::stepper()      0x00001761    0x2e  Code  Gb  stepper.o [1]
+stepper::~stepper()     0x00007cad    0x16  Code  Gb  interpret.o [1]
+stepperISR              0x00001739    0x28  Code  Gb  stepper.o [1]
+stepper_init            0x0000178f    0x40  Code  Gb  stepper.o [1]
+stmtNestingLevel        0x2000495c     0x4  Data  Lc  interpret.o [1]
+stmtPosition            0x20004830    0x20  Data  Lc  interpret.o [1]
+stmtType                0x20004850    0x20  Data  Lc  interpret.o [1]
+stmtValue               0x20004960     0x4  Data  Lc  interpret.o [1]
+strchr                  0x0000514d          Code  Gb  strchr.o [7]
+strcmp                  0x00002539          Code  Gb  strcmp.o [7]
 stringToNodePosition(char const *)
-                        0x0000032f    0x2c  Code  Gb  interpret.o [1]
+                        0x000003ad    0x2c  Code  Gb  interpret.o [1]
 stringToNodeType(char const *)
-                        0x0000035b   0x114  Code  Gb  interpret.o [1]
-strlen                  0x000020cd          Code  Gb  strlen.o [7]
+                        0x000003d9   0x114  Code  Gb  interpret.o [1]
+strlen                  0x00002335          Code  Gb  strlen.o [7]
 strstr(char const *, char const *)
-                        0x00002375    0x10  Code  Gb  interpret.o [1]
-successMsg()            0x000002e5    0x1a  Code  Gb  interpret.o [1]
-symbFcnLink             0x20004954     0x4  Data  Lc  interpret.o [1]
-symbType                0x2000494c     0x4  Data  Lc  interpret.o [1]
-symbValue               0x20004950     0x4  Data  Lc  interpret.o [1]
+                        0x000025ed    0x10  Code  Gb  interpret.o [1]
+successMsg()            0x00000363    0x1a  Code  Gb  interpret.o [1]
+symbFcnLink             0x2000496c     0x4  Data  Lc  interpret.o [1]
+symbType                0x20004964     0x4  Data  Lc  interpret.o [1]
+symbValue               0x20004968     0x4  Data  Lc  interpret.o [1]
 symbolTableEntry::dumpEntry()
-                        0x00002465     0x2  Code  Gb  symbolTableEntry.o [1]
+                        0x000026dd     0x2  Code  Gb  symbolTableEntry.o [1]
 symbolTableEntry::fcnLink() const
-                        0x00002875     0x4  Code  Gb  symbolTableEntry.o [1]
+                        0x00002bb1     0x4  Code  Gb  symbolTableEntry.o [1]
 symbolTableEntry::fcnLink(int)
-                        0x0000246f     0x4  Code  Gb  symbolTableEntry.o [1]
+                        0x000026e7     0x4  Code  Gb  symbolTableEntry.o [1]
 symbolTableEntry::operator =(const symbolTableEntry&)
-                        0x0000242b    0x3a  Code  Gb  symbolTableEntry.o [1]
+                        0x000026a3    0x3a  Code  Gb  symbolTableEntry.o [1]
 symbolTableEntry::symbolTableEntry()
-                        0x00002413     0xe  Code  Gb  symbolTableEntry.o [1]
+                        0x0000268b     0xe  Code  Gb  symbolTableEntry.o [1]
 symbolTableEntry::symbolTableEntry(nodeType, int)
-                        0x00002421     0xa  Code  Gb  symbolTableEntry.o [1]
+                        0x00002699     0xa  Code  Gb  symbolTableEntry.o [1]
 symbolTableEntry::type() const
-                        0x000029a1     0x4  Code  Gb  symbolTableEntry.o [1]
+                        0x00002cdd     0x4  Code  Gb  symbolTableEntry.o [1]
 symbolTableEntry::type(nodeType)
-                        0x00002467     0x4  Code  Gb  symbolTableEntry.o [1]
+                        0x000026df     0x4  Code  Gb  symbolTableEntry.o [1]
 symbolTableEntry::value() const
-                        0x000027ef     0x4  Code  Gb  symbolTableEntry.o [1]
+                        0x00002b35     0x4  Code  Gb  symbolTableEntry.o [1]
 symbolTableEntry::value(int)
-                        0x0000246b     0x4  Code  Gb  symbolTableEntry.o [1]
+                        0x000026e3     0x4  Code  Gb  symbolTableEntry.o [1]
 symbolTableEntry::~symbolTableEntry()
-                        0x00002473     0x2  Code  Gb  interpret.o [1]
-tempBuf                 0x2000486c    0x20  Data  Lc  interpret.o [1]
-tickCount               0x20004940     0x4  Data  Lc  interpret.o [1]
+                        0x000026eb     0x2  Code  Gb  interpret.o [1]
+tempBuf                 0x20004870    0x20  Data  Lc  interpret.o [1]
+tickCount               0x20004954     0x4  Data  Lc  interpret.o [1]
+tinyQueue<int>::clear()
+                        0x00002abf     0xc  Code  Gb  interpret.o [1]
 tinyQueue<int>::empty() const
-                        0x00002723    0x16  Code  Gb  interpret.o [1]
+                        0x00004b9b    0x16  Code  Gb  interpret.o [1]
 tinyQueue<int>::front() const
-                        0x000027f9     0xa  Code  Gb  interpret.o [1]
+                        0x00002b3f     0xa  Code  Gb  interpret.o [1]
 tinyQueue<int>::peekAtIndex(unsigned int) const
-                        0x000027e9     0x6  Code  Gb  interpret.o [1]
+                        0x00002b2f     0x6  Code  Gb  interpret.o [1]
 tinyQueue<int>::pop_front()
-                        0x00002963    0x28  Code  Gb  interpret.o [1]
+                        0x00002c9f    0x28  Code  Gb  interpret.o [1]
 tinyQueue<int>::push_front(int)
-                        0x000027b5    0x34  Code  Gb  interpret.o [1]
+                        0x00002afb    0x34  Code  Gb  interpret.o [1]
 tinyQueue<int>::size() const
-                        0x000046a1    0x10  Code  Gb  interpret.o [1]
+                        0x00004a3f    0x10  Code  Gb  interpret.o [1]
 tinyQueue<int>::spaceAvail() const
-                        0x00004757    0x2a  Code  Gb  interpret.o [1]
+                        0x00004a15    0x2a  Code  Gb  interpret.o [1]
 tinyQueue<int>::stackFrameIndex() const
-                        0x0000286f     0x6  Code  Gb  interpret.o [1]
+                        0x00002bab     0x6  Code  Gb  interpret.o [1]
 tinyQueue<int>::stackFrameIndex(unsigned int)
-                        0x000027f3     0x6  Code  Gb  interpret.o [1]
+                        0x00002b39     0x6  Code  Gb  interpret.o [1]
 tinyQueue<int>::tinyQueue()
-                        0x00002483     0xe  Code  Gb  interpret.o [1]
+                        0x00002801     0xe  Code  Gb  interpret.o [1]
 tinyQueue<int>::~tinyQueue()
-                        0x0000795f     0x2  Code  Gb  interpret.o [1]
+                        0x00007cc3     0x2  Code  Gb  interpret.o [1]
 tinyQueue<unsigned char>::clear()
-                        0x00002367     0xc  Code  Gb  interpret.o [1]
+                        0x000025df     0xc  Code  Gb  interpret.o [1]
 tinyQueue<unsigned char>::getBuffer()
-                        0x00002373     0x2  Code  Gb  interpret.o [1]
+                        0x000025eb     0x2  Code  Gb  interpret.o [1]
 tinyQueue<unsigned char>::push(unsigned char)
-                        0x0000230d    0x30  Code  Gb  interpret.o [1]
+                        0x00002585    0x30  Code  Gb  interpret.o [1]
 tinyQueue<unsigned char>::spaceAvail() const
-                        0x0000233d    0x2a  Code  Gb  interpret.o [1]
+                        0x000025b5    0x2a  Code  Gb  interpret.o [1]
 tinyQueue<unsigned char>::tinyQueue(int)
-                        0x00002303     0xa  Code  Gb  interpret.o [1]
+                        0x0000257b     0xa  Code  Gb  interpret.o [1]
 tinyQueue<unsigned char>::~tinyQueue()
-                        0x00002a5b     0x2  Code  Gb  interpret.o [1]
+                        0x00003193     0x2  Code  Gb  interpret.o [1]
 uDMAChannelAttributeDisable
-                        0x00006a51    0x26  Code  Gb  udma.o [5]
-uDMAChannelControlSet   0x00006a77    0x18  Code  Gb  udma.o [5]
-uDMAChannelDisable      0x00006a41    0x10  Code  Gb  udma.o [5]
-uDMAChannelEnable       0x00006a31    0x10  Code  Gb  udma.o [5]
-uDMAChannelModeGet      0x00006b0d    0x28  Code  Gb  udma.o [5]
-uDMAChannelTransferSet  0x00006a8f    0x7e  Code  Gb  udma.o [5]
-uDMAUSBArbSizeSet       0x00006515    0x60  Code  Lc  usbdma.o [9]
-uDMAUSBChannelAllocate  0x000063cb    0xa6  Code  Lc  usbdma.o [9]
-uDMAUSBChannelDisable   0x000062b3    0x46  Code  Lc  usbdma.o [9]
-uDMAUSBChannelEnable    0x00006261    0x52  Code  Lc  usbdma.o [9]
+                        0x00006db5    0x26  Code  Gb  udma.o [5]
+uDMAChannelControlSet   0x00006ddb    0x18  Code  Gb  udma.o [5]
+uDMAChannelDisable      0x00006da5    0x10  Code  Gb  udma.o [5]
+uDMAChannelEnable       0x00006d95    0x10  Code  Gb  udma.o [5]
+uDMAChannelModeGet      0x00006e71    0x28  Code  Gb  udma.o [5]
+uDMAChannelTransferSet  0x00006df3    0x7e  Code  Gb  udma.o [5]
+uDMAUSBArbSizeSet       0x00006879    0x60  Code  Lc  usbdma.o [9]
+uDMAUSBChannelAllocate  0x0000672f    0xa6  Code  Lc  usbdma.o [9]
+uDMAUSBChannelDisable   0x00006617    0x46  Code  Lc  usbdma.o [9]
+uDMAUSBChannelEnable    0x000065c5    0x52  Code  Lc  usbdma.o [9]
 uDMAUSBChannelIntDisable
-                        0x00006307     0x2  Code  Lc  usbdma.o [9]
+                        0x0000666b     0x2  Code  Lc  usbdma.o [9]
 uDMAUSBChannelIntEnable
-                        0x00006305     0x2  Code  Lc  usbdma.o [9]
-uDMAUSBChannelRelease   0x00006471    0x5a  Code  Lc  usbdma.o [9]
-uDMAUSBChannelStatus    0x000061d5    0x24  Code  Lc  usbdma.o [9]
-uDMAUSBIntStatus        0x000061f9    0x2a  Code  Lc  usbdma.o [9]
-uDMAUSBTransfer         0x00006309    0xa6  Code  Lc  usbdma.o [9]
-uDMAUSBUnitSizeSet      0x000064cb    0x4a  Code  Lc  usbdma.o [9]
-ucHeap                  0x200000d0  0x2ee0  Data  Lc  heap_2.o [1]
-ucMaxSysCallPriority    0x200049bb     0x1  Data  Lc  port.o [1]
-ulMaxPRIGROUPValue      0x2000495c     0x4  Data  Lc  port.o [1]
-ulPortSetInterruptMask  0x0000343f          Code  Gb  portasm.o [1]
+                        0x00006669     0x2  Code  Lc  usbdma.o [9]
+uDMAUSBChannelRelease   0x000067d5    0x5a  Code  Lc  usbdma.o [9]
+uDMAUSBChannelStatus    0x00006539    0x24  Code  Lc  usbdma.o [9]
+uDMAUSBIntStatus        0x0000655d    0x2a  Code  Lc  usbdma.o [9]
+uDMAUSBTransfer         0x0000666d    0xa6  Code  Lc  usbdma.o [9]
+uDMAUSBUnitSizeSet      0x0000682f    0x4a  Code  Lc  usbdma.o [9]
+ucHeap                  0x200000d4  0x2ee0  Data  Lc  heap_2.o [1]
+ucMaxSysCallPriority    0x200049d3     0x1  Data  Lc  port.o [1]
+ulMaxPRIGROUPValue      0x20004974     0x4  Data  Lc  port.o [1]
+ulPortSetInterruptMask  0x0000370b          Code  Gb  portasm.o [1]
 uxCriticalNesting       0x200000c8     0x4  Data  Lc  port.o [1]
-uxCurrentNumberOfTasks  0x20004974     0x4  Data  Lc  tasks.o [1]
-uxListRemove            0x000033cb    0x2a  Code  Gb  list.o [1]
-uxPendedTicks           0x20004988     0x4  Data  Lc  tasks.o [1]
-uxSchedulerSuspended    0x20004984     0x4  Data  Lc  tasks.o [1]
+uxCurrentNumberOfTasks  0x2000498c     0x4  Data  Lc  tasks.o [1]
+uxListRemove            0x00003697    0x2a  Code  Gb  list.o [1]
+uxPendedTicks           0x200049a0     0x4  Data  Lc  tasks.o [1]
+uxSchedulerSuspended    0x2000499c     0x4  Data  Lc  tasks.o [1]
 uxTaskGetStackHighWaterMark
-                        0x00002057    0x20  Code  Gb  tasks.o [1]
-uxTaskNumber            0x20004994     0x4  Data  Lc  tasks.o [1]
-uxTasksDeleted          0x20004970     0x4  Data  Lc  tasks.o [1]
-uxTopReadyPriority      0x2000497c     0x4  Data  Lc  tasks.o [1]
+                        0x00002273    0x20  Code  Gb  tasks.o [1]
+uxTaskNumber            0x200049ac     0x4  Data  Lc  tasks.o [1]
+uxTasksDeleted          0x20004988     0x4  Data  Lc  tasks.o [1]
+uxTopReadyPriority      0x20004994     0x4  Data  Lc  tasks.o [1]
 vApplicationStackOverflowHook
-                        0x000022a1     0x2  Code  Gb  main.o [1]
-vApplicationTickHook    0x0000229f     0x2  Code  Gb  main.o [1]
-vIdleTask               0x0000220d    0x28  Code  Lc  main.o [1]
-vInterpretTask          0x00002285    0x1a  Code  Lc  main.o [1]
-vListInitialise         0x00003351    0x1e  Code  Gb  list.o [1]
-vListInitialiseItem     0x0000336f     0x6  Code  Gb  list.o [1]
-vListInsert             0x0000338f    0x3c  Code  Gb  list.o [1]
-vListInsertEnd          0x00003375    0x1a  Code  Gb  list.o [1]
+                        0x00002515     0x2  Code  Gb  main.o [1]
+vApplicationTickHook    0x00002513     0x2  Code  Gb  main.o [1]
+vIdleTask               0x00002481    0x28  Code  Lc  main.o [1]
+vInterpretTask          0x000024f9    0x1a  Code  Lc  main.o [1]
+vListInitialise         0x0000361d    0x1e  Code  Gb  list.o [1]
+vListInitialiseItem     0x0000363b     0x6  Code  Gb  list.o [1]
+vListInsert             0x0000365b    0x3c  Code  Gb  list.o [1]
+vListInsertEnd          0x00003641    0x1a  Code  Gb  list.o [1]
 vPortClearInterruptMask
-                        0x0000344d          Code  Gb  portasm.o [1]
-vPortEnableVFP          0x00003479          Code  Gb  portasm.o [1]
-vPortEnterCritical      0x000032c5    0x1a  Code  Gb  port.o [1]
-vPortExitCritical       0x000032df    0x1c  Code  Gb  port.o [1]
-vPortFree               0x000035bb    0x44  Code  Gb  heap_2.o [1]
-vPortSVCHandler         0x00003453          Code  Gb  portasm.o [1]
+                        0x00003719          Code  Gb  portasm.o [1]
+vPortEnableVFP          0x00003745          Code  Gb  portasm.o [1]
+vPortEnterCritical      0x00003591    0x1a  Code  Gb  port.o [1]
+vPortExitCritical       0x000035ab    0x1c  Code  Gb  port.o [1]
+vPortFree               0x00003887    0x44  Code  Gb  heap_2.o [1]
+vPortSVCHandler         0x0000371f          Code  Gb  portasm.o [1]
 vPortSetupTimerInterrupt
-                        0x0000331b    0x10  Code  Wk  port.o [1]
-vPortStartFirstTask     0x0000346b          Code  Gb  portasm.o [1]
-vPortYield              0x000032b3    0x12  Code  Gb  port.o [1]
+                        0x000035e7    0x10  Code  Wk  port.o [1]
+vPortStartFirstTask     0x00003737          Code  Gb  portasm.o [1]
+vPortYield              0x0000357f    0x12  Code  Gb  port.o [1]
 vSetupHighFrequencyTimer
-                        0x00002195    0x38  Code  Gb  main.o [1]
-vStartIdleTask          0x000021e7    0x22  Code  Gb  main.o [1]
-vStartInterpretTask     0x00002235    0x24  Code  Gb  main.o [1]
-vTaskDelay              0x00001acd    0x3c  Code  Gb  tasks.o [1]
-vTaskDelayUntil         0x00001a4d    0x80  Code  Gb  tasks.o [1]
-vTaskStartScheduler     0x00001b09    0x4c  Code  Gb  tasks.o [1]
-vTaskSuspendAll         0x00001b55    0x10  Code  Gb  tasks.o [1]
-vTaskSwitchContext      0x00001dc9    0xc6  Code  Gb  tasks.o [1]
-xDelayedTaskList1       0x200048bc    0x14  Data  Lc  tasks.o [1]
-xDelayedTaskList2       0x200048d0    0x14  Data  Lc  tasks.o [1]
-xEnd                    0x20004928     0x8  Data  Lc  heap_2.o [1]
+                        0x00002409    0x38  Code  Gb  main.o [1]
+vStartIdleTask          0x0000245b    0x22  Code  Gb  main.o [1]
+vStartInterpretTask     0x000024a9    0x24  Code  Gb  main.o [1]
+vTaskDelay              0x00001ce9    0x3c  Code  Gb  tasks.o [1]
+vTaskDelayUntil         0x00001c69    0x80  Code  Gb  tasks.o [1]
+vTaskStartScheduler     0x00001d25    0x4c  Code  Gb  tasks.o [1]
+vTaskSuspendAll         0x00001d71    0x10  Code  Gb  tasks.o [1]
+vTaskSwitchContext      0x00001fe5    0xc6  Code  Gb  tasks.o [1]
+xDelayedTaskList1       0x200048c0    0x14  Data  Lc  tasks.o [1]
+xDelayedTaskList2       0x200048d4    0x14  Data  Lc  tasks.o [1]
+xEnd                    0x2000493c     0x8  Data  Lc  heap_2.o [1]
 xFreeBytesRemaining     0x200000bc     0x4  Data  Lc  heap_2.o [1]
 xNextTaskUnblockTime    0x200000cc     0x4  Data  Lc  tasks.o [1]
-xNumOfOverflows         0x20004990     0x4  Data  Lc  tasks.o [1]
-xPendingReadyList       0x200048e4    0x14  Data  Lc  tasks.o [1]
-xPortPendSVHandler      0x000033f5          Code  Gb  portasm.o [1]
-xPortStartScheduler     0x0000321b    0x98  Code  Gb  port.o [1]
-xPortSysTickHandler     0x000032fb    0x20  Code  Gb  port.o [1]
-xSchedulerRunning       0x20004980     0x4  Data  Lc  tasks.o [1]
-xStart                  0x20004920     0x8  Data  Lc  heap_2.o [1]
-xSuspendedTaskList      0x2000490c    0x14  Data  Lc  tasks.o [1]
-xTaskGenericCreate      0x00001905   0x148  Code  Gb  tasks.o [1]
-xTaskGetTickCount       0x00001c53    0x16  Code  Gb  tasks.o [1]
+xNumOfOverflows         0x200049a8     0x4  Data  Lc  tasks.o [1]
+xPendingReadyList       0x200048e8    0x14  Data  Lc  tasks.o [1]
+xPortPendSVHandler      0x000036c1          Code  Gb  portasm.o [1]
+xPortStartScheduler     0x000034e7    0x98  Code  Gb  port.o [1]
+xPortSysTickHandler     0x000035c7    0x20  Code  Gb  port.o [1]
+xSchedulerRunning       0x20004998     0x4  Data  Lc  tasks.o [1]
+xStart                  0x20004934     0x8  Data  Lc  heap_2.o [1]
+xSuspendedTaskList      0x20004910    0x14  Data  Lc  tasks.o [1]
+xTaskGenericCreate      0x00001b21   0x148  Code  Gb  tasks.o [1]
+xTaskGetTickCount       0x00001e6f    0x16  Code  Gb  tasks.o [1]
 xTaskIdleWaitCurrentTime
-                        0x2000493c     0x4  Data  Lc  interpret.o [1]
-xTaskIdleWaitStartTime  0x20004938     0x4  Data  Lc  interpret.o [1]
-xTaskIncrementTick      0x00001c69   0x160  Code  Gb  tasks.o [1]
-xTaskResumeAll          0x00001b65    0xee  Code  Gb  tasks.o [1]
-xTaskWakeTime           0x20004934     0x4  Data  Lc  interpret.o [1]
+                        0x20004950     0x4  Data  Lc  interpret.o [1]
+xTaskIdleWaitStartTime  0x2000494c     0x4  Data  Lc  interpret.o [1]
+xTaskIncrementTick      0x00001e85   0x160  Code  Gb  tasks.o [1]
+xTaskResumeAll          0x00001d81    0xee  Code  Gb  tasks.o [1]
+xTaskWakeTime           0x20004948     0x4  Data  Lc  interpret.o [1]
 xTasksWaitingTermination
-                        0x200048f8    0x14  Data  Lc  tasks.o [1]
-xTickCount              0x20004978     0x4  Data  Lc  tasks.o [1]
-xYieldPending           0x2000498c     0x4  Data  Lc  tasks.o [1]
+                        0x200048fc    0x14  Data  Lc  tasks.o [1]
+xTickCount              0x20004990     0x4  Data  Lc  tasks.o [1]
+xYieldPending           0x200049a4     0x4  Data  Lc  tasks.o [1]
 
 
 [1] = C:\dev\docs\scottdesign\motor\Debug\Obj
@@ -2016,9 +2027,9 @@ xYieldPending           0x2000498c     0x4  Data  Lc  tasks.o [1]
 [8] = shb_l.a
 [9] = usblib.a
 
-  30 560 bytes of readonly  code memory
-   2 040 bytes of readonly  data memory
-  20 334 bytes of readwrite data memory
+  31 428 bytes of readonly  code memory
+   2 060 bytes of readonly  data memory
+  20 367 bytes of readwrite data memory
 
 Errors: none
-Warnings: 3
+Warnings: none
