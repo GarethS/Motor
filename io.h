@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2013
+	Copyright (c) Gareth Scott 2013, 2014
 
 	io.h 
 
@@ -100,6 +100,7 @@ public:
 #endif // not CYGWIN        
     }
     void init(void);
+    void bootloader(void);
     
 private:
     uint32_t _adcValue[ADC_COUNT];

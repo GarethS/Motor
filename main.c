@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2011, 2012, 2013
+	Copyright (c) Gareth Scott 2011, 2012, 2013, 2014
 
 	main.c 
 
@@ -391,7 +391,7 @@ void vStartInterpretTask( unsigned portBASE_TYPE uxPriority )
     xTaskCreate( vInterpretTask, ( signed char * ) "Interpret", 2600 /*ledSTACK_SIZE*/, NULL, uxPriority, ( xTaskHandle * ) NULL );
 }
 
-void interpretRun(void);
+void interpretState(void);
 
 static void vInterpretTask(void* pvParameters )
 {
@@ -407,7 +407,7 @@ static void vInterpretTask(void* pvParameters )
 //portTickType xFlashRate, xLastFlashTime;
 //unsigned portBASE_TYPE uxLED;
     enable(); // Without this motor will not run!
-    interpretRun();
+    interpretState();
     //mainA();
     for (;;) {
        	//portENTER_CRITICAL();

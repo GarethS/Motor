@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2013
+	Copyright (c) Gareth Scott 2013, 2014
 
 	io.cpp 
 
@@ -181,4 +181,40 @@ int io::getTemperature(void) {
     //return (int)(-_temperatureValue[0] * 75 + 147.5);    // TODO: Check this
     return (int)(147.5 - (247.5 * _temperatureValue[0]) / 4096);
 #endif // CYGWIN
+}
+
+void io::bootloader(void) {
+#if !CYGWIN
+    #define SYSTICKS_PER_SECOND 100
+    uint32_t ui32SysClock = ROM_SysCtlClockGet();
+    ROM_SysTickPeriodSet(ROM_SysCtlClockGet() / SYSTICKS_PER_SECOND);
+    ROM_SysTickIntEnable();
+    ROM_SysTickEnable();
+
+    //USBDCDTerm(0); // Doesn't make any difference
+
+    // Disable all interrupts
+    ROM_IntMasterDisable();
+    ROM_SysTickIntDisable();
+    ROM_SysTickDisable();
+    HWREG(NVIC_DIS0) = 0xffffffff;
+    HWREG(NVIC_DIS1) = 0xffffffff;
+
+    // 1. Enable USB PLL
+    // 2. Enable USB controller
+    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_USB0);
+    ROM_SysCtlPeripheralReset(SYSCTL_PERIPH_USB0);
+
+    //ROM_SysCtlUSBPLLEnable();
+
+    ROM_SysCtlUSBPLLEnable();
+
+    // 3. Enable USB D+ D- pins
+
+    // 4. Activate USB DFU
+    ROM_SysCtlDelay(ui32SysClock / 3);
+    ROM_IntMasterEnable(); // Re-enable interrupts at NVIC level
+    ROM_UpdateUSB(0);
+    // 5. Should never get here since update is in progress
+#endif // not CYGWIN    
 }

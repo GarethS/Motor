@@ -1,5 +1,5 @@
 /*
-	Copyright (c) Gareth Scott 2011, 2012, 2013
+	Copyright (c) Gareth Scott 2011, 2012, 2013, 2014
 
 	stepper.cpp 
 
@@ -18,12 +18,12 @@ extern "C" void UARTSend(const unsigned char *pucBuffer, unsigned long ulCount);
 #include "driverlib/sysctl.h"   // SYSCTL_PERIPH_GPIOC
 #include "driverlib/rom.h"
 
-stepper* sp = NULL;
+stepper* pStepper = NULL;
 
 extern "C" void stepperISR(void) {
     ROM_TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
-    if (sp != NULL) {
-        sp->isr();
+    if (pStepper != NULL) {
+        pStepper->isr();
     }
 }
 #endif // PART_TM4C1233D5PM
